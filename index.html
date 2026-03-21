@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tyy — Conglomerate Collective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #07070a;
+  --surface: #0f0f13;
+  --surface2: #161619;
+  --border: rgba(255,255,255,0.07);
+  --border-mid: rgba(255,255,255,0.13);
+  --text-primary: #f0f0ee;
+  --text-secondary: #7a7a78;
+  --text-muted: #3e3e3c;
+  --star-on: #f0b429;
+  --star-off: #2a2a28;
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#star-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Everything content-level sits above the canvas */
+body > *:not(#star-canvas) { position: relative; z-index: 2; }
+.nav-bar { z-index: 200 !important; }
+.hero, hr.divider, .section, footer { z-index: 2; }
+
+/* ── NAV ── */
+.nav-bar {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(7,7,10,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  height: 52px;
+}
+.nav-logo {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: #fff; color: #07070a;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+  text-decoration: none; flex-shrink: 0;
+  margin-bottom: 10px;
+}
+/* Tabs sit flush at the bottom of the nav, centered */
+.nav-tabs {
+  display: flex; align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  overflow-x: auto; scrollbar-width: none;
+  /* Small spacer so logo aligns visually */
+  padding: 0 8px;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+/* Trapezoid tab — SVG background for true rounded trapezoid corners */
+.nav-tab {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 7px 22px 6px;
+  position: relative;
+  margin-bottom: -1px;
+  transition: color 0.18s;
+  /* Rounded trapezoid via clip-path with smooth corner approximation */
+  clip-path: polygon(
+    10px 0%,
+    calc(100% - 10px) 0%,
+    calc(100% - 10px) 0%,
+    100% 6px,
+    100% 100%,
+    0% 100%,
+    0% 6px,
+    10px 0%
+  );
+}
+/* Pseudo renders the actual rounded trapezoid shape as background */
+.nav-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  /* Rounded trapezoid: top corners rounded, angled sides, no bottom radius */
+  border-radius: 8px 8px 0 0;
+  transform: perspective(18px) rotateX(3deg);
+  transform-origin: bottom center;
+  transition: background 0.18s, box-shadow 0.18s;
+  z-index: -1;
+}
+.nav-tab:hover { color: var(--text-primary); }
+.nav-tab:hover::before { background: rgba(255,255,255,0.07); }
+.nav-tab.active { color: var(--text-primary); padding-top: 8px; }
+.nav-tab.active::before {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border), 0 0 0 1px var(--bg);
+}
+
+/* Spacer on right to balance the logo */
+.nav-spacer { width: 32px; flex-shrink: 0; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 720px; margin: 0 auto;
+  padding: 92px 2rem 64px;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center; gap: 22px;
+}
+.logo-mark {
+  width: 82px; height: 82px; border-radius: 22px;
+  background: #fff; color: #07070a;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500;
+  letter-spacing: -0.02em; flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 12px 48px rgba(0,0,0,0.8);
+}
+.hero-name {
+  font-size: clamp(40px, 9vw, 68px);
+  font-weight: 300; letter-spacing: -0.04em; line-height: 1.0;
+}
+.hero-tagline {
+  font-size: 15px; color: var(--text-secondary);
+  max-width: 340px; line-height: 1.65;
+}
+
+/* ── SOCIALS — smooth pill expand ── */
+.socials {
+  display: flex; gap: 10px;
+  flex-wrap: wrap; justify-content: center; margin-top: 4px;
+}
+
+.social-btn {
+  display: inline-flex; align-items: center;
+  height: 42px; padding: 0 13px;
+  border-radius: 100px;
+  border: 1px solid var(--border-mid);
+  background: var(--surface);
+  color: var(--text-secondary);
+  text-decoration: none; cursor: pointer;
+  /* Use max-width to expand — avoids width:auto choppiness */
+  max-width: 46px;
+  overflow: hidden;
+  white-space: nowrap;
+  will-change: max-width, color, background, border-color;
+  transition:
+    max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease;
+}
+.social-btn svg {
+  width: 16px; height: 16px; fill: currentColor; flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.social-label {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  margin-left: 8px; opacity: 0; white-space: nowrap;
+  transition: opacity 0.25s ease 0.08s;
+  pointer-events: none;
+}
+.social-btn:hover {
+  max-width: 160px;
+  border-color: rgba(255,255,255,0.25);
+  background: var(--surface2);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+.social-btn:hover svg { transform: rotate(16deg) scale(1.1); }
+.social-btn:hover .social-label { opacity: 1; }
+
+/* ── DIVIDER ── */
+hr.divider {
+  max-width: 900px; margin: 0 auto;
+  border: none; border-top: 1px solid var(--border);
+}
+
+/* ── SECTION ── */
+.section {
+  max-width: 960px; margin: 0 auto; padding: 56px 2rem;
+}
+.section-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 32px;
+}
+
+/* ── SHOWCASE — horizontal scrollable rows ── */
+.showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.showcase-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: transparent;
+  transition: border-color 0.2s;
+  min-height: 260px;
+}
+.showcase-item + .showcase-item { margin-top: 12px; }
+.showcase-item:hover { border-color: var(--border-mid); }
+
+/* Alternate: even items flip media to right */
+.showcase-item.flip { grid-template-columns: 1fr 1fr; }
+.showcase-item.flip .showcase-media { order: 2; }
+.showcase-item.flip .showcase-body { order: 1; }
+
+.showcase-media {
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.showcase-media img,
+.showcase-media video {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.showcase-media img.cover {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.showcase-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace; font-size: 11px;
+}
+.placeholder-icon {
+  width: 40px; height: 40px;
+  border: 1px solid var(--border-mid);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.placeholder-icon svg { width: 18px; height: 18px; stroke: var(--text-muted); fill: none; }
+
+.showcase-body {
+  padding: 28px 30px;
+  display: flex; flex-direction: column; justify-content: center; gap: 10px;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+}
+.showcase-item.flip .showcase-body {
+  border-left: none;
+  border-right: 1px solid var(--border);
+}
+.showcase-tag {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+}
+.showcase-title {
+  font-size: 20px; font-weight: 400; letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.showcase-desc {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+  max-width: 380px;
+}
+.showcase-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; color: var(--text-primary);
+  text-decoration: none; margin-top: 6px;
+  opacity: 0.6; transition: opacity 0.15s;
+}
+.showcase-link:hover { opacity: 1; }
+.showcase-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; }
+
+/* responsive */
+@media (max-width: 640px) {
+  .showcase-item, .showcase-item.flip {
+    grid-template-columns: 1fr;
+  }
+  .showcase-item.flip .showcase-media { order: 0; }
+  .showcase-item.flip .showcase-body { order: 1; border-right: none; }
+  .showcase-body { border-left: none; border-top: 1px solid var(--border); }
+  .showcase-media { min-height: 200px; }
+}
+
+/* ── TESTIMONIALS ── */
+#testimonials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+#testimonials .section-label {
+  align-self: flex-start; /* label stays left-aligned */
+}
+.testimonials-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px; margin-bottom: 36px;
+  text-align: left;
+}
+.testimonial-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px;
+}
+.t-stars { display: flex; gap: 3px; margin-bottom: 10px; }
+.t-star { font-size: 14px; }
+.t-text { font-size: 14px; color: var(--text-primary); line-height: 1.65; margin-bottom: 14px; }
+.t-author { font-size: 12px; font-weight: 500; color: var(--text-secondary); }
+.t-image { width: 100%; border-radius: 8px; margin-bottom: 12px; max-height: 140px; object-fit: cover; display: block; }
+
+/* ── FORM ── */
+.t-form-wrap {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px;
+  width: 100%; max-width: 520px;
+  text-align: left;
+}
+.t-form-title { font-size: 15px; font-weight: 500; margin-bottom: 18px; }
+.form-group { margin-bottom: 14px; }
+.form-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); display: block; margin-bottom: 6px; }
+.form-input, .form-textarea {
+  width: 100%; padding: 9px 12px;
+  border: 1px solid var(--border-mid); border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: var(--text-primary); background: var(--bg); outline: none;
+  transition: border-color 0.15s;
+}
+.form-input:focus, .form-textarea:focus { border-color: rgba(255,255,255,0.28); }
+.form-textarea { resize: vertical; min-height: 88px; }
+.star-picker { display: flex; gap: 6px; }
+.star-pick { font-size: 22px; cursor: pointer; transition: transform 0.1s; user-select: none; }
+.star-pick:hover { transform: scale(1.2); }
+.img-upload-label {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+  border: 1px dashed var(--border-mid); border-radius: var(--radius);
+  font-size: 13px; color: var(--text-secondary); cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.img-upload-label:hover { border-color: rgba(255,255,255,0.28); color: var(--text-primary); }
+#t-img-input { display: none; }
+.submit-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; background: #fff; color: #07070a;
+  border: none; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  cursor: pointer; margin-top: 6px; transition: opacity 0.15s;
+}
+.submit-btn:hover { opacity: 0.82; }
+.pending-msg {
+  display: none; font-size: 13px; color: var(--text-secondary);
+  margin-top: 12px; padding: 10px 14px;
+  background: var(--surface2); border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* ── ADMIN ── */
+.admin-toggle {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid var(--border-mid); background: transparent;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+  color: var(--text-muted); cursor: pointer; margin-top: 28px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.admin-toggle:hover { border-color: rgba(255,255,255,0.2); color: var(--text-secondary); }
+.admin-panel {
+  display: none; margin-top: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 22px;
+  width: 100%; max-width: 520px;
+  text-align: left;
+}
+.admin-panel.open { display: block; }
+.admin-login { margin-bottom: 16px; display: flex; gap: 10px; align-items: center; }
+.admin-input {
+  padding: 8px 12px; border: 1px solid var(--border-mid);
+  border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
+  font-size: 13px; background: var(--bg); outline: none; color: var(--text-primary);
+}
+.admin-input:focus { border-color: rgba(255,255,255,0.28); }
+.admin-btn {
+  padding: 7px 14px; border-radius: var(--radius); border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: opacity 0.15s;
+}
+.admin-btn.approve { background: rgba(22,101,52,0.28); color: #6ee7b7; border: 1px solid rgba(110,231,183,0.18); }
+.admin-btn.deny { background: rgba(127,29,29,0.28); color: #fca5a5; border: 1px solid rgba(252,165,165,0.18); }
+.admin-btn:hover { opacity: 0.72; }
+.admin-err { font-size: 13px; color: #fca5a5; display: none; margin-top: 8px; }
+.pending-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px; margin-bottom: 12px; background: var(--bg);
+}
+.pending-card .pc-name { font-weight: 500; font-size: 14px; margin-bottom: 4px; }
+.pending-card .pc-text { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.5; }
+.pending-card .pc-actions { display: flex; gap: 8px; }
+.pending-card img { max-height: 80px; border-radius: 6px; margin-bottom: 8px; display: block; }
+.empty-admin { font-size: 13px; color: var(--text-muted); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.footer {
+  border-top: 1px solid var(--border); padding: 22px 2rem;
+  text-align: center; font-size: 12px; color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+}
+
+/* ── SLIDESHOW DOTS ── */
+.slide-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  display: inline-block; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.slide-dot.active { background: #fff; transform: scale(1.3); }
+
+/* ── MOBILE ── */
+@media (max-width: 640px) {
+  /* Hero */
+  .hero { padding: 52px 1.25rem 40px; gap: 16px; }
+  .logo-mark { width: 64px; height: 64px; border-radius: 16px; font-size: 15px; }
+  .hero-name { font-size: clamp(36px, 12vw, 52px); }
+  .hero-tagline { font-size: 14px; }
+
+  /* Socials — on mobile always show labels since hover isn't available */
+  .social-btn { max-width: 160px; padding: 0 14px; color: var(--text-primary); border-color: var(--border-mid); }
+  .social-label { opacity: 1; }
+
+  /* Nav */
+  .nav-bar { padding: 0 1rem; height: 48px; }
+  .nav-logo { width: 28px; height: 28px; font-size: 10px; margin-bottom: 8px; }
+  .nav-spacer { width: 28px; }
+  .nav-tabs { gap: 1px; padding: 0 4px; }
+  .nav-tab { font-size: 12px; padding: 6px 12px 5px; }
+
+  /* Showcase */
+  .showcase-item, .showcase-item.flip {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+  .showcase-item.flip .showcase-media { order: 0; }
+  .showcase-item.flip .showcase-body { order: 1; border-right: none; }
+  .showcase-body {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 20px;
+  }
+  .showcase-media { min-height: 200px; }
+  .showcase-title { font-size: 17px; }
+  .showcase-desc { font-size: 13px; }
+
+  /* Testimonials */
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .t-form-wrap { padding: 18px; }
+
+  /* Section */
+  .section { padding: 36px 1.25rem; }
+  hr.divider { margin: 0 1.25rem; }
+
+  /* Admin */
+  .admin-login { flex-wrap: wrap; }
+  .admin-input { width: 100%; }
+}
+
+@media (max-width: 400px) {
+  .nav-tab { font-size: 11px; padding: 6px 9px 5px; }
+  .hero-name { font-size: 11vw; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="star-canvas"></canvas>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <a href="#" class="nav-logo">(CC)</a>
+  <div class="nav-tabs" role="tablist">
+    <button class="nav-tab active" data-tab="scripting">Scripting</button>
+    <button class="nav-tab" data-tab="ui">UI Design</button>
+    <button class="nav-tab" data-tab="editing">Editing</button>
+    <button class="nav-tab" data-tab="clothing">Clothing</button>
+  </div>
+  <div class="nav-spacer"></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo-mark">(CC)</div>
+  <h1 class="hero-name">tyy</h1>
+  <p class="hero-tagline">Just Creating</p>
+
+  <div class="socials">
+    <a href="https://discordapp.com/users/1463669423788523706" class="social-btn" target="_blank" rel="noopener" aria-label="Discord">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      <span class="social-label">Discord</span>
+    </a>
+    <a href="#" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      <span class="social-label">Instagram</span>
+    </a>
+    <a href="https://www.youtube.com/@tyycc2021" class="social-btn" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <span class="social-label">YouTube</span>
+    </a>
+    <a href="https://www.tiktok.com/@ty7kl" class="social-btn" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      <span class="social-label">TikTok</span>
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WORK PANELS -->
+<div class="section">
+
+  <!-- SCRIPTING -->
+  <div class="tab-panel active" id="panel-scripting">
+    <p class="section-label">Scripting</p>
+    <div class="showcase">
+
+      <div class="showcase-item">
+        <div class="showcase-media" style="background:#0d0d11;">
+          <img src="LockonFollowGif.gif" alt="Lock on / Following System demo" class="cover">
+        </div>
+        <div class="showcase-body">
+          <span class="showcase-tag">Combat</span>
+          <div class="showcase-title">Lock on System / Following System</div>
+          <p class="showcase-desc">Description coming soon.</p>
+          <a href="#" class="showcase-link">
+            View project
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="showcase-item flip">
+        <div class="showcase-media">
+          <div class="showcase-placeholder">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <span>Drop image / GIF / video here</span>
+          </div>
+        </div>
+        <div class="showcase-body">
+          <span class="showcase-tag">Scripting</span>
+          <div class="showcase-title">Another Project</div>
+          <p class="showcase-desc">Swap in a GIF or autoplay video on the left. This card alternates sides for a dynamic scroll feel — keeps the page interesting as visitors explore your work.</p>
+          <a href="#" class="showcase-link">
+            View project
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="showcase-item">
+        <div class="showcase-media">
+          <div class="showcase-placeholder">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <span>Drop image / GIF / video here</span>
+          </div>
+        </div>
+        <div class="showcase-body">
+          <span class="showcase-tag">Scripting</span>
+          <div class="showcase-title">Third Project</div>
+          <p class="showcase-desc">Add your real project name and a quick description here. For videos, add a &lt;video autoplay loop muted playsinline&gt; tag inside .showcase-media.</p>
+          <a href="#" class="showcase-link">
+            View project
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UI DESIGN -->
+  <div class="tab-panel" id="panel-ui">
+    <p class="section-label">UI Design</p>
+    <div class="showcase">
+      <div class="showcase-item">
+        <div class="showcase-media">
+          <div class="showcase-placeholder">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <span>Drop image / GIF / video here</span>
+          </div>
+        </div>
+        <div class="showcase-body">
+          <span class="showcase-tag">UI Design</span>
+          <div class="showcase-title">Interface Project</div>
+          <p class="showcase-desc">Show your UI work here — add screenshots, design previews, or a short demo GIF on the left.</p>
+          <a href="#" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDITING -->
+  <div class="tab-panel" id="panel-editing">
+    <p class="section-label">Editing</p>
+    <div class="showcase">
+      <div class="showcase-item">
+        <div class="showcase-media">
+          <div class="showcase-placeholder">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <span>Drop image / GIF / video here</span>
+          </div>
+        </div>
+        <div class="showcase-body">
+          <span class="showcase-tag">Editing</span>
+          <div class="showcase-title">Edit Reel</div>
+          <p class="showcase-desc">Drop a GIF or autoplay video clip to show off your editing style and technique.</p>
+          <a href="#" class="showcase-link">View reel <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOTHING -->
+  <div class="tab-panel" id="panel-clothing">
+    <p class="section-label">Clothing</p>
+    <div class="showcase">
+
+      <div class="showcase-item">
+        <div class="showcase-media" id="jeans-slider" style="cursor:pointer; position:relative;">
+          <img id="jeans-img" src="J1.png" alt="Jeans 001" style="width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.4s ease;">
+          <!-- dot indicators -->
+          <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;" id="jeans-dots">
+            <span class="slide-dot active" data-i="0"></span>
+            <span class="slide-dot" data-i="1"></span>
+            <span class="slide-dot" data-i="2"></span>
+            <span class="slide-dot" data-i="3"></span>
+          </div>
+        </div>
+        <div class="showcase-body">
+          <span class="showcase-tag">Exhibit 001</span>
+          <div class="showcase-title">Jeans 001</div>
+          <p class="showcase-desc">Description coming soon.</p>
+          <a href="#" class="showcase-link">
+            View project
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="showcase-item flip">
+        <div class="showcase-media" id="sweats-slider" style="cursor:pointer; position:relative;">
+          <img id="sweats-img" src="S1.png" alt="Sweats 001" style="width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.4s ease;">
+          <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;" id="sweats-dots">
+            <span class="slide-dot active" data-i="0"></span>
+            <span class="slide-dot" data-i="1"></span>
+            <span class="slide-dot" data-i="2"></span>
+            <span class="slide-dot" data-i="3"></span>
+          </div>
+        </div>
+        <div class="showcase-body">
+          <span class="showcase-tag">Exhibit 002</span>
+          <div class="showcase-title">Sweats 001</div>
+          <p class="showcase-desc">Description coming soon.</p>
+          <a href="#" class="showcase-link">
+            View project
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<hr class="divider">
+
+<!-- TESTIMONIALS -->
+<div class="section" id="testimonials">
+  <p class="section-label">Testimonials</p>
+
+  <div class="testimonials-grid" id="testimonials-grid">
+    <div id="empty-testimonials" style="display:flex;align-items:center;justify-content:center;width:100%;grid-column:1/-1;padding:32px 0;">
+      <p style="font-size:13px;color:var(--text-muted);">No testimonials yet — be the first!</p>
+    </div>
+  </div>
+
+  <div class="t-form-wrap">
+    <p class="t-form-title">Leave a testimonial</p>
+    <div class="form-group">
+      <label class="form-label" for="t-name">Your name</label>
+      <input class="form-input" type="text" id="t-name" placeholder="e.g. Alex M." autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Rating</label>
+      <div class="star-picker" id="star-picker">
+        <span class="star-pick" data-val="1">☆</span>
+        <span class="star-pick" data-val="2">☆</span>
+        <span class="star-pick" data-val="3">☆</span>
+        <span class="star-pick" data-val="4">☆</span>
+        <span class="star-pick" data-val="5">☆</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="t-text">Your experience</label>
+      <textarea class="form-textarea" id="t-text" placeholder="Tell others about working with Tyrese..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Attach an image (optional)</label>
+      <label class="img-upload-label" for="t-img-input">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Choose image
+      </label>
+      <input type="file" id="t-img-input" accept="image/*">
+      <span id="img-filename" style="font-size:12px;color:var(--text-muted);margin-left:10px;"></span>
+    </div>
+    <button class="submit-btn" id="submit-testimonial">Submit</button>
+    <div class="pending-msg" id="pending-msg">Thank you for submitting!</div>
+  </div>
+
+</div>
+
+<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+
+<script>
+/* ── STAR CANVAS — vibrant, organic shimmer ── */
+(function() {
+  const canvas = document.getElementById('star-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [], shooting = null, shootTimer = 0;
+
+  const palettes = [
+    [255,255,255],[210,228,255],[255,210,170],
+    [170,210,255],[255,170,210],[170,255,220],
+    [255,228,110],[210,170,255],[150,230,255]
+  ];
+
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+
+  function initStars() {
+    stars = [];
+    const n = Math.floor((W * H) / 1900);
+    for (let i = 0; i < n; i++) {
+      const col = palettes[Math.floor(Math.random() * palettes.length)];
+      const big = Math.random() < 0.055;
+      /* Each star gets 2–4 sine waves at different freqs for organic shimmer */
+      const phases = Array.from({length: 3}, () => ({
+        amp:  0.08 + Math.random() * 0.18,
+        freq: 0.0004 + Math.random() * 0.0018,
+        off:  Math.random() * Math.PI * 2
+      }));
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: big ? 1.4 + Math.random() * 1.1 : 0.28 + Math.random() * 0.82,
+        base: big ? 0.55 + Math.random() * 0.3 : 0.18 + Math.random() * 0.42,
+        phases,
+        r0: col[0], g0: col[1], b0: col[2],
+        glow: big
+      });
+    }
+  }
+
+  function brightness(star, t) {
+    let v = star.base;
+    star.phases.forEach(p => { v += p.amp * Math.sin(p.freq * t + p.off); });
+    return Math.max(0.04, Math.min(1.0, v));
+  }
+
+  function spawnShoot() {
+    const col = palettes[Math.floor(Math.random() * palettes.length)];
+    const fromRight = Math.random() < 0.5;
+    shooting = {
+      x: fromRight ? W + 20 : Math.random() * W * 0.5,
+      y: Math.random() * H * 0.45,
+      vx: fromRight ? -(5 + Math.random() * 4) : (5 + Math.random() * 4),
+      vy: 2.5 + Math.random() * 3,
+      len: 110 + Math.random() * 80,
+      life: 1,
+      decay: 0.013 + Math.random() * 0.008,
+      r: col[0], g: col[1], b: col[2]
+    };
+  }
+
+  let t = 0;
+  function frame() {
+    t += 16;
+    ctx.clearRect(0, 0, W, H);
+
+    stars.forEach(s => {
+      const a = brightness(s, t);
+
+      if (s.glow) {
+        const grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4);
+        grd.addColorStop(0,   `rgba(${s.r0},${s.g0},${s.b0},${a})`);
+        grd.addColorStop(0.35,`rgba(${s.r0},${s.g0},${s.b0},${a * 0.28})`);
+        grd.addColorStop(1,   `rgba(${s.r0},${s.g0},${s.b0},0)`);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r * 4, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${s.r0},${s.g0},${s.b0},${a})`;
+      ctx.fill();
+    });
+
+    shootTimer++;
+    if (shootTimer > 520 && !shooting) { spawnShoot(); shootTimer = 0; }
+    if (shooting) {
+      const steps = (shooting.len * shooting.life) / 5.5;
+      const x0 = shooting.x - shooting.vx * steps;
+      const y0 = shooting.y - shooting.vy * steps;
+      const grad = ctx.createLinearGradient(x0, y0, shooting.x, shooting.y);
+      grad.addColorStop(0,   `rgba(${shooting.r},${shooting.g},${shooting.b},0)`);
+      grad.addColorStop(0.65,`rgba(${shooting.r},${shooting.g},${shooting.b},${shooting.life * 0.45})`);
+      grad.addColorStop(1,   `rgba(${shooting.r},${shooting.g},${shooting.b},${shooting.life})`);
+      ctx.beginPath();
+      ctx.moveTo(x0, y0); ctx.lineTo(shooting.x, shooting.y);
+      ctx.strokeStyle = grad; ctx.lineWidth = 1.6; ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(shooting.x, shooting.y, 1.6, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${shooting.r},${shooting.g},${shooting.b},${shooting.life})`;
+      ctx.fill();
+      shooting.x += shooting.vx; shooting.y += shooting.vy;
+      shooting.life -= shooting.decay;
+      if (shooting.life <= 0 || shooting.x > W + 60 || shooting.x < -60 || shooting.y > H + 60) shooting = null;
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', () => { resize(); initStars(); });
+  resize(); initStars(); requestAnimationFrame(frame);
+})();
+
+/* ── TABS ── */
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ── STAR RATING ── */
+let selectedRating = 0;
+const rStars = document.querySelectorAll('.star-pick');
+function renderR(n) { rStars.forEach((s,i) => s.textContent = i < n ? '★' : '☆'); }
+rStars.forEach(s => {
+  s.addEventListener('mouseenter', () => renderR(+s.dataset.val));
+  s.addEventListener('mouseleave', () => renderR(selectedRating));
+  s.addEventListener('click', () => { selectedRating = +s.dataset.val; renderR(selectedRating); });
+});
+
+/* ── SUPABASE ── */
+const SUPA_URL = 'https://zoguypxxotlgjxplcbtz.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvZ3V5cHh4b3RsZ2p4cGxjYnR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5OTM1ODMsImV4cCI6MjA4OTU2OTU4M30.gVGhRpbd8Mhhhvkdfq8KdcJ3zDu-WpsG46CIeBW8CkU';
+
+const supa = {
+  headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}`, 'Content-Type': 'application/json' },
+  async get(path) {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${path}`, { headers: this.headers });
+    return r.json();
+  },
+  async post(path, body) {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${path}`, {
+      method: 'POST', headers: { ...this.headers, 'Prefer': 'return=minimal' },
+      body: JSON.stringify(body)
+    });
+    return r;
+  },
+  async uploadImage(file) {
+    const ext = file.name.split('.').pop();
+    const filename = `${Date.now()}.${ext}`;
+    const r = await fetch(`${SUPA_URL}/storage/v1/object/testimonial-images/${filename}`, {
+      method: 'POST',
+      headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}`, 'Content-Type': file.type },
+      body: file
+    });
+    if (!r.ok) return null;
+    return `${SUPA_URL}/storage/v1/object/public/testimonial-images/${filename}`;
+  }
+};
+
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* ── LOAD APPROVED TESTIMONIALS ── */
+async function renderApproved() {
+  const grid = document.getElementById('testimonials-grid');
+  const empty = document.getElementById('empty-testimonials');
+  grid.querySelectorAll('.testimonial-card').forEach(c => c.remove());
+  try {
+    const data = await supa.get('testimonials?select=*&status=eq.approved&order=created_at.desc');
+    if (!data.length) { empty.style.display = 'flex'; return; }
+    empty.style.display = 'none';
+    data.forEach(t => {
+      const c = document.createElement('div'); c.className = 'testimonial-card';
+      const img = t.image ? `<img class="t-image" src="${esc(t.image)}" alt="">` : '';
+      c.innerHTML = `<div class="t-stars">${Array.from({length:5},(_,i)=>`<span class="t-star" style="color:${i<t.rating?'var(--star-on)':'var(--star-off)'}">${i<t.rating?'★':'☆'}</span>`).join('')}</div>${img}<p class="t-text">${esc(t.message)}</p><p class="t-author">${esc(t.name)}</p>`;
+      grid.appendChild(c);
+    });
+  } catch(e) { empty.style.display = 'flex'; }
+}
+renderApproved();
+
+/* ── IMAGE UPLOAD ── */
+let attachedFile = null;
+const imgInput = document.getElementById('t-img-input');
+imgInput.addEventListener('change', () => {
+  const f = imgInput.files[0]; if (!f) return;
+  document.getElementById('img-filename').textContent = f.name;
+  attachedFile = f;
+});
+
+/* ── SUBMIT ── */
+document.getElementById('submit-testimonial').addEventListener('click', async () => {
+  const name = document.getElementById('t-name').value.trim();
+  const message = document.getElementById('t-text').value.trim();
+  const btn = document.getElementById('submit-testimonial');
+  if (!name || !message || !selectedRating) { alert('Please fill in your name, a rating, and your message.'); return; }
+
+  btn.textContent = 'Sending…'; btn.disabled = true;
+
+  let imageUrl = null;
+  if (attachedFile) { imageUrl = await supa.uploadImage(attachedFile); }
+
+  const res = await supa.post('testimonials', { name, message, rating: selectedRating, image: imageUrl, status: 'pending' });
+
+  btn.textContent = 'Submit'; btn.disabled = false;
+
+  if (res.ok || res.status === 201) {
+    document.getElementById('t-name').value = '';
+    document.getElementById('t-text').value = '';
+    document.getElementById('img-filename').textContent = '';
+    imgInput.value = ''; attachedFile = null; selectedRating = 0; renderR(0);
+    const msg = document.getElementById('pending-msg');
+    msg.style.display = 'block';
+    setTimeout(() => msg.style.display = 'none', 4000);
+  } else {
+    alert('Something went wrong — please try again.');
+  }
+});
+/* ── SWEATS SLIDESHOW ── */
+(function() {
+  const imgs = ['S1.png','S2.png','S3.png','S4.png'];
+  let cur = 0, timer;
+  const el = document.getElementById('sweats-img');
+  const dots = document.querySelectorAll('#sweats-dots .slide-dot');
+
+  function goTo(i) {
+    cur = (i + imgs.length) % imgs.length;
+    el.style.opacity = '0';
+    setTimeout(() => { el.src = imgs[cur]; el.style.opacity = '1'; }, 400);
+    dots.forEach((d,j) => d.classList.toggle('active', j === cur));
+  }
+
+  function next() { goTo(cur + 1); }
+
+  timer = setInterval(next, 6000);
+
+  document.getElementById('sweats-slider').addEventListener('click', () => {
+    clearInterval(timer); next(); timer = setInterval(next, 6000);
+  });
+
+  dots.forEach(d => d.addEventListener('click', e => {
+    e.stopPropagation();
+    clearInterval(timer); goTo(+d.dataset.i); timer = setInterval(next, 6000);
+  }));
+})();
+
+(function() {
+  const imgs = ['J1.png','J2.png','J3.png','J4.png'];
+  let cur = 0, timer;
+  const el = document.getElementById('jeans-img');
+  const dots = document.querySelectorAll('#jeans-dots .slide-dot');
+
+  function goTo(i) {
+    cur = (i + imgs.length) % imgs.length;
+    el.style.opacity = '0';
+    setTimeout(() => { el.src = imgs[cur]; el.style.opacity = '1'; }, 400);
+    dots.forEach((d,j) => d.classList.toggle('active', j === cur));
+  }
+
+  function next() { goTo(cur + 1); }
+
+  timer = setInterval(next, 6000);
+
+  document.getElementById('jeans-slider').addEventListener('click', () => {
+    clearInterval(timer); next(); timer = setInterval(next, 6000);
+  });
+
+  dots.forEach(d => d.addEventListener('click', e => {
+    e.stopPropagation();
+    clearInterval(timer); goTo(+d.dataset.i); timer = setInterval(next, 6000);
+  }));
+})();
+
+</script>
+</body>
+</html>
