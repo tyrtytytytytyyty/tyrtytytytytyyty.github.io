@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clothing — tyy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.slide-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);display:inline-block;cursor:pointer;transition:background .2s,transform .2s;}
+.slide-dot.active{background:#fff;transform:scale(1.3);}
+</style>
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<nav class="nav-bar">
+  <a href="index.html" class="nav-logo">(CC)</a>
+  <div class="nav-tabs">
+    <a href="index.html" class="nav-tab">Home</a>
+    <a href="scripting.html" class="nav-tab">Scripting</a>
+    <a href="ui.html" class="nav-tab">UI Design</a>
+    <a href="editing.html" class="nav-tab">Editing</a>
+    <a href="clothing.html" class="nav-tab active">Clothing</a>
+  </div>
+  <div class="nav-spacer"></div>
+</nav>
+
+<div class="page-header">
+  <p class="page-header-label">Category</p>
+  <h1 class="page-header-title">Clothing</h1>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div class="showcase">
+
+    <div class="showcase-item">
+      <div class="showcase-media" id="jeans-slider" style="cursor:pointer;position:relative;">
+        <img id="jeans-img" src="J1.png" alt="Jeans 001" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;transition:opacity 0.4s ease;">
+        <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;" id="jeans-dots">
+          <span class="slide-dot active" data-i="0"></span><span class="slide-dot" data-i="1"></span><span class="slide-dot" data-i="2"></span><span class="slide-dot" data-i="3"></span>
+        </div>
+      </div>
+      <div class="showcase-body">
+        <span class="showcase-tag">Exhibit 001</span>
+        <div class="showcase-title">Jeans 001</div>
+        <p class="showcase-desc">Description coming soon.</p>
+        <button class="showcase-link" onclick="openProject('jeans')">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <div class="showcase-item flip">
+      <div class="showcase-media" id="sweats-slider" style="cursor:pointer;position:relative;">
+        <img id="sweats-img" src="S1.png" alt="Sweats 001" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;transition:opacity 0.4s ease;">
+        <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;" id="sweats-dots">
+          <span class="slide-dot active" data-i="0"></span><span class="slide-dot" data-i="1"></span><span class="slide-dot" data-i="2"></span><span class="slide-dot" data-i="3"></span>
+        </div>
+      </div>
+      <div class="showcase-body">
+        <span class="showcase-tag">Exhibit 002</span>
+        <div class="showcase-title">Sweats 001</div>
+        <p class="showcase-desc">Description coming soon.</p>
+        <button class="showcase-link" onclick="openProject('sweats')">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="testimonials">
+  <p class="section-label">Testimonials</p>
+  <div class="testimonials-grid" id="testimonials-grid">
+    <div id="empty-testimonials" style="display:flex;align-items:center;justify-content:center;width:100%;grid-column:1/-1;padding:32px 0;"><p style="font-size:13px;color:var(--text-muted);">No testimonials yet.</p></div>
+  </div>
+  <div class="t-form-wrap">
+    <p class="t-form-title">Leave a testimonial</p>
+    <div class="form-group"><label class="form-label" for="t-name">Your name</label><input class="form-input" type="text" id="t-name" placeholder="e.g. Alex M." autocomplete="off"></div>
+    <div class="form-group"><label class="form-label">Rating</label><div class="star-picker" id="star-picker"><span class="star-pick" data-val="1">☆</span><span class="star-pick" data-val="2">☆</span><span class="star-pick" data-val="3">☆</span><span class="star-pick" data-val="4">☆</span><span class="star-pick" data-val="5">☆</span></div></div>
+    <div class="form-group"><label class="form-label" for="t-text">Your experience</label><textarea class="form-textarea" id="t-text" placeholder="Tell others about working with tyy..."></textarea></div>
+    <div class="form-group">
+      <label class="form-label">Attach an image (optional)</label>
+      <label class="img-upload-label" for="t-img-input"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Choose image</label>
+      <input type="file" id="t-img-input" accept="image/*">
+      <span id="img-filename" style="font-size:12px;color:var(--text-muted);margin-left:10px;"></span>
+    </div>
+    <button class="submit-btn" id="submit-testimonial">Submit</button>
+    <div class="pending-msg" id="pending-msg">Thank you for submitting!</div>
+  </div>
+</div>
+
+<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+
+<!-- PROJECT OVERLAYS -->
+<div class="project-overlay" id="overlay-jeans">
+  <div class="project-overlay-inner">
+    <button class="project-back" onclick="closeProject('jeans')"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Clothing</button>
+    <p class="project-detail-tag">Exhibit 001</p>
+    <h2 class="project-detail-title">Jeans 001</h2>
+    <div class="project-extra-images">
+      <img src="J1.png" alt="Jeans view 1">
+      <img src="J2.png" alt="Jeans view 2">
+      <img src="J3.png" alt="Jeans view 3">
+      <img src="J4.png" alt="Jeans view 4">
+    </div>
+    <p class="project-detail-desc">Description coming soon.</p>
+  </div>
+</div>
+
+<div class="project-overlay" id="overlay-sweats">
+  <div class="project-overlay-inner">
+    <button class="project-back" onclick="closeProject('sweats')"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Clothing</button>
+    <p class="project-detail-tag">Exhibit 002</p>
+    <h2 class="project-detail-title">Sweats 001</h2>
+    <div class="project-extra-images">
+      <img src="S1.png" alt="Sweats view 1">
+      <img src="S2.png" alt="Sweats view 2">
+      <img src="S3.png" alt="Sweats view 3">
+      <img src="S4.png" alt="Sweats view 4">
+    </div>
+    <p class="project-detail-desc">Description coming soon.</p>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+function openProject(id){const o=document.getElementById('overlay-'+id);o.classList.add('open');document.body.style.overflow='hidden';}
+function closeProject(id){const o=document.getElementById('overlay-'+id);o.classList.remove('open');document.body.style.overflow='';}
+
+/* Slideshows */
+function makeSlider(imgId,dotsId,imgs,interval){
+  let cur=0,timer;
+  const el=document.getElementById(imgId);
+  const dots=document.querySelectorAll('#'+dotsId+' .slide-dot');
+  function goTo(i){cur=(i+imgs.length)%imgs.length;el.style.opacity='0';setTimeout(()=>{el.src=imgs[cur];el.style.opacity='1';},400);dots.forEach((d,j)=>d.classList.toggle('active',j===cur));}
+  function next(){goTo(cur+1);}
+  timer=setInterval(next,interval);
+  document.getElementById(dotsId).parentElement.addEventListener('click',()=>{clearInterval(timer);next();timer=setInterval(next,interval);});
+  dots.forEach(d=>d.addEventListener('click',e=>{e.stopPropagation();clearInterval(timer);goTo(+d.dataset.i);timer=setInterval(next,interval);}));
+}
+makeSlider('jeans-img','jeans-dots',['J1.png','J2.png','J3.png','J4.png'],6000);
+makeSlider('sweats-img','sweats-dots',['S1.png','S2.png','S3.png','S4.png'],6000);
+
+const SUPA_URL='https://zoguypxxotlgjxplcbtz.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvZ3V5cHh4b3RsZ2p4cGxjYnR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5OTM1ODMsImV4cCI6MjA4OTU2OTU4M30.gVGhRpbd8Mhhhvkdfq8KdcJ3zDu-WpsG46CIeBW8CkU';
+const supa={h:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json'},async get(q){const r=await fetch(`${SUPA_URL}/rest/v1/${q}`,{headers:this.h});return r.json();},async post(p,b){return fetch(`${SUPA_URL}/rest/v1/${p}`,{method:'POST',headers:{...this.h,'Prefer':'return=minimal'},body:JSON.stringify(b)});},async uploadImage(f){const fn=`${Date.now()}.${f.name.split('.').pop()}`;const r=await fetch(`${SUPA_URL}/storage/v1/object/testimonial-images/${fn}`,{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':f.type},body:f});return r.ok?`${SUPA_URL}/storage/v1/object/public/testimonial-images/${fn}`:null;}};
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+async function renderApproved(){const grid=document.getElementById('testimonials-grid');const empty=document.getElementById('empty-testimonials');grid.querySelectorAll('.testimonial-card').forEach(c=>c.remove());try{const data=await supa.get('testimonials?select=*&status=eq.approved&or=(category.eq.clothing,category.eq.universal)&order=created_at.desc');if(!data.length){empty.style.display='flex';return;}empty.style.display='none';data.forEach(t=>{const c=document.createElement('div');c.className='testimonial-card';const img=t.image?`<img class="t-image" src="${esc(t.image)}" alt="">`:'';c.innerHTML=`<div class="t-stars">${Array.from({length:5},(_,i)=>`<span class="t-star" style="color:${i<t.rating?'var(--star-on)':'var(--star-off)'}">${i<t.rating?'★':'☆'}</span>`).join('')}</div>${img}<p class="t-text">${esc(t.message)}</p><p class="t-author">${esc(t.name)}</p>`;grid.appendChild(c);});}catch(e){empty.style.display='flex';}}
+renderApproved();
+let selectedRating=0;const rStars=document.querySelectorAll('.star-pick');function renderR(n){rStars.forEach((s,i)=>s.textContent=i<n?'★':'☆');}rStars.forEach(s=>{s.addEventListener('mouseenter',()=>renderR(+s.dataset.val));s.addEventListener('mouseleave',()=>renderR(selectedRating));s.addEventListener('click',()=>{selectedRating=+s.dataset.val;renderR(selectedRating);});});
+let attachedFile=null;const imgInput=document.getElementById('t-img-input');imgInput.addEventListener('change',()=>{const f=imgInput.files[0];if(!f)return;document.getElementById('img-filename').textContent=f.name;attachedFile=f;});
+document.getElementById('submit-testimonial').addEventListener('click',async()=>{const name=document.getElementById('t-name').value.trim();const message=document.getElementById('t-text').value.trim();const btn=document.getElementById('submit-testimonial');if(!name||!message||!selectedRating){alert('Please fill in your name, a rating, and your message.');return;}btn.textContent='Sending…';btn.disabled=true;let imageUrl=null;if(attachedFile)imageUrl=await supa.uploadImage(attachedFile);const res=await supa.post('testimonials',{name,message,rating:selectedRating,image:imageUrl,status:'pending',category:'clothing'});btn.textContent='Submit';btn.disabled=false;if(res.ok||res.status===201){document.getElementById('t-name').value='';document.getElementById('t-text').value='';document.getElementById('img-filename').textContent='';imgInput.value='';attachedFile=null;selectedRating=0;renderR(0);const msg=document.getElementById('pending-msg');msg.style.display='block';setTimeout(()=>msg.style.display='none',4000);}else{alert('Something went wrong — please try again.');}});
+</script>
+</body>
+</html>
