@@ -32,12 +32,13 @@
   <div class="showcase">
     <div class="showcase-item">
       <div class="showcase-media">
-        <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>Coming soon</span></div>
+        <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>GIF coming soon</span></div>
       </div>
       <div class="showcase-body">
-        <span class="showcase-tag">UI Design</span>
-        <div class="showcase-title">Coming Soon</div>
-        <p class="showcase-desc">UI design projects on the way.</p>
+        <span class="showcase-tag">Interface</span>
+        <div class="showcase-title">Inventory System</div>
+        <p class="showcase-desc">Description coming soon.</p>
+        <button class="showcase-link" onclick="openProject('inventory')">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
@@ -68,8 +69,27 @@
 
 <footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
 
+<!-- PROJECT OVERLAY: Inventory System -->
+<div class="project-overlay" id="overlay-inventory">
+  <div class="project-overlay-inner">
+    <button class="project-back" onclick="closeProject('inventory')">
+      <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to UI Design
+    </button>
+    <p class="project-detail-tag">Interface</p>
+    <h2 class="project-detail-title">Inventory System</h2>
+    <div class="project-detail-media">
+      <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">GIF coming soon</div>
+    </div>
+    <p class="project-detail-desc">Description coming soon.</p>
+  </div>
+</div>
+
 <script src="shared.js"></script>
 <script>
+function openProject(id){const o=document.getElementById('overlay-'+id);o.classList.add('open');document.body.style.overflow='hidden';}
+function closeProject(id){const o=document.getElementById('overlay-'+id);o.classList.remove('open');document.body.style.overflow='';}
+
 const SUPA_URL='https://zoguypxxotlgjxplcbtz.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvZ3V5cHh4b3RsZ2p4cGxjYnR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5OTM1ODMsImV4cCI6MjA4OTU2OTU4M30.gVGhRpbd8Mhhhvkdfq8KdcJ3zDu-WpsG46CIeBW8CkU';
 const supa={h:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json'},async get(q){const r=await fetch(`${SUPA_URL}/rest/v1/${q}`,{headers:this.h});return r.json();},async post(p,b){return fetch(`${SUPA_URL}/rest/v1/${p}`,{method:'POST',headers:{...this.h,'Prefer':'return=minimal'},body:JSON.stringify(b)});},async uploadImage(f){const fn=`${Date.now()}.${f.name.split('.').pop()}`;const r=await fetch(`${SUPA_URL}/storage/v1/object/testimonial-images/${fn}`,{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':f.type},body:f});return r.ok?`${SUPA_URL}/storage/v1/object/public/testimonial-images/${fn}`:null;}};
