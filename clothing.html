@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+function openProject(id){var o=document.getElementById("overlay-"+id);if(o){o.style.opacity="0";o.style.display="block";o.style.pointerEvents="all";setTimeout(function(){o.style.transition="opacity 0.4s ease";o.style.opacity="1";},10);}document.body.style.overflow="hidden";}
+function closeProject(id){var o=document.getElementById("overlay-"+id);if(o){o.style.opacity="0";setTimeout(function(){o.style.display="none";o.style.pointerEvents="none";},400);}document.body.style.overflow="";}
+</script>
 <style>
 .slide-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);display:inline-block;cursor:pointer;transition:background .2s,transform .2s;}
 .slide-dot.active{background:#fff;transform:scale(1.3);}
@@ -46,7 +50,7 @@
         <span class="showcase-tag">Exhibit 001</span>
         <div class="showcase-title">Jeans 001</div>
         <p class="showcase-desc">Description coming soon.</p>
-        <button class="showcase-link" onclick="openProject('jeans')">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <a class="showcase-link" href="jeans.html">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
 
@@ -61,7 +65,7 @@
         <span class="showcase-tag">Exhibit 002</span>
         <div class="showcase-title">Sweats 001</div>
         <p class="showcase-desc">Description coming soon.</p>
-        <button class="showcase-link" onclick="openProject('sweats')">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="showcase-link" href="sweats.html">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
 

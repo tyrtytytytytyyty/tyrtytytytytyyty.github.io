@@ -7,6 +7,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+function openProject(id){
+  var o=document.getElementById('overlay-'+id);
+  if(o){o.style.opacity='0';o.style.display='block';o.style.pointerEvents='all';setTimeout(function(){o.style.transition='opacity 0.4s ease';o.style.opacity='1';},10);}
+  document.body.style.overflow='hidden';
+}
+function closeProject(id){
+  var o=document.getElementById('overlay-'+id);
+  if(o){o.style.opacity='0';setTimeout(function(){o.style.display='none';o.style.pointerEvents='none';},400);}
+  document.body.style.overflow='';
+}
+</script>
 </head>
 <body>
 <canvas id="star-canvas"></canvas>
@@ -39,10 +51,10 @@
         <span class="showcase-tag">Combat</span>
         <div class="showcase-title">Lock on System / Following System</div>
         <p class="showcase-desc">A simple lock on system alongside the model behind the user following the player.</p>
-        <button class="showcase-link" onclick="openProject('lockon')">
+        <a href="lockon.html" class="showcase-link">
           View project
           <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
+        </a>
       </div>
     </div>
 
