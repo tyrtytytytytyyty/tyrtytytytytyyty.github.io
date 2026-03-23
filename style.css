@@ -205,13 +205,13 @@ hr.divider { max-width: 900px; margin: 0 auto; border: none; border-top: 1px sol
 
 /* ── PROJECT DETAIL OVERLAY ── */
 .project-overlay {
-  position: fixed; inset: 0; z-index: 500;
+  position: fixed; inset: 0; z-index: 1000;
   background: var(--bg);
-  opacity: 0; pointer-events: none;
+  display: none; opacity: 0; pointer-events: none;
   transition: opacity 0.4s ease;
   overflow-y: auto;
 }
-.project-overlay.open { opacity: 1; pointer-events: all; }
+.project-overlay.open { display: block; opacity: 1; pointer-events: all; }
 .project-overlay-inner {
   max-width: 900px; margin: 0 auto; padding: 48px 2rem 80px;
 }
@@ -305,6 +305,61 @@ hr.divider { max-width: 900px; margin: 0 auto; border: none; border-top: 1px sol
 .pending-msg {
   display: none; font-size: 13px; color: var(--text-secondary); margin-top: 12px;
   padding: 10px 14px; background: var(--surface2); border-radius: var(--radius); border: 1px solid var(--border);
+}
+
+/* ── CLOTHING DETAIL LAYOUT ── */
+.clothing-detail-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.clothing-detail-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.clothing-detail-images img {
+  width: 100%;
+  border-radius: var(--radius);
+  display: block;
+  object-fit: contain;
+  background: transparent;
+}
+/* Stagger: odd images offset down */
+.clothing-detail-images img:nth-child(odd) {
+  margin-top: 32px;
+}
+.clothing-detail-images img:nth-child(1) {
+  margin-top: 0;
+}
+.clothing-detail-images .img-placeholder {
+  width: 100%;
+  height: 220px;
+  border: 1px dashed var(--border-mid);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+}
+.clothing-detail-desc-wrap {
+  position: sticky;
+  top: 80px;
+}
+.clothing-detail-desc-wrap .project-detail-tag { margin-bottom: 10px; }
+.clothing-detail-desc-wrap .project-detail-title { margin-bottom: 20px; }
+.clothing-detail-desc-wrap .project-detail-desc {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .clothing-detail-wrap { grid-template-columns: 1fr; }
+  .clothing-detail-images { grid-template-columns: 1fr 1fr; }
+  .clothing-detail-desc-wrap { position: static; }
+  .clothing-detail-images img:nth-child(odd) { margin-top: 0; }
 }
 
 /* ── FOOTER ── */
