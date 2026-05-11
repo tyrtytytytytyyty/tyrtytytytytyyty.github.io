@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inventory System — tyy</title>
+<title>Voice-to-Script Generator (V0) — tyy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -16,8 +16,8 @@
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
     <a href="scripting.html" class="nav-tab">Scripting</a>
-    <a href="ui.html" class="nav-tab active">UI Design</a>
-    <a href="programming.html" class="nav-tab">Programming</a>
+    <a href="ui.html" class="nav-tab">UI Design</a>
+    <a href="programming.html" class="nav-tab active">Programming</a>
     <a href="editing.html" class="nav-tab">Editing</a>
     <a href="clothing.html" class="nav-tab">Clothing</a>
   </div>
@@ -25,16 +25,16 @@
 </nav>
 
 <div class="project-overlay-inner" style="position:relative;z-index:2;">
-  <a href="ui.html" class="project-back">
+  <a href="programming.html" class="project-back">
     <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Back to UI Design
+    Back to Programming
   </a>
-  <p class="project-detail-tag">Interface</p>
-  <h2 class="project-detail-title">Inventory System</h2>
+  <p class="project-detail-tag">V0 Generator · Ramble2Script</p>
+  <h2 class="project-detail-title">Voice-to-Script Generator</h2>
   <div class="project-detail-media">
-    <img src="inv_gif.gif" alt="Inventory System">
+    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Demo coming soon</div>
   </div>
-  <p class="project-detail-desc">A fully modular inventory system built for Brainrot WORLD. Features category filtering across item types, dynamic item slot population via ModuleScript, and a live character preview panel — all driven by a clean, scalable backend.</p>
+  <p class="project-detail-desc">The original Ramble2Script generator — a single-page app that takes a voice memo or block of rambling text and returns a polished script. Audio gets transcribed via Whisper; Llama 3.3 70B (via Groq) extracts the actual point and rewrites it into hook + outline + body format.<br><br>Designed the pipeline and shipped V0 as a self-hosted single-file demo. The interesting product call: the system doesn't try to preserve the rambler's exact phrasing. It surfaces the intent and rewrites it sharply — which is what most creators actually want.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>

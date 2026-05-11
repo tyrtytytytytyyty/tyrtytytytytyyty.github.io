@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumen Synapse — tyy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<nav class="nav-bar">
+  <a href="index.html" class="nav-logo">(CC)</a>
+  <div class="nav-tabs">
+    <a href="index.html" class="nav-tab">Home</a>
+    <a href="scripting.html" class="nav-tab">Scripting</a>
+    <a href="ui.html" class="nav-tab">UI Design</a>
+    <a href="programming.html" class="nav-tab active">Programming</a>
+    <a href="editing.html" class="nav-tab">Editing</a>
+    <a href="clothing.html" class="nav-tab">Clothing</a>
+  </div>
+  <div class="nav-spacer"></div>
+</nav>
+
+<div class="project-overlay-inner" style="position:relative;z-index:2;">
+  <a href="programming.html" class="project-back">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Programming
+  </a>
+  <p class="project-detail-tag">Obsidian Plugin</p>
+  <h2 class="project-detail-title">Lumen Synapse — Agent Activity Monitor</h2>
+  <div class="project-detail-media">
+    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Video coming soon</div>
+  </div>
+  <p class="project-detail-desc">An Obsidian plugin that makes a personal AI agent's vault activity visible in real time. When my AI agents access files, graph nodes pulse with their assigned color, the file explorer glows on the active row, and connections render as live synapses. A transparency layer for an agentic personal knowledge system.<br><br>The pulse stream reads from JSONL log files written by each agent's PostToolUse hook. The plugin watches mtime diffs, surfaces new events, and animates them on the graph and explorer. Built as a productivity layer first and a creative one second — knowing what your agents are doing in real time changes how you collaborate with them.</p>
+</div>
+
+<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

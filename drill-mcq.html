@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lock on System — tyy</title>
+<title>MCQ Engine + Spaced Repetition — tyy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -15,9 +15,9 @@
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
-    <a href="scripting.html" class="nav-tab active">Scripting</a>
+    <a href="scripting.html" class="nav-tab">Scripting</a>
     <a href="ui.html" class="nav-tab">UI Design</a>
-    <a href="programming.html" class="nav-tab">Programming</a>
+    <a href="programming.html" class="nav-tab active">Programming</a>
     <a href="editing.html" class="nav-tab">Editing</a>
     <a href="clothing.html" class="nav-tab">Clothing</a>
   </div>
@@ -25,16 +25,16 @@
 </nav>
 
 <div class="project-overlay-inner" style="position:relative;z-index:2;">
-  <a href="scripting.html" class="project-back">
+  <a href="programming.html" class="project-back">
     <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Back to Scripting
+    Back to Programming
   </a>
-  <p class="project-detail-tag">Combat</p>
-  <h2 class="project-detail-title">Lock on System / Following System</h2>
+  <p class="project-detail-tag">Core · Drill</p>
+  <h2 class="project-detail-title">MCQ Engine + Spaced Repetition</h2>
   <div class="project-detail-media">
-    <img src="LockonFollowGif.gif" alt="Lock on System demo">
+    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Screenshot coming soon</div>
   </div>
-  <p class="project-detail-desc">A combat system built for Roblox featuring a smooth lock-on mechanic that snaps the camera to the nearest enemy, alongside a following model that tracks behind the player at all times. Built to feel responsive and natural in fast-paced combat.</p>
+  <p class="project-detail-desc">The core quiz loop of Drill. Randomized question order, a spaced-repetition scheduler that resurfaces missed questions more often, and localStorage persistence so progress resumes cleanly across devices. No backend — everything runs client-side in a single HTML file.<br><br>The scheduler uses a simplified SM-2 algorithm: each question's interval is adjusted by performance, and the next-due question is selected by lowest interval. Lean enough to fit alongside the FRQ engine and the deck loader in one self-contained file.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>

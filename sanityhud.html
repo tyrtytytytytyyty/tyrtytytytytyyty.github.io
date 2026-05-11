@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inventory System — tyy</title>
+<title>Sanity &amp; Perception HUD — tyy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -29,12 +29,12 @@
     <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Back to UI Design
   </a>
-  <p class="project-detail-tag">Interface</p>
-  <h2 class="project-detail-title">Inventory System</h2>
+  <p class="project-detail-tag">HUD · Pale Frequency</p>
+  <h2 class="project-detail-title">Sanity &amp; Perception HUD</h2>
   <div class="project-detail-media">
-    <img src="inv_gif.gif" alt="Inventory System">
+    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">GIF coming soon</div>
   </div>
-  <p class="project-detail-desc">A fully modular inventory system built for Brainrot WORLD. Features category filtering across item types, dynamic item slot population via ModuleScript, and a live character preview panel — all driven by a clean, scalable backend.</p>
+  <p class="project-detail-desc">A layered UI combining three real-time elements: sprint stamina (12-arrow depletion), sanity readout in a custom digit font, and a pupil-tracking eye that follows the player's mouse. As sanity drops, visual artifacts intensify; at zero, the eyeball inverts and the pupil clips to a frame — designed to produce immediate visual disorientation.<br><br>Designed the HUD architecture and shipped the rendering layer. Replicated attributes drive the visual state; the pupil math runs client-side off mouse input. The zero-state inversion is achieved by swapping image refs and overlaying a clip mask on a single tick, so the transition reads as sudden and ominous rather than animated.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
