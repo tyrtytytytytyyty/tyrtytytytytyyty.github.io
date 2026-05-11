@@ -80,3 +80,23 @@
   window.addEventListener('resize', () => { resize(); initStars(); });
   resize(); initStars(); requestAnimationFrame(frame);
 })();
+
+/* ── SHARED: Project group toggle ── */
+(function() {
+  const groups = document.querySelectorAll('.project-group');
+  if (!groups.length) return;
+  groups.forEach((group, index) => {
+    const header = group.querySelector('.group-header');
+    if (!header) return;
+    if (index > 0) {
+      group.classList.add('collapsed');
+      header.setAttribute('aria-expanded', 'false');
+    } else {
+      header.setAttribute('aria-expanded', 'true');
+    }
+    header.addEventListener('click', () => {
+      const isCollapsed = group.classList.toggle('collapsed');
+      header.setAttribute('aria-expanded', String(!isCollapsed));
+    });
+  });
+})();

@@ -203,6 +203,75 @@ hr.divider { max-width: 900px; margin: 0 auto; border: none; border-top: 1px sol
 .showcase-link:hover { opacity: 1; }
 .showcase-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; }
 
+/* ── PROJECT GROUPS (collapsible parent groups) ── */
+.project-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+  overflow: hidden;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.project-group:hover { border-color: var(--border-mid); }
+.group-header {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  padding: 22px 28px;
+  background: var(--surface);
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-align: left;
+  color: var(--text-primary);
+  transition: background 0.18s;
+}
+.group-header:hover { background: var(--surface2); }
+.group-meta { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.group-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+.group-title { font-size: 22px; font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; }
+.group-subtitle {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+  margin-top: 4px; max-width: 540px;
+}
+.group-chevron {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-mid); border-radius: 50%;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease, color 0.18s, border-color 0.18s;
+}
+.group-header:hover .group-chevron { color: var(--text-primary); border-color: rgba(255,255,255,0.25); }
+.group-chevron svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+.project-group.collapsed .group-chevron { transform: rotate(-90deg); }
+.group-body {
+  padding: 24px 28px 28px;
+  max-height: 4000px;
+  opacity: 1;
+  transition: max-height 0.5s ease, padding 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+.project-group.collapsed .group-body {
+  max-height: 0;
+  padding-top: 0; padding-bottom: 0;
+  opacity: 0;
+}
+.group-body .showcase { gap: 12px; }
+
+@media (max-width: 640px) {
+  .group-header { padding: 18px 20px; }
+  .group-title { font-size: 18px; }
+  .group-subtitle { font-size: 12px; }
+  .group-chevron { width: 32px; height: 32px; }
+  .group-body { padding: 18px 16px 20px; }
+}
+
 /* ── PROJECT DETAIL OVERLAY ── */
 .project-overlay {
   position: fixed; inset: 0; z-index: 1000;

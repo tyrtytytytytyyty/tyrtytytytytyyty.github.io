@@ -17,6 +17,7 @@
     <a href="index.html" class="nav-tab active">Home</a>
     <a href="scripting.html" class="nav-tab">Scripting</a>
     <a href="ui.html" class="nav-tab">UI Design</a>
+    <a href="programming.html" class="nav-tab">Programming</a>
     <a href="editing.html" class="nav-tab">Editing</a>
     <a href="clothing.html" class="nav-tab">Clothing</a>
   </div>
@@ -98,7 +99,7 @@
 
 <script src="shared.js"></script>
 <script>
-const pages = ['scripting.html','ui.html','editing.html','clothing.html'];
+const pages = ['scripting.html','ui.html','programming.html','editing.html','clothing.html'];
 document.getElementById('view-projects-btn').addEventListener('click', () => {
   const pick = pages[Math.floor(Math.random() * pages.length)];
   document.body.style.transition = 'opacity 0.3s ease';
