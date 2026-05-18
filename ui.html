@@ -75,8 +75,15 @@ function closeProject(id){var o=document.getElementById("overlay-"+id);if(o){o.s
     <div class="group-body">
       <div class="showcase">
         <div class="showcase-item">
-          <div class="showcase-media">
-            <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>GIF coming soon</span></div>
+          <div class="showcase-media" style="background:#0d0d11;">
+            <div class="loop-video-container" data-loops="5">
+              <video muted playsinline autoplay>
+                <source src="sanity.mp4" type="video/mp4">
+              </video>
+              <button class="loop-replay-btn" aria-label="Play again" type="button">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+            </div>
           </div>
           <div class="showcase-body">
             <span class="showcase-tag">HUD</span>

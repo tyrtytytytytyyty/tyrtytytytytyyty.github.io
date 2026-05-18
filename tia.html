@@ -31,8 +31,15 @@
   </a>
   <p class="project-detail-tag">Discord Bot &middot; AI Coordination</p>
   <h2 class="project-detail-title">TIA &mdash; Team Idea Aligner</h2>
-  <div class="project-detail-media">
-    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">GIF coming soon</div>
+  <div class="project-detail-media" style="background:#0d0d11;">
+    <div class="loop-video-container" data-loops="5" style="height:480px;">
+      <video muted playsinline autoplay>
+        <source src="tia.mp4" type="video/mp4">
+      </video>
+      <button class="loop-replay-btn" aria-label="Play again" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
   </div>
   <p class="project-detail-desc">A Discord coordination bot built for a four-person game studio. The team was relitigating decisions, losing track of blockers, and operating from separate AI chats with no shared context &mdash; TIA exists to be the neutral layer that holds team state in one place.<br><br>Slash commands: <code>/decide</code> locks a design call permanently so it can't be reopened, <code>/task</code> assigns work with timestamps, <code>/blocker</code> logs what's in the way, <code>/update</code> records progress, and <code>/ask</code> sends Claude the team's live state plus a seed document so anyone can ask context-aware questions about the project. State persists to a JSON file so the bot survives restarts.<br><br>Stack: discord.js v14, Anthropic SDK with Claude Sonnet 4.6, file-based state, single-file Node app. Shipped end-to-end in one session &mdash; bot live, smoke-tested, in production use.</p>
 </div>

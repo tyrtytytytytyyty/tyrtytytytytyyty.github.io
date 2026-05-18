@@ -31,8 +31,15 @@
   </a>
   <p class="project-detail-tag">Systems · Pale Frequency</p>
   <h2 class="project-detail-title">Build Mode</h2>
-  <div class="project-detail-media">
-    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">GIF coming soon</div>
+  <div class="project-detail-media" style="background:#0d0d11;">
+    <div class="loop-video-container" data-loops="5" style="height:480px;">
+      <video muted playsinline autoplay>
+        <source src="mapbuilder.mp4" type="video/mp4">
+      </video>
+      <button class="loop-replay-btn" aria-label="Play again" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
   </div>
   <p class="project-detail-desc">A level-construction system that lets players assemble map geometry mid-game. Players pick prefab pieces from a palette, place them in 3D space with grid snapping and rotation, and the layout persists per-player via DataStore — saved layouts survive across sessions and game updates.<br><br>Architected and shipped the placement, snapping, and persistence layers. The trickier parts: real-time collision feedback during placement, and preview ghosts that disambiguate valid vs invalid positions clearly.</p>
 </div>

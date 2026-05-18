@@ -31,8 +31,25 @@
   </a>
   <p class="project-detail-tag">HUD · Pale Frequency</p>
   <h2 class="project-detail-title">Sanity &amp; Perception HUD</h2>
-  <div class="project-detail-media">
-    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">GIF coming soon</div>
+  <div class="project-detail-media" style="background:#0d0d11;">
+    <div class="loop-video-container" data-loops="5" style="height:480px;">
+      <video muted playsinline autoplay>
+        <source src="sanity.mp4" type="video/mp4">
+      </video>
+      <button class="loop-replay-btn" aria-label="Play again" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="project-detail-media" style="background:#0d0d11;">
+    <div class="loop-video-container" data-loops="5" style="height:360px;">
+      <video muted playsinline autoplay>
+        <source src="sprint.mp4" type="video/mp4">
+      </video>
+      <button class="loop-replay-btn" aria-label="Play again" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
   </div>
   <p class="project-detail-desc">A layered UI combining three real-time elements: sprint stamina (12-arrow depletion), sanity readout in a custom digit font, and a pupil-tracking eye that follows the player's mouse. As sanity drops, visual artifacts intensify; at zero, the eyeball inverts and the pupil clips to a frame — designed to produce immediate visual disorientation.<br><br>Designed the HUD architecture and shipped the rendering layer. Replicated attributes drive the visual state; the pupil math runs client-side off mouse input. The zero-state inversion is achieved by swapping image refs and overlaying a clip mask on a single tick, so the transition reads as sudden and ominous rather than animated.</p>
 </div>
