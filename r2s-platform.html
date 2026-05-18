@@ -32,7 +32,14 @@
   <p class="project-detail-tag">V1 Polish · Ramble2Script</p>
   <h2 class="project-detail-title">Platform Selector &amp; Smart Ramble Parser</h2>
   <div class="project-detail-media">
-    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Demo coming soon</div>
+    <div class="loop-video-container" data-loops="5" style="height:360px;background:#0d0d11;">
+      <video muted playsinline autoplay>
+        <source src="r2s.mp4" type="video/mp4">
+      </video>
+      <button class="loop-replay-btn" aria-label="Play again" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
   </div>
   <p class="project-detail-desc">V1 of Ramble2Script: per-platform output formatting (YouTube long-form / TikTok / Reels) plus a smarter parser that strips filler and tangents before generating. The ramble parser walks the transcript looking for restart cues ("so basically what I'm saying is…") and surfaces the cleanest version of each idea.<br><br>The platform selector retunes the script structure: TikTok output is hook-heavy and shorter; YouTube preserves more setup and pacing. Same input, different scaffolds. Architected the routing logic and the new prompt scaffolds.</p>
 </div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lingua Loop — tyy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<nav class="nav-bar">
+  <a href="index.html" class="nav-logo">(CC)</a>
+  <div class="nav-tabs">
+    <a href="index.html" class="nav-tab">Home</a>
+    <a href="scripting.html" class="nav-tab">Scripting</a>
+    <a href="ui.html" class="nav-tab">UI Design</a>
+    <a href="programming.html" class="nav-tab active">Programming</a>
+    <a href="editing.html" class="nav-tab">Editing</a>
+    <a href="clothing.html" class="nav-tab">Clothing</a>
+  </div>
+  <div class="nav-spacer"></div>
+</nav>
+
+<div class="project-overlay-inner" style="position:relative;z-index:2;">
+  <a href="programming.html" class="project-back">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Programming
+  </a>
+  <p class="project-detail-tag">AI Tutor &middot; Voice + Text</p>
+  <h2 class="project-detail-title">Lingua Loop</h2>
+  <div class="project-detail-media">
+    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Demo coming soon</div>
+  </div>
+  <p class="project-detail-desc">A personal AI conversational tutor designed for daily language and subject practice without the friction of scheduling a class. Type or speak; the model responds in your target language with optional TTS narration. Supports Japanese, Mandarin, and a Universal mode for any subject.<br><br>Browser-native speech recognition feeds transcripts into the reasoning model, with a Whisper fallback for browsers that lack speech APIs. TTS is layered on top so silent reading mode is just as fast as voice mode &mdash; typed responses return in around two seconds.<br><br>A SQLite memory layer tracks subjects, lessons, skills, weak concepts, and curriculum state per language. The server hydrates this on every request so the model sees prior context, not just the current message. New vocabulary and weak concepts get extracted from each response and persisted, so practice actually compounds across sessions.<br><br>Stack: Python (server.py), SQLite, DeepSeek V4 via Anthropic-compatible endpoint, OpenAI TTS, Whisper STT fallback, vanilla HTML/JS frontend.</p>
+</div>
+
+<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

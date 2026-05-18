@@ -32,7 +32,14 @@
   <p class="project-detail-tag">V0 Generator · Ramble2Script</p>
   <h2 class="project-detail-title">Voice-to-Script Generator</h2>
   <div class="project-detail-media">
-    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Demo coming soon</div>
+    <div class="loop-video-container" data-loops="5" style="height:360px;background:#0d0d11;">
+      <video muted playsinline autoplay>
+        <source src="r2s.mp4" type="video/mp4">
+      </video>
+      <button class="loop-replay-btn" aria-label="Play again" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
   </div>
   <p class="project-detail-desc">The original Ramble2Script generator — a single-page app that takes a voice memo or block of rambling text and returns a polished script. Audio gets transcribed via Whisper; Llama 3.3 70B (via Groq) extracts the actual point and rewrites it into hook + outline + body format.<br><br>Designed the pipeline and shipped V0 as a self-hosted single-file demo. The interesting product call: the system doesn't try to preserve the rambler's exact phrasing. It surfaces the intent and rewrites it sharply — which is what most creators actually want.</p>
 </div>

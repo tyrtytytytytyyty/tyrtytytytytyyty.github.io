@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Board Drawer — tyy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<nav class="nav-bar">
+  <a href="index.html" class="nav-logo">(CC)</a>
+  <div class="nav-tabs">
+    <a href="index.html" class="nav-tab">Home</a>
+    <a href="scripting.html" class="nav-tab">Scripting</a>
+    <a href="ui.html" class="nav-tab active">UI Design</a>
+    <a href="programming.html" class="nav-tab">Programming</a>
+    <a href="editing.html" class="nav-tab">Editing</a>
+    <a href="clothing.html" class="nav-tab">Clothing</a>
+  </div>
+  <div class="nav-spacer"></div>
+</nav>
+
+<div class="project-overlay-inner" style="position:relative;z-index:2;">
+  <a href="ui.html" class="project-back">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to UI Design
+  </a>
+  <p class="project-detail-tag">Interface &middot; Pale Frequency</p>
+  <h2 class="project-detail-title">Task Board Drawer</h2>
+  <div class="project-detail-media">
+    <img src="taskboard.gif" alt="Task Board Drawer" style="width:100%;max-height:480px;object-fit:contain;background:#0d0d11;display:block;">
+  </div>
+  <p class="project-detail-desc">The Task Board is the survivor's in-round objective tracker &mdash; which tasks remain, which are done, and when the exit unlocks. Built as a right-edge drawer that opens when the player taps the toggle button and stays anchored to the screen edge for one-handed play.<br><br>Architected the open/close tween system: the toggle button slides offscreen as the panel slides in, then reverses on close. Position math is locked to specific offsets so the animation reads cleanly across viewports without breaking the underlying HUD.</p>
+</div>
+
+<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

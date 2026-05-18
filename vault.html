@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Brain — tyy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<nav class="nav-bar">
+  <a href="index.html" class="nav-logo">(CC)</a>
+  <div class="nav-tabs">
+    <a href="index.html" class="nav-tab">Home</a>
+    <a href="scripting.html" class="nav-tab">Scripting</a>
+    <a href="ui.html" class="nav-tab">UI Design</a>
+    <a href="programming.html" class="nav-tab active">Programming</a>
+    <a href="editing.html" class="nav-tab">Editing</a>
+    <a href="clothing.html" class="nav-tab">Clothing</a>
+  </div>
+  <div class="nav-spacer"></div>
+</nav>
+
+<div class="project-overlay-inner" style="position:relative;z-index:2;">
+  <a href="programming.html" class="project-back">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Programming
+  </a>
+  <p class="project-detail-tag">AI System &middot; Memory + Agent Orchestration</p>
+  <h2 class="project-detail-title">Second Brain</h2>
+  <div class="project-detail-media">
+    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Screenshot coming soon</div>
+  </div>
+  <p class="project-detail-desc">A custom personal-memory and multi-agent system &mdash; equal parts knowledge graph, ingest pipeline, and orchestration layer. Ingests data from multiple AI services into a tagged Markdown vault with bidirectional wikilinks, then makes that memory queryable by a coordinated team of agents, each running on a different model.<br><br>The agents share the same vault but operate from different runtimes &mdash; one for strategy and memory, one for technical builds, one for long-context audits and copy. Each has its own session protocol, log channel, and task scope, with a recursive subagent pattern for decomposing complex work into self-contained units.<br><br>Designed and shipped the ingestion pipeline (hundreds of conversations processed end-to-end), the tag engine that surfaces cross-source connections, the inter-agent communication channels, the real-time tool-call telemetry stream from every agent to a single dashboard, and the recursive orchestration pattern.<br><br>Stack: Python ingest pipeline, Obsidian as the storage layer, custom Markdown frontmatter schema, multi-model agent runtimes, JSONL pulse telemetry, custom Obsidian plugin for visualization.</p>
+</div>
+
+<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

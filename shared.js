@@ -81,6 +81,34 @@
   resize(); initStars(); requestAnimationFrame(frame);
 })();
 
+/* ── SHARED: Loop video N times, then show replay button ── */
+(function() {
+  const containers = document.querySelectorAll('.loop-video-container');
+  if (!containers.length) return;
+  containers.forEach((container) => {
+    const video = container.querySelector('video');
+    const btn = container.querySelector('.loop-replay-btn');
+    if (!video || !btn) return;
+    const maxLoops = parseInt(container.dataset.loops || '5', 10);
+    let plays = 0;
+    video.addEventListener('ended', () => {
+      plays++;
+      if (plays < maxLoops) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } else {
+        btn.classList.add('show');
+      }
+    });
+    btn.addEventListener('click', () => {
+      plays = 0;
+      btn.classList.remove('show');
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    });
+  });
+})();
+
 /* ── SHARED: Project group toggle ── */
 (function() {
   const groups = document.querySelectorAll('.project-group');

@@ -203,6 +203,44 @@ hr.divider { max-width: 900px; margin: 0 auto; border: none; border-top: 1px sol
 .showcase-link:hover { opacity: 1; }
 .showcase-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; }
 
+/* ── TRIPLET CARD (two sub-features sharing one media — e.g. R2S V0 + Platform) ── */
+.triplet-card {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden; background: transparent; transition: border-color 0.2s; min-height: 260px;
+}
+.triplet-card:hover { border-color: var(--border-mid); }
+.triplet-card .triplet-body {
+  padding: 28px 30px; display: flex; flex-direction: column;
+  justify-content: center; gap: 10px;
+  background: var(--surface);
+}
+.triplet-card .triplet-body.left { border-right: 1px solid var(--border); }
+.triplet-card .triplet-body.right { border-left: 1px solid var(--border); }
+.triplet-card .triplet-media {
+  position: relative; background: transparent; overflow: hidden;
+  height: 300px; display: flex; align-items: center; justify-content: center;
+}
+.triplet-card .triplet-media img, .triplet-card .triplet-media video {
+  max-width: 100%; max-height: 100%; width: auto; height: auto;
+  object-fit: contain; display: block;
+}
+
+/* ── LOOPING VIDEO (plays N times, then replay button appears) ── */
+.loop-video-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.loop-video-container video { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.loop-replay-btn {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95); border: none; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  color: #0d0d11; transition: transform 0.15s ease, background 0.15s ease;
+  z-index: 2;
+}
+.loop-replay-btn.show { display: flex; }
+.loop-replay-btn:hover { transform: translate(-50%, -50%) scale(1.06); background: rgba(255, 255, 255, 1); }
+.loop-replay-btn svg { width: 24px; height: 24px; margin-left: 3px; fill: currentColor; }
+
 /* ── PROJECT GROUPS (collapsible parent groups) ── */
 .project-group {
   border: 1px solid var(--border);
@@ -456,6 +494,10 @@ hr.divider { max-width: 900px; margin: 0 auto; border: none; border-top: 1px sol
   .showcase-item.flip .showcase-body { order: 1; border-right: none; }
   .showcase-body { border-left: none; border-top: 1px solid var(--border); padding: 20px; }
   .showcase-media { min-height: 200px; height: auto; }
+  .triplet-card { grid-template-columns: 1fr; min-height: unset; }
+  .triplet-card .triplet-body.left,
+  .triplet-card .triplet-body.right { border-left: none; border-right: none; border-top: 1px solid var(--border); padding: 20px; }
+  .triplet-card .triplet-media { min-height: 200px; height: auto; }
   .showcase-title { font-size: 17px; }
   .showcase-desc { font-size: 13px; }
   .testimonials-grid { grid-template-columns: 1fr; }
