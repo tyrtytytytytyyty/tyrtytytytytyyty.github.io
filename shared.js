@@ -8,7 +8,16 @@
     [170,210,255],[255,170,210],[170,255,220],
     [255,228,110],[210,170,255],[150,230,255]
   ];
-  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function resize() {
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * dpr);
+    canvas.height = Math.floor(H * dpr);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
   function initStars() {
     stars = [];
     const n = Math.floor((W * H) / 1900);
@@ -77,8 +86,20 @@
     }
     requestAnimationFrame(frame);
   }
-  window.addEventListener('resize', () => { resize(); initStars(); });
-  resize(); initStars(); requestAnimationFrame(frame);
+  let prevW = 0;
+  function handleResize() {
+    resize();
+    if (Math.abs(W - prevW) > 4) {
+      initStars();
+      prevW = W;
+    }
+  }
+  window.addEventListener('resize', handleResize);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', handleResize);
+  }
+  handleResize();
+  requestAnimationFrame(frame);
 })();
 
 /* ── SHARED: Loop video N times, then show replay button ── */
@@ -113,15 +134,11 @@
 (function() {
   const groups = document.querySelectorAll('.project-group');
   if (!groups.length) return;
-  groups.forEach((group, index) => {
+  groups.forEach((group) => {
     const header = group.querySelector('.group-header');
     if (!header) return;
-    if (index > 0) {
-      group.classList.add('collapsed');
-      header.setAttribute('aria-expanded', 'false');
-    } else {
-      header.setAttribute('aria-expanded', 'true');
-    }
+    group.classList.add('collapsed');
+    header.setAttribute('aria-expanded', 'false');
     header.addEventListener('click', () => {
       const isCollapsed = group.classList.toggle('collapsed');
       header.setAttribute('aria-expanded', String(!isCollapsed));
