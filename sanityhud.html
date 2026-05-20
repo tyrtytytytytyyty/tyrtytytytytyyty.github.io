@@ -51,7 +51,7 @@
       </button>
     </div>
   </div>
-  <p class="project-detail-desc">A layered UI combining three real-time elements: sprint stamina (12-arrow depletion), sanity readout in a custom digit font, and a pupil-tracking eye that follows the player's mouse. As sanity drops, visual artifacts intensify; at zero, the eyeball inverts and the pupil clips to a frame — designed to produce immediate visual disorientation.<br><br>Designed the HUD architecture and shipped the rendering layer. Replicated attributes drive the visual state; the pupil math runs client-side off mouse input. The zero-state inversion is achieved by swapping image refs and overlaying a clip mask on a single tick, so the transition reads as sudden and ominous rather than animated.</p>
+  <p class="project-detail-desc">After a set time, the player goes insane. When it hits &mdash; the screen blinks like your eyes, your heart starts beating, the camera shakes, and the whole frame goes red. The HUD itself layers three things that all change as you lose your mind: sprint stamina (a 12-arrow ring that depletes as you run), the sanity readout in a custom digit font, and a pupil-tracking eye that follows your mouse.<br><br>As sanity drops, the visuals get worse. At zero, the eyeball inverts and the pupil clips to a frame &mdash; built to feel sudden and ominous rather than animated. Replicated attributes drive the visual state from the server, the pupil math runs client-side off mouse input, and the zero-state inversion swaps image refs and drops a clip mask on a single tick so the transition lands like a switch flipping, not a fade.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>

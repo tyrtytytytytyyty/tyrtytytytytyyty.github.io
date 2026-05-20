@@ -46,7 +46,7 @@
           <div class="triplet-body left">
             <span class="showcase-tag">V0 Generator</span>
             <div class="showcase-title">Voice-to-Script Generator</div>
-            <p class="showcase-desc">The core generation flow — audio in, polished script out. Architected the pipeline and shipped the V0 single-page interface.</p>
+            <p class="showcase-desc">I had a problem writing my scripts, so I built this — it takes my ramble and turns it into a script.</p>
             <a href="r2s-v0.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
           <div class="triplet-media">
@@ -62,7 +62,7 @@
           <div class="triplet-body right">
             <span class="showcase-tag">V1 Polish</span>
             <div class="showcase-title">Platform Selector &amp; Smart Ramble Parser</div>
-            <p class="showcase-desc">Per-platform formatting (YouTube / TikTok / Reels) with a smarter parser that strips filler and surfaces the actual point inside long voice memos.</p>
+            <p class="showcase-desc">Same idea — your ramble becomes a script — but now formatted for whatever platform you're posting to: YouTube, TikTok, Reels.</p>
             <a href="r2s-platform.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
@@ -95,43 +95,33 @@
       <div class="group-meta">
         <span class="group-label">App</span>
         <h2 class="group-title">Drill</h2>
-        <p class="group-subtitle">Single-file PWA study tool — AP prep with AI-graded free-response questions and spaced repetition.</p>
+        <p class="group-subtitle">A personal study tool that runs on my phone — bookified, repeated, ready whenever I need it.</p>
       </div>
       <span class="group-chevron"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
     </button>
     <div class="group-body">
       <div class="showcase">
         <div class="showcase-item">
-          <div class="showcase-media">
-            <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>Screenshot coming soon</span></div>
+          <div class="showcase-media" style="background:#0d0d11;">
+            <div class="loop-video-container" data-loops="5">
+              <video muted playsinline autoplay>
+                <source src="drill.mp4" type="video/mp4">
+              </video>
+              <button class="loop-replay-btn" aria-label="Play again" type="button">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+            </div>
           </div>
           <div class="showcase-body">
-            <span class="showcase-tag">Core</span>
-            <div class="showcase-title">MCQ Engine + Spaced Repetition</div>
-            <p class="showcase-desc">Randomized question order, spaced-repetition loop, and localStorage progress tracking so sessions resume cleanly across devices.</p>
-            <a href="drill-mcq.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-        <div class="showcase-item flip">
-          <div class="showcase-media">
-            <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>Video coming soon</span></div>
-          </div>
-          <div class="showcase-body">
-            <span class="showcase-tag">AI</span>
-            <div class="showcase-title">FRQ with AI Grading</div>
-            <p class="showcase-desc">Free-response questions graded by Llama 3.3 70B via Groq — runs entirely client-side with no backend, returning rubric-scored feedback in seconds.</p>
-            <a href="drill-frq.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-        <div class="showcase-item">
-          <div class="showcase-media">
-            <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>Screenshot coming soon</span></div>
-          </div>
-          <div class="showcase-body">
-            <span class="showcase-tag">System</span>
-            <div class="showcase-title">Deck System</div>
-            <p class="showcase-desc">Content-agnostic deck loader — any subject can be dropped in. Built decks so far: AP World History, AP Precalc.</p>
-            <a href="drill-decks.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="showcase-tag">Study App</span>
+            <div class="showcase-title">Drill</div>
+            <p class="showcase-desc">A tool I built to study — for tests, exams, anything I want to learn. Bookified. Repeats. Lets me cycle through a whole pile of information at a moment's notice. Runs locally on my phone.</p>
+            <ul class="feature-list">
+              <li>MCQ engine with spaced repetition</li>
+              <li>FRQ with AI grading</li>
+              <li>Deck system — any subject drops in</li>
+            </ul>
+            <a href="drill.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
       </div>
@@ -144,20 +134,27 @@
       <div class="group-meta">
         <span class="group-label">Plugin</span>
         <h2 class="group-title">Lumen Synapse</h2>
-        <p class="group-subtitle">Obsidian plugin that makes my Second Brain memory visible in real time.</p>
+        <p class="group-subtitle">A monitor for my team of agents.</p>
       </div>
       <span class="group-chevron"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
     </button>
     <div class="group-body">
       <div class="showcase">
         <div class="showcase-item">
-          <div class="showcase-media">
-            <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>Video coming soon</span></div>
+          <div class="showcase-media" style="background:#0d0d11;">
+            <div class="loop-video-container" data-loops="5">
+              <video muted playsinline autoplay>
+                <source src="lumensynapse.mp4" type="video/mp4">
+              </video>
+              <button class="loop-replay-btn" aria-label="Play again" type="button">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+            </div>
           </div>
           <div class="showcase-body">
             <span class="showcase-tag">Obsidian Plugin</span>
-            <div class="showcase-title">Lumen Synapse — Agent Activity Monitor</div>
-            <p class="showcase-desc">When my AI agents access vault files, graph nodes pulse with their color, the file explorer glows, and connections render as live synapses. A transparency layer for an agentic personal knowledge system.</p>
+            <div class="showcase-title">Lumen Synapse</div>
+            <p class="showcase-desc">A monitor for my team of agents. When they touch vault files, graph nodes pulse in their color, the file explorer glows, and connections render as live synapses.</p>
             <a href="lumensynapse.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
@@ -171,7 +168,7 @@
       <div class="group-meta">
         <span class="group-label">Bot</span>
         <h2 class="group-title">TIA</h2>
-        <p class="group-subtitle">Team Idea Aligner — a Discord coordination bot for game-dev teams. Locks decisions, tracks tasks, answers context-aware questions about the project.</p>
+        <p class="group-subtitle">Same idea as Lumen Synapse — but for people. Keeps me and my team from getting off-track.</p>
       </div>
       <span class="group-chevron"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
     </button>
@@ -191,7 +188,7 @@
           <div class="showcase-body">
             <span class="showcase-tag">Discord Bot</span>
             <div class="showcase-title">TIA — Team Idea Aligner</div>
-            <p class="showcase-desc">Discord coordination bot for a four-person studio. Tracks tasks, locks design decisions, surfaces blockers, and answers context-aware questions via Claude. Single-file Node app — discord.js + Anthropic SDK + JSON-persisted state.</p>
+            <p class="showcase-desc">Same idea as Lumen Synapse — but for people. A Discord bot that tracks tasks, locks design decisions, and keeps me and my team from getting off-track. Built on discord.js + Claude.</p>
             <a href="tia.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
@@ -205,20 +202,27 @@
       <div class="group-meta">
         <span class="group-label">App</span>
         <h2 class="group-title">Lingua Loop</h2>
-        <p class="group-subtitle">Personal AI conversational tutor — type or speak, the model responds in your target language with optional TTS narration. Memory persists across sessions.</p>
+        <p class="group-subtitle">Same idea as Drill — but for teaching me things and talking to me.</p>
       </div>
       <span class="group-chevron"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
     </button>
     <div class="group-body">
       <div class="showcase">
         <div class="showcase-item">
-          <div class="showcase-media">
-            <div class="showcase-placeholder"><div class="placeholder-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><span>Demo coming soon</span></div>
+          <div class="showcase-media" style="background:#0d0d11;">
+            <div class="loop-video-container" data-loops="5">
+              <video muted playsinline autoplay>
+                <source src="lingualoop.mp4" type="video/mp4">
+              </video>
+              <button class="loop-replay-btn" aria-label="Play again" type="button">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+            </div>
           </div>
           <div class="showcase-body">
             <span class="showcase-tag">AI Tutor</span>
             <div class="showcase-title">Lingua Loop</div>
-            <p class="showcase-desc">Voice + text conversational tutor. SQLite memory layer tracks subjects, lessons, skills, and weak concepts per language so practice compounds across sessions. Japanese, Mandarin, and Universal modes.</p>
+            <p class="showcase-desc">Same idea as Drill — but for teaching me things and talking to me. Voice + text in, conversation back, memory compounds across sessions so practice doesn't reset.</p>
             <a href="lingualoop.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
@@ -245,7 +249,7 @@
           <div class="showcase-body">
             <span class="showcase-tag">AI System</span>
             <div class="showcase-title">Second Brain — Memory + Agent Orchestration</div>
-            <p class="showcase-desc">Ingests AI conversation history into a tagged Markdown knowledge graph, then exposes it to a coordinated team of specialized agents — each on a different model, each with a defined role and shared memory. Recursive subagent pattern decomposes complex work.</p>
+            <p class="showcase-desc">Arguably the best thing I've built. Keeps me on track, keeps me accountable, helps me notice my own patterns, and overall makes me a better person.</p>
             <a href="vault.html" class="showcase-link">View project <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>

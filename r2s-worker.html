@@ -41,7 +41,7 @@
       </button>
     </div>
   </div>
-  <p class="project-detail-desc">A server-side proxy that holds the Groq API key and adds per-user rate limiting — the unlock for public beta. Without it, the API key would be exposed in client JS, and abuse would burn through credits within hours.<br><br>The Worker authenticates each request via Supabase JWT, checks usage against a KV-stored rate limit, then forwards the request to Groq. Built lean — fewer than 200 lines, deploys instantly via Wrangler. This was the gate between R2S as a personal tool and R2S as something other people could touch.</p>
+  <p class="project-detail-desc">The piece that turns R2S from "tool I run on my machine" into "thing anyone can use." A Cloudflare Worker that holds the Groq API key server-side and rate-limits requests per user &mdash; without it, the key would be sitting in client JS and abuse would burn through credits in hours.<br><br>Each request gets authenticated against a Supabase JWT, checked against a KV-stored rate limit, then forwarded to Groq. Lean &mdash; under 200 lines, deploys instantly via Wrangler. This was the gate between R2S as a personal tool and R2S as something other people could touch.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>

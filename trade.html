@@ -36,7 +36,7 @@
     <img src="trade2.png" alt="PvP Trade System">
     <img src="trade3.png" alt="PvP Trade System">
   </div>
-  <p class="project-detail-desc">A real-time PvP trading layer for Brainrot WORLD. Two players each fill their offer slots; updates replicate live so both sides see the proposed deal as it changes. Acceptance triggers server-side ownership validation and a transactional inventory swap &mdash; if either side fails, the trade rolls back atomically.<br><br>Architected the entire service: trade UI, slot replication, offer-accept flow, server-authoritative validation, and the atomic transfer pattern. Designed to survive the edge cases that break naive trading systems &mdash; disconnected partners, slot manipulation, and partial-state failures.</p>
+  <p class="project-detail-desc">A simple trading system that lets two players trade brainrots with each other. Each side fills their offer slots, the other side sees the proposed deal update live, and both have to accept before anything moves.<br><br>The actual hard part isn't the UI &mdash; it's making sure the trade can't break the game. Server validates ownership before anything transfers, the swap is atomic (both sides go or neither does), and the whole flow survives the stuff that breaks naive trading systems: someone disconnecting mid-trade, slot tampering, partial failures. I built the whole thing &mdash; UI, slot replication, accept flow, validation, the atomic transfer pattern.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>

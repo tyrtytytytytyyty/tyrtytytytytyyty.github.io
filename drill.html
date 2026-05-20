@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIA — Team Idea Aligner — tyy</title>
+<title>Drill — tyy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -29,19 +29,19 @@
     <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Back to Programming
   </a>
-  <p class="project-detail-tag">Discord Bot</p>
-  <h2 class="project-detail-title">TIA &mdash; Team Idea Aligner</h2>
+  <p class="project-detail-tag">Study App</p>
+  <h2 class="project-detail-title">Drill</h2>
   <div class="project-detail-media" style="background:#0d0d11;">
     <div class="loop-video-container" data-loops="5" style="height:480px;">
       <video muted playsinline autoplay>
-        <source src="tia.mp4" type="video/mp4">
+        <source src="drill.mp4" type="video/mp4">
       </video>
       <button class="loop-replay-btn" aria-label="Play again" type="button">
         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </button>
     </div>
   </div>
-  <p class="project-detail-desc">Same idea as Lumen Synapse &mdash; but for people. My team kept relitigating decisions, losing track of blockers, and operating from separate AI chats with no shared context. TIA is the neutral layer that holds team state in one place so we stop drifting.<br><br>Slash commands cover the parts that kept slipping: <code>/decide</code> locks a design call so it can't be reopened, <code>/task</code> assigns work with timestamps, <code>/blocker</code> logs what's in the way, <code>/update</code> records progress, and <code>/ask</code> sends Claude the team's live state plus a seed document so anyone can ask context-aware questions about the project. State persists to a JSON file so the bot survives restarts.<br><br>Stack: discord.js v14, Anthropic SDK with Claude Sonnet 4.6, file-based state, single-file Node app. Shipped end-to-end in one session &mdash; bot live, smoke-tested, in production use with the team.</p>
+  <p class="project-detail-desc">A tool I built to study &mdash; for tests, exams, anything I want to learn. Bookified. Repeats. Lets me cycle through a whole pile of information at a moment's notice. Runs locally on my phone, no backend, no login, just open it and go.<br><br><strong>MCQ engine with spaced repetition.</strong> Questions get randomized every session. The ones I miss come back more often; the ones I lock in show up less. Progress saves to the device so I can put it down mid-session and pick up where I left off.<br><br><strong>FRQ with AI grading.</strong> Free-response questions get graded by Llama 3.3 70B running on Groq &mdash; rubric-scored feedback in a couple seconds. No backend; the call goes straight from the browser. Means I can write out an actual essay answer and get told where I lost points without waiting for a teacher.<br><br><strong>Deck system.</strong> Any subject drops in. The whole app is content-agnostic &mdash; I just hand it a JSON file. Built decks so far: AP World History, AP Precalc. Whatever's next, same setup.<br><br>One HTML file. Works offline once it's loaded. Built it for me, but anyone studying anything can use it.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>

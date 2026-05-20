@@ -194,6 +194,9 @@ hr.divider { max-width: 900px; margin: 0 auto; border: none; border-top: 1px sol
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
 .showcase-title { font-size: 20px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
 .showcase-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; max-width: 380px; }
+.feature-list { list-style: none; padding: 0; margin: 4px 0 2px; font-size: 13px; color: var(--text-secondary); max-width: 380px; }
+.feature-list li { padding: 4px 0 4px 14px; position: relative; line-height: 1.5; }
+.feature-list li::before { content: "—"; position: absolute; left: 0; color: var(--text-muted); }
 .showcase-link {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 13px; font-weight: 500; color: var(--text-primary);

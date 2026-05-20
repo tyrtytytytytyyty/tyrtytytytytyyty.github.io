@@ -29,12 +29,19 @@
     <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Back to Programming
   </a>
-  <p class="project-detail-tag">AI Tutor &middot; Voice + Text</p>
+  <p class="project-detail-tag">AI Tutor</p>
   <h2 class="project-detail-title">Lingua Loop</h2>
-  <div class="project-detail-media">
-    <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">Demo coming soon</div>
+  <div class="project-detail-media" style="background:#0d0d11;">
+    <div class="loop-video-container" data-loops="5" style="height:480px;">
+      <video muted playsinline autoplay>
+        <source src="lingualoop.mp4" type="video/mp4">
+      </video>
+      <button class="loop-replay-btn" aria-label="Play again" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
   </div>
-  <p class="project-detail-desc">A personal AI conversational tutor designed for daily language and subject practice without the friction of scheduling a class. Type or speak; the model responds in your target language with optional TTS narration. Supports Japanese, Mandarin, and a Universal mode for any subject.<br><br>Browser-native speech recognition feeds transcripts into the reasoning model, with a Whisper fallback for browsers that lack speech APIs. TTS is layered on top so silent reading mode is just as fast as voice mode &mdash; typed responses return in around two seconds.<br><br>A SQLite memory layer tracks subjects, lessons, skills, weak concepts, and curriculum state per language. The server hydrates this on every request so the model sees prior context, not just the current message. New vocabulary and weak concepts get extracted from each response and persisted, so practice actually compounds across sessions.<br><br>Stack: Python (server.py), SQLite, DeepSeek V4 via Anthropic-compatible endpoint, OpenAI TTS, Whisper STT fallback, vanilla HTML/JS frontend.</p>
+  <p class="project-detail-desc">Same idea as Drill &mdash; but for teaching me things and talking to me. I wanted a tutor I could just open and start a conversation with, without scheduling a class or finding a person. Voice or text in, conversation back, in whatever language I'm learning.<br><br>Currently set up for Japanese, Mandarin, and a Universal mode that handles any subject &mdash; not just languages. Speech goes in through the browser's native speech recognition with a Whisper fallback for browsers that don't support it. Responses come back as text and can play through TTS if I want to hear them.<br><br>The thing that makes it actually useful is the memory. There's a SQLite layer that tracks what subjects I've covered, what skills I've practiced, what concepts I'm weak on, and where the curriculum is heading. Every request hydrates that state so the model sees the whole arc, not just the last message. New vocab and weak spots get pulled out of each response and persisted &mdash; so practice compounds across sessions instead of resetting every time.<br><br>Stack: Python server, SQLite memory, DeepSeek V4 for reasoning, OpenAI TTS, vanilla HTML/JS frontend.</p>
 </div>
 
 <footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
