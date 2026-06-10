@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Gym Buddy — AI lifting partner</title>
+<meta name="description" content="An AI gym buddy you text between sets. Free 2-week trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- PWA / Add to Home Screen — opens full-screen like a native app -->
+<link rel="manifest" href="gymbuddy-manifest.json">
+<meta name="theme-color" content="#07070a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gym Buddy">
+<link rel="apple-touch-icon" href="gymbuddy-icon-180.png">
+<style>
+  :root {
+    --bg: #07070a;
+    --surface: #0f0f13;
+    --surface2: #161619;
+    --border: rgba(255,255,255,0.07);
+    --border-mid: rgba(255,255,255,0.13);
+    --text-primary: #f0f0ee;
+    --text-secondary: #7a7a78;
+    --text-muted: #57575a;
+    --gold: #f0b429;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    display: flex; flex-direction: column;
+    overscroll-behavior: none;
+  }
+
+  /* ── Header ─────────────────────────────── */
+  header {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 18px calc(14px);
+    border-bottom: 1px solid var(--border);
+    background: rgba(7,7,10,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .hd-mark { color: var(--gold); font-size: 17px; }
+  .hd-title { font-size: 15px; font-weight: 500; letter-spacing: 0.2px; }
+  .hd-sub { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--text-secondary); margin-left: auto; }
+
+  /* ── Chat ───────────────────────────────── */
+  #chat {
+    flex: 1; overflow-y: auto;
+    padding: 18px 14px 10px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .msg {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: var(--radius-lg);
+    font-size: 14.5px; line-height: 1.5;
+    white-space: pre-wrap; word-wrap: break-word;
+    animation: pop .18s ease both;
+  }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .msg.user {
+    align-self: flex-end;
+    background: #fff; color: #07070a;
+    border-bottom-right-radius: 4px;
+  }
+  .msg.bot {
+    align-self: flex-start;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+  }
+  .msg.typing { color: var(--text-secondary); font-family: 'DM Mono', monospace; font-size: 12.5px; }
+  .msg.err { align-self: center; background: none; border: none; color: var(--text-secondary); font-family: 'DM Mono', monospace; font-size: 11.5px; text-align: center; }
+
+  /* ── Composer ───────────────────────────── */
+  #composer {
+    flex-shrink: 0;
+    display: flex; gap: 8px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+  #input {
+    flex: 1; min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border-mid);
+    border-radius: 22px;
+    padding: 11px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    color: var(--text-primary);
+    outline: none; resize: none;
+    max-height: 110px;
+  }
+  #input:focus { border-color: rgba(240,180,41,0.5); }
+  #send {
+    flex-shrink: 0; align-self: flex-end;
+    width: 42px; height: 42px;
+    background: #fff; color: #07070a;
+    border: none; border-radius: 50%;
+    font-size: 17px; cursor: pointer;
+    transition: opacity .2s ease;
+  }
+  #send:disabled { opacity: .35; }
+
+  /* ── Onboarding / gate overlays ─────────── */
+  .overlay {
+    position: fixed; inset: 0; z-index: 10;
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px; text-align: center;
+  }
+  .ov-mark { font-size: 30px; color: var(--gold); margin-bottom: 20px; }
+  .ov-title { font-size: 26px; font-weight: 500; letter-spacing: -0.4px; }
+  .ov-sub { margin-top: 12px; font-size: 14px; line-height: 1.65; color: var(--text-secondary); max-width: 340px; }
+  .ov-field { margin-top: 26px; width: 100%; max-width: 320px; }
+  .ov-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius);
+    padding: 13px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    color: var(--text-primary); outline: none; text-align: center;
+  }
+  .ov-input:focus { border-color: rgba(240,180,41,0.5); }
+  .ov-opts { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 320px; }
+  .ov-opt {
+    background: var(--surface);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius);
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif; font-size: 14.5px;
+    color: var(--text-primary); cursor: pointer;
+    transition: border-color .15s ease;
+  }
+  .ov-opt:active { border-color: var(--gold); }
+  .ov-btn {
+    margin-top: 18px;
+    background: #fff; color: #07070a;
+    border: none; border-radius: var(--radius);
+    padding: 13px 28px;
+    font-family: 'DM Sans', sans-serif; font-size: 14.5px; font-weight: 500;
+    cursor: pointer;
+  }
+  .ov-meta { margin-top: 30px; font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--text-muted); line-height: 1.8; max-width: 320px; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="hd-mark">▲</span>
+  <span class="hd-title">Gym Buddy</span>
+  <span class="hd-sub">CC TRIAL · NOT MEDICAL ADVICE</span>
+</header>
+
+<div id="chat"></div>
+
+<div id="composer">
+  <textarea id="input" rows="1" placeholder="text your gym buddy…" enterkeyhint="send"></textarea>
+  <button id="send">↑</button>
+</div>
+
+<!-- Gate: no access code in URL or storage -->
+<div id="gate" class="overlay hidden">
+  <div class="ov-mark">▲</div>
+  <div class="ov-title">Gym Buddy</div>
+  <div class="ov-sub">This is a private trial. Scan Ty's QR code at the gym to get in — or enter the trial code if he gave you one.</div>
+  <div class="ov-field"><input id="gate-code" class="ov-input" placeholder="trial code" autocapitalize="characters"></div>
+  <button class="ov-btn" onclick="submitGate()">Enter</button>
+  <div class="ov-meta">built by tyy · tyycc.com</div>
+</div>
+
+<!-- Onboarding -->
+<div id="ob" class="overlay hidden">
+  <div class="ov-mark">▲</div>
+  <div class="ov-title" id="ob-title">Hey — I'm your gym buddy.</div>
+  <div class="ov-sub" id="ob-sub">Text me between sets like a friend who knows their stuff: what weight to use, form checks, logging your lifts, food after. Free for 2 weeks. Quick setup — 3 taps.</div>
+  <div class="ov-field hidden" id="ob-name-wrap"><input id="ob-name" class="ov-input" placeholder="first name" autocapitalize="words"></div>
+  <div class="ov-opts" id="ob-opts"></div>
+  <button class="ov-btn" id="ob-btn" onclick="obNext()">Let's go</button>
+  <div class="ov-meta">Your chats stay on this phone. Ty (the builder) can read trial conversations to improve the product — no email, no account, no spam. Not medical advice; talk to a professional about pain or injuries.</div>
+</div>
+
+<script>
+const WORKER = 'https://gymbuddy.thecoolwolfguy09.workers.dev';
+const LS = {
+  code:    'gb_code',
+  uid:     'gb_uid',
+  profile: 'gb_profile',
+  history: 'gb_history',
+};
+
+// ── State ──────────────────────────────────
+let history = JSON.parse(localStorage.getItem(LS.history) || '[]');
+let profile = JSON.parse(localStorage.getItem(LS.profile) || 'null');
+let code    = localStorage.getItem(LS.code) || '';
+let uid     = localStorage.getItem(LS.uid) || '';
+if (!uid) { uid = crypto.randomUUID(); localStorage.setItem(LS.uid, uid); }
+
+// Access code can arrive via QR link: /gymbuddy?c=XXXX
+const urlCode = new URLSearchParams(location.search).get('c');
+if (urlCode) {
+  code = urlCode.toUpperCase();
+  localStorage.setItem(LS.code, code);
+  window.history.replaceState(null, '', location.pathname); // keep the code out of the visible URL
+}
+
+const chat  = document.getElementById('chat');
+const input = document.getElementById('input');
+const send  = document.getElementById('send');
+
+// ── Boot ───────────────────────────────────
+if (!code) {
+  show('gate');
+} else if (!profile) {
+  show('ob');
+} else {
+  startChat();
+}
+
+function show(id) {
+  document.getElementById('gate').classList.toggle('hidden', id !== 'gate');
+  document.getElementById('ob').classList.toggle('hidden', id !== 'ob');
+}
+function hideOverlays() { show('none'); }
+
+function submitGate() {
+  const v = document.getElementById('gate-code').value.trim().toUpperCase();
+  if (!v) return;
+  code = v; localStorage.setItem(LS.code, code);
+  show(profile ? 'none' : 'ob');
+  if (profile) startChat();
+}
+
+// ── Onboarding (3 steps: name → goal → experience) ──
+let obStep = 0;
+const GOALS = ['Build muscle', 'Lose weight / lean out', 'Get fit / more energy', 'Get stronger'];
+const EXP   = ['Brand new to the gym', 'Coming back after a break', 'Train regularly'];
+let obData = {};
+
+function obNext() {
+  const titleEl = document.getElementById('ob-title');
+  const subEl   = document.getElementById('ob-sub');
+  const nameWrap = document.getElementById('ob-name-wrap');
+  const opts    = document.getElementById('ob-opts');
+  const btn     = document.getElementById('ob-btn');
+
+  if (obStep === 0) {
+    obStep = 1;
+    titleEl.textContent = "What should I call you?";
+    subEl.textContent = "First name's plenty.";
+    nameWrap.classList.remove('hidden');
+    btn.textContent = 'Next';
+  } else if (obStep === 1) {
+    const n = document.getElementById('ob-name').value.trim();
+    if (!n) return;
+    obData.name = n;
+    obStep = 2;
+    titleEl.textContent = 'Main goal right now?';
+    subEl.textContent = '';
+    nameWrap.classList.add('hidden');
+    btn.classList.add('hidden');
+    opts.innerHTML = GOALS.map(g => `<button class="ov-opt" onclick="obPick('goal', '${g.replace(/'/g, "\\'")}')">${g}</button>`).join('');
+  }
+}
+
+function obPick(key, val) {
+  obData[key] = val;
+  const titleEl = document.getElementById('ob-title');
+  const opts = document.getElementById('ob-opts');
+  if (key === 'goal') {
+    titleEl.textContent = 'Where are you at?';
+    opts.innerHTML = EXP.map(e => `<button class="ov-opt" onclick="obPick('experience', '${e.replace(/'/g, "\\'")}')">${e}</button>`).join('');
+  } else {
+    profile = obData;
+    localStorage.setItem(LS.profile, JSON.stringify(profile));
+    show('none');
+    startChat();
+  }
+}
+
+// ── Chat ───────────────────────────────────
+function startChat() {
+  history.forEach(m => addBubble(m.role === 'user' ? 'user' : 'bot', m.content));
+  if (history.length === 0) {
+    const hello = `What's good, ${profile.name}! I'm your gym buddy — text me whenever you're training. What are we hitting today?`;
+    history.push({ role: 'assistant', content: hello });
+    saveHistory();
+    addBubble('bot', hello);
+  }
+  scrollDown();
+}
+
+function addBubble(kind, text) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + kind;
+  div.textContent = text;
+  chat.appendChild(div);
+  scrollDown();
+  return div;
+}
+
+function scrollDown() { chat.scrollTop = chat.scrollHeight; }
+function saveHistory() {
+  // Keep local copy bounded so localStorage never bloats.
+  if (history.length > 400) history = history.slice(-300);
+  localStorage.setItem(LS.history, JSON.stringify(history));
+}
+
+async function sendMsg() {
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = ''; input.style.height = 'auto';
+  send.disabled = true;
+
+  history.push({ role: 'user', content: text });
+  saveHistory();
+  addBubble('user', text);
+  const typing = addBubble('bot typing', '…');
+
+  try {
+    const res = await fetch(WORKER + '/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_code: code,
+        user_id: uid,
+        name: profile.name,
+        profile: { goal: profile.goal, experience: profile.experience },
+        messages: history.slice(-40),
+      }),
+    });
+    const data = await res.json();
+    typing.remove();
+
+    if (res.status === 403) {
+      localStorage.removeItem(LS.code); code = '';
+      addBubble('err', 'trial code not recognized — refresh and re-enter it');
+    } else if (!res.ok || !data.reply) {
+      addBubble('err', data.detail || data.error || 'something went wrong — try again');
+    } else {
+      history.push({ role: 'assistant', content: data.reply });
+      saveHistory();
+      addBubble('bot', data.reply);
+    }
+  } catch {
+    typing.remove();
+    addBubble('err', 'no connection — message saved, try again');
+  }
+  send.disabled = false;
+  input.focus();
+}
+
+send.addEventListener('click', sendMsg);
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+});
+input.addEventListener('input', () => {
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight, 110) + 'px';
+});
+</script>
+</body>
+</html>
