@@ -104,7 +104,7 @@
       <span class="link-tag">FREE</span>
     </a>
 
-    <a class="link-card featured" id="newsletter-link" href="#">
+    <a class="link-card featured" id="newsletter-link" href="signal.html">
       <span class="link-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </span>
@@ -112,7 +112,7 @@
         <span class="link-title">CC Signal</span>
         <span class="link-sub">My weekly letter — what I built, found, and learned</span>
       </span>
-      <span class="link-tag muted" id="newsletter-tag">SOON</span>
+      <span class="link-tag" id="newsletter-tag">WEEKLY</span>
     </a>
 
     <a class="link-card" href="https://www.youtube.com/@AphelionReal" target="_blank" rel="noopener">
@@ -161,21 +161,5 @@
 </main>
 
 <script src="shared.js"></script>
-<script>
-// CC Signal — swap to the live signup URL once the publication exists.
-// Until then the card is visible but inert (no dead redirect from a bio click).
-const NEWSLETTER_URL = '';
-const nl = document.getElementById('newsletter-link');
-if (NEWSLETTER_URL) {
-  nl.href = NEWSLETTER_URL;
-  nl.target = '_blank';
-  nl.rel = 'noopener';
-  document.getElementById('newsletter-tag').textContent = 'WEEKLY';
-  document.getElementById('newsletter-tag').classList.remove('muted');
-} else {
-  nl.addEventListener('click', e => e.preventDefault());
-  nl.style.cursor = 'default';
-}
-</script>
 </body>
 </html>

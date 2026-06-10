@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC Signal — the weekly letter</title>
+<meta name="description" content="A weekly letter from a 16-year-old building his whole life on a second brain. What I built, found, and learned — every week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .signal-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: calc(100vh - 60px);
+    padding: 0 20px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .signal-mark {
+    font-size: 30px; color: var(--star-on);
+    margin-bottom: 22px;
+  }
+  .signal-title {
+    font-size: 32px; font-weight: 500; letter-spacing: -0.5px;
+  }
+  .signal-sub {
+    margin-top: 14px;
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 400px;
+  }
+  .signal-form {
+    margin-top: 32px; width: 100%; max-width: 400px;
+    display: flex; gap: 10px;
+  }
+  .signal-input {
+    flex: 1; min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius);
+    padding: 13px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color .2s ease;
+  }
+  .signal-input:focus { border-color: rgba(240,180,41,0.5); }
+  .signal-input::placeholder { color: var(--text-muted); }
+  .signal-btn {
+    flex-shrink: 0;
+    background: #fff; color: #07070a;
+    border: none; border-radius: var(--radius);
+    padding: 13px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .signal-btn:hover { opacity: .85; transform: translateY(-1px); }
+  .signal-btn:disabled { opacity: .4; cursor: default; transform: none; }
+  .signal-msg {
+    margin-top: 16px; min-height: 20px;
+    font-family: 'DM Mono', monospace; font-size: 12.5px;
+    color: var(--text-secondary);
+  }
+  .signal-msg.ok { color: var(--star-on); }
+  .signal-meta {
+    margin-top: 34px;
+    font-family: 'DM Mono', monospace; font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .signal-meta a { color: var(--text-secondary); text-decoration: none; }
+  @media (max-width: 420px) {
+    .signal-form { flex-direction: column; }
+    .signal-btn { padding: 13px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<main class="signal-wrap">
+  <div class="signal-mark">◈</div>
+  <h1 class="signal-title">CC Signal</h1>
+  <p class="signal-sub">A weekly letter from a 16-year-old building his whole life on a second brain — the AI agents, the projects, the money, the mistakes. What I built, found, and learned. One email a week, nothing else.</p>
+
+  <form class="signal-form" id="signal-form">
+    <input class="signal-input" id="signal-email" type="email" placeholder="your@email.com" autocomplete="email" required>
+    <button class="signal-btn" id="signal-btn" type="submit">Sign up</button>
+  </form>
+  <p class="signal-msg" id="signal-msg"></p>
+
+  <p class="signal-meta">
+    free · no spam · unsubscribe anytime<br>
+    <a href="secondbrain.pdf" target="_blank" rel="noopener">grab the free guide</a> · <a href="links.html">all my links</a>
+  </p>
+</main>
+
+<script src="shared.js"></script>
+<script>
+const SUPA_URL = 'https://zoguypxxotlgjxplcbtz.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvZ3V5cHh4b3RsZ2p4cGxjYnR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5OTM1ODMsImV4cCI6MjA4OTU2OTU4M30.gVGhRpbd8Mhhhvkdfq8KdcJ3zDu-WpsG46CIeBW8CkU';
+
+const form = document.getElementById('signal-form');
+const input = document.getElementById('signal-email');
+const btn = document.getElementById('signal-btn');
+const msg = document.getElementById('signal-msg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = input.value.trim().toLowerCase();
+  if (!email) return;
+  btn.disabled = true;
+  msg.className = 'signal-msg';
+  msg.textContent = '...';
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/signal_subscribers`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPA_KEY,
+        'Authorization': `Bearer ${SUPA_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email })
+    });
+    if (r.ok) {
+      msg.className = 'signal-msg ok';
+      msg.textContent = "◈ you're in — first letter lands monday.";
+      form.style.display = 'none';
+    } else if (r.status === 409) {
+      msg.className = 'signal-msg ok';
+      msg.textContent = "you're already on the list ◈";
+    } else {
+      msg.textContent = 'something broke — try again in a sec.';
+      btn.disabled = false;
+    }
+  } catch {
+    msg.textContent = 'something broke — try again in a sec.';
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
