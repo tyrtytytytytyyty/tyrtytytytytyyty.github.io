@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Your Own Second Brain — Free Guide</title>
+<meta name="description" content="Give your AI a memory. A free, simple guide to building your own second brain — by tyy.">
+<meta property="og:title" content="Start Your Own Second Brain — Free Guide">
+<meta property="og:description" content="Give your AI a memory. Free 9-page guide, simple enough to finish in one afternoon.">
+<meta property="og:image" content="https://tyycc.com/sb-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .sb-wrap {
+    max-width: 520px; margin: 0 auto;
+    padding: 64px 20px 60px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+  }
+  .sb-diamond {
+    font-size: 40px; color: var(--star-on); line-height: 1;
+    text-shadow: 0 0 34px rgba(240,180,41,0.5);
+  }
+  .sb-free {
+    margin-top: 20px;
+    font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 3px;
+    color: var(--star-on); border: 1px solid rgba(240,180,41,0.35);
+    border-radius: 99px; padding: 6px 16px; text-transform: uppercase;
+  }
+  .sb-title { margin-top: 18px; font-size: 34px; font-weight: 600; letter-spacing: -1.2px; line-height: 1.1; }
+  .sb-title .g { color: var(--star-on); }
+  .sb-sub { margin-top: 12px; font-size: 14.5px; color: var(--text-secondary); line-height: 1.65; max-width: 400px; }
+  .sb-sub b { color: var(--text-primary); font-weight: 500; }
+
+  .sb-cover {
+    margin-top: 30px; width: 230px; border-radius: 12px;
+    border: 1px solid var(--border-mid);
+    box-shadow: 0 18px 60px rgba(0,0,0,0.55), 0 0 44px rgba(240,180,41,0.08);
+    transform: rotate(-1.6deg);
+  }
+
+  .sb-points { margin-top: 30px; width: 100%; display: flex; flex-direction: column; gap: 10px; text-align: left; }
+  .sb-point {
+    display: flex; gap: 13px; align-items: center;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 13px; padding: 13px 16px;
+  }
+  .sb-point .ic { color: var(--star-on); font-size: 15px; flex-shrink: 0; }
+  .sb-point p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .sb-point p b { color: var(--text-primary); font-weight: 500; }
+
+  .sb-form { margin-top: 28px; width: 100%; }
+  .sb-form-card {
+    background: var(--surface); border: 1px solid rgba(240,180,41,0.3);
+    border-radius: 16px; padding: 22px 20px;
+    box-shadow: 0 0 40px rgba(240,180,41,0.05);
+  }
+  .sb-form-card label {
+    display: block; text-align: left;
+    font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--text-secondary); margin-bottom: 9px;
+  }
+  .sb-row { display: flex; gap: 9px; }
+  .sb-input {
+    flex: 1; min-width: 0;
+    background: var(--surface2); border: 1px solid var(--border-mid);
+    border-radius: 11px; padding: 13px 15px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary);
+    outline: none; transition: border-color .2s ease;
+  }
+  .sb-input:focus { border-color: rgba(240,180,41,0.55); }
+  .sb-input::placeholder { color: var(--text-muted); }
+  .sb-btn {
+    flex-shrink: 0; border: none; cursor: pointer;
+    background: var(--star-on); color: #07070a;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+    border-radius: 11px; padding: 13px 20px;
+    transition: transform .15s ease, box-shadow .2s ease;
+  }
+  .sb-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(240,180,41,0.3); }
+  .sb-btn:disabled { opacity: .6; cursor: wait; transform: none; }
+  .sb-note { margin-top: 11px; font-size: 11px; color: var(--text-muted); }
+  .sb-error { margin-top: 10px; font-size: 12px; color: #e05252; display: none; }
+
+  .sb-success { display: none; }
+  .sb-success .big { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+  .sb-success .big span { color: #34d399; }
+  .sb-success p { margin-top: 7px; font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+  .sb-success a { color: var(--star-on); }
+
+  .sb-back { margin-top: 34px; font-family: 'DM Mono', monospace; font-size: 11px; }
+  .sb-back a { color: var(--text-secondary); text-decoration: none; }
+  .sb-back a:hover { color: var(--text-primary); }
+</style>
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<main class="sb-wrap">
+  <div class="sb-diamond">◈</div>
+  <div class="sb-free">Free Guide</div>
+  <h1 class="sb-title">Start Your Own<br><span class="g">Second Brain</span></h1>
+  <p class="sb-sub">Your AI forgets you after every chat. This guide shows you how to give it a
+     <b>memory</b> — simple enough to finish in one afternoon.</p>
+
+  <img class="sb-cover" src="sb-cover.jpg" alt="Guide cover" width="230">
+
+  <div class="sb-points">
+    <div class="sb-point"><span class="ic">◈</span><p><b>9 visual pages, simple English</b> — no tech background needed</p></div>
+    <div class="sb-point"><span class="ic">◈</span><p><b>The exact 4 steps</b> — vault, feed, rulebook, daily habit</p></div>
+    <div class="sb-point"><span class="ic">◈</span><p><b>Works with any AI</b> — Claude, ChatGPT, Gemini, all free tiers</p></div>
+  </div>
+
+  <div class="sb-form">
+    <div class="sb-form-card">
+      <div id="sb-gate">
+        <label for="sb-email">Where should I send it?</label>
+        <form id="sb-f" class="sb-row" novalidate>
+          <input class="sb-input" id="sb-email" type="email" placeholder="your@email.com" autocomplete="email" required>
+          <button class="sb-btn" id="sb-go" type="submit">Get the guide</button>
+        </form>
+        <div class="sb-error" id="sb-err">That email doesn't look right — check it and try again.</div>
+        <p class="sb-note">No spam. Just the guide + updates when I ship something big.</p>
+      </div>
+      <div class="sb-success" id="sb-done">
+        <div class="big"><span>✓</span> It's yours.</div>
+        <p>The download should start by itself.<br>
+           If it doesn't — <a href="secondbrain.pdf" download id="sb-manual">tap here to grab the PDF</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="sb-back"><a href="links.html">← all my links</a> &nbsp;·&nbsp; <a href="index.html">portfolio</a></p>
+</main>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  var f = document.getElementById('sb-f');
+  var input = document.getElementById('sb-email');
+  var btn = document.getElementById('sb-go');
+  var err = document.getElementById('sb-err');
+
+  // Lead bin: FormSubmit AJAX -> Tyrese's inbox. Address assembled at runtime
+  // to keep scrapers off it.
+  var box = ['tyc', '009'].join('') + '@' + ['yahoo', 'com'].join('.');
+  var endpoint = 'https://formsubmit.co/ajax/' + box;
+
+  function deliver() {
+    document.getElementById('sb-gate').style.display = 'none';
+    document.getElementById('sb-done').style.display = 'block';
+    // auto-start the download
+    var a = document.createElement('a');
+    a.href = 'secondbrain.pdf'; a.download = 'Start Your Own Second Brain.pdf';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  // Returning visitor who already unlocked it — skip straight to delivery UI.
+  try {
+    if (localStorage.getItem('sb_unlocked')) {
+      document.getElementById('sb-gate').style.display = 'none';
+      document.getElementById('sb-done').style.display = 'block';
+    }
+  } catch (e) {}
+
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var email = (input.value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      err.style.display = 'block';
+      return;
+    }
+    err.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    var payload = {
+      email: email,
+      source: 'secondbrain-guide',
+      page: location.href,
+      when: new Date().toISOString(),
+      _subject: '◈ New Second Brain lead: ' + email,
+      _template: 'table',
+      _captcha: 'false'
+    };
+
+    // Never block the download on network issues — capture is best-effort,
+    // the promise to the visitor comes first.
+    var done = false;
+    var finish = function () { if (!done) { done = true;
+      try { localStorage.setItem('sb_unlocked', '1'); } catch (e) {}
+      deliver(); } };
+    setTimeout(finish, 4000); // failsafe
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(finish).catch(finish);
+  });
+})();
+</script>
+</body>
+</html>
