@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Your Own Second Brain — The Guide</title>
+<meta name="description" content="Give your AI a memory. The full guide, readable right here — by tyy.">
+<meta property="og:title" content="Start Your Own Second Brain — The Guide">
+<meta property="og:description" content="Give your AI a memory. Folders, rules, and an AI that reads them.">
+<meta property="og:image" content="https://tyycc.com/sb-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Web version of secondbrain.pdf v2 — same content, scrollable & mobile-first.
+     Purple override scoped to this page (matches the PDF + gate). */
+  :root { --star-on: #a78bfa; }
+  :root {
+    --g-surface: #0e0e14; --g-surface2: #15151d;
+    --g-border: rgba(255,255,255,0.09); --g-border-mid: rgba(255,255,255,0.16);
+    --g-sub: #8b8b93; --g-muted: #54545c;
+    --g-acc: #a78bfa; --g-acc-dim: rgba(167,139,250,0.35); --g-acc-faint: rgba(139,92,246,0.07);
+    --g-green: #34d399;
+  }
+  .gd-wrap { max-width: 640px; margin: 0 auto; padding: 56px 20px 80px; }
+  .gd-center { text-align: center; }
+  .gd-diamond { font-size: 44px; color: var(--g-acc); line-height: 1;
+                text-shadow: 0 0 34px rgba(139,92,246,0.55); text-align: center; }
+  .gd-free { display: inline-block; margin-top: 18px; font-family: 'DM Mono', monospace;
+             font-size: 10.5px; letter-spacing: 3px; color: var(--g-acc);
+             border: 1px solid var(--g-acc-dim); border-radius: 99px; padding: 6px 16px; text-transform: uppercase; }
+  h1.gd-title { margin-top: 16px; font-size: 36px; font-weight: 600; letter-spacing: -1.4px; line-height: 1.08; }
+  h1.gd-title .g { color: var(--g-acc); }
+  .gd-tagline { margin-top: 14px; font-size: 15px; color: var(--g-sub); line-height: 1.6; }
+  .gd-tagline b { color: var(--text-primary); font-weight: 500; }
+  .gd-byline { margin-top: 18px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--g-muted); letter-spacing: 1px; }
+  .gd-byline b { color: var(--text-primary); font-weight: 500; }
+
+  .gd-pdfbtn { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px;
+               font-family: 'DM Mono', monospace; font-size: 11.5px; letter-spacing: 1px;
+               color: var(--g-acc); border: 1px solid var(--g-acc-dim); border-radius: 10px;
+               padding: 10px 18px; text-decoration: none; }
+  .gd-pdfbtn:hover { background: var(--g-acc-faint); }
+
+  section.gd { margin-top: 64px; }
+  .gd-kicker { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 3px;
+               color: var(--g-acc); text-transform: uppercase; }
+  section.gd h2 { font-size: 26px; font-weight: 600; letter-spacing: -0.8px; margin: 8px 0 6px; }
+  .gd-lede { font-size: 14.5px; color: var(--g-sub); line-height: 1.65; }
+  .gd-lede b { color: var(--text-primary); font-weight: 500; }
+
+  .gcard { background: var(--g-surface); border: 1px solid var(--g-border); border-radius: 16px; margin-top: 18px; }
+  .gglow { border-color: var(--g-acc-dim); box-shadow: 0 0 34px var(--g-acc-faint) inset; }
+  .ggl { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--g-acc);
+         display: flex; align-items: center; justify-content: center;
+         background: var(--g-surface2); border: 1px solid var(--g-border-mid); }
+
+  /* chat */
+  .gchat { display: flex; flex-direction: column; gap: 11px; padding: 20px; }
+  .gbub { max-width: 82%; padding: 11px 15px; border-radius: 16px; font-size: 13.5px; line-height: 1.5; }
+  .gbub.you { align-self: flex-end; background: #232338; border: 1px solid rgba(167,139,250,0.28); border-bottom-right-radius: 5px; }
+  .gbub.ai  { align-self: flex-start; background: var(--g-surface2); border: 1px solid var(--g-border); border-bottom-left-radius: 5px; color: var(--g-sub); }
+  .gbub.ai.good { border-color: rgba(52,211,153,0.3); color: var(--text-primary); }
+  .gchat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--g-muted); margin: 18px 0 -8px; }
+  .gchat-label.on { color: var(--g-acc); }
+  .gstrike { color: #e05252; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 1px; }
+  .gwin { color: var(--g-green); font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 1px; }
+
+  /* loop — vertical on mobile */
+  .gloop { padding: 22px 18px; display: flex; flex-direction: column; gap: 4px; }
+  .gloop-node { display: flex; gap: 16px; align-items: center; padding: 8px 4px; }
+  .gloop-node .ggl { width: 48px; height: 48px; border-radius: 14px; font-size: 15px; flex-shrink: 0; }
+  .gloop-node h4 { font-size: 14.5px; font-weight: 600; }
+  .gloop-node h4.on { color: var(--g-acc); }
+  .gloop-node p { font-size: 12px; color: var(--g-sub); line-height: 1.5; }
+  .gloop-arrow { color: var(--g-acc); font-size: 17px; padding-left: 20px; }
+  .gloop-foot { text-align: center; font-family: 'DM Mono', monospace; font-size: 10px;
+                color: var(--g-muted); letter-spacing: 2px; padding: 10px 0 14px; }
+
+  /* need list */
+  .gneed { display: flex; align-items: flex-start; gap: 15px; padding: 16px 18px; }
+  .gneed .ggl { width: 44px; height: 44px; flex-shrink: 0; border-radius: 13px; font-size: 15px; }
+  .gneed h4 { font-size: 15px; font-weight: 600; }
+  .gneed p { font-size: 12.5px; color: var(--g-sub); margin-top: 3px; line-height: 1.55; }
+  .gneed p b { color: var(--text-primary); font-weight: 500; }
+
+  /* tree */
+  .gtree { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 2.1; padding: 18px 16px; overflow-x: auto; }
+  .gtree .root { color: var(--g-acc); font-weight: 500; }
+  .gtree .branch { color: var(--g-muted); }
+  .gtree .fname { color: var(--text-primary); }
+  .gtree .fdesc { color: var(--g-sub); font-family: 'DM Sans', sans-serif; font-size: 11.5px; }
+
+  .gtip { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; margin-top: 14px;
+          border: 1px solid var(--g-acc-dim); border-radius: 12px; background: rgba(139,92,246,0.05); }
+  .gtip .b { color: var(--g-acc); font-size: 15px; line-height: 1.3; }
+  .gtip p { font-size: 13px; color: var(--g-sub); line-height: 1.6; }
+  .gtip p b { color: var(--text-primary); font-weight: 500; }
+
+  /* feed grid */
+  .gfeed { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+  @media (max-width: 480px) { .gfeed { grid-template-columns: 1fr; } }
+  .gfeed .item { background: var(--g-surface); border: 1px solid var(--g-border); border-radius: 14px;
+                 padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+  .gfeed .ggl { font-size: 14px; width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; }
+  .gfeed h4 { font-size: 13.5px; font-weight: 600; }
+  .gfeed p { font-size: 11.5px; color: var(--g-sub); margin-top: 1px; }
+  .gfunnel { text-align: center; margin: 14px 0 0; color: var(--g-acc); font-size: 18px; }
+
+  /* terminal */
+  .gterm { border: 1px solid var(--g-border-mid); border-radius: 14px; overflow: hidden; margin-top: 18px; background: #0a0a10; }
+  .gterm-bar { display: flex; gap: 7px; align-items: center; padding: 11px 14px;
+               background: var(--g-surface2); border-bottom: 1px solid var(--g-border); }
+  .gterm-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.14); }
+  .gterm-bar .dot:first-child { background: rgba(224,82,82,0.7); }
+  .gterm-bar .t { margin-left: 6px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--g-muted); letter-spacing: 1px; }
+  .gterm-body { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 2; padding: 16px 18px; color: #cfd3dc; overflow-x: auto; white-space: nowrap; }
+  .gterm-body .p { color: var(--g-green); }
+  .gterm-body .cmd { color: var(--text-primary); }
+  .gterm-body .ai { color: var(--g-acc); }
+  .gterm-body .dim { color: var(--g-muted); }
+
+  /* options */
+  .gopts { display: flex; gap: 10px; margin-top: 12px; }
+  @media (max-width: 560px) { .gopts { flex-direction: column; } }
+  .gopt { flex: 1; text-align: center; padding: 12px 10px; font-size: 12px; color: var(--g-sub);
+          background: var(--g-surface); border: 1px solid var(--g-border); border-radius: 11px; line-height: 1.5; }
+  .gopt b { display: block; color: var(--text-primary); font-size: 12.5px; font-weight: 600; margin-bottom: 2px; }
+
+  /* rulebook */
+  .gcode { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.85; color: #cfd3dc;
+           background: #0a0a10; border: 1px solid var(--g-border-mid); border-radius: 14px;
+           padding: 18px 18px; margin-top: 18px; overflow-x: auto; }
+  .gcode .c { color: var(--g-muted); }
+  .gcode .g { color: var(--g-acc); }
+
+  /* bars */
+  .gbars { display: flex; align-items: flex-end; gap: 14px; height: 190px; padding: 24px 18px 0; }
+  .gbarcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
+  .gbar { width: 100%; border-radius: 9px 9px 3px 3px; background: linear-gradient(180deg, rgba(167,139,250,0.9), rgba(139,92,246,0.25)); }
+  .gbarcol.dim .gbar { background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08)); }
+  .gbarcol .d { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--g-muted); letter-spacing: 1px; }
+  .gbarcol .lab { font-size: 10.5px; color: var(--g-sub); text-align: center; line-height: 1.4; padding-bottom: 14px; }
+  .gbarcol .lab b { color: var(--text-primary); font-weight: 500; }
+
+  /* level up */
+  .glvl { display: flex; gap: 14px; padding: 16px 18px; align-items: flex-start; }
+  .glvl .n { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--g-acc); flex-shrink: 0;
+             width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+             background: var(--g-surface2); border: 1px solid var(--g-acc-dim); }
+  .glvl h4 { font-size: 14.5px; font-weight: 600; }
+  .glvl p { font-size: 12.5px; color: var(--g-sub); margin-top: 3px; line-height: 1.6; }
+  .glvl p b { color: var(--text-primary); font-weight: 500; }
+  .glvl .ask { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--g-acc); }
+
+  /* agents / outro */
+  .gagents { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+  @media (max-width: 480px) { .gagents { grid-template-columns: 1fr; } }
+  .gagent { background: var(--g-surface); border: 1px solid var(--g-border); border-radius: 14px;
+            padding: 14px 16px; display: flex; gap: 13px; align-items: center; }
+  .gagent .sym { font-family: 'DM Mono', monospace; font-size: 17px; width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px;
+                 display: flex; align-items: center; justify-content: center; color: var(--g-sub);
+                 background: var(--g-surface2); border: 1px solid var(--g-border-mid); }
+  .gagent .sym.on { color: var(--g-acc); border-color: var(--g-acc-dim); }
+  .gagent h4 { font-size: 13.5px; font-weight: 600; }
+  .gagent p { font-size: 11.5px; color: var(--g-sub); margin-top: 1px; line-height: 1.45; }
+  .ghandles { margin-top: 18px; display: flex; gap: 10px; }
+  @media (max-width: 480px) { .ghandles { flex-direction: column; } }
+  .ghandle { flex: 1; text-align: center; padding: 13px 8px; background: var(--g-surface);
+             border: 1px solid var(--g-border); border-radius: 12px; text-decoration: none; }
+  .ghandle b { display: block; font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  .ghandle span { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--g-acc); }
+  .goutro { margin-top: 40px; text-align: center; }
+  .goutro .big { font-size: 20px; font-weight: 600; letter-spacing: -0.5px; }
+  .goutro .big .g { color: var(--g-acc); }
+  .goutro p { margin-top: 8px; font-size: 13px; color: var(--g-sub); }
+  .gd-back { margin-top: 44px; text-align: center; font-family: 'DM Mono', monospace; font-size: 11px; }
+  .gd-back a { color: var(--text-secondary); text-decoration: none; }
+  .gd-back a:hover { color: var(--text-primary); }
+</style>
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+
+<main class="gd-wrap">
+
+  <!-- ── cover ── -->
+  <header class="gd-center">
+    <div class="gd-diamond">◈</div>
+    <div class="gd-free">Free Guide</div>
+    <h1 class="gd-title">Start Your Own<br><span class="g">Second Brain</span></h1>
+    <p class="gd-tagline">Give your AI a <b>memory</b>.<br>
+       The exact system I use to run my life — folders, rules, and an AI that reads them.</p>
+    <div class="gd-byline">made by <b>tyy</b> · 16 years old · documenting the whole build</div>
+    <a class="gd-pdfbtn" href="secondbrain.pdf" download>↓ &nbsp;download as PDF</a>
+  </header>
+
+  <!-- ── the problem ── -->
+  <section class="gd">
+    <span class="gd-kicker">The Problem</span>
+    <h2>Your AI forgets you.</h2>
+    <p class="gd-lede">Every new chat starts from zero. You explain your life again. And again.
+       It gives you <b>generic answers</b> — because it does not know you.</p>
+
+    <div class="gchat-label">Without a second brain</div>
+    <div class="gcard gchat">
+      <div class="gbub you">what should I work on today?</div>
+      <div class="gbub ai">It depends! Could you tell me more about your goals, your projects, your schedule…</div>
+      <div class="gstrike">✗ it knows nothing. you start over every time.</div>
+    </div>
+
+    <div class="gchat-label on">With a second brain</div>
+    <div class="gcard gglow gchat">
+      <div class="gbub you">what should I work on today?</div>
+      <div class="gbub ai good">Your exam is Friday and your project is 80% done — finish the last feature today, study tonight.</div>
+      <div class="gwin">✓ it read your files first. it answers like a friend who remembers.</div>
+    </div>
+  </section>
+
+  <!-- ── the idea ── -->
+  <section class="gd">
+    <span class="gd-kicker">The Idea</span>
+    <h2>What is a second brain?</h2>
+    <p class="gd-lede">A <b>folder of files about your life</b> — goals, projects, timeline, notes —
+       that your AI reads before it answers you. That's it. Files + AI = memory.</p>
+
+    <div class="gcard gloop">
+      <div class="gloop-node"><div class="ggl">YOU</div><div><h4>You</h4><p>live your life, take notes</p></div></div>
+      <div class="gloop-arrow">↓</div>
+      <div class="gloop-node"><div class="ggl">/</div><div><h4>The Vault</h4><p>your files, sorted into simple folders</p></div></div>
+      <div class="gloop-arrow">↓</div>
+      <div class="gloop-node"><div class="ggl">AI</div><div><h4>Your AI</h4><p>reads the vault before answering</p></div></div>
+      <div class="gloop-arrow">↓</div>
+      <div class="gloop-node"><div class="ggl" style="border-color:var(--g-acc-dim); font-size:20px;">◈</div><div><h4 class="on">It knows you</h4><p>real answers, for your real life</p></div></div>
+      <div class="gloop-foot">↺ EVERY CONVERSATION MAKES IT SMARTER</div>
+    </div>
+  </section>
+
+  <!-- ── what you need ── -->
+  <section class="gd">
+    <span class="gd-kicker">Before You Start</span>
+    <h2>You need 4 things.</h2>
+    <p class="gd-lede">All free, or things you already have.</p>
+
+    <div class="gcard gneed"><div class="ggl">PC</div><div><h4>A computer</h4><p>Any laptop works. Nothing fancy.</p></div></div>
+    <div class="gcard gneed"><div class="ggl">/</div><div><h4>Obsidian</h4><p>A free notes app that stores plain files, on <b>your</b> computer. Nothing leaves your machine.</p></div></div>
+    <div class="gcard gneed"><div class="ggl">AI</div><div><h4>An AI that can read files</h4><p>Best: a terminal AI like <b>Claude Code</b> — it reads your whole vault by itself. No terminal? ChatGPT / Claude Projects work too.</p></div></div>
+    <div class="gcard gglow gneed"><div class="ggl" style="color:var(--g-acc)">30</div><div><h4>30 minutes</h4><p>That's the real cost. One sit-down and it exists.</p></div></div>
+  </section>
+
+  <!-- ── step 1 ── -->
+  <section class="gd">
+    <span class="gd-kicker">Step 1 / 5</span>
+    <h2>Build the vault.</h2>
+    <p class="gd-lede">Open Obsidian → make a new vault → create these folders.
+       Numbers keep them in order. Each folder answers one question. This is my real structure:</p>
+
+    <div class="gcard gtree">
+      <span class="root">My Second Brain/</span><br>
+      <span class="branch">├─</span> <span class="fname">000 Home</span> — <span class="fdesc">your dashboard. what matters right now</span><br>
+      <span class="branch">├─</span> <span class="fname">100 Me</span> — <span class="fdesc">who you are. goals, values, story</span><br>
+      <span class="branch">├─</span> <span class="fname">200 Timeline</span> — <span class="fdesc">what happened, by date. your life log</span><br>
+      <span class="branch">├─</span> <span class="fname">300 Knowledge</span> — <span class="fdesc">things you learn</span><br>
+      <span class="branch">├─</span> <span class="fname">400 Projects</span> — <span class="fdesc">one file per thing you're building</span><br>
+      <span class="branch">├─</span> <span class="fname">500 People</span> — <span class="fdesc">friends, family, who matters</span><br>
+      <span class="branch">├─</span> <span class="fname">700 Patterns</span> — <span class="fdesc">what the AI notices about you over time</span><br>
+      <span class="branch">└─</span> <span class="fname">RAW</span> — <span class="fdesc">the inbox. drop anything here, sort later</span>
+    </div>
+    <div class="gtip"><div class="b">◈</div>
+      <p><b>Feeling lazy? Start with 3:</b> Me, Projects, RAW. Grow the rest later.
+         A small vault you actually use beats a perfect one you don't.</p></div>
+  </section>
+
+  <!-- ── step 2 ── -->
+  <section class="gd">
+    <span class="gd-kicker">Step 2 / 5</span>
+    <h2>Feed it your life.</h2>
+    <p class="gd-lede">Drop everything into <b>RAW</b>. Messy is fine — sorting comes later,
+       and your AI can do the sorting for you.</p>
+
+    <div class="gfeed">
+      <div class="item"><div class="ggl">></div><div><h4>Old AI chats</h4><p>ChatGPT & Claude let you export everything</p></div></div>
+      <div class="item"><div class="ggl">✎</div><div><h4>Notes & journals</h4><p>phone notes, docs, anything you wrote</p></div></div>
+      <div class="item"><div class="ggl">◎</div><div><h4>Your goals</h4><p>write one page: what do you want?</p></div></div>
+      <div class="item"><div class="ggl">§</div><div><h4>Your story</h4><p>one page: where you're from, where you're going</p></div></div>
+      <div class="item"><div class="ggl">⌂</div><div><h4>Your projects</h4><p>one file each: what is it, what's next</p></div></div>
+      <div class="item"><div class="ggl">*</div><div><h4>Ideas</h4><p>every idea you don't want to lose</p></div></div>
+    </div>
+    <div class="gfunnel">↓ ↓ ↓</div>
+    <div class="gcard gglow" style="padding:14px; text-align:center;">
+      <span style="font-family:'DM Mono',monospace; font-size:11.5px; color:var(--g-acc); letter-spacing:2px;">RAW/ — the more you feed it, the better it knows you</span>
+    </div>
+  </section>
+
+  <!-- ── step 3 ── -->
+  <section class="gd">
+    <span class="gd-kicker">Step 3 / 5</span>
+    <h2>Connect an AI to the folder.</h2>
+    <p class="gd-lede">This is the unlock. A <b>terminal AI</b> (like Claude Code) runs <b>inside</b> your vault folder —
+       it can open, read, and write your files by itself. You talk; it handles the files.</p>
+
+    <div class="gterm">
+      <div class="gterm-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span class="t">terminal — my second brain</span></div>
+      <div class="gterm-body">
+        <span class="p">$</span> <span class="cmd">cd "My Second Brain"</span> <span class="dim">← go into your vault folder</span><br>
+        <span class="p">$</span> <span class="cmd">claude</span> <span class="dim">← start the AI inside it</span><br>
+        <span class="ai">◈ Read your rulebook. 132 notes loaded.</span><br>
+        <span class="ai">◈ Your exam is Friday. Project is 80% done. Plan?</span><br>
+        <span class="p">></span> <span class="cmd">_</span>
+      </div>
+    </div>
+    <div class="gopts">
+      <div class="gopt"><b>Claude Code</b>terminal AI — reads & writes the vault itself. what I use</div>
+      <div class="gopt"><b>ChatGPT / Claude app</b>make a Project → upload your vault files + rulebook</div>
+      <div class="gopt"><b>Any other AI</b>paste your rulebook + key files at the start of a chat</div>
+    </div>
+    <div class="gtip"><div class="b">◈</div>
+      <p><b>Privacy:</b> your vault is plain files on <b>your own machine</b>. Nothing leaves it
+         until the moment you send a question to an AI — you control what it sees.</p></div>
+  </section>
+
+  <!-- ── step 4 ── -->
+  <section class="gd">
+    <span class="gd-kicker">Step 4 / 5</span>
+    <h2>Give it the rulebook.</h2>
+    <p class="gd-lede">One file that tells the AI how to behave. This is the difference between
+       a chatbot and a second brain. Copy mine — then make it yours:</p>
+
+    <div class="gcode">
+      <span class="c"># rulebook.md — my AI's instructions</span><br><br>
+      You are my second brain. Follow these rules:<br><br>
+      1. <span class="g">Check the vault before answering.</span><br>
+      &nbsp;&nbsp;&nbsp;My files are the source of truth — read my<br>
+      &nbsp;&nbsp;&nbsp;goals, projects, and timeline first.<br>
+      2. <span class="g">Never guess about my life.</span> Not sure?<br>
+      &nbsp;&nbsp;&nbsp;Search my files. Not in the files? Say<br>
+      &nbsp;&nbsp;&nbsp;"I don't know" — do not make it up.<br>
+      3. <span class="g">Stay objective.</span> Tell me what is true,<br>
+      &nbsp;&nbsp;&nbsp;not what I want to hear. No hype.<br>
+      4. <span class="g">Save what you learn.</span> New fact about<br>
+      &nbsp;&nbsp;&nbsp;my life → write it into the right file.<br>
+      5. <span class="g">Log big days</span> to the Timeline, with the date.<br>
+      6. <span class="g">On every start:</span> read this file →<br>
+      &nbsp;&nbsp;&nbsp;my goals → active projects.
+    </div>
+    <div class="gtip"><div class="b">◈</div>
+      <p><b>Using Claude Code?</b> Name this file <b>CLAUDE.md</b> and it reads it automatically
+         every time it starts. Rules 1–2 are why it stays accurate: the AI answers from
+         your files, not from guesses.</p></div>
+  </section>
+
+  <!-- ── step 5 ── -->
+  <section class="gd">
+    <span class="gd-kicker">Step 5 / 5</span>
+    <h2>Talk to it every day.</h2>
+    <p class="gd-lede">This is the secret. A second brain is not built in one day —
+       it <b>grows</b>. Every chat, every note, every logged day compounds.</p>
+
+    <div class="gcard">
+      <div class="gbars">
+        <div class="gbarcol dim"><div class="gbar" style="height:14%"></div><div class="d">DAY 1</div><div class="lab">knows your <b>name</b></div></div>
+        <div class="gbarcol dim"><div class="gbar" style="height:34%"></div><div class="d">WEEK 1</div><div class="lab">knows your <b>goals</b></div></div>
+        <div class="gbarcol"><div class="gbar" style="height:62%"></div><div class="d">MONTH 1</div><div class="lab">knows your <b>projects & patterns</b></div></div>
+        <div class="gbarcol"><div class="gbar" style="height:92%"></div><div class="d">MONTH 3</div><div class="lab">knows your <b>whole story</b></div></div>
+      </div>
+    </div>
+    <div class="gtip"><div class="b">◈</div>
+      <p><b>Daily habit (2 minutes):</b> end of day, tell your AI what happened.
+         It logs the day to your Timeline. In 3 months you own something nobody can buy —
+         an AI that actually knows you.</p></div>
+  </section>
+
+  <!-- ── level up ── -->
+  <section class="gd">
+    <span class="gd-kicker">Level Up</span>
+    <h2>Make it work for you.</h2>
+    <p class="gd-lede">Once the loop is running, ask the AI to build its own upgrades.
+       You don't need to know how to code — <b>it writes the code</b>. Mine did all of these:</p>
+
+    <div class="gcard glvl"><div class="n">01</div>
+      <div><h4>Auto-sorting script</h4>
+      <p>Ask: <span class="ask">"write a script that sorts everything in RAW into the right folders."</span>
+      Now the inbox empties itself every time you start a session.</p></div></div>
+    <div class="gcard glvl"><div class="n">02</div>
+      <div><h4>Pattern reports</h4>
+      <p>Ask: <span class="ask">"read my timeline. what patterns do you see in me?"</span>
+      It will find things about you that <b>you can't see yourself</b> — save them to 700 Patterns.</p></div></div>
+    <div class="gcard glvl"><div class="n">03</div>
+      <div><h4>Weekly review</h4>
+      <p>Ask: <span class="ask">"compare this week to my goals. what am I avoiding?"</span>
+      Rule 3 (stay objective) makes this honest — sometimes uncomfortably.</p></div></div>
+    <div class="gcard glvl gglow"><div class="n">04</div>
+      <div><h4>More agents</h4>
+      <p>One AI becomes a team: one for research, one for code, one texting you like a coach.
+      They all share the same vault — the same memory. <b>That's where I am now.</b></p></div></div>
+  </section>
+
+  <!-- ── proof / outro ── -->
+  <section class="gd">
+    <span class="gd-kicker">Proof It Works</span>
+    <h2>This guide was made by my second brain.</h2>
+    <p class="gd-lede">Mine has grown past notes — it's a small <b>team of AI agents</b> now.
+       They know my whole life, run my tools, and helped write what you just read.</p>
+
+    <div class="gagents">
+      <div class="gagent"><div class="sym on">◈</div><div><h4>Lumen</h4><p>the brain — memory, plans, strategy</p></div></div>
+      <div class="gagent"><div class="sym">◑</div><div><h4>Luna</h4><p>research & heavy reading</p></div></div>
+      <div class="gagent"><div class="sym">◆</div><div><h4>Vector</h4><p>writes the code</p></div></div>
+      <div class="gagent"><div class="sym">▲</div><div><h4>GymBuddy</h4><p>my AI fitness coach — lives in iMessage</p></div></div>
+    </div>
+
+    <div class="ghandles">
+      <a class="ghandle" href="https://instagram.com/tyresesig" target="_blank" rel="noopener"><b>Instagram</b><span>@tyresesig</span></a>
+      <a class="ghandle" href="https://tiktok.com/@ty7kl" target="_blank" rel="noopener"><b>TikTok</b><span>@ty7kl</span></a>
+      <a class="ghandle" href="index.html"><b>Everything</b><span>tyycc.com</span></a>
+    </div>
+
+    <div class="goutro">
+      <div class="big">I'm 16. I'm building all of it <span class="g">in public</span>.</div>
+      <p>Follow the build. Start your vault tonight — future you says thanks. ◈</p>
+      <a class="gd-pdfbtn" href="secondbrain.pdf" download>↓ &nbsp;download as PDF</a>
+    </div>
+  </section>
+
+  <p class="gd-back"><a href="links.html">← all my links</a> &nbsp;·&nbsp; <a href="index.html">portfolio</a></p>
+</main>
+
+<script src="shared.js"></script>
+</body>
+</html>

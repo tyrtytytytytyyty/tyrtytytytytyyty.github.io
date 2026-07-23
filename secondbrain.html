@@ -108,7 +108,7 @@
   <img class="sb-cover" src="sb-cover.jpg" alt="Guide cover" width="230">
 
   <div class="sb-points">
-    <div class="sb-point"><span class="ic">◈</span><p><b>9 visual pages, simple English</b> — no tech background needed</p></div>
+    <div class="sb-point"><span class="ic">◈</span><p><b>11 visual pages, simple English</b> — no tech background needed</p></div>
     <div class="sb-point"><span class="ic">◈</span><p><b>The exact 4 steps</b> — vault, feed, rulebook, daily habit</p></div>
     <div class="sb-point"><span class="ic">◈</span><p><b>Works with any AI</b> — Claude, ChatGPT, Gemini, all free tiers</p></div>
   </div>
@@ -126,8 +126,9 @@
       </div>
       <div class="sb-success" id="sb-done">
         <div class="big"><span>✓</span> It's yours.</div>
-        <p>The download should start by itself.<br>
-           If it doesn't — <a href="secondbrain.pdf" download id="sb-manual">tap here to grab the PDF</a>.</p>
+        <p>Taking you to the guide…<br>
+           <a href="secondbrain-guide.html" id="sb-read">read it here</a> &nbsp;·&nbsp;
+           <a href="secondbrain.pdf" download id="sb-manual">download the PDF</a></p>
       </div>
     </div>
   </div>
@@ -151,10 +152,9 @@
   function deliver() {
     document.getElementById('sb-gate').style.display = 'none';
     document.getElementById('sb-done').style.display = 'block';
-    // auto-start the download
-    var a = document.createElement('a');
-    a.href = 'secondbrain.pdf'; a.download = 'Start Your Own Second Brain.pdf';
-    document.body.appendChild(a); a.click(); a.remove();
+    // Web guide beats auto-download: in-app browsers (IG/TikTok) choke on
+    // PDF downloads but scroll a page fine. PDF stays one tap away.
+    setTimeout(function () { location.href = 'secondbrain-guide.html'; }, 900);
   }
 
   // Returning visitor who already unlocked it — skip straight to delivery UI.
