@@ -129,6 +129,35 @@
   }
   .social-chip:hover { border-color: var(--border-mid); color: var(--text-primary); transform: translateY(-1px); }
   .social-chip svg { width: 15px; height: 15px; flex-shrink: 0; }
+  /* GymBuddy card — top billing, teal accent (vs the gold Second Brain hero) */
+  .link-card.gb {
+    flex-direction: column; align-items: flex-start; gap: 12px;
+    padding: 22px;
+    border-color: rgba(94,234,212,0.45);
+    background: linear-gradient(160deg, rgba(94,234,212,0.10), var(--surface) 55%);
+    box-shadow: 0 0 38px rgba(94,234,212,0.10);
+  }
+  .link-card.gb:hover { border-color: rgba(94,234,212,0.8); transform: translateY(-2px); }
+  .gb-top { display: flex; align-items: center; gap: 12px; width: 100%; }
+  .gb-icon {
+    width: 44px; height: 44px; border-radius: 13px; flex-shrink: 0;
+    background: var(--surface2); border: 1px solid rgba(94,234,212,0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: #5eead4; font-family: 'DM Mono', monospace; font-size: 16px; font-weight: 500;
+  }
+  .gb-title { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
+  .gb-sub { font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-top: 2px; }
+  .gb-tag {
+    margin-left: auto; flex-shrink: 0;
+    font-family: 'DM Mono', monospace; font-size: 10px; color: #5eead4;
+    border: 1px solid rgba(94,234,212,0.4); border-radius: 99px; padding: 4px 11px;
+  }
+  .gb-cta {
+    margin-top: 4px; font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1px; color: #07070a; background: #5eead4;
+    border-radius: 9px; padding: 9px 15px; font-weight: 500;
+  }
+
   .links-footer {
     margin-top: 40px;
     font-size: 11.5px; color: var(--text-muted);
@@ -146,6 +175,16 @@
   <p class="links-tagline">Just Creating</p>
 
   <div class="links-stack">
+
+    <a class="link-card gb" href="https://buy.stripe.com/6oU7sNfh0gxtbCz2nrc7u03" target="_blank" rel="noopener">
+      <span class="gb-top">
+        <span class="gb-icon">GB</span>
+        <span class="gb-title">Get GymBuddy</span>
+        <span class="gb-tag">$9.99/mo</span>
+      </span>
+      <span class="gb-sub">Your AI fitness coach — text it like a friend, no app to install. Setting up takes a minute.</span>
+      <span class="gb-cta">GET GYMBUDDY &rarr;</span>
+    </a>
 
     <a class="link-card hero" href="secondbrain.html">
       <span class="hero-top">
