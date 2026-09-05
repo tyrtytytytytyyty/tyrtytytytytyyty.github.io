@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Build Mode — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,7 @@
     Back to Scripting
   </a>
   <p class="project-detail-tag">Systems · Pale Frequency</p>
-  <h2 class="project-detail-title">Build Mode</h2>
+  <h1 class="project-detail-title">Build Mode</h1>
   <div class="project-detail-media" style="background:#0d0d11;">
     <div class="loop-video-container" data-loops="5" style="height:480px;">
       <video muted playsinline autoplay>
@@ -44,7 +46,7 @@
   <p class="project-detail-desc">A tool for the devs to build maps chunk-by-chunk inside Studio &mdash; no more hand-placing and saving every model. Pick prefab pieces from a palette, drop them in with snapping and rotation, and the layout persists so it survives across sessions and game updates.<br><br>The placement, snapping, and persistence layers are all mine. The trickier parts: real-time collision feedback while you're placing, and preview ghosts that clearly show whether a position is valid or not so the build flow doesn't slow down second-guessing.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective — All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

@@ -7,8 +7,8 @@
   --border: rgba(255,255,255,0.07);
   --border-mid: rgba(255,255,255,0.13);
   --text-primary: #f0f0ee;
-  --text-secondary: #7a7a78;
-  --text-muted: #3e3e3c;
+  --text-secondary: #a2a2a5;
+  --text-muted: #96969c;
   --star-on: #f0b429;
   --star-off: #2a2a28;
   --radius: 10px;
@@ -554,3 +554,26 @@ hr.divider { max-width: 900px; margin: 0 auto; border: none; border-top: 1px sol
 a:focus-visible, button:focus-visible { outline:2px solid #95e5c9; outline-offset:5px; }
 @media(max-width:760px) { .featured-grid,.story-grid { grid-template-columns:1fr; } .feature-symbol,.feature-image { height:150px; } .feature-card { padding:24px; } .project-story { padding-top:28px; } .story-section { margin-top:30px; padding-top:28px; } }
 @media(prefers-reduced-motion:reduce) { body { animation:none; } * { scroll-behavior:auto!important; } }
+
+/* Accessible review controls and quiet empty/error states. */
+[hidden] { display:none !important; }
+.star-pick { border:0; background:transparent; color:var(--star-on); font-family:inherit; width:44px; height:44px; padding:0; }
+#t-img-input { display:block; position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.img-upload-label:focus-within { outline:2px solid #95e5c9; outline-offset:4px; }
+.form-group:has(#t-img-input:focus-visible) .img-upload-label { outline:2px solid #95e5c9; outline-offset:4px; }
+.remove-image-btn { color:var(--text-secondary); background:none; border:0; text-decoration:underline; text-underline-offset:3px; cursor:pointer; padding:10px; font-family:inherit; font-size:12px; }
+.form-help,.review-contact,.review-load-status { color:var(--text-secondary); font-size:12px; line-height:1.65; margin:10px 0; }
+.review-contact a { color:var(--text-primary); text-underline-offset:4px; }
+.review-contact { margin-top:20px; }
+.review-load-status { align-self:flex-start; text-align:left; margin:0 0 20px; }
+.pending-msg[data-error="true"] { color:#f3b8ac; }
+.submit-btn:disabled { opacity:.6; cursor:wait; }
+.guide-entry { margin-bottom:20px; }
+@media(max-width:760px) { .form-input,.form-textarea { font-size:16px; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+
+/* Gallery photo selectors have a 28px keyboard/touch target around each dot. */
+button.slide-dot { width:28px; height:28px; border:0; background:transparent; border-radius:50%; position:relative; }
+button.slide-dot::after { content:''; position:absolute; width:6px; height:6px; inset:11px; border-radius:50%; background:rgba(255,255,255,.55); }
+button.slide-dot.active { background:transparent; transform:none; }
+button.slide-dot.active::after { background:#fff; transform:scale(1.3); }

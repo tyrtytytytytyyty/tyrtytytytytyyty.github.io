@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="PvP Trade System — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,7 @@
     Back to Scripting
   </a>
   <p class="project-detail-tag">Trading &middot; Brainrot WORLD</p>
-  <h2 class="project-detail-title">PvP Trade System</h2>
+  <h1 class="project-detail-title">PvP Trade System</h1>
   <div class="project-extra-images">
     <img src="trade1.png" alt="PvP Trade System">
     <img src="trade2.png" alt="PvP Trade System">
@@ -39,7 +41,7 @@
   <p class="project-detail-desc">A simple trading system that lets two players trade brainrots with each other. Each side fills their offer slots, the other side sees the proposed deal update live, and both have to accept before anything moves.<br><br>The actual hard part isn't the UI &mdash; it's making sure the trade can't break the game. Server validates ownership before anything transfers, the swap is atomic (both sides go or neither does), and the whole flow survives the stuff that breaks naive trading systems: someone disconnecting mid-trade, slot tampering, partial failures. I built the whole thing &mdash; UI, slot replication, accept flow, validation, the atomic transfer pattern.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective &mdash; All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

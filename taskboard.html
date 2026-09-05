@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Task Board Drawer — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,14 +32,14 @@
     Back to UI Design
   </a>
   <p class="project-detail-tag">Interface &middot; Pale Frequency</p>
-  <h2 class="project-detail-title">Task Board Drawer</h2>
+  <h1 class="project-detail-title">Task Board Drawer</h1>
   <div class="project-detail-media">
     <img src="taskboard.gif" alt="Task Board Drawer" style="width:100%;max-height:480px;object-fit:contain;background:#0d0d11;display:block;">
   </div>
   <p class="project-detail-desc">Just a thing to keep track of tasks. The survivor needs to know which objectives are left, which are done, and when the exit unlocks &mdash; this is where they check. Right-edge drawer, opens with a tap, stays anchored to the screen edge for one-handed play.<br><br>Built the open/close tween: the toggle button slides offscreen as the drawer comes in, then reverses on close. Position math is locked to specific offsets so the animation reads cleanly at any viewport size without stepping on the rest of the HUD.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective &mdash; All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

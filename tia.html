@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="TIA — Team Idea Aligner — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,7 @@
     Back to Programming
   </a>
   <p class="project-detail-tag">Discord Bot</p>
-  <h2 class="project-detail-title">TIA &mdash; Team Idea Aligner</h2>
+  <h1 class="project-detail-title">TIA &mdash; Team Idea Aligner</h1>
   <div class="project-detail-media" style="background:#0d0d11;">
     <div class="loop-video-container" data-loops="5" style="height:480px;">
       <video muted playsinline autoplay>
@@ -44,7 +46,7 @@
   <p class="project-detail-desc">Same idea as Lumen Synapse &mdash; but for people. My team kept relitigating decisions, losing track of blockers, and operating from separate AI chats with no shared context. TIA is the neutral layer that holds team state in one place so we stop drifting.<br><br>Slash commands cover the parts that kept slipping: <code>/decide</code> locks a design call so it can't be reopened, <code>/task</code> assigns work with timestamps, <code>/blocker</code> logs what's in the way, <code>/update</code> records progress, and <code>/ask</code> sends Claude the team's live state plus a seed document so anyone can ask context-aware questions about the project. State persists to a JSON file so the bot survives restarts.<br><br>Stack: discord.js v14, Anthropic SDK with Claude Sonnet 4.6, file-based state, single-file Node app. Shipped end-to-end in one session &mdash; bot live, smoke-tested, in production use with the team.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective &mdash; All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

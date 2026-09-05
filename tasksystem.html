@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Task System — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,14 +32,14 @@
     Back to Scripting
   </a>
   <p class="project-detail-tag">Gameplay · Pale Frequency</p>
-  <h2 class="project-detail-title">Task System</h2>
+  <h1 class="project-detail-title">Task System</h1>
   <div class="project-detail-media">
     <div style="display:flex;align-items:center;justify-content:center;height:360px;background:#0d0d11;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;">GIF coming soon</div>
   </div>
   <p class="project-detail-desc">A modular objective framework that drives the round-by-round gameplay loop. Tasks are defined as ModuleScripts — each declares its trigger conditions, validation logic, and reward hook. The TaskManager replicates state to clients, listens for completion signals, and resolves rewards atomically.<br><br>Architected the system and shipped the manager plus the first half-dozen task types. Key design decision: tasks own their own validation logic instead of relying on the manager. That keeps the manager dumb and the task library extensible — adding a new objective is a single new ModuleScript, not a refactor.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective — All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

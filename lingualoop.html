@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Lingua Loop — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,7 @@
     Back to Programming
   </a>
   <p class="project-detail-tag">AI Tutor</p>
-  <h2 class="project-detail-title">Lingua Loop</h2>
+  <h1 class="project-detail-title">Lingua Loop</h1>
   <div class="project-detail-media" style="background:#0d0d11;">
     <div class="loop-video-container" data-loops="5" style="height:480px;">
       <video muted playsinline autoplay>
@@ -44,7 +46,7 @@
   <p class="project-detail-desc">Same idea as Drill &mdash; but for teaching me things and talking to me. I wanted a tutor I could just open and start a conversation with, without scheduling a class or finding a person. Voice or text in, conversation back, in whatever language I'm learning.<br><br>Currently set up for Japanese, Mandarin, and a Universal mode that handles any subject &mdash; not just languages. Speech goes in through the browser's native speech recognition with a Whisper fallback for browsers that don't support it. Responses come back as text and can play through TTS if I want to hear them.<br><br>The thing that makes it actually useful is the memory. There's a SQLite layer that tracks what subjects I've covered, what skills I've practiced, what concepts I'm weak on, and where the curriculum is heading. Every request hydrates that state so the model sees the whole arc, not just the last message. New vocab and weak spots get pulled out of each response and persisted &mdash; so practice compounds across sessions instead of resetting every time.<br><br>Stack: Python server, SQLite memory, DeepSeek V4 for reasoning, OpenAI TTS, vanilla HTML/JS frontend.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective &mdash; All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

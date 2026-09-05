@@ -1,7 +1,11 @@
 /* ── SHARED: Star canvas + nav active state ── */
 (function() {
   const canvas = document.getElementById('star-canvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let animation = null;
   let W, H, stars = [], shooting = null, shootTimer = 0;
   const palettes = [
     [255,255,255],[210,228,255],[255,210,170],
@@ -52,6 +56,7 @@
   }
   let t = 0;
   function frame() {
+    animation = null;
     t += 16;
     ctx.clearRect(0,0,W,H);
     stars.forEach(s => {
@@ -84,7 +89,7 @@
       shooting.x+=shooting.vx; shooting.y+=shooting.vy; shooting.life-=shooting.decay;
       if (shooting.life<=0||shooting.x>W+60||shooting.x<-60||shooting.y>H+60) shooting=null;
     }
-    requestAnimationFrame(frame);
+    if (!motion.matches && !document.hidden) animation = requestAnimationFrame(frame);
   }
   let prevW = 0;
   function handleResize() {
@@ -98,8 +103,16 @@
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', handleResize);
   }
+  function updateMotion() {
+    if (animation !== null) cancelAnimationFrame(animation);
+    animation = null;
+    frame();
+  }
+  motion.addEventListener('change', updateMotion);
+  document.addEventListener('visibilitychange', updateMotion);
+  window.addEventListener('resize', () => { if (motion.matches) updateMotion(); });
   handleResize();
-  requestAnimationFrame(frame);
+  updateMotion();
 })();
 
 /* ── SHARED: Loop video N times, then show replay button ── */
@@ -110,11 +123,17 @@
     const video = container.querySelector('video');
     const btn = container.querySelector('.loop-replay-btn');
     if (!video || !btn) return;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const maxLoops = parseInt(container.dataset.loops || '5', 10);
+    function respectMotion() {
+      if (motion.matches) { video.autoplay = false; video.pause(); btn.classList.add('show'); }
+    }
+    motion.addEventListener('change', respectMotion);
+    respectMotion();
     let plays = 0;
     video.addEventListener('ended', () => {
       plays++;
-      if (plays < maxLoops) {
+      if (!motion.matches && plays < maxLoops) {
         video.currentTime = 0;
         video.play().catch(() => {});
       } else {
@@ -145,3 +164,6 @@
     });
   });
 })();
+
+/* The active category is announced to assistive technology. */
+document.querySelectorAll('.nav-tab.active').forEach(link => link.setAttribute('aria-current', 'page'));

@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Sanity &amp; Perception HUD — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,7 @@
     Back to UI Design
   </a>
   <p class="project-detail-tag">HUD · Pale Frequency</p>
-  <h2 class="project-detail-title">Sanity &amp; Perception HUD</h2>
+  <h1 class="project-detail-title">Sanity &amp; Perception HUD</h1>
   <div class="project-detail-media" style="background:#0d0d11;">
     <div class="loop-video-container" data-loops="5" style="height:480px;">
       <video muted playsinline autoplay>
@@ -54,7 +56,7 @@
   <p class="project-detail-desc">After a set time, the player goes insane. When it hits &mdash; the screen blinks like your eyes, your heart starts beating, the camera shakes, and the whole frame goes red. The HUD itself layers three things that all change as you lose your mind: sprint stamina (a 12-arrow ring that depletes as you run), the sanity readout in a custom digit font, and a pupil-tracking eye that follows your mouse.<br><br>As sanity drops, the visuals get worse. At zero, the eyeball inverts and the pupil clips to a frame &mdash; built to feel sudden and ominous rather than animated. Replicated attributes drive the visual state from the server, the pupil math runs client-side off mouse input, and the zero-state inversion swaps image refs and drops a clip mask on a single tick so the transition lands like a switch flipping, not a fade.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective — All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

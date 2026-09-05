@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Voice-to-Script Generator (V0) — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,7 @@
     Back to Programming
   </a>
   <p class="project-detail-tag">V0 Generator · Ramble2Script</p>
-  <h2 class="project-detail-title">Voice-to-Script Generator</h2>
+  <h1 class="project-detail-title">Voice-to-Script Generator</h1>
   <div class="project-detail-media">
     <div class="loop-video-container" data-loops="5" style="height:360px;background:#0d0d11;">
       <video muted playsinline autoplay>
@@ -44,7 +46,7 @@
   <p class="project-detail-desc">I had a problem writing my scripts, so I built this &mdash; it takes my ramble and turns it into a script. Voice memo or pasted text in, polished hook + outline + body out. Whisper handles the transcription, Llama 3.3 70B (via Groq) extracts the actual point I was trying to make and rewrites it sharply.<br><br>The product call worth flagging: it doesn't try to preserve my exact phrasing. It surfaces the intent and rewrites it cleanly. That's what most creators actually want when they ramble &mdash; not a transcript, a script.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective — All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

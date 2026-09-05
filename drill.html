@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Drill — tyy. Explore the project, its details, and demos from Conglomerate Collective.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,7 @@
     Back to Programming
   </a>
   <p class="project-detail-tag">Study App</p>
-  <h2 class="project-detail-title">Drill</h2>
+  <h1 class="project-detail-title">Drill</h1>
   <div class="project-detail-media" style="background:#0d0d11;">
     <div class="loop-video-container" data-loops="5" style="height:480px;">
       <video muted playsinline autoplay>
@@ -44,7 +46,7 @@
   <p class="project-detail-desc">A tool I built to study &mdash; for tests, exams, anything I want to learn. Bookified. Repeats. Lets me cycle through a whole pile of information at a moment's notice. Runs locally on my phone, no backend, no login, just open it and go.<br><br><strong>MCQ engine with spaced repetition.</strong> Questions get randomized every session. The ones I miss come back more often; the ones I lock in show up less. Progress saves to the device so I can put it down mid-session and pick up where I left off.<br><br><strong>FRQ with AI grading.</strong> Free-response questions get graded by Llama 3.3 70B running on Groq &mdash; rubric-scored feedback in a couple seconds. No backend; the call goes straight from the browser. Means I can write out an actual essay answer and get told where I lost points without waiting for a teacher.<br><br><strong>Deck system.</strong> Any subject drops in. The whole app is content-agnostic &mdash; I just hand it a JSON file. Built decks so far: AP World History, AP Precalc. Whatever's next, same setup.<br><br>One HTML file. Works offline once it's loaded. Built it for me, but anyone studying anything can use it.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective &mdash; All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>

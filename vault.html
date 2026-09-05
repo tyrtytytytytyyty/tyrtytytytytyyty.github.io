@@ -7,11 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="My Second Brain: connected project notes, decisions, and a shared memory system for my AI agents.">
 </head>
 <body>
-<canvas id="star-canvas"></canvas>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">(CC)</a>
   <div class="nav-tabs">
     <a href="index.html" class="nav-tab">Home</a>
@@ -30,7 +32,8 @@
     Back to Programming
   </a>
   <p class="project-detail-tag">AI System</p>
-  <h2 class="project-detail-title">Second Brain</h2>
+  <p class="guide-entry"><a class="feature-link" href="secondbrain.html">Start your own — get the free guide ↗</a></p>
+  <h1 class="project-detail-title">Second Brain</h1>
   <div class="clothing-detail-images" style="margin-bottom:32px;">
     <img src="vault1.jpg" alt="Second Brain vault">
     <img src="vault2.jpg" alt="Second Brain vault">
@@ -41,7 +44,7 @@
   <p class="project-detail-desc">Arguably the best thing I've built. Keeps me on track, keeps me accountable, helps me notice my own patterns, and overall makes me a better person. It's a personal memory system &mdash; everything I've ever told an AI, every project I've worked on, every decision I've made &mdash; ingested into one tagged knowledge graph, then made queryable by a team of agents that actually know me.<br><br>The agents share the vault but run on different models, each with its own role. One handles strategy and memory and lives in the long arc with me. One ships technical work end-to-end. One runs long-context audits and copy. Each has its own session protocol, log channel, and scope &mdash; and a recursive subagent pattern for decomposing anything that gets too big for one agent to hold.<br><br>I built the ingestion pipeline (hundreds of conversations processed end-to-end), the tag engine that surfaces cross-source connections, the channels they use to hand work to each other, the real-time tool-call telemetry stream from every agent to one dashboard, and the orchestration pattern itself.<br><br>Stack: Python ingest pipeline, Obsidian as the storage layer, custom Markdown frontmatter schema, multi-model agent runtimes, JSONL pulse telemetry, custom Obsidian plugin for visualization.</p>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective &mdash; All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective &mdash; All rights reserved.</footer>
 
 <script src="shared.js"></script>
 </body>
