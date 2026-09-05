@@ -52,7 +52,7 @@
 <div class="section" id="testimonials">
   <p class="section-label">Testimonials</p>
   <div class="testimonials-grid" id="testimonials-grid">
-    <div id="empty-testimonials" style="display:flex;align-items:center;justify-content:center;width:100%;grid-column:1/-1;padding:32px 0;"><p style="font-size:13px;color:var(--text-muted);">No testimonials yet.</p></div>
+    <div id="empty-testimonials" style="display:none;align-items:center;justify-content:center;width:100%;grid-column:1/-1;padding:32px 0;"><p style="font-size:13px;color:var(--text-muted);"></p></div>
   </div>
   <div class="t-form-wrap">
     <p class="t-form-title">Leave a testimonial</p>
@@ -70,7 +70,7 @@
   </div>
 </div>
 
-<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective — All rights reserved.</footer>
 
 <script src="shared.js"></script>
 <script>
@@ -78,7 +78,7 @@ const SUPA_URL='https://zoguypxxotlgjxplcbtz.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvZ3V5cHh4b3RsZ2p4cGxjYnR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5OTM1ODMsImV4cCI6MjA4OTU2OTU4M30.gVGhRpbd8Mhhhvkdfq8KdcJ3zDu-WpsG46CIeBW8CkU';
 const supa={h:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json'},async get(q){const r=await fetch(`${SUPA_URL}/rest/v1/${q}`,{headers:this.h});return r.json();},async post(p,b){return fetch(`${SUPA_URL}/rest/v1/${p}`,{method:'POST',headers:{...this.h,'Prefer':'return=minimal'},body:JSON.stringify(b)});},async uploadImage(f){const fn=`${Date.now()}.${f.name.split('.').pop()}`;const r=await fetch(`${SUPA_URL}/storage/v1/object/testimonial-images/${fn}`,{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':f.type},body:f});return r.ok?`${SUPA_URL}/storage/v1/object/public/testimonial-images/${fn}`:null;}};
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-async function renderApproved(){const grid=document.getElementById('testimonials-grid');const empty=document.getElementById('empty-testimonials');grid.querySelectorAll('.testimonial-card').forEach(c=>c.remove());try{const data=await supa.get('testimonials?select=*&status=eq.approved&or=(category.eq.editing,category.eq.universal)&order=created_at.desc');if(!data.length){empty.style.display='flex';return;}empty.style.display='none';data.forEach(t=>{const c=document.createElement('div');c.className='testimonial-card';const img=t.image?`<img class="t-image" src="${esc(t.image)}" alt="">`:'';c.innerHTML=`<div class="t-stars">${Array.from({length:5},(_,i)=>`<span class="t-star" style="color:${i<t.rating?'var(--star-on)':'var(--star-off)'}">${i<t.rating?'★':'☆'}</span>`).join('')}</div>${img}<p class="t-text">${esc(t.message)}</p><p class="t-author">${esc(t.name)}</p>`;grid.appendChild(c);});}catch(e){empty.style.display='flex';}}
+async function renderApproved(){const grid=document.getElementById('testimonials-grid');const empty=document.getElementById('empty-testimonials');grid.querySelectorAll('.testimonial-card').forEach(c=>c.remove());try{const data=await supa.get('testimonials?select=*&status=eq.approved&or=(category.eq.editing,category.eq.universal)&order=created_at.desc');if(!data.length){empty.style.display='none';return;}empty.style.display='none';data.forEach(t=>{const c=document.createElement('div');c.className='testimonial-card';const img=t.image?`<img class="t-image" src="${esc(t.image)}" alt="">`:'';c.innerHTML=`<div class="t-stars">${Array.from({length:5},(_,i)=>`<span class="t-star" style="color:${i<t.rating?'var(--star-on)':'var(--star-off)'}">${i<t.rating?'★':'☆'}</span>`).join('')}</div>${img}<p class="t-text">${esc(t.message)}</p><p class="t-author">${esc(t.name)}</p>`;grid.appendChild(c);});}catch(e){empty.style.display='none';}}
 renderApproved();
 let selectedRating=0;const rStars=document.querySelectorAll('.star-pick');function renderR(n){rStars.forEach((s,i)=>s.textContent=i<n?'★':'☆');}rStars.forEach(s=>{s.addEventListener('mouseenter',()=>renderR(+s.dataset.val));s.addEventListener('mouseleave',()=>renderR(selectedRating));s.addEventListener('click',()=>{selectedRating=+s.dataset.val;renderR(selectedRating);});});
 let attachedFile=null;const imgInput=document.getElementById('t-img-input');imgInput.addEventListener('change',()=>{const f=imgInput.files[0];if(!f)return;document.getElementById('img-filename').textContent=f.name;attachedFile=f;});

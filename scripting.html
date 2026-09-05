@@ -72,7 +72,7 @@
       <div class="group-meta">
         <span class="group-label">Game</span>
         <h2 class="group-title">Pale Frequency</h2>
-        <p class="group-subtitle">Asymmetric multiplayer horror with sanity-driven perception mechanics. In-flight, May 2026 ship.</p>
+        <p class="group-subtitle">Asymmetric multiplayer horror with sanity-driven perception mechanics. Archived prototype from 2026.</p>
       </div>
       <span class="group-chevron"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
     </button>
@@ -106,7 +106,7 @@
 <div class="section" id="testimonials">
   <p class="section-label">Testimonials</p>
   <div class="testimonials-grid" id="testimonials-grid">
-    <div id="empty-testimonials" style="display:flex;align-items:center;justify-content:center;width:100%;grid-column:1/-1;padding:32px 0;"><p style="font-size:13px;color:var(--text-muted);">No testimonials yet.</p></div>
+    <div id="empty-testimonials" style="display:none;align-items:center;justify-content:center;width:100%;grid-column:1/-1;padding:32px 0;"><p style="font-size:13px;color:var(--text-muted);"></p></div>
   </div>
   <div class="t-form-wrap">
     <p class="t-form-title">Leave a testimonial</p>
@@ -123,7 +123,7 @@
     <div class="pending-msg" id="pending-msg">Thank you for submitting!</div>
   </div>
 </div>
-<footer class="footer">&copy; 2025 Conglomerate Collective — All rights reserved.</footer>
+<footer class="footer">&copy; 2026 Conglomerate Collective — All rights reserved.</footer>
 <script src="shared.js"></script>
 <script>
 const SUPA_URL='https://zoguypxxotlgjxplcbtz.supabase.co';
@@ -136,10 +136,10 @@ async function renderApproved(cat){
   grid.querySelectorAll('.testimonial-card').forEach(c=>c.remove());
   try{
     const data=await supa.get(`testimonials?select=*&status=eq.approved&or=(category.eq.${cat},category.eq.universal)&order=created_at.desc`);
-    if(!data.length){empty.style.display='flex';return;}
+    if(!data.length){empty.style.display='none';return;}
     empty.style.display='none';
     data.forEach(t=>{const c=document.createElement('div');c.className='testimonial-card';const img=t.image?`<img class="t-image" src="${esc(t.image)}" alt="">`:'';c.innerHTML=`<div class="t-stars">${Array.from({length:5},(_,i)=>`<span class="t-star" style="color:${i<t.rating?'var(--star-on)':'var(--star-off)'}">${i<t.rating?'★':'☆'}</span>`).join('')}</div>${img}<p class="t-text">${esc(t.message)}</p><p class="t-author">${esc(t.name)}</p>`;grid.appendChild(c);});
-  }catch(e){empty.style.display='flex';}
+  }catch(e){empty.style.display='none';}
 }
 let selectedRating=0;
 const rStars=document.querySelectorAll('.star-pick');
