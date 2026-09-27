@@ -167,3 +167,51 @@
 
 /* The active category is announced to assistive technology. */
 document.querySelectorAll('.nav-tab.active').forEach(link => link.setAttribute('aria-current', 'page'));
+
+/* Provider-neutral GymBuddy analytics; remote collection is opt-in by endpoint configuration. */
+(function() {
+  window.dataLayer = window.dataLayer || [];
+  const query = new URLSearchParams(location.search);
+  const campaign = Object.fromEntries(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
+    .flatMap(key => {
+      const value = query.get(key);
+      return value && /^[A-Za-z0-9_-]{1,150}$/.test(value) ? [[key, value]] : [];
+    }));
+  let sessionId;
+  try {
+    sessionId = sessionStorage.getItem('gymbuddy_analytics_session');
+    if (!sessionId) {
+      sessionId = crypto.randomUUID();
+      sessionStorage.setItem('gymbuddy_analytics_session', sessionId);
+    }
+  } catch (_) { sessionId = crypto.randomUUID(); }
+  const endpoint = document.querySelector('meta[name="gymbuddy-analytics-endpoint"]')?.content.trim() || '';
+
+  window.gymbuddyTrack = (name, detail = {}) => {
+    const event = {
+      event_id: crypto.randomUUID(), session_id: sessionId,
+      event: name.startsWith('gymbuddy_') ? name : `gymbuddy_${name}`,
+      page: location.pathname, ...campaign, ...detail
+    };
+    window.dataLayer.push(event);
+    window.dispatchEvent(new CustomEvent('gymbuddy:analytics', { detail: event }));
+    if (endpoint) {
+      fetch(endpoint, {
+        method: 'POST', mode: 'cors', credentials: 'omit', keepalive: true,
+        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(event)
+      }).catch(() => {});
+    }
+  };
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[data-track]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.hostname === 'buy.stripe.com') {
+      url.searchParams.set('client_reference_id', sessionId);
+      for (const [key, value] of Object.entries(campaign)) url.searchParams.set(key, value);
+      link.href = url.toString();
+    }
+    window.gymbuddyTrack(link.dataset.track, { destination: url.hostname });
+  });
+})();
