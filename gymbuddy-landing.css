@@ -536,9 +536,13 @@ body.gymbuddy-page .gb-phone-frame {
   will-change: transform;
 }
 body.gymbuddy-page .gb-phone-frame.is-tilting { transition-duration: .18s; }
-/* Touch/phone: the sticky stage already moves with scroll — no idle float on top of it. */
-@media (hover: none), (max-width: 660px) {
-  body.gymbuddy-page .gb-phone-frame { animation: none; transform: none; will-change: auto; }
+/* Phone-size float: same idle motion, half the travel for the smaller mockup. */
+@keyframes gb-float-sm {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+@media (max-width: 660px) {
+  body.gymbuddy-page .gb-phone-frame { animation-name: gb-float-sm; }
 }
 body.gymbuddy-page .gb-price-card,
 body.gymbuddy-page .gb-founder-card {
@@ -621,9 +625,11 @@ body.gymbuddy-page .gb-im-thread {
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: flex-end;
+  /* Top-anchored on purpose: bottom-anchoring made every new bubble (and the
+     typing dots appearing/vanishing) shove the whole thread up and down. */
+  justify-content: flex-start;
   gap: 2.2cqw;
-  padding: 4cqw 4cqw 3cqw;
+  padding: 6cqw 4cqw 3cqw;
   overflow: hidden;
 }
 body.gymbuddy-page .gb-im-msg {
@@ -703,9 +709,11 @@ body.gymbuddy-page .gb-membership { position: relative; }
 body.gymbuddy-page .gb-kettlebell {
   position: absolute;
   z-index: 2;
-  top: clamp(20px, 3vw, 44px);
-  right: clamp(0px, 3vw, 40px);
-  width: clamp(220px, 25vw, 330px);
+  /* Camera sits back (130% orbit) so the floor shadow has room inside the
+     canvas; the box is ~1.3x larger to keep the kettlebell the same size. */
+  top: clamp(-10px, 0vw, 0px);
+  right: clamp(-40px, -1vw, 0px);
+  width: clamp(286px, 32.5vw, 430px);
   aspect-ratio: 1;
   pointer-events: none;
 }
@@ -727,7 +735,7 @@ body.gymbuddy-page .gb-kettlebell model-viewer {
 body.gymbuddy-page .gb-membership > :not(.gb-kettlebell) { position: relative; z-index: 1; }
 
 @media (max-width: 1080px) {
-  body.gymbuddy-page .gb-kettlebell { width: 210px; }
+  body.gymbuddy-page .gb-kettlebell { width: 273px; }
   body.gymbuddy-page .gb-membership .gb-section-head { max-width: calc(100% - 220px); }
 }
 
@@ -773,7 +781,7 @@ body.gymbuddy-page .gb-membership > :not(.gb-kettlebell) { position: relative; z
   body.gymbuddy-page :where(.gb-hero-actions .gb-primary, .gb-secondary) { min-height: 52px; padding: 0 20px; }
   body.gymbuddy-page .gb-founder-card { margin-top: 28px; padding: 18px; }
   body.gymbuddy-page[data-gb-headline="condensed"] .gb-hero h1 { font-size: clamp(46px, 13.5vw, 70px); }
-  body.gymbuddy-page .gb-kettlebell { position: relative; top: auto; right: auto; width: min(220px, 60vw); margin: -24px auto 4px; }
+  body.gymbuddy-page .gb-kettlebell { position: relative; top: auto; right: auto; width: min(286px, 78vw); margin: -48px auto -18px; }
   body.gymbuddy-page .gb-membership .gb-section-head { max-width: none; }
   body.gymbuddy-page .gb-phone-frame { width: min(148px, 41vw); padding: 5px; border-radius: 24px; box-shadow: 10px 16px 26px rgb(0 0 0 / 60%), inset 0 1px 1px rgb(255 255 255 / 22%); }
   body.gymbuddy-page .gb-phone-frame::before { top: 8px; height: 10px; }
