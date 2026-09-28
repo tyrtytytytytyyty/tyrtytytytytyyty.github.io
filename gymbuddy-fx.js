@@ -235,7 +235,13 @@
   }
 
   resize();
-  window.addEventListener("resize", resize, { passive: true });
+  /* iOS fires resize when the URL bar shows/hides; only rebuild on a real width change. */
+  let lastWidth = window.innerWidth;
+  window.addEventListener("resize", () => {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    resize();
+  }, { passive: true });
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;

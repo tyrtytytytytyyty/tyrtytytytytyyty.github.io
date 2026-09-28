@@ -536,6 +536,10 @@ body.gymbuddy-page .gb-phone-frame {
   will-change: transform;
 }
 body.gymbuddy-page .gb-phone-frame.is-tilting { transition-duration: .18s; }
+/* Touch/phone: the sticky stage already moves with scroll — no idle float on top of it. */
+@media (hover: none), (max-width: 660px) {
+  body.gymbuddy-page .gb-phone-frame { animation: none; transform: none; will-change: auto; }
+}
 body.gymbuddy-page .gb-price-card,
 body.gymbuddy-page .gb-founder-card {
   position: relative;
