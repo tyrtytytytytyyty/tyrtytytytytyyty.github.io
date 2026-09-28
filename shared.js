@@ -186,22 +186,59 @@ document.querySelectorAll('.nav-tab.active').forEach(link => link.setAttribute('
     }
   } catch (_) { sessionId = crypto.randomUUID(); }
   const endpoint = document.querySelector('meta[name="gymbuddy-analytics-endpoint"]')?.content.trim() || '';
+  // Anonymous browser ID (no name/IP) so a second visit reads as "returning".
+  let visitorId, returning = false;
+  try {
+    visitorId = localStorage.getItem('gymbuddy_visitor');
+    returning = !!visitorId;
+    if (!visitorId) { visitorId = crypto.randomUUID(); localStorage.setItem('gymbuddy_visitor', visitorId); }
+  } catch (_) { visitorId = sessionId; }
+  const ua = navigator.userAgent || '';
+  const inApp = /Instagram/i.test(ua) ? 'instagram' : /FBAN|FBAV/i.test(ua) ? 'facebook'
+    : /musical_ly|TikTok|Bytedance/i.test(ua) ? 'tiktok' : null;
+  let referrerHost = null;
+  try { const r = document.referrer && new URL(document.referrer); if (r && r.host !== location.host) referrerHost = r.host; } catch (_) {}
+  const device = matchMedia('(pointer: coarse)').matches || innerWidth < 768 ? 'mobile' : 'desktop';
+  const context = { visitor_id: visitorId, returning, in_app: inApp, referrer_host: referrerHost, device };
+  // text/plain keeps this a CORS "simple" request (no preflight) and lets
+  // sendBeacon deliver the last event while the page is being swiped away.
+  const send = (payload) => {
+    const body = JSON.stringify(payload);
+    if (navigator.sendBeacon && navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain' }))) return;
+    fetch(endpoint, { method: 'POST', mode: 'cors', credentials: 'omit', keepalive: true,
+      headers: { 'Content-Type': 'text/plain' }, body }).catch(() => {});
+  };
 
   window.gymbuddyTrack = (name, detail = {}) => {
     const event = {
       event_id: crypto.randomUUID(), session_id: sessionId,
       event: name.startsWith('gymbuddy_') ? name : `gymbuddy_${name}`,
-      page: location.pathname, ...campaign, ...detail
+      page: location.pathname, ...campaign, ...context, ...detail
     };
     window.dataLayer.push(event);
     window.dispatchEvent(new CustomEvent('gymbuddy:analytics', { detail: event }));
-    if (endpoint) {
-      fetch(endpoint, {
-        method: 'POST', mode: 'cors', credentials: 'omit', keepalive: true,
-        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(event)
-      }).catch(() => {});
-    }
+    if (endpoint) send(event);
   };
+
+  // Engaged time (only while the tab is visible) + deepest scroll, reported
+  // whenever the page is hidden/closed. The collector keeps the max per session.
+  if (endpoint && document.body.classList.contains('gymbuddy-page')) {
+    let engaged = 0, since = document.visibilityState === 'visible' ? performance.now() : null, maxScroll = 0;
+    const measureScroll = () => {
+      const h = document.documentElement.scrollHeight - innerHeight;
+      if (h > 0) maxScroll = Math.max(maxScroll, Math.min(100, Math.round(scrollY / h * 100)));
+    };
+    addEventListener('scroll', measureScroll, { passive: true });
+    const flush = () => {
+      if (since !== null) { engaged += performance.now() - since; since = null; }
+      if (engaged > 0) window.gymbuddyTrack('engagement', { engaged_ms: Math.round(engaged), max_scroll: maxScroll });
+    };
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') flush();
+      else since = performance.now();
+    });
+    addEventListener('pagehide', flush);
+  }
 
   document.addEventListener('click', event => {
     const link = event.target.closest('a[data-track]');
