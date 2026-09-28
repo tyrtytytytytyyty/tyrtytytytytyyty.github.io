@@ -1,0 +1,820 @@
+/* GymBuddy chalk & depth system — all styling stays inside this page.
+   Two theme knobs on <body>: data-gb-headline="sans|condensed", data-gb-cta="blue|chalk". */
+body.gymbuddy-page {
+  --gb-bg: #0e0e10;
+  --gb-bg-top: #17181b;
+  --gb-bg-deep: #08080a;
+  --gb-panel: #18191c;
+  --gb-panel-raised: #1f2024;
+  --gb-border: rgb(255 255 255 / 7%);
+  --gb-border-strong: rgb(255 255 255 / 13%);
+  --gb-text: #f4f4f5;
+  --gb-body: #b4b4bb;
+  --gb-muted: #85858d;
+  --gb-accent: #0a84ff;
+  --gb-accent-hover: #3399ff;
+  --gb-accent-ink: #ffffff;
+  --gb-accent-glow: rgb(10 132 255 / 38%);
+  --gb-mark: #f4f4f5;
+  --gb-raise: -3px -3px 9px rgb(255 255 255 / 3.5%), 8px 10px 22px rgb(0 0 0 / 55%), inset 0 1px 0 rgb(255 255 255 / 7%);
+  --gb-raise-soft: -2px -2px 6px rgb(255 255 255 / 3%), 5px 6px 14px rgb(0 0 0 / 45%), inset 0 1px 0 rgb(255 255 255 / 6%);
+  --gb-press: inset 3px 3px 8px rgb(0 0 0 / 55%), inset -2px -2px 6px rgb(255 255 255 / 3%);
+  --gb-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --gb-sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
+  --gb-display: var(--gb-sans);
+  --gb-display-weight: 800;
+  --gb-display-tracking: -.035em;
+  --gb-display-leading: .98;
+  color: var(--gb-text);
+  background:
+    radial-gradient(120% 80% at 0% 0%, var(--gb-bg-top) 0%, transparent 60%),
+    var(--gb-bg);
+  background-attachment: fixed;
+  color-scheme: dark;
+  font-family: var(--gb-sans);
+  line-height: 1.55;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body.gymbuddy-page[data-gb-headline="condensed"] {
+  --gb-display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --gb-display-weight: 400;
+  --gb-display-tracking: 0;
+  --gb-display-leading: 1.02;
+}
+body.gymbuddy-page[data-gb-cta="chalk"] {
+  --gb-accent: #efeee9;
+  --gb-accent-hover: #ffffff;
+  --gb-accent-ink: #111113;
+  --gb-accent-glow: rgb(239 238 233 / 16%);
+}
+
+html:has(body.gymbuddy-page) { overflow-x: clip; }
+
+body.gymbuddy-page *,
+body.gymbuddy-page *::before,
+body.gymbuddy-page *::after { box-sizing: border-box; }
+
+body.gymbuddy-page .gb-page {
+  width: min(1240px, calc(100% - 72px));
+  margin-inline: auto;
+  padding: 24px 0 38px;
+}
+
+body.gymbuddy-page :where(h1, h2, h3, p) { margin-block: 0; }
+body.gymbuddy-page :where(img) { max-width: 100%; }
+body.gymbuddy-page :where(a) { color: inherit; }
+body.gymbuddy-page :where(a, summary, button) { -webkit-tap-highlight-color: transparent; }
+body.gymbuddy-page :where(a, summary, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--gb-accent);
+  outline-offset: 4px;
+}
+
+body.gymbuddy-page .gb-topline {
+  display: flex;
+  min-height: 55px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gb-border);
+}
+body.gymbuddy-page .gb-brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  color: var(--gb-text);
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -.025em;
+  text-decoration: none;
+}
+body.gymbuddy-page .gb-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.6vw, 18px);
+}
+body.gymbuddy-page .gb-nav-link,
+body.gymbuddy-page .gb-contact-link {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gb-panel-raised);
+  box-shadow: var(--gb-raise-soft);
+  color: var(--gb-text);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.1;
+  text-decoration: none;
+  transition: color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+body.gymbuddy-page .gb-nav-link {
+  background: var(--gb-accent);
+  box-shadow: var(--gb-raise-soft), 0 6px 22px var(--gb-accent-glow);
+  color: var(--gb-accent-ink);
+}
+body.gymbuddy-page .gb-nav-link:hover { background: var(--gb-accent-hover); transform: translateY(-1px); }
+body.gymbuddy-page .gb-contact-link:hover { background: #26272c; transform: translateY(-1px); }
+body.gymbuddy-page :where(.gb-nav-link, .gb-contact-link, .gb-primary):active { box-shadow: var(--gb-press); transform: translateY(0); }
+
+body.gymbuddy-page .gb-walkthrough {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(300px, .78fr);
+  grid-template-areas: "hero phone" "intro phone" "steps phone";
+  align-items: start;
+  column-gap: clamp(52px, 10vw, 150px);
+  row-gap: 0;
+}
+body.gymbuddy-page .gb-hero {
+  grid-area: hero;
+  display: flex;
+  min-height: min(560px, calc(90svh - 110px));
+  flex-direction: column;
+  justify-content: center;
+  padding: 34px 0 48px;
+}
+body.gymbuddy-page .gb-hero-copy { max-width: 710px; }
+body.gymbuddy-page .gb-hero h1 {
+  max-width: 810px;
+  margin: 27px 0 23px;
+  color: var(--gb-text);
+  font-family: var(--gb-display);
+  font-size: clamp(54px, 7.2vw, 96px);
+  font-weight: var(--gb-display-weight);
+  letter-spacing: var(--gb-display-tracking);
+  line-height: var(--gb-display-leading);
+  text-shadow: 0 10px 40px rgb(0 0 0 / 60%);
+  text-wrap: balance;
+}
+body.gymbuddy-page .gb-hero h1 em { color: var(--gb-mark); font-style: normal; }
+body.gymbuddy-page .gb-sub {
+  max-width: 560px;
+  color: var(--gb-body);
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+body.gymbuddy-page .gb-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 16px;
+  margin-top: 28px;
+}
+body.gymbuddy-page .gb-secondary {
+  display: inline-flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--gb-panel-raised);
+  box-shadow: var(--gb-raise-soft);
+  color: #efeee9;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+body.gymbuddy-page .gb-secondary:hover { background: #27282d; transform: translateY(-1px); }
+body.gymbuddy-page .gb-secondary:active { box-shadow: var(--gb-press); transform: translateY(0); }
+body.gymbuddy-page :where(.gb-primary, .gb-secondary) span { transition: transform .18s ease; }
+body.gymbuddy-page :where(.gb-primary, .gb-secondary):hover span { transform: translateX(3px); }
+body.gymbuddy-page .gb-founder-card {
+  max-width: 560px;
+  margin-top: 34px;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: var(--gb-panel);
+  box-shadow: var(--gb-raise-soft);
+}
+body.gymbuddy-page .gb-lead {
+  color: var(--gb-text);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+body.gymbuddy-page .gb-founder-note {
+  margin-top: 10px;
+  color: var(--gb-body);
+  font-size: 14px;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+body.gymbuddy-page .gb-phone-stage {
+  grid-area: phone;
+  position: sticky;
+  top: max(24px, calc((100svh - min(72svh, 760px)) / 2));
+  z-index: 2;
+  display: grid;
+  min-width: 0;
+  align-self: start;
+  justify-items: center;
+  align-content: start;
+  gap: 16px;
+  padding-block: 34px 14px;
+  isolation: isolate;
+}
+/* Chalk cloud behind the phone; travels with the sticky stage. */
+body.gymbuddy-page .gb-phone-stage::before {
+  position: absolute;
+  z-index: -1;
+  inset: -12% -38% -6%;
+  background: url("gymbuddy-chalk.jpg") center 40% / cover no-repeat;
+  content: "";
+  opacity: .85;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+}
+body.gymbuddy-page .gb-phone-frame {
+  position: relative;
+  z-index: 1;
+  width: min(300px, 100%);
+  padding: 9px;
+  border: 1px solid #62615d;
+  border-radius: 40px;
+  background: #242422;
+  box-shadow: 30px 44px 60px rgb(0 0 0 / 62%), 0 18px 90px rgb(0 0 0 / 45%), inset 0 1px 1px rgb(255 255 255 / 22%), inset 0 -2px 2px rgb(0 0 0 / 75%);
+}
+body.gymbuddy-page .gb-phone-frame::before {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 50%;
+  width: 22%;
+  height: 15px;
+  border: 1px solid #343432;
+  border-radius: 10px;
+  background: #151514;
+  content: "";
+  transform: translateX(-50%);
+}
+body.gymbuddy-page #gb-phone-screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(72svh, 730px);
+  aspect-ratio: 9 / 19.5;
+  border: 1px solid #090909;
+  border-radius: 31px;
+  background: #050505;
+}
+body.gymbuddy-page #gb-screen-counter {
+  margin: 0;
+  padding: 9px 16px;
+  border-radius: 14px;
+  background: var(--gb-panel-raised);
+  box-shadow: var(--gb-raise);
+  color: var(--gb-text);
+  font: 600 13px/1.2 var(--gb-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .04em;
+}
+
+body.gymbuddy-page .gb-story-intro {
+  grid-area: intro;
+  max-width: 720px;
+  margin-bottom: clamp(22px, 3vw, 42px);
+  padding-top: 22px;
+  border-top: 1px solid var(--gb-border);
+}
+body.gymbuddy-page .gb-story-intro h2,
+body.gymbuddy-page .gb-section h2 {
+  color: var(--gb-text);
+  font-family: var(--gb-display);
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: var(--gb-display-weight);
+  letter-spacing: var(--gb-display-tracking);
+  line-height: var(--gb-display-leading);
+  text-wrap: balance;
+}
+body.gymbuddy-page .gb-story-intro > p:last-child,
+body.gymbuddy-page .gb-section-head > p:last-child {
+  max-width: 600px;
+  margin-top: 17px;
+  color: var(--gb-body);
+  font-size: 15px;
+  line-height: 1.8;
+  text-wrap: pretty;
+}
+body.gymbuddy-page .gb-story-steps {
+  grid-area: steps;
+  display: grid;
+  min-width: 0;
+}
+body.gymbuddy-page .gb-story-step {
+  position: relative;
+  display: flex;
+  min-height: min(54svh, 500px);
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 5px 36px 0;
+  border-top: 1px solid var(--gb-border);
+  opacity: .5;
+  scroll-margin-block: 18vh;
+  transition: opacity .3s ease;
+}
+body.gymbuddy-page .gb-story-step:last-child { border-bottom: 1px solid var(--gb-border); }
+body.gymbuddy-page .gb-story-step.is-active,
+body.gymbuddy-page .gb-story-step[aria-current="step"] { opacity: 1; }
+body.gymbuddy-page .gb-story-step::before { content: none; }
+body.gymbuddy-page .gb-step-number {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 0 22px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--gb-panel-raised);
+  box-shadow: var(--gb-raise-soft);
+  color: var(--gb-muted);
+  font: 650 12px/1 var(--gb-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .06em;
+  transition: color .3s ease, background-color .3s ease, box-shadow .3s ease;
+}
+body.gymbuddy-page .gb-story-step.is-active .gb-step-number,
+body.gymbuddy-page .gb-story-step[aria-current="step"] .gb-step-number {
+  background: var(--gb-accent);
+  box-shadow: var(--gb-raise-soft), 0 6px 20px var(--gb-accent-glow);
+  color: var(--gb-accent-ink);
+}
+body.gymbuddy-page .gb-story-copy { max-width: 600px; }
+body.gymbuddy-page .gb-story-step h3,
+body.gymbuddy-page .gb-story-step h2 {
+  max-width: 560px;
+  margin: 12px 0 14px;
+  color: var(--gb-text);
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 750;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+body.gymbuddy-page .gb-story-step p:not(.gb-step-number) {
+  max-width: 500px;
+  color: var(--gb-body);
+  font-size: 15px;
+  line-height: 1.78;
+  text-wrap: pretty;
+}
+
+body.gymbuddy-page .gb-section {
+  padding-top: clamp(66px, 8vw, 108px);
+  scroll-margin-top: 40px;
+}
+body.gymbuddy-page .gb-section-head { max-width: 740px; margin-bottom: 30px; }
+body.gymbuddy-page .gb-section h2 { max-width: 850px; }
+body.gymbuddy-page .gb-join-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+  align-items: stretch;
+  gap: clamp(28px, 6vw, 82px);
+}
+body.gymbuddy-page .gb-join-steps { display: grid; align-content: start; gap: 14px; }
+body.gymbuddy-page .gb-join-step {
+  display: flex;
+  gap: 18px;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: var(--gb-panel);
+  box-shadow: var(--gb-raise-soft);
+}
+body.gymbuddy-page .gb-join-step > span {
+  display: grid;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--gb-panel-raised);
+  box-shadow: var(--gb-raise-soft);
+  color: var(--gb-text);
+  font: 650 12px/1 var(--gb-sans);
+  font-variant-numeric: tabular-nums;
+}
+body.gymbuddy-page .gb-join-step strong { display: block; margin: 6px 0 7px; color: var(--gb-text); font-size: 16px; font-weight: 650; }
+body.gymbuddy-page .gb-join-step p { max-width: 430px; color: var(--gb-body); font-size: 14px; line-height: 1.75; }
+body.gymbuddy-page .gb-price-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(25px, 4vw, 38px);
+  border-radius: 28px;
+  background: linear-gradient(160deg, var(--gb-panel-raised), var(--gb-panel));
+  box-shadow: var(--gb-raise);
+}
+body.gymbuddy-page .gb-price { margin: 12px 0 5px; color: var(--gb-text); font-size: clamp(48px, 6vw, 68px); font-weight: 800; letter-spacing: -.04em; line-height: .95; }
+body.gymbuddy-page .gb-price small { color: var(--gb-body); font-size: 15px; font-weight: 450; letter-spacing: 0; }
+body.gymbuddy-page .gb-price-card > p:not(.gb-price):not(.gb-price-note) { margin: 16px 0 24px; color: var(--gb-body); font-size: 14px; line-height: 1.75; }
+body.gymbuddy-page .gb-primary {
+  display: inline-flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gb-accent);
+  box-shadow: var(--gb-raise), 0 10px 30px var(--gb-accent-glow);
+  color: var(--gb-accent-ink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+body.gymbuddy-page .gb-primary:hover { background: var(--gb-accent-hover); transform: translateY(-1px); }
+body.gymbuddy-page .gb-price-card .gb-primary { width: 100%; }
+body.gymbuddy-page .gb-price-note { margin-top: 14px; color: var(--gb-muted); font-size: 11px; line-height: 1.65; }
+
+body.gymbuddy-page .gb-faq {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px clamp(14px, 2vw, 22px);
+  align-items: start;
+}
+body.gymbuddy-page .gb-faq details {
+  min-width: 0;
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: var(--gb-panel);
+  box-shadow: var(--gb-raise-soft);
+  transition: background-color .18s ease;
+}
+body.gymbuddy-page .gb-faq details[open] { background: var(--gb-panel-raised); }
+body.gymbuddy-page .gb-faq summary {
+  position: relative;
+  padding-right: 30px;
+  color: var(--gb-text);
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.55;
+  cursor: pointer;
+  list-style: none;
+}
+body.gymbuddy-page .gb-faq summary::-webkit-details-marker { display: none; }
+body.gymbuddy-page .gb-faq summary::after {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  color: var(--gb-muted);
+  content: "+";
+  font: 500 19px/1 var(--gb-sans);
+}
+body.gymbuddy-page .gb-faq details[open] summary::after { content: "−"; color: var(--gb-text); }
+body.gymbuddy-page .gb-faq details p { max-width: 560px; margin-top: 13px; color: var(--gb-body); font-size: 14px; line-height: 1.8; }
+
+body.gymbuddy-page .gb-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: clamp(48px, 6vw, 84px);
+  padding: 24px 0 9px;
+  border-top: 1px solid var(--gb-border);
+  color: var(--gb-muted);
+  font-size: 12px;
+}
+body.gymbuddy-page .gb-footer a { color: var(--gb-body); text-underline-offset: 3px; }
+body.gymbuddy-page .gb-footer a:hover,
+body.gymbuddy-page .gb-smallprint a:hover { color: var(--gb-text); }
+body.gymbuddy-page .gb-footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+body.gymbuddy-page .gb-smallprint { max-width: 780px; margin-top: 15px; color: var(--gb-muted); font-size: 11px; line-height: 1.75; }
+body.gymbuddy-page .gb-smallprint a { color: var(--gb-body); text-underline-offset: 2px; }
+
+/* ---- Blend 3 headline sizing: condensed display runs larger per line. ---- */
+body.gymbuddy-page[data-gb-headline="condensed"] .gb-hero-copy { max-width: 760px; }
+body.gymbuddy-page[data-gb-headline="condensed"] .gb-hero h1 { font-size: clamp(50px, 5.3vw, 78px); }
+
+/* ---- Motion: hero entrance ---- */
+@keyframes gb-rise {
+  from { opacity: 0; translate: 0 22px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes gb-stage-in {
+  from { opacity: 0; scale: .96; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes gb-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+body.gymbuddy-page .gb-hero-copy > * { animation: gb-rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+body.gymbuddy-page .gb-hero-copy > :nth-child(1) { animation-delay: .05s; }
+body.gymbuddy-page .gb-hero-copy > :nth-child(2) { animation-delay: .18s; }
+body.gymbuddy-page .gb-hero-copy > :nth-child(3) { animation-delay: .28s; }
+body.gymbuddy-page .gb-hero-copy > :nth-child(4) { animation-delay: .4s; }
+body.gymbuddy-page .gb-phone-stage { animation: gb-stage-in 1.2s .2s cubic-bezier(.2, .7, .2, 1) both; }
+
+/* ---- Motion: scroll reveals (class added by gymbuddy-fx.js) ---- */
+body.gymbuddy-page .gb-reveal {
+  opacity: 0;
+  translate: 0 26px;
+  transition: opacity .75s ease var(--gb-reveal-delay, 0ms), translate .75s cubic-bezier(.2, .7, .2, 1) var(--gb-reveal-delay, 0ms);
+}
+body.gymbuddy-page .gb-reveal.is-revealed { opacity: 1; translate: 0 0; }
+
+/* ---- 3D: phone tilt + idle float, card lean + glare ---- */
+body.gymbuddy-page .gb-phone-frame {
+  transform: perspective(1100px) rotateX(var(--gb-rx, 0deg)) rotateY(var(--gb-ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+  animation: gb-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+body.gymbuddy-page .gb-phone-frame.is-tilting { transition-duration: .18s; }
+body.gymbuddy-page .gb-price-card,
+body.gymbuddy-page .gb-founder-card {
+  position: relative;
+  transform: perspective(900px) rotateX(var(--gb-rx, 0deg)) rotateY(var(--gb-ry, 0deg));
+  transition: transform .5s cubic-bezier(.2, .7, .2, 1), opacity .75s ease var(--gb-reveal-delay, 0ms), translate .75s cubic-bezier(.2, .7, .2, 1) var(--gb-reveal-delay, 0ms);
+}
+body.gymbuddy-page .gb-price-card.is-tilting,
+body.gymbuddy-page .gb-founder-card.is-tilting { transition-duration: .15s, .75s, .75s; }
+body.gymbuddy-page .gb-price-card::after,
+body.gymbuddy-page .gb-founder-card::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--gb-gx, 50%) var(--gb-gy, 0%), rgb(255 255 255 / 9%), transparent 55%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+body.gymbuddy-page .gb-price-card.is-tilting::after,
+body.gymbuddy-page .gb-founder-card.is-tilting::after { opacity: 1; }
+
+/* ---- Chalk particle canvas (drawn by gymbuddy-fx.js) ---- */
+body.gymbuddy-page .gb-chalk {
+  position: absolute;
+  z-index: -1;
+  top: -12%;
+  left: -38%;
+  width: 176%;
+  height: 118%;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(closest-side, #000 50%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 50%, transparent 100%);
+}
+
+/* ---- Phone demo thread (built by gymbuddy-fx.js); cqw units scale with the screen ---- */
+body.gymbuddy-page #gb-phone-screen { position: relative; overflow: hidden; container-type: inline-size; }
+body.gymbuddy-page .gb-im {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+body.gymbuddy-page .gb-im-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4.6cqw 8cqw 0 9cqw;
+  font-size: 4.4cqw;
+  font-weight: 600;
+}
+body.gymbuddy-page .gb-im-icons { display: flex; gap: 1.2cqw; }
+body.gymbuddy-page .gb-im-icons i { display: block; width: 3.6cqw; height: 2.6cqw; border-radius: .8cqw; background: #fff; }
+body.gymbuddy-page .gb-im-icons i:nth-child(1) { width: 3cqw; clip-path: polygon(0 100%, 100% 0, 100% 100%); border-radius: 0; }
+body.gymbuddy-page .gb-im-icons i:nth-child(3) { width: 6cqw; }
+body.gymbuddy-page .gb-im-head {
+  display: grid;
+  justify-items: center;
+  gap: 1.4cqw;
+  padding: 5cqw 0 3.4cqw;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+  background: rgb(28 28 30 / 72%);
+}
+body.gymbuddy-page .gb-im-avatar {
+  display: grid;
+  width: 13cqw;
+  height: 13cqw;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #8e8e93, #636366);
+  font-size: 5cqw;
+  font-weight: 600;
+}
+body.gymbuddy-page .gb-im-name { font-size: 3.6cqw; color: rgb(255 255 255 / 85%); }
+body.gymbuddy-page .gb-im-thread {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2.2cqw;
+  padding: 4cqw 4cqw 3cqw;
+  overflow: hidden;
+}
+body.gymbuddy-page .gb-im-msg {
+  max-width: 78%;
+  padding: 2.6cqw 3.8cqw;
+  border-radius: 5.4cqw;
+  font-size: 4.3cqw;
+  line-height: 1.32;
+  opacity: 0;
+  transform: translateY(3cqw) scale(.96);
+  transition: opacity .35s ease, transform .45s cubic-bezier(.2, .9, .3, 1.2);
+}
+body.gymbuddy-page .gb-im-msg.is-in { opacity: 1; transform: none; }
+body.gymbuddy-page .gb-im-out { align-self: flex-end; background: #0a84ff; transform-origin: bottom right; }
+body.gymbuddy-page .gb-im-in,
+body.gymbuddy-page .gb-im-typing { align-self: flex-start; background: #26252a; transform-origin: bottom left; }
+body.gymbuddy-page .gb-im-photo { padding: 0; overflow: hidden; background: none; width: 62%; }
+body.gymbuddy-page .gb-im-photo img { display: block; width: 100%; border-radius: 5.4cqw; }
+body.gymbuddy-page .gb-im-typing { display: flex; gap: 1.2cqw; padding: 3.4cqw 4cqw; }
+body.gymbuddy-page .gb-im-typing i {
+  width: 2cqw;
+  height: 2cqw;
+  border-radius: 50%;
+  background: #8e8e93;
+  animation: gb-dot 1s ease-in-out infinite;
+}
+body.gymbuddy-page .gb-im-typing i:nth-child(2) { animation-delay: .15s; }
+body.gymbuddy-page .gb-im-typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes gb-dot { 0%, 60%, 100% { opacity: .35; transform: none; } 30% { opacity: 1; transform: translateY(-.8cqw); } }
+body.gymbuddy-page .gb-im-timer { display: flex; align-items: center; gap: 2.6cqw; font-variant-numeric: tabular-nums; font-size: 6cqw; font-weight: 600; }
+body.gymbuddy-page .gb-im-ring {
+  width: 6cqw;
+  height: 6cqw;
+  border: .9cqw solid rgb(10 132 255 / 30%);
+  border-top-color: #0a84ff;
+  border-radius: 50%;
+  animation: gb-spin 1.2s linear infinite;
+}
+@keyframes gb-spin { to { transform: rotate(360deg); } }
+body.gymbuddy-page .gb-im-input {
+  display: flex;
+  align-items: center;
+  gap: 2.4cqw;
+  padding: 2.4cqw 4cqw 7cqw;
+}
+body.gymbuddy-page .gb-im-plus {
+  display: grid;
+  width: 8cqw;
+  height: 8cqw;
+  place-items: center;
+  border-radius: 50%;
+  background: #26252a;
+  color: #aeaeb2;
+  font-size: 5.6cqw;
+  line-height: 1;
+}
+body.gymbuddy-page .gb-im-field {
+  flex: 1;
+  padding: 1.8cqw 3.6cqw;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 999px;
+  color: #636366;
+  font-size: 4cqw;
+}
+
+body.gymbuddy-page .gb-sim-note {
+  margin: -6px 0 0;
+  color: var(--gb-muted);
+  font-size: 11px;
+  letter-spacing: .02em;
+  opacity: .8;
+}
+@media (max-width: 660px) { body.gymbuddy-page .gb-sim-note { margin-top: -4px; font-size: 10px; } }
+
+/* ---- 3D kettlebell (Higgsfield mesh via <model-viewer>) ---- */
+body.gymbuddy-page .gb-membership { position: relative; }
+body.gymbuddy-page .gb-kettlebell {
+  position: absolute;
+  z-index: 2;
+  top: clamp(20px, 3vw, 44px);
+  right: clamp(0px, 3vw, 40px);
+  width: clamp(220px, 25vw, 330px);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+body.gymbuddy-page .gb-kettlebell::before {
+  position: absolute;
+  z-index: -1;
+  inset: 8% 8% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(255 255 255 / 9%), transparent 75%);
+  content: "";
+}
+body.gymbuddy-page .gb-kettlebell model-viewer {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  --poster-color: transparent;
+  --progress-bar-height: 0px;
+}
+body.gymbuddy-page .gb-membership > :not(.gb-kettlebell) { position: relative; z-index: 1; }
+
+@media (max-width: 1080px) {
+  body.gymbuddy-page .gb-kettlebell { width: 210px; }
+  body.gymbuddy-page .gb-membership .gb-section-head { max-width: calc(100% - 220px); }
+}
+
+@media (max-width: 860px) {
+  body.gymbuddy-page .gb-page { width: min(calc(100% - 48px), 720px); }
+  body.gymbuddy-page .gb-walkthrough { grid-template-columns: minmax(0, 1fr) minmax(245px, .72fr); column-gap: 34px; }
+  body.gymbuddy-page .gb-hero { min-height: min(620px, calc(94svh - 90px)); }
+  body.gymbuddy-page .gb-hero h1 { font-size: clamp(50px, 7.6vw, 74px); }
+  body.gymbuddy-page .gb-phone-frame { width: min(265px, 100%); }
+  body.gymbuddy-page .gb-story-step { min-height: 64svh; }
+  body.gymbuddy-page .gb-join-grid { grid-template-columns: minmax(0, 1fr) minmax(270px, .88fr); gap: 30px; }
+}
+
+@media (max-width: 660px) {
+  body.gymbuddy-page { background-attachment: scroll; }
+  body.gymbuddy-page .gb-page { width: calc(100% - 36px); padding-top: 15px; }
+  body.gymbuddy-page .gb-topline { min-height: 51px; gap: 10px; padding-bottom: 10px; }
+  body.gymbuddy-page .gb-brand { font-size: 17px; }
+  body.gymbuddy-page .gb-nav { gap: 9px; }
+  body.gymbuddy-page .gb-nav-link,
+  body.gymbuddy-page .gb-contact-link { min-height: 44px; padding: 8px 13px; font-size: 12px; }
+  body.gymbuddy-page .gb-walkthrough { grid-template-columns: minmax(0, 1fr); grid-template-areas: "hero" "intro" "phone" "steps"; }
+  body.gymbuddy-page .gb-hero { min-height: auto; justify-content: flex-start; padding: 46px 0 36px; }
+  body.gymbuddy-page .gb-hero h1 { max-width: 570px; margin: 23px 0 19px; font-size: clamp(46px, 12.6vw, 68px); }
+  body.gymbuddy-page .gb-lead { font-size: 16px; }
+  body.gymbuddy-page .gb-story-intro { margin-bottom: 6px; padding-top: 15px; }
+  body.gymbuddy-page .gb-story-intro h2,
+  body.gymbuddy-page .gb-section h2 { font-size: clamp(36px, 9.6vw, 52px); }
+  body.gymbuddy-page .gb-phone-stage {
+    top: 8px;
+    z-index: 5;
+    width: calc(100% + 36px);
+    margin-inline: -18px;
+    padding: 10px 0 8px;
+    background: rgb(14 14 16 / 94%);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 14px 24px -12px rgb(0 0 0 / 80%);
+  }
+  body.gymbuddy-page .gb-phone-stage::before { inset: 0; opacity: .5; }
+  body.gymbuddy-page .gb-chalk { top: 0; left: 0; width: 100%; height: 100%; }
+  body.gymbuddy-page .gb-hero-actions { gap: 12px; margin-top: 24px; }
+  body.gymbuddy-page :where(.gb-hero-actions .gb-primary, .gb-secondary) { min-height: 52px; padding: 0 20px; }
+  body.gymbuddy-page .gb-founder-card { margin-top: 28px; padding: 18px; }
+  body.gymbuddy-page[data-gb-headline="condensed"] .gb-hero h1 { font-size: clamp(46px, 13.5vw, 70px); }
+  body.gymbuddy-page .gb-kettlebell { position: relative; top: auto; right: auto; width: min(220px, 60vw); margin: -24px auto 4px; }
+  body.gymbuddy-page .gb-membership .gb-section-head { max-width: none; }
+  body.gymbuddy-page .gb-phone-frame { width: min(148px, 41vw); padding: 5px; border-radius: 24px; box-shadow: 10px 16px 26px rgb(0 0 0 / 60%), inset 0 1px 1px rgb(255 255 255 / 22%); }
+  body.gymbuddy-page .gb-phone-frame::before { top: 8px; height: 10px; }
+  body.gymbuddy-page #gb-phone-screen { max-height: 30svh; border-radius: 19px; }
+  body.gymbuddy-page #gb-screen-counter { padding: 6px 11px; font-size: 11px; }
+  body.gymbuddy-page .gb-story-steps { gap: 0; }
+  body.gymbuddy-page .gb-story-step {
+    min-height: 54svh;
+    justify-content: center;
+    padding: 50px 0 36px;
+    scroll-margin-block: 28svh;
+  }
+  body.gymbuddy-page .gb-step-number { margin-bottom: 18px; }
+  body.gymbuddy-page .gb-story-step h3,
+  body.gymbuddy-page .gb-story-step h2 { font-size: clamp(28px, 7.6vw, 36px); }
+  body.gymbuddy-page .gb-story-step p:not(.gb-step-number) { font-size: 14px; }
+  body.gymbuddy-page .gb-section { padding-top: 62px; }
+  body.gymbuddy-page .gb-section-head { margin-bottom: 20px; }
+  body.gymbuddy-page .gb-section-head > p:last-child { font-size: 14px; }
+  body.gymbuddy-page .gb-join-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  body.gymbuddy-page .gb-join-step { gap: 14px; padding: 18px; }
+  body.gymbuddy-page .gb-join-step strong { font-size: 15px; }
+  body.gymbuddy-page .gb-price-card { padding: 24px; }
+  body.gymbuddy-page .gb-faq { grid-template-columns: minmax(0, 1fr); }
+  body.gymbuddy-page .gb-faq details { padding: 18px 20px; }
+  body.gymbuddy-page .gb-footer { align-items: flex-start; margin-top: 50px; }
+}
+
+@media (max-width: 380px) {
+  body.gymbuddy-page .gb-page { width: calc(100% - 28px); }
+  body.gymbuddy-page .gb-nav { gap: 7px; }
+  body.gymbuddy-page .gb-nav-link,
+  body.gymbuddy-page .gb-contact-link { min-height: 44px; padding-inline: 10px; font-size: 11px; }
+  body.gymbuddy-page .gb-hero h1 { font-size: clamp(42px, 12.4vw, 54px); }
+  body.gymbuddy-page .gb-phone-frame { width: min(138px, 42vw); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.gymbuddy-page { scroll-behavior: auto; }
+  body.gymbuddy-page *,
+  body.gymbuddy-page *::before,
+  body.gymbuddy-page *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
