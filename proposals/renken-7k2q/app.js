@@ -12,13 +12,13 @@
       steps: [
         [{ t: 'in', x: 'Hey, is Flight Alerts included with the Passport?' }],
         [{ t: 'meta', x: 'Delivered by text' }],
-        [{ t: 'out', x: 'Good question. Flight Alerts is a separate add-on at $29.99 a year. The Passport covers the wholesale hotel and resort rates. Want the link to add it?' }],
+        [{ t: 'out', x: 'Yes. Full Flight Alerts access comes with the Passport at no extra cost. On its own it runs $29.99 a year. Want the link to set up your first alert?' }],
         [
-          { t: 'in', x: 'Maybe later. Can I get my Cozumel trip deposit back? Something came up.' },
-          { t: 'out', x: "Deposits are John's call, so I've sent him your trip and dates. He'll text you back here." },
+          { t: 'in', x: 'Nice. Separate thing: can I get a refund on my Cozumel trip? Something came up.' },
+          { t: 'out', x: "Trip refunds are John's call, so I've sent him your trip and dates. He'll text you back here." },
         ],
       ],
-      handoff: 'Deposit question on the Cozumel trip. The member is asking for a refund. Full thread attached.',
+      handoff: 'Refund request on the Cozumel trip. Full thread attached.',
     },
     mdl: {
       steps: [
