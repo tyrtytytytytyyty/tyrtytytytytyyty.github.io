@@ -185,7 +185,15 @@ document.querySelectorAll('.nav-tab.active').forEach(link => link.setAttribute('
       sessionStorage.setItem('gymbuddy_analytics_session', sessionId);
     }
   } catch (_) { sessionId = crypto.randomUUID(); }
-  const endpoint = document.querySelector('meta[name="gymbuddy-analytics-endpoint"]')?.content.trim() || '';
+  let endpoint = document.querySelector('meta[name="gymbuddy-analytics-endpoint"]')?.content.trim() || '';
+  // Owner opt-out: open any page once with ?gb_owner=on (or =off to undo) and
+  // this browser stops sending analytics, so Tyrese's own visits never count.
+  try {
+    const owner = new URLSearchParams(location.search).get('gb_owner');
+    if (owner === 'on') localStorage.setItem('gymbuddy_owner', '1');
+    if (owner === 'off') localStorage.removeItem('gymbuddy_owner');
+    if (localStorage.getItem('gymbuddy_owner') === '1') endpoint = '';
+  } catch (_) {}
   // Anonymous browser ID (no name/IP) so a second visit reads as "returning".
   let visitorId, returning = false;
   try {
