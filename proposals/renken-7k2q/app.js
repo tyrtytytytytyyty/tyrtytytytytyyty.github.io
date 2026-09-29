@@ -12,7 +12,7 @@
       steps: [
         [{ t: 'in', x: 'Hey, is Flight Alerts included with the Passport?' }],
         [{ t: 'meta', x: 'Delivered by text' }],
-        [{ t: 'out', x: 'Yes. Full Flight Alerts access comes with the Passport at no extra cost. On its own it runs $29.99 a year. Want the link to set up your first alert?' }],
+        [{ t: 'out', x: 'Yes. Flight Alerts are included free with every Full Passport membership. On their own they run $29.99 a year. Want the link to set up your first alert?' }],
         [
           { t: 'in', x: 'Nice. Separate thing: can I get a refund on my Cozumel trip? Something came up.' },
           { t: 'out', x: "Trip refunds are John's call, so I've sent him your trip and dates. He'll text you back here." },
@@ -24,7 +24,7 @@
       steps: [
         [{ t: 'in', x: "I'm at the dock in Cozumel and left my cert card at the hotel. Can the shop check it from my phone?" }],
         [{ t: 'meta', x: 'Delivered by text' }],
-        [{ t: 'out', x: 'Yes. Open My Dive Locker and tap Fast Pass. The shop scans your QR code and sees your certs, insurance and waiver. No card needed.' }],
+        [{ t: 'out', x: 'Yes. Your Fast Pass shares your certs, insurance cards and medical waivers with the shop in seconds, by secure link or QR code. No card needed.' }],
         [
           { t: 'in', x: 'Perfect. Also, I think I got charged twice for Solo this year.' },
           { t: 'out', x: "I can't change billing myself, so I've sent this to John with your account details. He'll text you back here." },
