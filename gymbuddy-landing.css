@@ -415,7 +415,10 @@ body.gymbuddy-page .gb-price-card {
 }
 body.gymbuddy-page .gb-price { margin: 12px 0 5px; color: var(--gb-text); font-size: clamp(48px, 6vw, 68px); font-weight: 800; letter-spacing: -.04em; line-height: .95; }
 body.gymbuddy-page .gb-price small { color: var(--gb-body); font-size: 15px; font-weight: 450; letter-spacing: 0; }
-body.gymbuddy-page .gb-price-card > p:not(.gb-price):not(.gb-price-note) { margin: 16px 0 24px; color: var(--gb-body); font-size: 14px; line-height: 1.75; }
+body.gymbuddy-page .gb-price.gb-price-free { font-size: clamp(38px, 4.8vw, 54px); line-height: 1; }
+body.gymbuddy-page .gb-price-then { margin: 8px 0 0; color: var(--gb-text); font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+body.gymbuddy-page .gb-price-then small { color: var(--gb-body); font-size: 15px; font-weight: 450; letter-spacing: 0; }
+body.gymbuddy-page .gb-price-card > p:not(.gb-price):not(.gb-price-note):not(.gb-price-then) { margin: 16px 0 24px; color: var(--gb-body); font-size: 14px; line-height: 1.75; }
 body.gymbuddy-page .gb-primary {
   display: inline-flex;
   min-height: 56px;
