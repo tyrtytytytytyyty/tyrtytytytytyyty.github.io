@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="ttc">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#010f18">
+<title>Support Line Proposal</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- depth gauge -->
+<aside class="gauge" aria-hidden="true">
+  <div class="gauge-track"><div class="gauge-fill"></div><div class="gauge-dot"></div></div>
+  <div class="gauge-ticks"><span>0</span><span>10</span><span>20</span><span>30</span></div>
+  <div class="gauge-read"><span id="depth">0</span> m</div>
+</aside>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"><img src="hero.jpg" alt=""></div>
+  <div class="hero-shimmer" aria-hidden="true"></div>
+  <canvas class="snow" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <p class="eyebrow">Proposal · Prepared for John Renken</p>
+    <h1>A support line your members can text, day or night.</h1>
+    <p class="lede">Built around your business, your rules and your voice. Anything it shouldn't handle comes straight to you.</p>
+
+    <div class="switch-wrap">
+      <span class="switch-label">Show it for</span>
+      <div class="switch" role="tablist" aria-label="Choose a business">
+        <button type="button" id="b-ttc" role="tab" data-set="ttc" aria-selected="true">Tactical Traveler Club</button>
+        <button type="button" id="b-mdl" role="tab" data-set="mdl" aria-selected="false">My Dive Locker</button>
+      </div>
+      <p class="switch-note">The build is the same for both. Start with one and add the other later.</p>
+    </div>
+  </div>
+  <a class="cue" href="#pipeline">Scroll to descend <span aria-hidden="true">↓</span></a>
+</header>
+
+<main>
+
+<!-- PIPELINE (sticky, scroll-driven) -->
+<section class="pipeline" id="pipeline" aria-labelledby="pl-h">
+  <div class="sticky">
+    <div class="pl-grid">
+      <div class="pl-left">
+        <p class="eyebrow depth-tag">08 m · How it works</p>
+        <h2 id="pl-h">One message, start to finish.</h2>
+
+        <ol class="steps">
+          <li class="step" data-step="0">
+            <span class="step-ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c2.4-.3 4.4 1.2 5 4"/></svg></span>
+            <div><h3>Your members</h3>
+              <p><span class="b-ttc">Travelers and veterans with questions about the Passport, rates and trips.</span><span class="b-mdl">Divers and dive shops with questions about certs, Fast Pass and plans.</span></p></div>
+          </li>
+          <li class="step" data-step="1">
+            <span class="step-ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
+            <div><h3>Website chat · Text</h3>
+              <p>They text your business number or use the chat on your site. No app to download and no login.</p></div>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step-ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 12h8M8 15h5"/></svg></span>
+            <div><h3>The assistant</h3>
+              <p>It reads the question, checks what it knows about your business and answers in your voice.</p></div>
+          </li>
+          <li class="step" data-step="3">
+            <span class="step-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c.8-3.6 3.6-5.6 7-5.6s6.2 2 7 5.6"/><path d="M18 4.5l2 2-2 2"/></svg></span>
+            <div><h3>Answer, or hand-off to John</h3>
+              <p>Most questions get answered on the spot. Refunds, billing and anything unusual come to you with the details attached.</p></div>
+          </li>
+        </ol>
+        <div class="pl-progress" aria-hidden="true"><span></span></div>
+      </div>
+
+      <div class="pl-right">
+        <div class="phone" aria-label="Example text conversation">
+          <div class="phone-notch"></div>
+          <div class="phone-head">
+            <div class="avatar"><span class="b-ttc">TT</span><span class="b-mdl">DL</span></div>
+            <div class="who"><strong><span class="b-ttc">Tactical Traveler Club</span><span class="b-mdl">My Dive Locker</span></strong><small>Text message</small></div>
+          </div>
+          <div class="thread" id="thread" aria-live="polite"></div>
+          <div class="handoff" id="handoff" aria-hidden="true">
+            <span class="ho-tag">Hand-off</span>
+            <p id="handoff-text"></p>
+          </div>
+        </div>
+        <p class="phone-cap">Example conversation, for illustration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK (sticky 3D exploded view) -->
+<section class="stackx" id="stack" aria-labelledby="st-h">
+  <div class="sticky">
+    <div class="st-grid">
+      <div class="st-visual">
+        <div class="plates" id="plates">
+          <div class="plate rent" style="--i:0"><span>AI model</span></div>
+          <div class="plate build" style="--i:1"><span>Your business knowledge</span></div>
+          <div class="plate build" style="--i:2"><span>Rules &amp; tools</span></div>
+          <div class="plate rent" style="--i:3"><span>Interface</span></div>
+        </div>
+      </div>
+      <div class="st-copy">
+        <p class="eyebrow depth-tag">16 m · Inside the assistant</p>
+        <h2 id="st-h">Four layers. I build the two that make it yours.</h2>
+        <ul class="layers">
+          <li class="rent"><div><h3>Interface</h3><p>Text messages, or a chat box on your site.</p></div><span class="pill">Existing</span></li>
+          <li class="build"><div><h3>Rules &amp; tools</h3><p>Memory, lookups, when to hand off to you and what it must never say.</p></div><span class="pill">Built for you</span></li>
+          <li class="build"><div><h3>Your business knowledge</h3><p><span class="b-ttc">The Passport, wholesale rates, Flight Alerts, Military Escapes trips and your refund terms.</span><span class="b-mdl">Plans, Fast Pass, certs and insurance cards, operator tiers and your policies.</span></p></div><span class="pill">Built for you</span></li>
+          <li class="rent"><div><h3>AI model</h3><p>Claude, GPT, Gemini or Grok. It's rented and can be swapped when a better one ships.</p></div><span class="pill">Rented</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTH BUSINESSES -->
+<section class="band" aria-labelledby="both-h">
+  <div class="wrap">
+    <p class="eyebrow depth-tag reveal">22 m · One build, two businesses</p>
+    <h2 id="both-h" class="reveal">Build it once. The second business is an add-on, not a rebuild.</h2>
+    <p class="band-lede reveal">The pipeline doesn't change. Adding a business means loading its knowledge and its rules into the same assistant.</p>
+    <div class="both">
+      <article class="biz ttc reveal">
+        <h3>Tactical Traveler Club</h3>
+        <dl>
+          <dt>Today</dt><dd>Email and a contact form.</dd>
+          <dt>Adds</dt><dd>A first line of support by text and on the site, in the club's own voice.</dd>
+        </dl>
+      </article>
+      <article class="biz mdl reveal">
+        <h3>My Dive Locker</h3>
+        <dl>
+          <dt>Today</dt><dd>The Dive Locker Concierge chat on the website.</dd>
+          <dt>Adds</dt><dd>The same help by text, for divers standing on a dock with only their phone.</dd>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="band" aria-labelledby="price-h">
+  <div class="wrap">
+    <p class="eyebrow depth-tag reveal">26 m · How it's priced</p>
+    <h2 id="price-h" class="reveal">A setup fee, then a monthly fee to keep it running.</h2>
+    <div class="price-grid">
+      <article class="price reveal">
+        <span class="kicker">One-time</span>
+        <h3>Setup</h3>
+        <ul>
+          <li>Build the assistant around your business</li>
+          <li>Load your products, policies and FAQs</li>
+          <li>Set the rules and hand-offs with you</li>
+          <li>Test it before any member sees it</li>
+        </ul>
+      </article>
+      <article class="price reveal">
+        <span class="kicker">Monthly</span>
+        <h3>Running it</h3>
+        <ul>
+          <li>Hosting, so it stays online around the clock</li>
+          <li>AI usage costs</li>
+          <li>Updates when your offers or policies change</li>
+          <li>Cancel anytime</li>
+        </ul>
+      </article>
+    </div>
+    <p class="fine reveal">The price depends on which business and which channels come first. We set it together once the scope is agreed.</p>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
+<section class="band" aria-labelledby="q-h">
+  <div class="wrap">
+    <p class="eyebrow depth-tag reveal">30 m · For our call</p>
+    <h2 id="q-h" class="reveal">Four questions that set the scope.</h2>
+    <ol class="qs">
+      <li class="reveal"><strong>What do your members ask you most?</strong><span>The top ten questions become the core of what it knows.</span></li>
+      <li class="reveal"><strong>Which business goes first, and which channel?</strong><span>Text, website chat, or both.</span></li>
+      <li class="reveal"><strong>What should it never answer on its own?</strong><span>Refunds, deposits, billing and complaints come to you.</span></li>
+      <li class="reveal"><strong>How do you want to hear about hand-offs?</strong><span>A text, an email or a daily summary.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="band proof-band" aria-labelledby="proof-h">
+  <div class="wrap">
+    <div class="proof reveal">
+      <p class="eyebrow">Already running</p>
+      <h2 id="proof-h">GymBuddy</h2>
+      <p>The same kind of system, built for fitness. It has been live over text since July 2026, with paying members since August. It logs workouts, reads food photos for macros and reviews form videos. You set up a profile on it yourself in July.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span>Prepared by Tyrese · tyycc.com</span>
+  <span>Draft for discussion</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
