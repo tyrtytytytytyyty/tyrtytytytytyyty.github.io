@@ -90,14 +90,14 @@
 <section class="band" id="tested" aria-labelledby="test-h">
   <div class="wrap">
     <p class="eyebrow tag reveal">02 · Privacy, tested</p>
-    <h2 id="test-h" class="reveal">Tested on 10,600 messages it had never seen.</h2>
-    <p class="band-lede reveal">Three different AI models wrote 10,000 fake customer messages for both businesses, full of names, numbers and typos, on top of 600 from earlier rounds. Every one went through the full system: blanked, answered by the AI, filled back in. The blanking code was locked before the run.</p>
+    <h2 id="test-h" class="reveal">Tested on 11,600 messages it had never seen.</h2>
+    <p class="band-lede reveal">Three different AI models wrote fake customer messages for both businesses, full of names, numbers and typos. Every one went through the full system: blanked, answered by the AI, filled back in. The blanking code was locked before each round and scored once.</p>
     <div class="metrics reveal">
-      <div class="metric big"><b>1,807 / 1,808</b><span>phone numbers hidden</span></div>
-      <div class="metric"><b>97.6%</b><span>member, cert, policy and ID numbers hidden (11,209 of 11,489)</span></div>
-      <div class="metric"><b>99.4%</b><span>email addresses hidden (1,530 of 1,540)</span></div>
+      <div class="metric big"><b>98.5%</b><span>of number data hidden in the latest locked round (1,421 of 1,442 phone, card, member, cert, policy and ID numbers)</span></div>
+      <div class="metric"><b>1,939 / 1,940</b><span>phone numbers hidden across 11,000 messages</span></div>
+      <div class="metric"><b>0</b><span>made-up or empty AI replies reached a customer in the latest round</span></div>
     </div>
-    <p class="fine reveal">The weak spot was card last-4s written like "card 7741": only 46% were caught, because the code only knew "ending in 7741". That's fixed, and the same 10,000 messages now come out at 91% for cards and 98.3% for all number data. The next locked round will confirm it. Names land around 89%, since people write them every way possible, and anything that slips through only goes to an AI provider that keeps nothing. The whole 10,000-message run cost $1.03 in AI and took 20 minutes.</p>
+    <p class="fine reveal">How it got there: a 10,000-message run found one weak spot, card last-4s written like "card 7741" (46% caught). The fix went in, the code was locked again, and a fresh 1,000-message round came back at 94.5% for cards and 98.5% for all number data. Names land around 88% to 89%, since people write them every way possible, and anything that slips through only goes to an AI provider that keeps nothing. The 10,000-message run cost $1.03 in AI and took 20 minutes.</p>
   </div>
 </section>
 
