@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#010f18">
+<title>Hosting &amp; Privacy Plan</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HERO -->
+<header class="scene hero" id="top">
+  <div class="media" aria-hidden="true">
+    <video src="media/1-box.mp4" poster="media/1-box.jpg" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+  <div class="copy">
+    <p class="eyebrow">The plan · Prepared for John Renken</p>
+    <h1>It runs on my hardware. Nobody else has to touch a thing.</h1>
+    <p class="lede">How the support line works without anyone's computer, how your customers' info stays private, and how the setup grows from here.</p>
+  </div>
+  <a class="cue" href="#where">Scroll <span aria-hidden="true">↓</span></a>
+</header>
+
+<main>
+
+<!-- 01 WHERE IT RUNS -->
+<section class="band" id="where" aria-labelledby="where-h">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">01 · Where it runs</p>
+    <h2 id="where-h" class="reveal">No Mac on your end. Nothing to install.</h2>
+    <p class="band-lede reveal">Your customers write in the way they already do. Every message lands on one server I run, gets answered there and goes back out. You don't buy hardware, and neither does anyone you sell this to.</p>
+    <ul class="channels reveal">
+      <li><span class="dot"></span><div><h3>Email</h3><p>Your existing support address.</p></div></li>
+      <li><span class="dot"></span><div><h3>Website chat</h3><p>A small chat box on your site.</p></div></li>
+      <li><span class="dot"></span><div><h3>Facebook Messenger</h3><p>Where Tactical Traveler already gets messages.</p></div></li>
+      <li class="later"><span class="dot"></span><div><h3>Text</h3><p>Business texting needs carrier registration first, so it comes after the others.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 02 THE DEMO (sticky, scroll-driven) -->
+<section class="demo" id="demo" aria-labelledby="demo-h">
+  <div class="sticky">
+    <div class="demo-media" aria-hidden="true">
+      <video data-v="0" src="media/2-mask.mp4" poster="media/2-mask.jpg" muted loop playsinline preload="auto"></video>
+      <video data-v="1" src="media/3-think.mp4" poster="media/3-think.jpg" muted loop playsinline preload="auto"></video>
+      <video data-v="2" src="media/6-unmask.mp4" poster="media/6-unmask.jpg" muted loop playsinline preload="auto"></video>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-left">
+        <p class="eyebrow tag">02 · Privacy</p>
+        <h2 id="demo-h">The AI only ever sees blanks.</h2>
+        <ol class="steps">
+          <li class="step" data-step="0"><span class="n">1</span><div><h3>A message comes in</h3><p>It lands on my server, exactly as the customer wrote it.</p></div></li>
+          <li class="step" data-step="1"><span class="n">2</span><div><h3>Names and numbers come out</h3><p>A small AI model on my own machine swaps out names, emails, phone numbers and member IDs. The question stays.</p></div></li>
+          <li class="step" data-step="2"><span class="n">3</span><div><h3>The answering model works blind</h3><p>It reads the question and writes the reply without ever knowing who asked.</p></div></li>
+          <li class="step" data-step="3"><span class="n">4</span><div><h3>Real details go back in</h3><p>My server fills the blanks back in and sends the reply. Nobody outside saw who it was.</p></div></li>
+        </ol>
+      </div>
+
+      <div class="demo-right">
+        <div class="card" id="card">
+          <div class="card-head">
+            <span class="where" id="where-label">Arrives at my server</span>
+            <span class="lock" id="lock-label">Your server</span>
+          </div>
+          <div class="bubble in">
+            <small>Customer</small>
+            <p>Hey, it's <span class="tk" data-real="Mark" data-token="[NAME]">Mark</span>. Member <span class="tk" data-real="TTC-48213" data-token="[MEMBER ID]">TTC-48213</span>. My Cozumel trip is booked under <span class="tk" data-real="mark.ellis@example.com" data-token="[EMAIL]">mark.ellis@example.com</span> and I need to change the dates. Best number is <span class="tk" data-real="(615) 555-0142" data-token="[PHONE]">(615) 555-0142</span>.</p>
+          </div>
+          <div class="bubble out" id="reply">
+            <small>Assistant</small>
+            <p>Thanks <span class="tk" data-real="Mark" data-token="[NAME]">Mark</span>. Trip date changes go to John, so I've sent him your request for member <span class="tk" data-real="TTC-48213" data-token="[MEMBER ID]">TTC-48213</span>. He'll call you at <span class="tk" data-real="(615) 555-0142" data-token="[PHONE]">(615) 555-0142</span>.</p>
+          </div>
+          <div class="card-foot" id="card-foot">The question stays. The identity goes.</div>
+        </div>
+        <p class="cap">Made-up customer, for illustration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02b TESTED -->
+<section class="band" id="tested" aria-labelledby="test-h">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">02 · Privacy, tested</p>
+    <h2 id="test-h" class="reveal">Tested on 600 messages it had never seen.</h2>
+    <p class="band-lede reveal">A separate AI wrote fake customer messages for both businesses, full of names, numbers and typos. The blanking code was locked before each round, then scored once.</p>
+    <div class="metrics reveal">
+      <div class="metric big"><b>216 / 217</b><span>phone, card, member and cert or policy numbers hidden</span></div>
+      <div class="metric"><b>0</b><span>numbers sent to the AI in the last four rounds</span></div>
+      <div class="metric"><b>~5 ms</b><span>to blank a message, on my own machine</span></div>
+    </div>
+    <p class="fine reveal">The one miss was a cert number spelled out in words ("nineteen oh four A five…"). Names are harder, since people write them every way possible. They land between 87% and 97% depending on the round. Anything that does slip through only goes to an AI provider that keeps nothing (see below).</p>
+  </div>
+</section>
+
+<!-- 03 SEPARATION -->
+<section class="scene split" aria-labelledby="sep-h">
+  <div class="media" aria-hidden="true">
+    <video src="media/4-vaults.mp4" poster="media/4-vaults.jpg" muted loop playsinline preload="metadata" data-lazy></video>
+  </div>
+  <div class="copy">
+    <p class="eyebrow tag reveal">03 · Separation</p>
+    <h2 id="sep-h" class="reveal">Each business gets its own lock and its own key.</h2>
+    <p class="band-lede reveal">My Dive Locker and Tactical Traveler each get separate storage, encrypted with AES-256 under a separate key. One key can't open the other business's data. Add a third brand later and it gets a third key.</p>
+  </div>
+</section>
+
+<!-- 04 HONEST LIMITS -->
+<section class="band" aria-labelledby="lim-h">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">04 · What's protected</p>
+    <h2 id="lim-h" class="reveal">Straight answer on what's protected, and what isn't.</h2>
+    <div class="two">
+      <article class="panel reveal">
+        <span class="kicker">Covered</span>
+        <ul>
+          <li>A stolen or lost drive</li>
+          <li>A leaked backup</li>
+          <li>The AI companies seeing who your customers are</li>
+          <li>The AI provider keeping anything: it runs on OpenAI's GPT-6 Luna through zero-data-retention endpoints only</li>
+          <li>One brand's data showing up in another's</li>
+        </ul>
+      </article>
+      <article class="panel reveal">
+        <span class="kicker">Handled another way</span>
+        <p>To answer a message, the running server has to read it. So the server itself is what I lock down: only I can get in, it stays updated, and conversations are kept only as long as we agree on.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 05 LADDER -->
+<section class="scene split" aria-labelledby="lad-h">
+  <div class="media" aria-hidden="true">
+    <video src="media/5-ladder.mp4" poster="media/5-ladder.jpg" muted loop playsinline preload="metadata" data-lazy></video>
+  </div>
+  <div class="copy">
+    <p class="eyebrow tag reveal">05 · How it grows</p>
+    <h2 id="lad-h" class="reveal">Three stages. Each one moves more of it in-house.</h2>
+  </div>
+</section>
+<section class="band tight" aria-label="The three stages">
+  <div class="wrap">
+    <ol class="ladder">
+      <li class="reveal"><span class="kicker">Stage 1 · Build and test</span><h3>On hardware I already own</h3><p>The blanking model runs on my machine. The answering model is rented. We test with real questions before any customer sees it.</p></li>
+      <li class="reveal"><span class="kicker">Stage 2 · Go live</span><h3>A dedicated server</h3><p>A machine that does nothing but this, on around the clock. This is where your customers start using it.</p></li>
+      <li class="reveal"><span class="kicker">Stage 3 · Fully in-house</span><h3>Everything on my hardware</h3><p>The answering model moves onto my own machines too. At that point nothing about your customers leaves my servers at all.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- LIVE -->
+<section class="band" aria-labelledby="live-h">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">Live test</p>
+    <h2 id="live-h" class="reveal">Try to break it on our call.</h2>
+    <p class="band-lede reveal">I'll send you a chat link. Type anything you want, including made-up names, phone numbers and member numbers. On my screen you'll watch each message get blanked, go to the AI, come back and get filled in, in real time.</p>
+  </div>
+</section>
+
+<!-- 06 QUESTIONS -->
+<section class="band last" aria-labelledby="q-h">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">06 · For our call</p>
+    <h2 id="q-h" class="reveal">Three things to settle together.</h2>
+    <ol class="qs">
+      <li class="reveal"><strong>How long should conversations be kept?</strong><span>Shorter is safer. Longer means better context for repeat customers.</span></li>
+      <li class="reveal"><strong>Which business and which channel go first?</strong><span>Email and site chat are the fastest to launch.</span></li>
+      <li class="reveal"><strong>Who besides you should see hand-offs?</strong><span>Only you, or someone on your team as well.</span></li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span>Prepared by Tyrese · tyycc.com</span>
+  <span>Draft for discussion</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
