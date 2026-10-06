@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#010f18">
+<title>How It Works · The Business Text Line</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../cc.css">
+</head>
+<body>
+<nav class="nav" aria-label="Pages">
+  <a class="brand" href="../">tyy<span>·</span>cc</a>
+  <a class="l" href="../">Start</a>
+  <a class="l" href="../overview/">Overview</a>
+  <a class="l" href="../proof/">Proof</a>
+  <a class="l" href="./" aria-current="page">How it works</a>
+  <a class="l" href="../offer/">Offer</a>
+</nav>
+
+<header class="scene hero">
+  <div class="media" aria-hidden="true"><img src="../media/circuit.jpg" alt=""></div>
+  <div class="copy">
+    <p class="eyebrow">03 · How it works</p>
+    <h1>One text, followed all the way down.</h1>
+    <p class="lede">A customer sends "is HV-4471 still today?" This is everything that happens before they get an answer, from the network to the switches inside the box.</p>
+  </div>
+  <a class="cue" href="#trace">Scroll <span aria-hidden="true">↓</span></a>
+</header>
+
+<main>
+<section class="band" id="trace">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">The trace</p>
+    <h2 class="reveal">Eleven steps. Two of them leave the box.</h2>
+    <ol class="pipe reveal">
+      <li>
+        <h3>The message arrives <span class="where-tag">Network</span></h3>
+        <p>The text goes from the customer's phone to a cell tower, through their carrier, to the business's rented text number. The number's provider turns it into a web request and sends it over HTTPS to my box. Email, website chat and Messenger arrive the same way, as a web request.</p>
+        <p>HTTPS means the trip from the provider to my box is encrypted with TLS. Anyone in the middle sees scrambled bytes.</p>
+      </li>
+      <li>
+        <h3>Who is this? <span class="where-tag">My box</span></h3>
+        <p>The sender's number is cut down to its last 10 digits and compared against the business's own records: the owner, the crew from their job applications, the customers from their bookings. Whatever it matches decides the role. If nothing matches, they're a stranger.</p>
+<pre class="code"><span class="c"># (706) 555-0142, 7065550142 and +1 706.555.0142 all become the same thing</span>
+<span class="k">def</span> resolve_role(biz, phone):
+    p = digits(phone)
+    <span class="k">if</span> p == digits(biz.owner.phone):        <span class="k">return</span> <span class="t">"owner"</span>
+    <span class="k">if</span> p <span class="k">in</span> {digits(s.phone) <span class="k">for</span> s <span class="k">in</span> biz.staff}:     <span class="k">return</span> <span class="t">"staff"</span>
+    <span class="k">if</span> p <span class="k">in</span> {digits(c.phone) <span class="k">for</span> c <span class="k">in</span> biz.customers}: <span class="k">return</span> <span class="t">"customer"</span>
+    <span class="k">return</span> <span class="t">"prospect"</span></pre>
+      </li>
+      <li>
+        <h3>What are they allowed to see? <span class="where-tag">My box</span></h3>
+        <p>Code picks the records, not the AI. A customer gets only the tickets tied to their number. A crew member gets only the jobs assigned to them, with no prices. The owner gets everything. A stranger gets only what's public.</p>
+        <p>If someone types a ticket number that isn't theirs, it's handled exactly like a ticket that doesn't exist, so typing ticket numbers at random tells you nothing.</p>
+<pre class="code"><span class="k">if</span> role == <span class="t">"customer"</span>: visible = [j <span class="k">for</span> j <span class="k">in</span> jobs <span class="k">if</span> j.customer == sender]
+<span class="k">if</span> role == <span class="t">"staff"</span>:    visible = [j <span class="k">for</span> j <span class="k">in</span> jobs <span class="k">if</span> j.assigned_to == sender]
+<span class="k">if</span> role == <span class="t">"prospect"</span>: visible = []          <span class="c"># public info only</span>
+<span class="c"># everything not in `visible` is never loaded into the conversation at all</span></pre>
+      </li>
+      <li>
+        <h3>The math happens here, not in the AI <span class="where-tag">My box</span></h3>
+        <p>"What's today's profit?" is added up by code from the actual numbers before the AI is involved. AI models are good at writing sentences and bad at arithmetic, so the system never asks it to do math. It only gets the finished number to phrase.</p>
+      </li>
+      <li>
+        <h3>Names and numbers are swapped out <span class="where-tag">My box</span></h3>
+        <p>Every name, phone number, address, gate code and ticket number is replaced with a placeholder like <code>[CUST_NAME_1]</code>. There are two layers:</p>
+        <p><b>Records:</b> the system knows exactly which fields are private, so it swaps those exactly. <b>The message itself:</b> what the person typed goes through the privacy filter tested on 11,000 messages. It uses pattern rules for numbers, cards and emails, a language model that spots names, a known-sender check, and a word-frequency filter that tells "Hope" the name from "I hope".</p>
+<pre class="code"><span class="c">what the customer typed:</span>  hey its Dana, is HV-4471 still today? what time
+<span class="c">what the AI receives:</span>     hey its <span class="t">[SENDER_FIRST_1]</span>, is <span class="t">[TICKET_1]</span> still today? what time</pre>
+        <p>The list of which placeholder means what lives only in the box's memory, for that one conversation.</p>
+      </li>
+      <li>
+        <h3>The question goes to a rented AI model <span class="where-tag cloud">Leaves the box</span></h3>
+        <p>The blanked message and the blanked records go over HTTPS to a rented model through OpenRouter. The request is only allowed to go to endpoints that don't store data (zero data retention, data collection denied). If no such endpoint is available, the request fails instead of falling back to one that keeps data.</p>
+        <p>It costs about a hundredth of a cent per reply.</p>
+      </li>
+      <li>
+        <h3>The AI answers with placeholders <span class="where-tag cloud">Rented model</span></h3>
+        <p>It writes something like "Yes, [TICKET_1] is today at 2:15 and [STAFF_FIRST_1] is your tech." It never learns who Dana is, who the tech is, or where anyone lives. It also has rules: answer only from what it was given, never invent a ticket or a time, and nobody gets more access by claiming to be the owner or telling it to ignore its rules.</p>
+      </li>
+      <li>
+        <h3>Real details go back in <span class="where-tag">My box</span></h3>
+        <p>Back on the box, every placeholder is swapped back for the real value: "Yes, HV-4471 is today at 2:15 and Dre is your tech."</p>
+      </li>
+      <li>
+        <h3>The guard checks the reply <span class="where-tag">My box</span></h3>
+        <p>Last check before it sends: the reply is compared against every private value this person is <i>not</i> allowed to see, including other customers' names, numbers, addresses, gate codes, prices and the day's revenue. If even one shows up, the reply is blocked and handed to the owner instead.</p>
+        <p>It shouldn't ever fire, because the AI was never given those values. It runs on every message anyway, to prove it.</p>
+      </li>
+      <li>
+        <h3>Booking and hand-offs <span class="where-tag">My box</span></h3>
+        <p>If someone wants to book, the AI adds a line like <code>BOOK: tune-up | Thursday 3pm</code>. Code strips it out and puts it in front of the owner to confirm. Refunds, complaints and anything it can't answer get a <code>HANDOFF</code> line and go to a human.</p>
+      </li>
+      <li>
+        <h3>The reply goes out <span class="where-tag">Network</span></h3>
+        <p>It goes back the way it came: over HTTPS to the text provider, through the carrier, to the customer's phone. A few seconds end to end.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">All the way down</p>
+    <h2 class="reveal">What "on my box" physically means.</h2>
+    <p class="band-lede reveal">Step 2, "is this the owner's number?", is one comparison. Here's what that comparison actually is.</p>
+    <ol class="pipe reveal">
+      <li><h3>Text becomes numbers</h3><p>"7065550142" is stored as ten bytes. Each character is a number: "7" is 55, "0" is 48. Each byte is 8 bits, 1s and 0s.</p></li>
+      <li><h3>Bits are charges</h3><p>While the program runs, those bits sit in the box's memory (DRAM) as tiny stored charges. Charged is a 1, empty is a 0. That's also where the placeholder list lives, and why it disappears when the conversation ends or the power goes off. It's never written to disk.</p></li>
+      <li><h3>Comparing is gates</h3><p>The processor checks the two numbers byte by byte. Inside, the comparison is built from logic gates: an XOR gate outputs 1 when two bits differ, and if every XOR comes out 0, the numbers match. Each gate is a handful of transistors, microscopic switches that turn on or off when a voltage hits them.</p></li>
+      <li><h3>Billions of switches, one decision</h3><p>Billions of those switches flipping is what "the system knows it's the owner" physically is. Every access decision on this page comes down to that: a comparison made by code on hardware I control, never a guess by an AI.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band last">
+  <div class="wrap">
+    <p class="eyebrow tag reveal">Honest limits</p>
+    <h2 class="reveal">What it doesn't do, said plainly.</h2>
+    <div class="honest reveal">
+      <p><b>Text messages aren't end-to-end encrypted.</b> Carriers can see SMS. The privacy guarantee here is about the AI company, which never sees who anyone is. It isn't about the phone network.</p>
+      <p><b>A phone number is strong proof, but not perfect.</b> Numbers can be spoofed or a phone can be stolen. For the owner's money questions, a PIN on top of the number is the next thing on the build list.</p>
+      <p><b>Freely typed names are the hardest part.</b> Names already on file are swapped exactly. A name someone types that the business has never seen is caught by the filter about 88% of the time in testing. Numbers, phones and cards score higher. The <a href="../proof/" style="color:var(--accent)">proof page</a> has every number.</p>
+      <p><b>Where it runs today:</b> the system and tests run on my MacBook. Production moves to a dedicated Mac mini with battery backup when the first install goes live. Text-number service (a rented number per business) gets set up per client.</p>
+    </div>
+    <a class="cta reveal" href="../offer/">See the offer →</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><span>Built by Tyrese Chatman · Augusta, GA</span><span><a href="../" style="color:inherit">tyycc.com/cc</a></span></footer>
+<script src="../cc.js"></script>
+</body>
+</html>
