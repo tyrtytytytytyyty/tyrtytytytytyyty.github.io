@@ -833,3 +833,69 @@ body.gymbuddy-page .gb-membership > :not(.gb-kettlebell) { position: relative; z
     transition-duration: .01ms !important;
   }
 }
+
+/* ---- Mobile story: swipe deck (2026-10-08) ----
+   On phones the sticky phone covered ~45% of the screen and step headings
+   slid under it. Below 660px the phone stops sticking and the four steps
+   become a horizontal snap deck under it; gymbuddy-scroll.js picks the
+   active card from the deck's scroll instead of the window's. Desktop is
+   untouched. */
+@media (max-width: 660px) {
+  body.gymbuddy-page .gb-phone-stage {
+    position: relative;
+    top: auto;
+    z-index: 1;
+    width: 100%;
+    margin-inline: 0;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0 2px;
+    gap: 8px 10px;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  body.gymbuddy-page .gb-phone-stage::before { inset: -4% -10% 0; opacity: .7; }
+  body.gymbuddy-page .gb-phone-frame { grid-column: 1 / -1; width: min(170px, 45vw); padding: 6px; border-radius: 29px; }
+  body.gymbuddy-page .gb-phone-frame::before { top: 10px; height: 12px; }
+  body.gymbuddy-page #gb-phone-screen { max-height: none; border-radius: 26px; }
+  body.gymbuddy-page .gb-sim-note { margin: 0; }
+
+  body.gymbuddy-page .gb-story-steps {
+    display: flex;
+    gap: 12px;
+    width: calc(100% + 36px);
+    margin-inline: -18px;
+    padding: 6px 18px 4px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 18px;
+    scrollbar-width: none;
+  }
+  body.gymbuddy-page .gb-story-steps::-webkit-scrollbar { display: none; }
+  body.gymbuddy-page .gb-story-step,
+  body.gymbuddy-page .gb-story-step:last-child {
+    flex: 0 0 86%;
+    min-height: 0;
+    justify-content: flex-start;
+    padding: 16px 18px 18px;
+    border: 0;
+    border-radius: 20px;
+    background: var(--gb-panel);
+    box-shadow: var(--gb-raise-soft);
+    scroll-snap-align: start;
+    scroll-margin-block: 0;
+    cursor: pointer;
+  }
+  body.gymbuddy-page .gb-story-step.is-active { cursor: auto; }
+  body.gymbuddy-page .gb-step-number { margin-bottom: 4px; }
+  body.gymbuddy-page .gb-story-step h3,
+  body.gymbuddy-page .gb-story-step h2 { margin: 10px 0 8px; font-size: clamp(22px, 6.2vw, 27px); }
+  body.gymbuddy-page .gb-story-step p:not(.gb-step-number) { font-size: 14px; line-height: 1.6; }
+
+  /* Kettlebell: same mesh, less of the screen. */
+  body.gymbuddy-page .gb-kettlebell { width: min(220px, 60vw); margin: -30px auto -14px; }
+}

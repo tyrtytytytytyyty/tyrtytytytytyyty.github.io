@@ -71,10 +71,40 @@
     return closest;
   }
 
+  /* Phones: the steps are a horizontal swipe deck (see the CSS "Mobile story"
+     block), so the active card is the one snapped to the deck's left edge. */
+  const deck = document.querySelector(".gb-story-steps");
+  const phoneLayout = window.matchMedia("(max-width: 660px)");
+
+  const deckStart = () => deck.getBoundingClientRect().left + parseFloat(getComputedStyle(deck).paddingLeft);
+
+  function closestToDeckStart(candidates) {
+    const left = deckStart();
+    let closest = null;
+    let closestDistance = Infinity;
+    for (const step of candidates) {
+      const distance = Math.abs(step.getBoundingClientRect().left - left);
+      if (distance < closestDistance) {
+        closest = step;
+        closestDistance = distance;
+      }
+    }
+    return closest;
+  }
+
   if (steps.length) {
-    const updateFromScroll = () => setActive(closestToViewportCenter(steps));
-    window.addEventListener("scroll", updateFromScroll, { passive: true });
+    const updateFromScroll = () => {
+      if (phoneLayout.matches && deck) setActive(closestToDeckStart(steps));
+      else setActive(closestToViewportCenter(steps));
+    };
+    window.addEventListener("scroll", () => { if (!phoneLayout.matches) updateFromScroll(); }, { passive: true });
     window.addEventListener("resize", updateFromScroll, { passive: true });
+    deck?.addEventListener("scroll", () => { if (phoneLayout.matches) updateFromScroll(); }, { passive: true });
+    /* Tapping a peeking card brings it into place. */
+    steps.forEach((step) => step.addEventListener("click", () => {
+      if (!phoneLayout.matches || !deck || step === activeStep) return;
+      deck.scrollBy({ left: step.getBoundingClientRect().left - deckStart(), behavior: "smooth" });
+    }));
     updateFromScroll();
   }
 })();
