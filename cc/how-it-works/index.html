@@ -46,7 +46,7 @@
       <li>
         <h3>Who is this? <span class="where-tag">My box</span></h3>
         <p>The sender's number is cut down to its last 10 digits and compared against the business's own records: the owner, the crew from their job applications, the customers from their bookings. Whatever it matches decides the role. If nothing matches, they're a stranger.</p>
-<pre class="code"><span class="c"># (706) 555-0142, 7065550142 and +1 706.555.0142 all become the same thing</span>
+<pre class="code"><span class="c"># (555) 555-0142, 5555550142 and +1 555.555.0142 all become the same thing</span>
 <span class="k">def</span> resolve_role(biz, phone):
     p = digits(phone)
     <span class="k">if</span> p == digits(biz.owner.phone):        <span class="k">return</span> <span class="t">"owner"</span>
@@ -111,7 +111,7 @@
     <h2 class="reveal">What "on my box" physically means.</h2>
     <p class="band-lede reveal">Step 2, "is this the owner's number?", is one comparison. Here's what that comparison actually is.</p>
     <ol class="pipe reveal">
-      <li><h3>Text becomes numbers</h3><p>"7065550142" is stored as ten bytes. Each character is a number: "7" is 55, "0" is 48. Each byte is 8 bits, 1s and 0s.</p></li>
+      <li><h3>Text becomes numbers</h3><p>"5555550142" is stored as ten bytes. Each character is a number: "5" is 53, "0" is 48. Each byte is 8 bits, 1s and 0s.</p></li>
       <li><h3>Bits are charges</h3><p>While the program runs, those bits sit in the box's memory (DRAM) as tiny stored charges. Charged is a 1, empty is a 0. That's also where the placeholder list lives, and why it disappears when the conversation ends or the power goes off. It's never written to disk.</p></li>
       <li><h3>Comparing is gates</h3><p>The processor checks the two numbers byte by byte. Inside, the comparison is built from logic gates: an XOR gate outputs 1 when two bits differ, and if every XOR comes out 0, the numbers match. Each gate is a handful of transistors, microscopic switches that turn on or off when a voltage hits them.</p></li>
       <li><h3>Billions of switches, one decision</h3><p>Billions of those switches flipping is what "the system knows it's the owner" physically is. Every access decision on this page comes down to that: a comparison made by code on hardware I control, never a guess by an AI.</p></li>
@@ -134,7 +134,7 @@
 </section>
 </main>
 
-<footer class="foot"><span>Built by Tyrese Chatman · Augusta, GA</span><span><a href="../" style="color:inherit">tyycc.com/cc</a></span></footer>
+<footer class="foot"><span>Built by Tyrese Chatman</span><span><a href="../" style="color:inherit">tyycc.com/cc</a></span></footer>
 <script src="../cc.js"></script>
 </body>
 </html>
