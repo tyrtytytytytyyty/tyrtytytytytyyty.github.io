@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="media/m-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@1,300;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 <script>
   // Sun..Sat. "24" = open around the clock (site: "Open 24/7").
@@ -22,20 +22,22 @@
 
 <header class="hero" id="top">
   <nav class="topbar">
-    <a class="wordmark" href="#top">MAX<b>FITNESS</b></a>
+    <a class="mini-lockup" href="#top"><img src="media/m-icon.png" alt=""><span><b>Max</b>Fitness</span></a>
     <a class="top-cta" href="https://www.clubready.com/JoinUs/11962/625510">Join</a>
   </nav>
 
-  <div class="stage" aria-hidden="true">
-    <img id="m-poster" src="media/m-poster.png" alt="">
-    <canvas id="m3d"></canvas>
+  <div class="hero-main">
+    <h1 class="lockup" aria-label="Max Fitness">
+      <span class="badge3d" aria-hidden="true">
+        <img id="m-poster" src="media/m-poster.png" alt="">
+        <canvas id="m3d"></canvas>
+      </span>
+      <span class="word" aria-hidden="true"><b>ax</b>Fitness<i class="swoosh"></i></span>
+    </h1>
+    <p class="sub"><span>Augusta, GA</span><span class="badge" id="open-now">Open 24/7</span><span class="badge">★ 4.2 Google</span></p>
   </div>
 
-  <div class="hero-copy">
-    <h1>Max<span>Fitness</span></h1>
-    <p class="sub"><span>Augusta, GA</span><span class="badge" id="open-now">Open 24/7</span><span class="badge">★ 4.2 Google</span></p>
-    <p class="scroll-cue">Scroll ↓</p>
-  </div>
+  <p class="scroll-cue">Scroll ↓</p>
 </header>
 
 <main>
