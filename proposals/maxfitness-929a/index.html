@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#1a0100">
+<title>Max Fitness Augusta · Concept</title>
+<meta name="description" content="Concept redesign of the Max Fitness Augusta site, prepared by tyycc.">
+<link rel="icon" href="media/m-icon.png" type="image/png">
+<link rel="apple-touch-icon" href="media/m-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Sun..Sat. "24" = open around the clock (site: "Open 24/7").
+  window.HOURS = ["24", "24", "24", "24", "24", "24", "24"];
+</script>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <nav class="topbar">
+    <a class="wordmark" href="#top">MAX<b>FITNESS</b></a>
+    <a class="top-cta" href="https://www.clubready.com/JoinUs/11962/625510">Join</a>
+  </nav>
+
+  <div class="stage" aria-hidden="true">
+    <img id="m-poster" src="media/m-poster.png" alt="">
+    <canvas id="m3d"></canvas>
+  </div>
+
+  <div class="hero-copy">
+    <h1>Max<span>Fitness</span></h1>
+    <p class="sub"><span>Augusta, GA</span><span class="badge" id="open-now">Open 24/7</span><span class="badge">★ 4.2 Google</span></p>
+    <p class="scroll-cue">Scroll ↓</p>
+  </div>
+</header>
+
+<main>
+  <section class="reveal">
+    <p class="eyebrow">Augusta's #1 gym</p>
+    <h2>Fitness is for everyone.</h2>
+    <p class="lede">20,000+ square feet and 100+ pieces of equipment on Bobby Jones Expressway, open around the clock. Ranked the #1 gym in Augusta by Gym Rank.</p>
+  </section>
+
+  <div class="pass reveal" id="pass">
+    <p class="eyebrow" style="color:#fff">On us</p>
+    <h2>Your first day is free.</h2>
+    <p>Come in, train, and see the place before you pay a dime. Grab a free 1-day pass.</p>
+    <div class="btn-row">
+      <a class="btn" href="https://api.leadconnectorhq.com/widget/form/ZawtY0PDKqCtgRSDqZ79">Claim free day pass →</a>
+      <a class="btn ghost" href="tel:+17063964653">Call the front desk</a>
+    </div>
+  </div>
+
+  <section id="plans">
+    <p class="eyebrow reveal">Memberships</p>
+    <h2 class="reveal">One plan. Everything in it.</h2>
+    <div class="plans">
+      <div class="plan hot reveal">
+        <h3>Premium</h3>
+        <p class="price">$29.99<small> /mo</small></p>
+        <p class="fine" style="margin-top:0"><s>$39.99</s> · first 4 weeks for $4</p>
+        <ul>
+          <li>24-hour access</li>
+          <li>Weights + cardio</li>
+          <li>Group classes</li>
+          <li>Sauna, tanning, hydromassage</li>
+          <li>Spin</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn" href="https://www.clubready.com/JoinUs/11962/625510">Join now</a>
+          <a class="btn ghost" href="https://api.leadconnectorhq.com/widget/form/1t2zXaUYOLTKFzVBABm7">4 weeks for $4</a>
+        </div>
+      </div>
+      <div class="plan reveal">
+        <h3>Personal training</h3>
+        <p class="price">$99<small> / 3 sessions</small></p>
+        <ul>
+          <li>Three one-on-one sessions</li>
+          <li>Push Zone + small-group training</li>
+          <li>Evolt body scan</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn ghost" href="https://api.leadconnectorhq.com/widget/form/wOBjDVuvVuBu5AbNo3Sr">Book 3 sessions</a>
+        </div>
+      </div>
+    </div>
+    <p class="fine reveal">Premium is a 24-month term. Intro offer excludes enrollment and annual fees. Ask the front desk for current details.</p>
+  </section>
+
+  <section id="facility">
+    <p class="eyebrow reveal">The floor</p>
+    <h2 class="reveal">Built to train.</h2>
+    <div class="amen">
+      <div class="reveal"><em>100+</em>Pieces of equipment</div>
+      <div class="reveal"><em>20K</em>Sq ft facility</div>
+      <div class="reveal"><em>24/7</em>Access</div>
+      <div class="reveal">Squat racks + free weights</div>
+      <div class="reveal">Cardio: treads, rowers, bikes, stairs</div>
+      <div class="reveal">LadyMax women's room</div>
+      <div class="reveal">Sauna, tanning, hydromassage</div>
+      <div class="reveal">Supervised Kids Club</div>
+    </div>
+  </section>
+
+  <section id="classes">
+    <p class="eyebrow reveal">Group classes</p>
+    <h2 class="reveal">Les Mills + more.</h2>
+    <div class="amen">
+      <div class="reveal">BodyPump</div>
+      <div class="reveal">BodyCombat</div>
+      <div class="reveal">BodyFlow</div>
+      <div class="reveal">Spin</div>
+      <div class="reveal">Zumba</div>
+      <div class="reveal">Pilates</div>
+      <div class="reveal">Yoga</div>
+      <div class="reveal">Small group</div>
+    </div>
+    <p class="fine reveal"><a href="https://www.maxfitnessaugusta.com/class-schedule">See this week's class schedule →</a></p>
+  </section>
+
+  <section id="visit">
+    <p class="eyebrow reveal">Visit</p>
+    <h2 class="reveal">Find us.</h2>
+    <div class="visit">
+      <div class="card reveal">
+        <p class="addr">270 Bobby Jones Expy<br>Unit 130<br>Augusta, GA 30907</p>
+        <ul class="contact-list">
+          <li><a href="https://maps.apple.com/place?place-id=I5B9232A14F2F25BB">Apple Maps <span>Directions →</span></a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Max+Fitness+270+Bobby+Jones+Expressway+Augusta+GA+30907">Google Maps <span>Directions →</span></a></li>
+          <li><a href="tel:+17063964653">Call <span>(706) 396-4653</span></a></li>
+          <li><a href="mailto:augustasupport@maxfitnessteam.com">Email <span>augustasupport@maxfitnessteam.com</span></a></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <p class="eyebrow">Hours</p>
+        <table class="hours">
+          <tr data-day="1"><td>Monday</td><td>24 hours</td></tr>
+          <tr data-day="2"><td>Tuesday</td><td>24 hours</td></tr>
+          <tr data-day="3"><td>Wednesday</td><td>24 hours</td></tr>
+          <tr data-day="4"><td>Thursday</td><td>24 hours</td></tr>
+          <tr data-day="5"><td>Friday</td><td>24 hours</td></tr>
+          <tr data-day="6"><td>Saturday</td><td>24 hours</td></tr>
+          <tr data-day="0"><td>Sunday</td><td>24 hours</td></tr>
+        </table>
+        <p class="fine">Open 24/7. Call ahead for staffed front-desk hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="social">
+    <p class="eyebrow reveal">Follow</p>
+    <h2 class="reveal">The Max family.</h2>
+    <div class="socials">
+      <a class="reveal" href="https://www.instagram.com/maxfitnessaugustaga/">Instagram<small>@maxfitnessaugustaga</small></a>
+      <a class="reveal" href="https://www.tiktok.com/@max.fitness.augus">TikTok<small>@max.fitness.augus</small></a>
+      <a class="reveal" href="https://www.facebook.com/MaxFitnessAugusta/">Facebook<small>/MaxFitnessAugusta</small></a>
+      <a class="reveal" href="https://classpass.com/studios/max-fitness--augusta">ClassPass<small>Max Fitness Augusta</small></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><b>Max Fitness Augusta</b> · 270 Bobby Jones Expy, Unit 130 · Augusta, GA 30907 · Open 24/7</p>
+  <p style="margin-top:10px">Concept redesign prepared by <b>tyycc</b>. Not the official Max Fitness site.</p>
+</footer>
+
+<nav class="dock" aria-label="Quick actions">
+  <a href="#pass">Free day pass</a>
+  <a href="tel:+17063964653">Call</a>
+</nav>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
