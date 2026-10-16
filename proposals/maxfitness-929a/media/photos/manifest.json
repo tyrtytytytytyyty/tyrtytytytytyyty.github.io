@@ -1,0 +1,82 @@
+[
+  {
+    "file": "themed/turf-floor.jpg",
+    "original": "original/192978_e02237fdd08a461283dec24adc1fa208~mv2.jpg",
+    "scene": "Main training floor: green-turf lane (rebuilt dark) with sled, plyo box, stability ball, and selectorized machines under high steel ceiling and M pillars",
+    "alt": "Wide view of the Max Fitness Augusta training floor with turf lane, plyo box and machines",
+    "recolored": true,
+    "recommended_section": "hero"
+  },
+  {
+    "file": "themed/lobby-seating.jpg",
+    "original": "original/192978_44dcede1780e475da70bb1022066e3e5~mv2.jpeg",
+    "scene": "Front entrance area: red \"Welcome to MaxFitness\" wall with US flag, tile floor with work tables, cardio and machine floor beyond",
+    "alt": "Max Fitness Augusta entrance lounge looking over the gym floor",
+    "recolored": true,
+    "recommended_section": "about / location"
+  },
+  {
+    "file": "themed/cardio-treadmills.jpg",
+    "original": "original/192978_5ca7c3bd433a49f7938046f93d4292f5~mv2.png",
+    "scene": "Cardio row: Matrix treadmills in a long line, M banners and TVs overhead",
+    "alt": "Row of Matrix treadmills at Max Fitness Augusta",
+    "recolored": true,
+    "recommended_section": "facility: cardio"
+  },
+  {
+    "file": "themed/free-weights.jpg",
+    "original": "original/192978_9a08e45e69be4878beacb38b7ceb3ea3~mv2.png",
+    "scene": "Free-weight and plate-loaded area: benches, Hammer Strength racks, big red M pillar logo",
+    "alt": "Plate-loaded and free-weight area with the Max Fitness M logo",
+    "recolored": true,
+    "recommended_section": "facility: strength"
+  },
+  {
+    "file": "themed/locker-room.jpg",
+    "original": "original/192978_ac72f285b2ce45e3b521533937ba4fbd~mv2.png",
+    "scene": "Locker/restroom: frosted-glass stalls, hex-tile floor, vanity mirror, tiled floor with rubber mats",
+    "alt": "Clean locker room stalls with frosted glass doors",
+    "recolored": true,
+    "recommended_section": "amenities"
+  },
+  {
+    "file": "themed/trainer-client.jpg",
+    "original": "original/c58907_bbd79ed992b84e00a6103308d16548a0~mv2.jpg",
+    "scene": "Personal training: male client doing cable work on a Life Fitness functional trainer with a female trainer smiling beside him (vertical)",
+    "alt": "Personal trainer coaching a member at a cable station",
+    "recolored": true,
+    "recommended_section": "personal training / services"
+  },
+  {
+    "file": "themed/ladymax-room.jpg",
+    "original": "original/c58907_b409e14866bc4ff79301c264dea6cd52~mv2.jpg",
+    "scene": "LadyMax women-only room: black walls, hot pink \"Wake up, my girl, work out, look hot\" slogans, purple LED strips, Nautilus machines",
+    "alt": "LadyMax women-only training room with pink and purple lighting",
+    "recolored": false,
+    "recommended_section": "LadyMax / women"
+  },
+  {
+    "file": "themed/group-class.jpg",
+    "original": "original/192978_621a96c79fbc4486b619bb0b2200e6b1~mv2.jpg",
+    "scene": "Group fitness studio: instructor and class posing under purple studio lighting, red accent wall behind (vertical)",
+    "alt": "Group fitness class smiling in the studio",
+    "recolored": false,
+    "recommended_section": "classes"
+  },
+  {
+    "file": "themed/kids-club.jpg",
+    "original": "original/192978_d2aa43034de145e5bfe2ad7c668f6732~mv2.jpg",
+    "scene": "Kids Club collage: Disney and Marvel wall murals, play house, \"KIDS CLUB\" sign, play seats and toys",
+    "alt": "Max Fitness Kids Club childcare room with murals and playhouse",
+    "recolored": false,
+    "recommended_section": "kids club"
+  },
+  {
+    "file": "themed/staff-team.jpg",
+    "original": "original/192978_d62bd1298d354e7582a0b21314579c7e~mv2.png",
+    "scene": "Team photo: four women trainers in blue/pink athletic wear and a bearded male trainer on the turf, M logo behind (recolor blocked by content filter; original kept)",
+    "alt": "Max Fitness Augusta trainer team",
+    "recolored": false,
+    "recommended_section": "team / about"
+  }
+]

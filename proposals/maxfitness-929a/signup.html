@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#2a0204">
+<title>Free 1 Day Pass · Max Fitness Augusta · Concept</title>
+<meta name="description" content="Concept sign-up page for a Max Fitness Augusta free day pass, prepared by tyycc.">
+<link rel="icon" href="media/m-mark-64.png" type="image/png">
+<link rel="apple-touch-icon" href="media/m-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="atmo" aria-hidden="true"><i class="glow g1"></i><i class="glow g2"></i><i class="glow g3"></i><i class="grain"></i></div>
+
+<div class="su">
+  <nav class="su-top">
+    <a class="mark" href="./" aria-label="Max Fitness Augusta home"><img src="media/m-mark.png" alt="" width="40" height="40"></a>
+    <a class="su-back" href="./">Back</a>
+  </nav>
+
+  <div class="su-body">
+    <header class="su-head">
+      <p class="eyebrow">Come in for a Free-Trial!</p>
+      <h1>Free 1 Day Pass</h1>
+      <p>Enter your information below to receive a free 1 day pass to try the gym.</p>
+    </header>
+
+    <form class="form" id="pass-form" novalidate>
+      <div class="row2">
+        <div class="field" data-field="first_name">
+          <label for="f-first">First name*</label>
+          <input id="f-first" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required aria-describedby="e-first">
+          <span class="err" id="e-first" aria-live="polite"></span>
+        </div>
+        <div class="field" data-field="last_name">
+          <label for="f-last">Last name*</label>
+          <input id="f-last" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required aria-describedby="e-last">
+          <span class="err" id="e-last" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="field" data-field="phone">
+        <label for="f-phone">Phone*</label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(706) 555-0123" required aria-describedby="e-phone">
+        <span class="err" id="e-phone" aria-live="polite"></span>
+      </div>
+      <div class="field" data-field="email">
+        <label for="f-email">Email*</label>
+        <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@email.com" required aria-describedby="e-email">
+        <span class="err" id="e-email" aria-live="polite"></span>
+      </div>
+      <!-- COPY-TODO: the four labels below are not on their live form (their one-week-pass form only asks name, email, phone). -->
+      <div class="field" data-field="dob">
+        <label for="f-dob">Date of birth*</label>
+        <input id="f-dob" name="dob" type="date" autocomplete="bday" required aria-describedby="e-dob">
+        <span class="err" id="e-dob" aria-live="polite"></span>
+      </div>
+      <div class="field" data-field="heard">
+        <label for="f-heard">How did you hear about us?*</label>
+        <select id="f-heard" name="heard" required aria-describedby="e-heard">
+          <option value="" selected disabled>Choose one</option>
+          <option>Google</option>
+          <option>Instagram</option>
+          <option>Facebook</option>
+          <option>TikTok</option>
+          <option>Friend or family</option>
+          <option>Drove by</option>
+          <option>Other</option>
+        </select>
+        <span class="err" id="e-heard" aria-live="polite"></span>
+      </div>
+      <div class="field" data-field="visit_date">
+        <label for="f-visit">Preferred visit day*</label>
+        <input id="f-visit" name="visit_date" type="date" required aria-describedby="e-visit">
+        <span class="err" id="e-visit" aria-live="polite"></span>
+      </div>
+      <div class="field" data-field="visit_time" role="radiogroup" aria-labelledby="l-time">
+        <span class="lbl" id="l-time">Preferred time*</span>
+        <div class="chiprow">
+          <label><input type="radio" name="visit_time" value="Early morning"><span>Early morning</span></label>
+          <label><input type="radio" name="visit_time" value="Morning"><span>Morning</span></label>
+          <label><input type="radio" name="visit_time" value="Afternoon"><span>Afternoon</span></label>
+          <label><input type="radio" name="visit_time" value="Evening"><span>Evening</span></label>
+          <label><input type="radio" name="visit_time" value="Late night"><span>Late night</span></label>
+        </div>
+        <span class="err" aria-live="polite"></span>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox" name="consent" required>
+        <p>By checking this box, I agree to <a href="https://www.maxfitnessaugusta.com/privacy-and-terms">terms and conditions</a> of Max Fitness. I also agree to receive recurring text messages and phone calls from Max Fitness. Messages may include appointment reminders, class updates, and promotions. Message frequency varies. Message and data rates may apply.  Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase.</p>
+      </label>
+
+      <p class="form-err" id="form-err" role="alert"></p>
+      <button class="btn" type="submit">Submit</button>
+      <p class="fine">*Must present a local state ID, or local University ID to qualify for a free pass.</p>
+    </form>
+  </div>
+
+  <div class="done" id="pass-done" hidden>
+    <p class="eyebrow" style="justify-content:center">Here you go!</p>
+    <h1 tabindex="-1">Congratulations!</h1>
+    <p class="sub">We can't wait to see you!</p>
+    <div class="ticket">
+      <div class="ticket-top"><img src="media/m-mark.png" alt="" width="46" height="46"><b>Max Fitness 1 Day Pass</b></div>
+      <dl>
+        <div><dt>Name</dt><dd id="t-name"></dd></div>
+        <div><dt>Day</dt><dd id="t-day"></dd></div>
+        <div><dt>Time</dt><dd id="t-time"></dd></div>
+        <div><dt>Where</dt><dd>270 Bobby Jones Expy, Unit 130</dd></div>
+        <div class="code"><dt>Pass</dt><dd id="t-code"></dd></div>
+      </dl>
+      <p class="ticket-note">Show this pass to a Max Fitness team member to redeem</p>
+    </div>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Max+Fitness+270+Bobby+Jones+Expressway+Augusta+GA+30907">Get Directions To Max Fitness</a>
+    <p class="fine">*Must present a local state ID, or local University ID to qualify for a free pass.</p>
+  </div>
+
+  <p class="fine" style="text-align:center;margin-top:40px">Concept redesign prepared by <b>tyycc</b>. Not the official Max Fitness site.</p>
+</div>
+
+<script src="ui.js"></script>
+</body>
+</html>
