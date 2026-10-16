@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="media/m-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@1,300;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;1,300;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 <script>
   // Sun..Sat. "24" = open around the clock (site: "Open 24/7").
@@ -22,52 +22,86 @@
 
 <header class="hero" id="top">
   <nav class="topbar">
-    <a class="mini-lockup" href="#top"><img src="media/m-icon.png" alt=""><span><b>Max</b>Fitness</span></a>
+    <a class="mini-lockup" href="#top" aria-label="Max Fitness Augusta"><img src="media/m-icon.png" alt=""><span><b>Max</b>Fitness</span></a>
     <a class="top-cta" href="https://www.clubready.com/JoinUs/11962/625510">Join</a>
   </nav>
 
   <div class="hero-main">
     <h1 class="lockup" aria-label="Max Fitness">
+      <svg class="lockup-art" viewBox="0 0 600 340" aria-hidden="true" focusable="false">
+        <polygon class="bar" points="0,224 8,208 520,208 512,224" />
+        <text class="a" x="226" y="196">a</text>
+        <g class="xg" transform="translate(62 0)"><polygon class="x" points="352,40 414,40 494,240 432,240" /><polygon class="x" points="334,206 396,206 498,40 436,40" /></g>
+        <text class="fit" x="112" y="330" textLength="478" lengthAdjust="spacingAndGlyphs">Fitness</text>
+      </svg>
       <span class="badge3d" aria-hidden="true">
         <img id="m-poster" src="media/m-poster.png" alt="">
         <canvas id="m3d"></canvas>
       </span>
-      <span class="word" aria-hidden="true"><b>ax</b>Fitness<i class="swoosh"></i></span>
     </h1>
-    <p class="sub"><span>Augusta, GA</span><span class="badge" id="open-now">Open 24/7</span><span class="badge">★ 4.2 Google</span></p>
+    <p class="tag">Augusta's #1 gym. <span id="open-now" class="open-now">Open 24/7</span></p>
+    <div class="hero-cta">
+      <a class="btn" href="#pass">Free day pass</a>
+      <a class="btn ghost" href="#text">Text us</a>
+    </div>
   </div>
 
-  <p class="scroll-cue">Scroll ↓</p>
+  <p class="scroll-cue" aria-hidden="true">Scroll</p>
 </header>
 
 <main>
-  <section class="reveal">
-    <p class="eyebrow">Augusta's #1 gym</p>
+  <section class="intro reveal">
+    <p class="eyebrow">Bobby Jones Expressway</p>
     <h2>Fitness is for everyone.</h2>
-    <p class="lede">20,000+ square feet and 100+ pieces of equipment on Bobby Jones Expressway, open around the clock. Ranked the #1 gym in Augusta by Gym Rank.</p>
+    <p class="lede">Twenty thousand square feet, a hundred-plus pieces of equipment, and the doors never lock. Come when it suits you.</p>
+    <dl class="figures">
+      <div><dt>24/7</dt><dd>Open</dd></div>
+      <div><dt>20K</dt><dd>Sq ft</dd></div>
+      <div><dt>100+</dt><dd>Machines</dd></div>
+      <div><dt>4.2</dt><dd>Google</dd></div>
+    </dl>
+  </section>
+
+  <section class="textus" id="text">
+    <div class="textus-copy reveal">
+      <p class="eyebrow">Coming soon</p>
+      <h2>Text us.<br>We answer in seconds, day or night.</h2>
+      <p class="lede">Day pass, hours, pricing, classes. Send a text and get a straight answer. No phone tree, no waiting for the front desk to open.</p>
+      <a class="btn" id="text-btn" href="#" aria-disabled="true">Text us <span class="soon">Coming soon</span></a>
+      <p class="fine">Preview. Texting is not live yet. This is where the site will send you.</p>
+    </div>
+    <div class="phone reveal" aria-label="Example text conversation">
+      <div class="phone-top"><span class="ava">M</span><b>Max Fitness</b><small>Text message</small></div>
+      <ol class="thread" id="thread">
+        <li class="msg me">can I get a free day pass?</li>
+        <li class="msg them">Yes. Your first day is on us. We're open 24/7 at 270 Bobby Jones Expy, Unit 130. Want the pass link?</li>
+        <li class="msg me">yes pls</li>
+        <li class="msg them">Here you go. Come in whenever you like, any hour.<span class="link">Open your day pass</span></li>
+      </ol>
+      <div class="phone-input"><span>Text message</span><i></i></div>
+    </div>
   </section>
 
   <div class="pass reveal" id="pass">
-    <p class="eyebrow" style="color:#fff">On us</p>
+    <p class="eyebrow">On us</p>
     <h2>Your first day is free.</h2>
-    <p>Come in, train, and see the place before you pay a dime. Grab a free 1-day pass.</p>
+    <p>Walk in, train, look around. Decide after.</p>
     <div class="btn-row">
-      <a class="btn" href="https://api.leadconnectorhq.com/widget/form/ZawtY0PDKqCtgRSDqZ79">Claim free day pass →</a>
+      <a class="btn" href="https://api.leadconnectorhq.com/widget/form/ZawtY0PDKqCtgRSDqZ79">Claim your free day pass</a>
       <a class="btn ghost" href="tel:+17063964653">Call the front desk</a>
     </div>
   </div>
 
   <section id="plans">
     <p class="eyebrow reveal">Memberships</p>
-    <h2 class="reveal">One plan. Everything in it.</h2>
+    <h2 class="reveal">One membership.<br>Everything in it.</h2>
     <div class="plans">
-      <div class="plan hot reveal">
-        <h3>Premium</h3>
-        <p class="price">$29.99<small> /mo</small></p>
-        <p class="fine" style="margin-top:0"><s>$39.99</s> · first 4 weeks for $4</p>
+      <article class="plan hot reveal">
+        <header><h3>Premium</h3><p class="price">$29.99<small>/mo</small></p></header>
+        <p class="deal"><s>$39.99</s> First four weeks for $4</p>
         <ul>
           <li>24-hour access</li>
-          <li>Weights + cardio</li>
+          <li>Unlimited weights and cardio</li>
           <li>Group classes</li>
           <li>Sauna, tanning, hydromassage</li>
           <li>Spin</li>
@@ -76,19 +110,19 @@
           <a class="btn" href="https://www.clubready.com/JoinUs/11962/625510">Join now</a>
           <a class="btn ghost" href="https://api.leadconnectorhq.com/widget/form/1t2zXaUYOLTKFzVBABm7">4 weeks for $4</a>
         </div>
-      </div>
-      <div class="plan reveal">
-        <h3>Personal training</h3>
-        <p class="price">$99<small> / 3 sessions</small></p>
+      </article>
+      <article class="plan reveal">
+        <header><h3>Personal training</h3><p class="price">$99<small>/3 sessions</small></p></header>
+        <p class="deal">Coaching built around your numbers</p>
         <ul>
           <li>Three one-on-one sessions</li>
-          <li>Push Zone + small-group training</li>
+          <li>Push Zone and small-group training</li>
           <li>Evolt body scan</li>
         </ul>
         <div class="btn-row">
           <a class="btn ghost" href="https://api.leadconnectorhq.com/widget/form/wOBjDVuvVuBu5AbNo3Sr">Book 3 sessions</a>
         </div>
-      </div>
+      </article>
     </div>
     <p class="fine reveal">Premium is a 24-month term. Intro offer excludes enrollment and annual fees. Ask the front desk for current details.</p>
   </section>
@@ -96,48 +130,36 @@
   <section id="facility">
     <p class="eyebrow reveal">The floor</p>
     <h2 class="reveal">Built to train.</h2>
-    <div class="amen">
-      <div class="reveal"><em>100+</em>Pieces of equipment</div>
-      <div class="reveal"><em>20K</em>Sq ft facility</div>
-      <div class="reveal"><em>24/7</em>Access</div>
-      <div class="reveal">Squat racks + free weights</div>
-      <div class="reveal">Cardio: treads, rowers, bikes, stairs</div>
-      <div class="reveal">LadyMax women's room</div>
-      <div class="reveal">Sauna, tanning, hydromassage</div>
-      <div class="reveal">Supervised Kids Club</div>
-    </div>
+    <ul class="ruled reveal">
+      <li><b>Strength</b><span>Squat racks, free weights, and machines for every muscle group</span></li>
+      <li><b>Cardio</b><span>Treadmills, rowers, bikes, stair climbers</span></li>
+      <li><b>Recovery</b><span>Sauna, tanning, hydromassage</span></li>
+      <li><b>LadyMax</b><span>A women's training room, black walls and pink type</span></li>
+      <li><b>Kids Club</b><span>Supervised and fully remodeled, so you can train in peace</span></li>
+    </ul>
   </section>
 
   <section id="classes">
     <p class="eyebrow reveal">Group classes</p>
-    <h2 class="reveal">Les Mills + more.</h2>
-    <div class="amen">
-      <div class="reveal">BodyPump</div>
-      <div class="reveal">BodyCombat</div>
-      <div class="reveal">BodyFlow</div>
-      <div class="reveal">Spin</div>
-      <div class="reveal">Zumba</div>
-      <div class="reveal">Pilates</div>
-      <div class="reveal">Yoga</div>
-      <div class="reveal">Small group</div>
-    </div>
-    <p class="fine reveal"><a href="https://www.maxfitnessaugusta.com/class-schedule">See this week's class schedule →</a></p>
+    <h2 class="reveal">Les Mills and more.</h2>
+    <p class="classes reveal">BodyPump <i>/</i> BodyCombat <i>/</i> BodyFlow <i>/</i> Spin <i>/</i> Zumba <i>/</i> Pilates <i>/</i> Yoga <i>/</i> Small group</p>
+    <p class="fine reveal"><a href="https://www.maxfitnessaugusta.com/class-schedule">See this week's class schedule</a></p>
   </section>
 
   <section id="visit">
     <p class="eyebrow reveal">Visit</p>
     <h2 class="reveal">Find us.</h2>
     <div class="visit">
-      <div class="card reveal">
+      <div class="reveal">
         <p class="addr">270 Bobby Jones Expy<br>Unit 130<br>Augusta, GA 30907</p>
         <ul class="contact-list">
-          <li><a href="https://maps.apple.com/place?place-id=I5B9232A14F2F25BB">Apple Maps <span>Directions →</span></a></li>
-          <li><a href="https://www.google.com/maps/search/?api=1&query=Max+Fitness+270+Bobby+Jones+Expressway+Augusta+GA+30907">Google Maps <span>Directions →</span></a></li>
+          <li><a href="https://maps.apple.com/place?place-id=I5B9232A14F2F25BB">Apple Maps <span>Directions</span></a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Max+Fitness+270+Bobby+Jones+Expressway+Augusta+GA+30907">Google Maps <span>Directions</span></a></li>
           <li><a href="tel:+17063964653">Call <span>(706) 396-4653</span></a></li>
           <li><a href="mailto:augustasupport@maxfitnessteam.com">Email <span>augustasupport@maxfitnessteam.com</span></a></li>
         </ul>
       </div>
-      <div class="card reveal">
+      <div class="reveal">
         <p class="eyebrow">Hours</p>
         <table class="hours">
           <tr data-day="1"><td>Monday</td><td>24 hours</td></tr>
@@ -156,12 +178,12 @@
   <section id="social">
     <p class="eyebrow reveal">Follow</p>
     <h2 class="reveal">The Max family.</h2>
-    <div class="socials">
-      <a class="reveal" href="https://www.instagram.com/maxfitnessaugustaga/">Instagram<small>@maxfitnessaugustaga</small></a>
-      <a class="reveal" href="https://www.tiktok.com/@max.fitness.augus">TikTok<small>@max.fitness.augus</small></a>
-      <a class="reveal" href="https://www.facebook.com/MaxFitnessAugusta/">Facebook<small>/MaxFitnessAugusta</small></a>
-      <a class="reveal" href="https://classpass.com/studios/max-fitness--augusta">ClassPass<small>Max Fitness Augusta</small></a>
-    </div>
+    <ul class="socials reveal">
+      <li><a href="https://www.instagram.com/maxfitnessaugustaga/">Instagram<small>@maxfitnessaugustaga</small></a></li>
+      <li><a href="https://www.tiktok.com/@max.fitness.augus">TikTok<small>@max.fitness.augus</small></a></li>
+      <li><a href="https://www.facebook.com/MaxFitnessAugusta/">Facebook<small>/MaxFitnessAugusta</small></a></li>
+      <li><a href="https://classpass.com/studios/max-fitness--augusta">ClassPass<small>Max Fitness Augusta</small></a></li>
+    </ul>
   </section>
 </main>
 

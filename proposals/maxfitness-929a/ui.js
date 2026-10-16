@@ -12,12 +12,30 @@
   addEventListener("resize", reveal);
   reveal();
 
+  // texting preview: messages arrive one by one when the phone scrolls into view
+  const msgs = Array.from(document.querySelectorAll(".msg"));
+  const phone = document.querySelector(".phone");
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let played = false;
+  function playThread() {
+    if (played || !phone) return;
+    if (!still && phone.getBoundingClientRect().top > innerHeight * 0.75) return;
+    played = true;
+    msgs.forEach((m, i) => setTimeout(() => m.classList.add("show"), still ? 0 : 500 + i * 1100));
+  }
+  if (!phone) msgs.forEach((m) => m.classList.add("show"));
+  else { addEventListener("scroll", playThread, { passive: true }); playThread(); }
+  // failsafe: never leave the thread hidden
+  setTimeout(() => { played = true; msgs.forEach((m) => m.classList.add("show")); }, 12000);
+  const textBtn = document.getElementById("text-btn");
+  if (textBtn) textBtn.addEventListener("click", (e) => e.preventDefault());
+
   // open/closed badge from the hours table
 const badge = document.getElementById("open-now");
 if (badge && window.HOURS) {
   const now = new Date();
   const today = window.HOURS[now.getDay()];
-  if (today === "24") { badge.textContent = "Open now · 24/7"; badge.classList.add("open"); }
+  if (today === "24") { badge.textContent = "Open now"; badge.classList.add("open"); }
   else if (today) {
     const [o, c] = today;
     const h = now.getHours() + now.getMinutes() / 60;
