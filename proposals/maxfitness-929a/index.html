@@ -231,6 +231,81 @@
   <p class="disclaimer">Concept redesign prepared by <b>tyycc</b>. Not the official Max Fitness site.</p>
 </footer>
 
+<!-- Prototype controls (for Tyrese), 2026-10-16. Demo aid for the text line; no member data on this page. -->
+<style>
+  footer { padding-bottom: 36px; }
+  .proto { padding: 8px var(--gut) calc(110px + env(safe-area-inset-bottom)); }
+  .proto-panel { max-width: 760px; margin: 0 auto; background: #fff; color: #141010; border-radius: 14px; padding: 22px 18px 20px;
+    box-shadow: 0 0 0 3px var(--red), 0 18px 50px rgba(0, 0, 0, .55); font: 400 15px/1.5 var(--body); }
+  .proto-panel .tag { display: inline-block; font: 700 10.5px/1 var(--body); letter-spacing: .2em; text-transform: uppercase; color: #fff; background: var(--red); padding: 6px 9px; border-radius: 6px; }
+  .proto-panel h2 { font: 800 26px/1.08 var(--display); font-stretch: 112%; letter-spacing: -.01em; margin: 12px 0 6px; color: #0d0909; }
+  .proto-panel h3 { font: 800 15px/1.2 var(--display); text-transform: uppercase; letter-spacing: .06em; margin: 22px 0 10px; color: var(--red); }
+  .proto-panel p { color: #3b3333; }
+  .proto-panel code { font: 600 13px/1.4 ui-monospace, "SF Mono", Menlo, monospace; background: #f4efed; color: #0d0909; padding: 2px 6px; border-radius: 5px; word-break: break-word; }
+  .proto-cmds { list-style: none; display: grid; gap: 10px; }
+  .proto-cmds li { border: 1px solid #eadfdc; border-radius: 10px; padding: 10px 12px; }
+  .proto-cmds li code:first-child { display: block; font-size: 13.5px; background: #0d0909; color: #fff; padding: 8px 10px; margin-bottom: 6px; }
+  .proto-cmds small { display: block; color: #6a5f5f; font-size: 13px; margin-top: 4px; }
+  .proto-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid #eadfdc; border-radius: 10px; }
+  .proto-panel table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  @media (max-width: 599px) {
+    .proto-panel thead { display: none; }
+    .proto-panel tr { display: block; padding: 10px 12px; border-bottom: 1px solid #f0e7e4; }
+    .proto-panel td { display: block; border: 0; padding: 3px 0; }
+    .proto-panel td:first-child { font: 800 16px/1.2 var(--display); color: var(--red); padding-bottom: 6px; white-space: normal; }
+    .proto-panel td[data-l]::before { content: attr(data-l) ": "; font-weight: 700; color: #141010; }
+  }
+  .proto-panel th, .proto-panel td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid #f0e7e4; }
+  .proto-panel th { background: #f8f3f1; font: 700 12px/1.2 var(--body); text-transform: uppercase; letter-spacing: .06em; color: #4a3f3f; }
+  .proto-panel td:first-child { font-weight: 700; white-space: nowrap; }
+  .proto-steps { padding-left: 20px; display: grid; gap: 7px; color: #3b3333; }
+  .proto-note { margin-top: 16px; font-size: 13px; color: #6a5f5f; border-left: 3px solid var(--red); padding-left: 10px; }
+  @media (min-width: 700px) { .proto-panel { padding: 30px 32px 26px; } .proto-panel h2 { font-size: 32px; } }
+</style>
+<section class="proto" id="prototype-controls" aria-labelledby="proto-title">
+  <div class="proto-panel">
+    <span class="tag">Prototype · not part of the site</span>
+    <h2 id="proto-title">Prototype controls (for Tyrese)</h2>
+    <p>The AI text line runs on Tyrese's phone number. These commands only work when he texts them from his own number; anyone else who sends them gets nothing.</p>
+
+    <h3>Command cheat sheet</h3>
+    <ul class="proto-cmds">
+      <li><code>max fitness on</code>Every unknown number that texts gets the Max Fitness line. Turns itself off after 4 hours.<small>Example: <code>max fitness on</code> · custom timer: <code>max fitness on 2</code> (2 hours)</small></li>
+      <li><code>max fitness off</code>Kill switch. Effective on the very next text.</li>
+      <li><code>max fitness status</code>On or off, time left, and how many numbers have roles.</li>
+      <li><code>role &lt;phone&gt; &lt;customer|current|employee|owner&gt; &lt;description&gt;</code>Tells the line who a number is. The description is everything the bot knows about that person; it never invents more. Phone can be typed with or without dashes, spaces or +1.<small>Example: <code>role 706-555-1234 employee general manager, works 9-5 Mon-Fri, oversees front desk</code></small><small>Example: <code>role 7065551234 current Premium member, wants to freeze in December</code></small></li>
+      <li><code>role &lt;phone&gt; clear</code>Removes the role (also: <code>clear &lt;phone&gt;</code>).<small>Example: <code>role 706-555-1234 clear</code></small></li>
+      <li><code>whoami &lt;phone&gt;</code>Shows what the line thinks that number is, and whether it routes to Max Fitness.<small>Example: <code>whoami 706-555-1234</code></small></li>
+      <li><code>roles</code>Lists every number with a role.</li>
+      <li><code>mf-op sim &lt;phone&gt; &lt;question&gt;</code>Dry run: the answer comes back to Tyrese, nothing is sent to that number.<small>Example: <code>mf-op sim 706-555-1234 how much is a membership?</code></small></li>
+    </ul>
+
+    <h3>What each role can see and do</h3>
+    <div class="proto-scroll">
+      <table>
+        <thead><tr><th>Role</th><th>Sees</th><th>Can do by text</th><th>Hand-off</th></tr></thead>
+        <tbody>
+          <tr><td>Customer<br><small>(any unknown number)</small></td><td data-l="Sees">Public facts only: hours, location, prices, intro offer, day pass, classes offered, amenities</td><td data-l="Can do">Ask anything about joining or visiting</td><td data-l="Hand-off">Things the bot can't confirm are logged for the team</td></tr>
+          <tr><td>Current</td><td data-l="Sees">Public facts + the description Tyrese typed</td><td data-l="Can do">Ask about cancelling, freezing, billing, personal training (answered from public policy)</td><td data-l="Hand-off">Account actions: "a team member will follow up", and the owner's phone gets the request</td></tr>
+          <tr><td>Employee</td><td data-l="Sees">Public facts + their own description (job, hours)</td><td data-l="Can do">Ask about their own schedule and role</td><td data-l="Hand-off">Anything not in their description: "let me check with the team"</td></tr>
+          <tr><td>Owner</td><td data-l="Sees">Public facts + their own description</td><td data-l="Can do">Quick answers about the club's public offer; receives escalations</td><td data-l="Hand-off">Urgent issues (injury, safety, billing disputes, cancellations) are texted to the owner</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>How the demo works</h3>
+    <ol class="proto-steps">
+      <li>Tyrese texts himself <code>max fitness on</code>.</li>
+      <li>The GM texts Tyrese's number with any question ("how much is a membership?"). She gets the automated Max Fitness line: an intro, then real answers from the club's public info.</li>
+      <li>Tyrese texts <code>role &lt;her number&gt; employee general manager, works 9-5 Mon-Fri</code>. Same number, new role: she asks "what hours am I working?" and it answers from that description only.</li>
+      <li>Switch her to <code>current</code> and ask to freeze or cancel: it explains the policy and hands the account action to the owner.</li>
+      <li>Switch her to <code>owner</code>, then text as a customer from another phone with something urgent: the escalation lands on her phone.</li>
+      <li>Off-topic texts ("tell me a joke") get one fixed reply and cost nothing. When done: <code>max fitness off</code>.</li>
+    </ol>
+    <p class="proto-note">Every reply is checked before it sends: no invented prices, links or phone numbers, no account changes promised, and nobody sees another person's information. Conversations are logged encrypted on Tyrese's Mac.</p>
+  </div>
+</section>
+
 <nav class="dock" aria-label="Quick actions">
   <a href="signup.html">Free 1 Day Pass</a>
   <a href="tel:+17063964653">Call</a>
