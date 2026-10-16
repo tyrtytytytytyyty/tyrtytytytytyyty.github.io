@@ -1,74 +1,7 @@
 (function(){
 'use strict';
-var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 var $=function(s,r){return (r||document).querySelector(s)};
 var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
-
-/* ---------- reveal on scroll ---------- */
-(function(){
-  var els=[].slice.call(document.querySelectorAll('.rv'));
-  if(RM||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-  els.forEach(function(e,i){  });
-  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
-  els.forEach(function(e){io.observe(e)});
-})();
-
-/* ---------- 3D logo (stacked layers, CSS 3D) ---------- */
-(function(){
-  var stage=$('#stage'),rig=$('#rig'),front=$('.layer.front');
-  if(!stage||!rig||!front)return;
-  var N=10,GAP=2.2;
-  front.style.transform='translateZ(0)';
-  for(var i=1;i<N;i++){
-    var c=front.cloneNode(false);
-    c.className='layer';c.removeAttribute('fetchpriority');c.alt='';c.setAttribute('aria-hidden','true');
-    c.style.transform='translateZ('+(-i*GAP)+'px)';
-    c.style.filter='brightness('+(0.78-0.5*(i/(N-1))).toFixed(2)+')';
-    rig.appendChild(c);
-  }
-  if(RM){rig.style.transform='rotateX(6deg) rotateY(-10deg)';return}
-
-  var tx=0,ty=0,cx=0,cy=0,oriOn=false,base=null,px=0,py=0,visible=true,t0=performance.now();
-  function onOri(e){
-    if(e.beta==null||e.gamma==null)return;
-    if(!base)base={b:e.beta,g:e.gamma};
-    oriOn=true;
-    ty=clamp((e.gamma-base.g)*0.45,-16,16);
-    tx=clamp(-(e.beta-base.b)*0.45,-14,14);
-  }
-  function enableOri(){
-    if(typeof DeviceOrientationEvent==='undefined')return;
-    if(typeof DeviceOrientationEvent.requestPermission==='function'){
-      var go=function(){DeviceOrientationEvent.requestPermission().then(function(r){if(r==='granted')addEventListener('deviceorientation',onOri)}).catch(function(){});};
-      addEventListener('touchend',go,{once:true});
-    }else addEventListener('deviceorientation',onOri);
-  }
-  enableOri();
-  stage.addEventListener('pointermove',function(e){
-    if(e.pointerType==='touch'&&oriOn)return;
-    var r=stage.getBoundingClientRect();
-    py=clamp(((e.clientX-r.left)/r.width-.5)*2,-1,1);px=clamp(((e.clientY-r.top)/r.height-.5)*2,-1,1);
-  });
-  stage.addEventListener('pointerleave',function(){px=py=0});
-
-  var last=performance.now();
-  function frame(now){
-    requestAnimationFrame(frame);
-    if(!visible)return;
-    var dt=Math.min(.05,(now-last)/1000);last=now;
-    var t=(now-t0)/1000;
-    if(!oriOn){
-      var sc=clamp(scrollY/400,0,1);
-      ty=py*12+Math.sin(t*.7)*7;
-      tx=-px*9+Math.cos(t*.55)*3.5+sc*8;
-    }
-    cx+=(tx-cx)*Math.min(1,dt*6);cy+=(ty-cy)*Math.min(1,dt*6);
-    rig.style.transform='rotateX('+cx.toFixed(2)+'deg) rotateY('+cy.toFixed(2)+'deg)';
-  }
-  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;last=performance.now()}).observe(stage);
-  document.addEventListener('visibilitychange',function(){last=performance.now()});
-  requestAnimationFrame(frame);
-})();
 
 /* ---------- before/after slider ---------- */
 (function(){
@@ -183,9 +116,12 @@ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
   render();
 })();
 /* ---------- services picker (vertical wheel) ---------- */
-(function(){
+var pkState=null;
+window.initPicker=function(){
   var pk=$('#pk');if(!pk)return;
+  if(pkState)pk.removeEventListener('scroll',pkState);
   var items=[].slice.call(pk.children),H=72,raf=0;
+  pk.scrollTop=0;
   function paint(){
     raf=0;var c=pk.scrollTop+pk.clientHeight/2;
     items.forEach(function(li){
@@ -196,9 +132,11 @@ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
     });
   }
   function q(){if(!raf)raf=requestAnimationFrame(paint)}
+  pkState=q;
   pk.addEventListener('scroll',q,{passive:true});
   items.forEach(function(li,i){li.addEventListener('click',function(){pk.scrollTo({top:i*H,behavior:'smooth'})})});
-  addEventListener('resize',q);
   paint();
-})();
+};
+addEventListener('resize',function(){if(pkState)pkState()});
+if(window.__pickerReady)window.initPicker();
 })();
