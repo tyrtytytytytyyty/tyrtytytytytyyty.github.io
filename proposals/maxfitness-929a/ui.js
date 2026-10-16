@@ -39,31 +39,72 @@ const PASS_ENDPOINT = "https://maxfit-signup.thecoolwolfguy09.workers.dev/mf/sig
   });
   setTimeout(() => pending.splice(0).forEach((el) => el.classList.add("in")), 15000); // failsafe
 
-  // ---------- atmosphere: red light that travels down the page with you ----------
-  // Keyframes over page progress p (0 = top, 1 = bottom). Only transform/opacity change, so it stays cheap.
+  // ---------- atmosphere: red light that drifts down the page with you ----------
+  // 2026-10-16 smoothing pass. The old version jumped (worst around the free day pass): stops
+  // bunched up with 60+vw swings between them, a smoothstep per segment that stalls at every
+  // stop then lurches, and the light pinned straight to scrollY so a fling or a photo loading
+  // (page height change) snapped it. Now:
+  //   1. evenly spaced stops with small moves, mapped across the WHOLE page height,
+  //   2. sine easing on page progress + a Catmull-Rom curve through the stops (C1-smooth: no
+  //      kinks, no stall-and-lurch at the stops),
+  //   3. a requestAnimationFrame lerp toward the scroll target (frame-rate independent), so the
+  //      light drifts after you instead of stepping, and a height change glides instead of snapping.
+  // Still transform + opacity only (compositor-cheap on phones). Reduced motion: one static frame.
   const g1 = $(".g1"), g2 = $(".g2"), g3 = $(".g3");
   const K = [
-    // p,   g1 x,y(vw,vh) s  o     g2 x,y s  o      g3 y  o
-    [0.00, -28, -42, 0.90, 1.00,  40, 50, 0.70, 0.20,  80, 0.30],
-    [0.18,  30, -30, 0.80, 0.70, -30, 40, 0.90, 0.55,  70, 0.55],
-    [0.40, -35,  10, 0.95, 0.55,  35, -10, 0.80, 0.75, 60, 0.45],
-    [0.62,  25, -20, 0.85, 0.80, -40, 45, 0.95, 0.50,  65, 0.55],
-    [0.82, -20,  30, 0.80, 0.55,  30, -25, 0.90, 0.85, 75, 0.35],
-    [1.00,   0,  45, 1.05, 0.95, -20, -40, 0.70, 0.55, 90, 0.20]
+    // g1 x,y(vw,vh)  s     o      g2 x,y      s     o      g3 y   o      (stops evenly spaced over p 0 → 1)
+    [-28, -42, 0.90, 1.00,  40,  50, 0.70, 0.20,  80, 0.30],
+    [ -8, -30, 0.86, 0.82,  22,  36, 0.78, 0.38,  75, 0.40],
+    [ 10, -14, 0.88, 0.70,   2,  18, 0.86, 0.56,  68, 0.46],
+    [ -6,  -6, 0.86, 0.68, -18,  16, 0.90, 0.62,  66, 0.48],
+    [-14,  18, 0.84, 0.66,   0,  -6, 0.86, 0.64,  73, 0.38],
+    [  0,  45, 1.05, 0.95, -20, -40, 0.70, 0.55,  90, 0.20]
   ];
-  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp01 = (x) => Math.min(1, Math.max(0, x));
+  const ease = (p) => 0.5 - 0.5 * Math.cos(Math.PI * p);           // gentle in/out over the whole page
+  const v = new Array(K[0].length);
+  function sample(p) {                                              // uniform Catmull-Rom through the stops
+    const n = K.length - 1, x = clamp01(p) * n;
+    const i = Math.min(n - 1, Math.floor(x)), t = x - i, t2 = t * t, t3 = t2 * t;
+    const P0 = K[Math.max(0, i - 1)], P1 = K[i], P2 = K[i + 1], P3 = K[Math.min(n, i + 2)];
+    for (let k = 0; k < v.length; k++) {
+      v[k] = 0.5 * (2 * P1[k] + (P2[k] - P0[k]) * t + (2 * P0[k] - 5 * P1[k] + 4 * P2[k] - P3[k]) * t2 +
+                    (3 * P1[k] - P0[k] - 3 * P2[k] + P3[k]) * t3);
+    }
+    return v;
+  }
+  function paint(p) {
+    const a = sample(ease(p));
+    g1.style.transform = `translate3d(${a[0].toFixed(2)}vw, ${a[1].toFixed(2)}vh, 0) scale(${a[2].toFixed(4)})`;
+    g1.style.opacity = clamp01(a[3]).toFixed(3);
+    g2.style.transform = `translate3d(${a[4].toFixed(2)}vw, ${a[5].toFixed(2)}vh, 0) scale(${a[6].toFixed(4)})`;
+    g2.style.opacity = clamp01(a[7]).toFixed(3);
+    g3.style.transform = `translate3d(0, ${a[8].toFixed(2)}vh, 0)`;
+    g3.style.opacity = clamp01(a[9]).toFixed(3);
+  }
+  // page height is cached (no layout read per scroll frame) and re-measured when it changes
+  let maxScroll = 1;
+  const measure = () => { maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight); };
+  measure();
+  addEventListener("resize", measure);
+  if ("ResizeObserver" in window) new ResizeObserver(() => { measure(); queue(); }).observe(document.body);
+  const TAU = 0.5;                                                  // seconds to cover ~63% of the gap
+  let cur = null, target = 0, running = false, last = 0;
+  function drift(now) {
+    const dt = last ? Math.min(0.1, (now - last) / 1000) : 1 / 60;
+    last = now;
+    cur += (target - cur) * (1 - Math.exp(-dt / TAU));
+    if (Math.abs(target - cur) < 0.0001) cur = target;
+    paint(cur);
+    if (cur !== target) requestAnimationFrame(drift);
+    else { running = false; last = 0; }
+  }
   function atmo() {
     if (!g1) return;
-    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    const p = still ? 0 : Math.min(1, Math.max(0, scrollY / max));
-    let i = 0; while (i < K.length - 2 && p > K[i + 1][0]) i++;
-    const a = K[i], b = K[i + 1];
-    const t = (p - a[0]) / (b[0] - a[0]);
-    const s = t * t * (3 - 2 * t); // smoothstep between stops
-    const v = a.map((x, k) => lerp(x, b[k], s));
-    g1.style.transform = `translate(${v[1]}vw, ${v[2]}vh) scale(${v[3]})`; g1.style.opacity = v[4];
-    g2.style.transform = `translate(${v[5]}vw, ${v[6]}vh) scale(${v[7]})`; g2.style.opacity = v[8];
-    g3.style.transform = `translate(0, ${v[9]}vh)`; g3.style.opacity = v[10];
+    if (still) { if (cur === null) { cur = 0; paint(0); } return; } // reduced motion: one static frame
+    target = clamp01(scrollY / maxScroll);
+    if (cur === null) { cur = target; paint(cur); return; }         // first paint lands in place (no sweep on reload)
+    if (!running && cur !== target) { running = true; requestAnimationFrame(drift); }
   }
   jobs.push(atmo);
 
