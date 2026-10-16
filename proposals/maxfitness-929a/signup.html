@@ -95,6 +95,12 @@
         <p>By checking this box, I agree to <a href="https://www.maxfitnessaugusta.com/privacy-and-terms">terms and conditions</a> of Max Fitness. I also agree to receive recurring text messages and phone calls from Max Fitness. Messages may include appointment reminders, class updates, and promotions. Message frequency varies. Message and data rates may apply.  Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase.</p>
       </label>
 
+      <!-- spam trap: hidden from people and screen readers; a bot that fills every field gets a decoy pass -->
+      <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden">
+        <label for="f-extra">Leave this empty</label>
+        <input id="f-extra" name="mf_extra" type="text" tabindex="-1" autocomplete="off" value="">
+      </div>
+
       <p class="form-err" id="form-err" role="alert"></p>
       <button class="btn" type="submit">Submit</button>
       <p class="fine">*Must present a local state ID, or local University ID to qualify for a free pass.</p>
@@ -105,6 +111,7 @@
     <p class="eyebrow" style="justify-content:center">Here you go!</p>
     <h1 tabindex="-1">Congratulations!</h1>
     <p class="sub">We can't wait to see you!</p>
+    <p class="sub" id="t-texted" hidden></p>
     <div class="ticket">
       <div class="ticket-top"><img src="media/m-mark.png" alt="" width="46" height="46"><b>Max Fitness 1 Day Pass</b></div>
       <dl>

@@ -1,8 +1,9 @@
 // The text line. Set this to the real number and every "text us" link on the site follows it.
 const TEXT_LINE_NUMBER = "+1 (000) 000-0000";
 
-// TODO(backend): set this to the day-pass endpoint once it exists (see submitPassRequest below).
-const PASS_ENDPOINT = null;
+// Day-pass endpoint (2026-10-16): a Cloudflare Worker with a fixed URL that forwards to the
+// sign-up server on Tyrese's Mac. The pass code comes from the server; set to null for the offline demo.
+const PASS_ENDPOINT = "https://maxfit-signup.thecoolwolfguy09.workers.dev/mf/signup";
 
 // Page behavior with no CDN dependency, so everything here works even if the 3D fails.
 (function () {
@@ -326,32 +327,58 @@ const PASS_ENDPOINT = null;
         last_name: f.last_name.value.trim(),
         phone: "+1" + f.phone.value.replace(/\D/g, ""),
         email: f.email.value.trim(),
-        date_of_birth: f.dob.value,
-        heard_about_us: f.heard.value,
-        preferred_visit_date: f.visit_date.value,
-        preferred_visit_time: (form.querySelector('[name="visit_time"]:checked') || {}).value || "",
-        sms_consent: true,
+        dob: f.dob.value,
+        heard_from: f.heard.value,
+        visit_day: f.visit_date.value,
+        visit_time: (form.querySelector('[name="visit_time"]:checked') || {}).value || "",
+        consent: consent.checked,
+        mf_extra: f.mf_extra ? f.mf_extra.value : "",
         consent_text_version: "one-week-pass-2026-10",
         submitted_at: new Date().toISOString(),
         page: location.href
       };
       const btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true; btn.textContent = "Sending…";
+      btn.disabled = true; btn.textContent = "Sending…"; form.setAttribute("aria-busy", "true");
       try {
         const res = await submitPassRequest(payload);
-        showPass(payload, res.pass_id);
+        showPass(payload, res);
       } catch (err) {
-        btn.disabled = false; btn.textContent = "Submit";
-        formErr.textContent = "That didn't go through. Try again, or call (706) 396-4653.";
+        btn.disabled = false; btn.textContent = "Submit"; form.removeAttribute("aria-busy");
+        if (err && err.fields) {
+          // the server checked the same rules: show its messages next to the fields
+          Object.entries(err.fields).forEach(([name, msg]) => {
+            const field = form.querySelector(`[data-field="${name}"]`) || (name === "consent" ? consentBox : null);
+            if (!field) return;
+            field.classList.add("bad");
+            const e = field.querySelector(".err");
+            if (e) e.textContent = msg;
+          });
+          formErr.textContent = "A few fields need a look.";
+        } else if (err && err.status === 429) {
+          formErr.innerHTML = "Too many tries from this connection. Give it a few minutes, or " + textUs() + ".";
+        } else {
+          formErr.innerHTML = "Couldn't reach us. Try again, or " + textUs() + ".";
+        }
       }
     });
 
-    function showPass(p, id) {
+    function textUs() {
+      const digits = TEXT_LINE_NUMBER.replace(/\D/g, "");
+      return /^1?0{10}$/.test(digits) ? "text us" : `<a href="sms:+${digits.length === 10 ? "1" + digits : digits}">text us</a>`;
+    }
+
+    function showPass(p, res) {
       const fmtDay = (v) => new Date(v + "T12:00").toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" });
       $("#t-name").textContent = `${p.first_name} ${p.last_name}`;
-      $("#t-day").textContent = fmtDay(p.preferred_visit_date);
-      $("#t-time").textContent = p.preferred_visit_time;
-      $("#t-code").textContent = id;
+      $("#t-day").textContent = fmtDay(p.visit_day);
+      $("#t-time").textContent = p.visit_time;
+      $("#t-code").textContent = res.pass_code;
+      const texted = $("#t-texted");
+      if (texted && res.texted) {
+        const d = p.phone.replace(/\D/g, "").slice(-10);
+        texted.textContent = `We just texted your pass to (${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}.`;
+        texted.hidden = false;
+      }
       form.closest(".su-body").hidden = true;
       done.hidden = false;
       scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
@@ -359,24 +386,33 @@ const PASS_ENDPOINT = null;
     }
   }
 
-  // TODO(backend): replace the stub with the real POST once the endpoint exists. The payload is JSON:
-  //   { type, location, first_name, last_name, phone (E.164), email, date_of_birth (YYYY-MM-DD),
-  //     heard_about_us, preferred_visit_date (YYYY-MM-DD), preferred_visit_time, sms_consent,
-  //     consent_text_version, submitted_at (ISO), page }
-  //   const res = await fetch(PASS_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-  //   if (!res.ok) throw new Error("pass request failed"); return await res.json();  // expect { pass_id }
+  // POST JSON { first_name, last_name, phone (E.164), email, dob, heard_from, visit_day (YYYY-MM-DD),
+  //   visit_time, consent, mf_extra (honeypot), consent_text_version, submitted_at, page }
+  // → 200 { ok, pass_code, texted } · 400 { errors: {field: msg} } · 429 rate limited · 503 closed
+  // Server: ~/cipher/support-line/maxfit/signup_server.py (validation, limits, pass code, the first text).
   async function submitPassRequest(payload) {
     if (PASS_ENDPOINT) {
-      const res = await fetch(PASS_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      if (!res.ok) throw new Error("pass request failed");
-      return res.json();
+      const ctl = new AbortController();
+      const timer = setTimeout(() => ctl.abort(), 50000);   // the first text can take a few seconds to send
+      let res, body = null;
+      try {
+        res = await fetch(PASS_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: ctl.signal });
+        body = await res.json().catch(() => null);
+      } finally {
+        clearTimeout(timer);
+      }
+      if (res.ok && body && body.ok && body.pass_code) return body;
+      const err = new Error("pass request failed");
+      err.status = res.status;
+      if (res.status === 400 && body && body.errors) err.fields = body.errors;
+      throw err;
     }
     // prototype: no network, a local pass code so the success screen is real enough to demo
     const abc = "ACDEFGHJKMNPQRTUVWXY3479";
     let code = "MF-";
     for (let i = 0; i < 6; i++) code += abc[Math.floor(Math.random() * abc.length)];
     await new Promise((r) => setTimeout(r, 500));
-    return { pass_id: code };
+    return { pass_code: code, texted: false };
   }
 
   queue();
