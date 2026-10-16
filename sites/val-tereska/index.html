@@ -21,9 +21,7 @@
   <div class="stage" id="stage">
     <div class="rig" id="rig">
       <img class="layer front" src="media/logo3d.webp" alt="Val Tereska Hair Barber &amp; Salon logo" width="700" height="710" fetchpriority="high" decoding="async">
-      <div class="sheen" aria-hidden="true"><i></i></div>
     </div>
-    <div class="spiderbox" aria-hidden="true"><img id="spider" src="media/spider.webp" alt="" width="200" height="225" decoding="async"></div>
   </div>
   <h1>Val Tereska Hair</h1>
   <p class="tag">Barber <span>&bull;</span> Stylist</p>
@@ -31,7 +29,7 @@
   <p class="hrs">Tue&ndash;Fri &middot; message for hours</p>
 </header>
 
-<div class="divider"><img src="media/div-spider.webp" alt="" aria-hidden="true" width="640" height="207" loading="lazy" decoding="async"></div>
+<div class="divider"><img src="media/div-spider.webp" alt="" aria-hidden="true" width="640" height="205" loading="lazy" decoding="async"></div>
 
 <main>
 <section id="ba-sec">
@@ -39,10 +37,10 @@
   <div class="frame" id="ba">
     <div class="win" id="baWin">
       <div class="track" id="baTrack">
-        <div class="pair" style="--a:35deg;--hue:268"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 1</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="0" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><div class="knob"></div></div></div>
-        <div class="pair" style="--a:120deg;--hue:285"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 2</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="-1" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><div class="knob"></div></div></div>
-        <div class="pair" style="--a:75deg;--hue:255"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 3</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="-1" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><div class="knob"></div></div></div>
-        <div class="pair" style="--a:160deg;--hue:295"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 4</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="-1" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><div class="knob"></div></div></div>
+        <div class="pair" style="--a:35deg;--hue:268"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 1</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="0" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><img class="knob" src="media/handle.webp" alt="" width="120" height="99" decoding="async"></div></div>
+        <div class="pair" style="--a:120deg;--hue:285"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 2</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="-1" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><img class="knob" src="media/handle.webp" alt="" width="120" height="99" decoding="async"></div></div>
+        <div class="pair" style="--a:75deg;--hue:255"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 3</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="-1" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><img class="knob" src="media/handle.webp" alt="" width="120" height="99" decoding="async"></div></div>
+        <div class="pair" style="--a:160deg;--hue:295"><div class="ph after"><span class="lab">After</span><small>Placeholder pair 4</small></div><div class="ph before"><span class="lab">Before</span></div><div class="bar" role="slider" tabindex="-1" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><img class="knob" src="media/handle.webp" alt="" width="120" height="99" decoding="async"></div></div>
       </div>
     </div>
     <img class="fr" src="media/frame-a.webp" alt="" aria-hidden="true" width="700" height="958" loading="lazy" decoding="async">
@@ -73,15 +71,18 @@
 <section id="services">
   <h2 class="rv">Services</h2>
   <p class="note rv">Starting prices from her Vagaro page. Final price depends on the cut.</p>
-  <ul class="menu">
-    <li class="rv"><span>Men&rsquo;s haircut</span><i></i><b>$27</b></li>
-    <li class="rv"><span>Kid cut (0&ndash;13)</span><i></i><b>$22</b></li>
-    <li class="rv"><span>Women&rsquo;s haircut</span><i></i><b>$35</b></li>
-    <li class="rv"><span>Head &amp; beard trim</span><i></i><b>$21</b></li>
-    <li class="rv"><span>Color</span><i></i><b>from $80</b></li>
-    <li class="rv"><span>Vivid / split dye</span><i></i><b>from $200</b></li>
-  </ul>
-  <p class="book rv">To book, find Val Tereska Hair on Vagaro, or message her on Instagram.</p>
+  <div class="picker rv" id="picker">
+    <ul class="pk" id="pk" tabindex="0" aria-label="Services and starting prices">
+      <li><span class="nm">Men&rsquo;s haircut</span><span class="pr">$27</span></li>
+      <li><span class="nm">Kid cut (0&ndash;13)</span><span class="pr">$22</span></li>
+      <li><span class="nm">Women&rsquo;s haircut</span><span class="pr">$35</span></li>
+      <li><span class="nm">Head &amp; beard trim</span><span class="pr">$21</span></li>
+      <li><span class="nm">Color</span><span class="pr">from $80</span></li>
+      <li><span class="nm">Vivid / split dye</span><span class="pr">from $200</span></li>
+    </ul>
+  </div>
+  <p class="hint">Scroll to browse &middot; starting prices</p>
+  <p class="book rv">To book, message Val on Instagram.</p>
 </section>
 
 <section id="about">
@@ -109,11 +110,11 @@
 </section>
 </main>
 
-<div class="divider"><img src="media/div-spider.webp" alt="" aria-hidden="true" width="640" height="207" loading="lazy" decoding="async"></div>
+<div class="divider"><img src="media/div-spider.webp" alt="" aria-hidden="true" width="640" height="205" loading="lazy" decoding="async"></div>
 
 <footer>
   <img src="media/qr.png" alt="QR code for this page" width="132" height="132" loading="lazy">
-  <p class="scan">Scan to book</p>
+  <p class="scan">Scan to visit</p>
   <p>Val Tereska Hair &middot; Martinez, GA</p>
   <p class="draft">Draft site, not yet approved.</p>
 </footer>

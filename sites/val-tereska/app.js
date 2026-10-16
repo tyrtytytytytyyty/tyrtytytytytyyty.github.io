@@ -8,14 +8,14 @@ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
 (function(){
   var els=[].slice.call(document.querySelectorAll('.rv'));
   if(RM||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-  els.forEach(function(e,i){ if(e.parentNode.classList.contains('menu')){e.style.setProperty('--d',(i%6)*0.07+'s')} });
+  els.forEach(function(e,i){  });
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(e){io.observe(e)});
 })();
 
-/* ---------- 3D logo (stacked layers, CSS 3D) + spider ---------- */
+/* ---------- 3D logo (stacked layers, CSS 3D) ---------- */
 (function(){
-  var stage=$('#stage'),rig=$('#rig'),front=$('.layer.front'),sheen=$('.sheen'),sp=$('#spider');
+  var stage=$('#stage'),rig=$('#rig'),front=$('.layer.front');
   if(!stage||!rig||!front)return;
   var N=10,GAP=2.2;
   front.style.transform='translateZ(0)';
@@ -24,9 +24,9 @@ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
     c.className='layer';c.removeAttribute('fetchpriority');c.alt='';c.setAttribute('aria-hidden','true');
     c.style.transform='translateZ('+(-i*GAP)+'px)';
     c.style.filter='brightness('+(0.78-0.5*(i/(N-1))).toFixed(2)+')';
-    rig.insertBefore(c,sheen);
+    rig.appendChild(c);
   }
-  if(RM){rig.style.transform='rotateX(6deg) rotateY(-10deg)';if(sp)sp.style.display='none';return}
+  if(RM){rig.style.transform='rotateX(6deg) rotateY(-10deg)';return}
 
   var tx=0,ty=0,cx=0,cy=0,oriOn=false,base=null,px=0,py=0,visible=true,t0=performance.now();
   function onOri(e){
@@ -51,38 +51,6 @@ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
   });
   stage.addEventListener('pointerleave',function(){px=py=0});
 
-  /* spider */
-  var S={on:false,t:0,len:1,p0:null,p1:null,p2:null,pauseAt:0,pauseLeft:0,wait:(location.hash==='#spider'?0:1.2),rot:0,ph:0,x:0,y:0,paused:false};
-  function pt(t){var u=1-t;return{x:u*u*S.p0.x+2*u*t*S.p1.x+t*t*S.p2.x,y:u*u*S.p0.y+2*u*t*S.p1.y+t*t*S.p2.y}}
-  function rnd(a,b){return a+Math.random()*(b-a)}
-  function startSpider(){
-    var W=stage.offsetWidth,H=stage.offsetHeight,m=34;
-    var side=Math.floor(Math.random()*3),a,b;
-    function edge(s){var f=rnd(.15,.85);return s===0?{x:-m,y:f*H}:s===1?{x:W+m,y:f*H}:s===2?{x:f*W,y:-m}:{x:f*W,y:H+m}}
-    a=edge(side);b=edge(side===2?Math.floor(Math.random()*2):(Math.random()<.75?(side^1):2));
-    S.p0=a;S.p2=b;S.p1={x:rnd(.2,.8)*W,y:rnd(.2,.8)*H};
-    S.len=Math.hypot(b.x-a.x,b.y-a.y)*1.15;S.t=0;S.on=true;S.paused=false;
-    S.pauseAt=Math.random()<.65?rnd(.3,.65):2;S.pauseLeft=rnd(.9,1.8);
-    var q=pt(0);S.x=q.x;S.y=q.y;
-    var q2=pt(.02);S.rot=Math.atan2(q2.y-q.y,q2.x-q.x)+Math.PI/2;
-    sp.style.opacity=1;
-  }
-  function stepSpider(dt,now){
-    if(!S.on){S.wait-=dt;if(S.wait<=0)startSpider();return}
-    var speed=Math.max(36,stage.offsetWidth*.2); /* px/s */
-    var moving=true;
-    if(S.t>=S.pauseAt&&S.pauseLeft>0){S.paused=true;S.pauseLeft-=dt;moving=false;if(S.pauseLeft<=0){S.paused=false;S.pauseAt=2}}
-    if(moving){S.t+=speed*dt/S.len;S.ph+=dt}
-    var p=pt(clamp(S.t,0,1)),q=pt(clamp(S.t+.01,0,1));
-    S.x=p.x;S.y=p.y;
-    var target=Math.atan2(q.y-p.y,q.x-p.x)+Math.PI/2;
-    var d=target-S.rot;d=Math.atan2(Math.sin(d),Math.cos(d));S.rot+=d*Math.min(1,dt*6);
-    var wob=moving?Math.sin(S.ph*38):Math.sin(now/90)*.35*(Math.sin(now/700)>.4?1:0);
-    var sc=1+wob*.07,sk=wob*5;
-    sp.style.transform='translate3d('+(S.x-22)+'px,'+(S.y-25)+'px,0) rotate('+S.rot+'rad) skewX('+sk+'deg) scale('+(1/sc)+','+sc+')';
-    if(S.t>=1){S.on=false;sp.style.opacity=0;S.wait=rnd(3,6.5)}
-  }
-
   var last=performance.now();
   function frame(now){
     requestAnimationFrame(frame);
@@ -96,7 +64,6 @@ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
     }
     cx+=(tx-cx)*Math.min(1,dt*6);cy+=(ty-cy)*Math.min(1,dt*6);
     rig.style.transform='rotateX('+cx.toFixed(2)+'deg) rotateY('+cy.toFixed(2)+'deg)';
-    if(sp)stepSpider(dt,now);
   }
   if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;last=performance.now()}).observe(stage);
   document.addEventListener('visibilitychange',function(){last=performance.now()});
@@ -214,5 +181,24 @@ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
   });
   addEventListener('resize',function(){W=wheel.offsetWidth;render()});
   render();
+})();
+/* ---------- services picker (vertical wheel) ---------- */
+(function(){
+  var pk=$('#pk');if(!pk)return;
+  var items=[].slice.call(pk.children),H=72,raf=0;
+  function paint(){
+    raf=0;var c=pk.scrollTop+pk.clientHeight/2;
+    items.forEach(function(li){
+      var d=((li.offsetTop+H/2)-c)/H;
+      var a=Math.min(Math.abs(d),3),sg=d<0?-1:1;
+      li.style.transform='rotateX('+(-sg*a*24).toFixed(1)+'deg) scale('+(1.1-.2*a).toFixed(3)+')';
+      li.style.opacity=Math.max(.12,1-.38*a).toFixed(2);
+    });
+  }
+  function q(){if(!raf)raf=requestAnimationFrame(paint)}
+  pk.addEventListener('scroll',q,{passive:true});
+  items.forEach(function(li,i){li.addEventListener('click',function(){pk.scrollTo({top:i*H,behavior:'smooth'})})});
+  addEventListener('resize',q);
+  paint();
 })();
 })();
