@@ -26,7 +26,7 @@
   }
 
   // ── one rAF loop writes --p on every scene ──
-  const scenes = $$("[data-scene]"), nav = $(".nav"), heroEl = $(".hero, .vhero");
+  const scenes = $$("[data-scene]"), nav = $(".nav"), heroEl = $(".hero, .vhero"), logos = $(".logos");
   let ticking = false;
   function frame() {
     ticking = false;
@@ -40,6 +40,14 @@
       if (el === pick && over) track.style.transform = `translate3d(${(-p * over).toFixed(1)}px,0,0)`;
       if (el === pick) $$(".dots i").forEach((d, i, a) => d.classList.toggle("on", Math.round(p * (a.length - 1)) === i));
       if (say && el.contains(say)) { const n = Math.ceil(p * 1.25 * words.length); words.forEach((w, i) => w.classList.toggle("on", i < n)); }
+    }
+    // hero logo: swaps to her gold-accent version a third of the way down, with a pop instead of a fade
+    if (logos) {
+      const hp = parseFloat(getComputedStyle(logos.closest("[data-scene]")).getPropertyValue("--p")) || 0, alt = hp > .35;
+      if (alt !== logos.classList.contains("alt")) {
+        logos.classList.toggle("alt", alt);
+        if (!still) $(alt ? ".lb" : ".la", logos).animate([{ transform: "scale(.8)" }, { transform: "scale(1.06)" }, { transform: "none" }], { duration: 420, easing: "cubic-bezier(.34,1.56,.64,1)" });
+      }
     }
     if (nav) nav.classList.toggle("solid", !heroEl || scrollY > (heroEl.offsetHeight - vh * 0.6));
   }

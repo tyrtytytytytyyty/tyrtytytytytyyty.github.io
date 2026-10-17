@@ -35,13 +35,13 @@ h1,h2,h3,.disp{font-weight:800 !important;text-transform:uppercase;letter-spacin
 /* home hero */
 .hero{height:190svh;background:#242424}
 .hero .pin{display:grid;place-items:center;background:radial-gradient(70% 55% at 50% 45%,rgb(58 39 50 / calc(1 - var(--p))) 0%,#242424 72%)}
-.logos{width:min(86vw,540px);aspect-ratio:1;animation:zoomIn 1.2s cubic-bezier(.16,.84,.24,1) both}
-@keyframes zoomIn{from{transform:scale(.5);opacity:0;filter:blur(8px)}to{transform:none;opacity:1;filter:none}}
-.logos .lw{position:relative;width:100%;height:100%;transform:scale(calc(1 + var(--p) * .08)) rotate(calc(var(--p) * -4deg))}
-.logos img{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 24px 50px #000a)}
-.logos{--k:clamp(0, calc((var(--p) - .32) * 8), 1)}   /* 0→1 over scroll .32–.445: the swap beat */
-.logos .la{opacity:calc(1 - var(--k));transform:scale(calc(1 + var(--k) * .35))}
-.logos .lb{opacity:var(--k);transform:scale(calc(.82 + var(--k) * .18))}
+.logos{width:min(86vw,540px);aspect-ratio:1;animation:pop .75s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes pop{from{transform:scale(.3)}to{transform:none}}   /* no fade, no blur: it just pops */
+.logos .lw{position:relative;width:100%;height:100%;transform:scale(calc(1 + var(--p) * .06))}
+.logos .lw::before{content:"";position:absolute;inset:2%;border-radius:50%;box-shadow:0 24px 50px #000a}   /* round shadow, not a filter box */
+.logos img{position:absolute;inset:0;width:100%;height:100%}
+.logos .lb,.logos.alt .la{visibility:hidden}
+.logos.alt .lb{visibility:visible}
 .hero .title{position:absolute;left:0;right:0;bottom:7svh;text-align:center;color:#d8ccc4;padding:0 20px;font:700 15px 'Big Shoulders Display',sans-serif;letter-spacing:.32em;text-transform:uppercase;opacity:clamp(0, calc(var(--p) * 3 - 1.2), 1)}
 .hero .hint{position:absolute;bottom:4svh;left:50%;transform:translateX(-50%);color:#ffffff80;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:calc(1 - var(--p) * 6)}
 .hero .hint::after{content:"";display:block;width:1px;height:28px;background:#ffffff60;margin:8px auto 0;animation:drip 1.8s ease-in-out infinite}
