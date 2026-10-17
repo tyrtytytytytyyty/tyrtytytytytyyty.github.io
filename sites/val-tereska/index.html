@@ -10,7 +10,7 @@
 <link rel="icon" href="v5media/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400..700&display=swap">
 <link rel="preload" as="image" href="v5media/duo.webp">
 <link rel="stylesheet" href="v5.css">
 </head>
@@ -21,16 +21,24 @@
   <a class="btn pink" href="#stylists">Book</a>
 </nav>
 
-<!-- 1 · hero: the two skulls shrink and lift while the name rises in -->
+<!-- 1 · hero: her two skulls, then her pink badge builds around them on her charcoal -->
 <header class="stage hero" id="top" data-scene>
   <div class="pin">
-    <img class="float f-shears" src="v5media/shears3d.webp" alt="">
-    <img class="duo" src="v5media/duo.webp" alt="Val Tereska Hair logo: a bearded barber skull and a pink-haired lady skull">
-    <img class="float f-razor" src="v5media/razor3d.webp" alt="">
-    <div class="title">
-      <h1 class="serif">Val Tereska <em>Hair</em></h1>
-      <p>Barber · Stylist · Colorist — Martinez, GA</p>
+    <img class="float f-shears" src="v5media/shears-closed.webp" alt="">
+    <div class="badge">
+      <div class="disc"></div>
+      <svg class="arcs" viewBox="0 0 600 600" aria-hidden="true">
+        <defs>
+          <path id="arcTop" d="M 92 300 A 208 208 0 0 1 508 300"/>
+          <path id="arcBot" d="M 62 300 A 238 238 0 0 0 538 300"/>
+        </defs>
+        <text><textPath href="#arcTop" startOffset="50%" text-anchor="middle">VAL TERESKA</textPath></text>
+        <text class="sm"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">BARBER • STYLIST • COLORIST</textPath></text>
+      </svg>
+      <img class="duo" src="v5media/duo.webp" alt="Val Tereska Hair logo: a bearded barber skull and a pink-haired lady skull">
     </div>
+    <img class="float f-razor" src="v5media/razor.webp" alt="">
+    <div class="title">Val Tereska Hair · Martinez, GA</div>
     <div class="hint">Scroll</div>
   </div>
 </header>
@@ -81,50 +89,6 @@
       </div>
     </div>
     <div class="dots"><i class="on"></i><i></i><i></i></div>
-  </div>
-</section>
-
-<!-- 4 · color: the dye bowl rises and settles -->
-<section class="stage color" data-scene>
-  <div class="pin">
-    <img class="bowl" src="v5media/dye3d.webp" alt="A bowl of pink hair dye with a tint brush">
-    <div class="txt">
-      <h2>Natural to <em>full vivid.</em></h2>
-      <p>Color, split dye and vivids. Bring a photo of what you want.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 5 · before / after with the shears -->
-<section class="ba-sec">
-  <div class="wrap">
-    <div class="rv">
-      <div class="kicker">The work</div>
-      <h2>Drag the shears.</h2>
-      <p class="sub">Before on the left, after on the right.</p>
-    </div>
-    <div class="ba rv">
-      <div class="pane before"></div>
-      <div class="pane after"></div>
-      <div class="line"></div>
-      <span class="ph">Before/after photos from Instagram go here</span>
-      <span class="lbl l">Before</span><span class="lbl r">After</span>
-      <svg class="shears" viewBox="0 0 120 160" aria-hidden="true">
-        <defs>
-          <linearGradient id="chrome" x1="0" x2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".45" stop-color="#f6f7f9"/><stop offset=".56" stop-color="#c9ced4"/><stop offset="1" stop-color="#6c737b"/></linearGradient>
-          <g id="half">
-            <path d="M55 74 L56.2 15 Q58.8 0 62 11 L63.6 74 Z" fill="url(#chrome)" stroke="#5c6268" stroke-width=".7"/>
-            <path d="M59.5 70 L72 111" stroke="url(#chrome)" stroke-width="7.5" stroke-linecap="round"/>
-            <circle cx="76" cy="127" r="13" fill="none" stroke="#ed77bb" stroke-width="7"/>
-            <circle cx="76" cy="127" r="16.2" fill="none" stroke="#c94f94" stroke-width="1"/>
-            <path d="M68 118 A11 11 0 0 1 82 117" fill="none" stroke="#fbc6e3" stroke-width="1.6" stroke-linecap="round"/>
-          </g>
-        </defs>
-        <g id="bladeA"><use href="#half"/></g>
-        <g id="bladeB"><g transform="translate(120 0) scale(-1 1)"><use href="#half"/></g></g>
-        <circle cx="60" cy="70" r="4.2" fill="#e2a400" stroke="#8a6400" stroke-width="1"/>
-      </svg>
-    </div>
   </div>
 </section>
 

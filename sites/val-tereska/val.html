@@ -10,7 +10,7 @@
 <link rel="icon" href="v5media/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400..700&display=swap">
 <link rel="preload" as="image" href="v5media/lady-skull.webp">
 <link rel="stylesheet" href="v5.css">
 </head>
@@ -24,7 +24,7 @@
 
 <header class="stage vhero" data-scene>
   <div class="pin">
-    <img class="float f-shears" src="v5media/shears3d.webp" alt="">
+    <img class="float f-shears" src="v5media/shears-closed.webp" alt="">
     <img class="skull" src="v5media/lady-skull.webp" alt="Val Tereska's lady skull logo">
     <div class="name">
       <h1>Val Tereska</h1>
@@ -70,27 +70,13 @@
       <div class="line"></div>
       <span class="ph">Val's before/after photos go here</span>
       <span class="lbl l">Before</span><span class="lbl r">After</span>
-      <svg class="shears" viewBox="0 0 120 160" aria-hidden="true">
-        <defs>
-          <linearGradient id="chrome" x1="0" x2="1"><stop offset="0" stop-color="#8d949c"/><stop offset=".45" stop-color="#f6f7f9"/><stop offset=".56" stop-color="#c9ced4"/><stop offset="1" stop-color="#6c737b"/></linearGradient>
-          <g id="half">
-            <path d="M55 74 L56.2 15 Q58.8 0 62 11 L63.6 74 Z" fill="url(#chrome)" stroke="#5c6268" stroke-width=".7"/>
-            <path d="M59.5 70 L72 111" stroke="url(#chrome)" stroke-width="7.5" stroke-linecap="round"/>
-            <circle cx="76" cy="127" r="13" fill="none" stroke="#ed77bb" stroke-width="7"/>
-            <circle cx="76" cy="127" r="16.2" fill="none" stroke="#c94f94" stroke-width="1"/>
-            <path d="M68 118 A11 11 0 0 1 82 117" fill="none" stroke="#fbc6e3" stroke-width="1.6" stroke-linecap="round"/>
-          </g>
-        </defs>
-        <g id="bladeA"><use href="#half"/></g>
-        <g id="bladeB"><g transform="translate(120 0) scale(-1 1)"><use href="#half"/></g></g>
-        <circle cx="60" cy="70" r="4.2" fill="#e2a400" stroke="#8a6400" stroke-width="1"/>
-      </svg>
+      <div class="shears"><img class="cl" src="v5media/shears-closed.webp" alt=""><img class="op" src="v5media/shears-open.webp" alt=""></div>
     </div>
   </div>
 </section>
 
 <section class="book stage" id="book" data-scene>
-  <img class="float f-razor" src="v5media/razor3d.webp" alt="">
+  <img class="float f-razor" src="v5media/razor.webp" alt="">
   <div class="wrap" style="position:relative">
     <div class="kicker" style="color:var(--pink)">Book</div>
     <h2>Grab a spot with Val.</h2>

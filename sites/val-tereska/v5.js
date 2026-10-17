@@ -54,12 +54,13 @@
   $$(".rv").forEach(el => io.observe(el));
   $$(".list li").forEach((li, i) => { li.style.transitionDelay = (i * 60) + "ms"; io.observe(li); });
 
-  // ── before/after: the handle is a pair of shears that snip as you drag ──
+  // ── before/after: the handle is Val's own shears (closed + open frames, pivot-aligned) snipping as you drag ──
   const ba = $(".ba");
   if (ba) {
-    const h1 = $("#bladeA", ba), h2 = $("#bladeB", ba);
+    const sh = $(".shears", ba), op = $(".shears .op", ba), cl = $(".shears .cl", ba);
     let x = 0.5, dist = 0, lastX = null, dragging = false, wasOpen = true;
-    const setAngle = a => { h1.setAttribute("transform", `rotate(${-a} 60 70)`); h2.setAttribute("transform", `rotate(${a} 60 70)`); };
+    // t: 0 = closed, 1 = open. A steep curve keeps it on one frame or the other, so the swap reads as a snip, not a ghost.
+    const setOpen = t => { const k = t * t * (3 - 2 * t); op.style.opacity = k.toFixed(3); cl.style.opacity = (1 - k).toFixed(3); };
     const snip = () => {
       const r = ba.getBoundingClientRect();
       for (let i = 0; i < 5; i++) {
@@ -77,25 +78,25 @@
       const r = ba.getBoundingClientRect();
       x = clamp((cx - r.left) / r.width);
       ba.style.setProperty("--x", (x * 100).toFixed(2) + "%");
-      if (lastX !== null) dist += Math.abs(cx - lastX);
+      if (lastX !== null) { dist += Math.abs(cx - lastX); if (cx !== lastX) sh.style.setProperty("--dir", cx > lastX ? -1 : 1); }   // blades lead the way you drag
       lastX = cx;
-      const a = 3 + 15 * Math.abs(Math.sin(dist / 16));   // blades open and shut as you travel
-      setAngle(a);
-      const open = a > 9;
+      const t = Math.min(1, Math.max(0, Math.sin(dist / 14) * 1.6));   // open and shut as you travel
+      setOpen(t);
+      const open = t > .5;
       if (wasOpen && !open) snip();
       wasOpen = open;
     };
     ba.addEventListener("pointerdown", e => { dragging = true; lastX = null; ba.setPointerCapture(e.pointerId); move(e.clientX); });
     ba.addEventListener("pointermove", e => { if (dragging) move(e.clientX); });
-    const end = () => { dragging = false; lastX = null; setAngle(14); };
+    const end = () => { dragging = false; lastX = null; setOpen(1); };
     ba.addEventListener("pointerup", end); ba.addEventListener("pointercancel", end);
-    setAngle(14);
+    setOpen(1);
     // one demo snip-sweep when it first comes on screen, so people know it moves
     if (!still) new IntersectionObserver(([e], o) => {
       if (!e.isIntersecting) return; o.disconnect();
       const r = ba.getBoundingClientRect(); let t0 = null;
       const run = ts => { if (dragging) return; t0 ??= ts; const k = Math.min(1, (ts - t0) / 1400);
-        move(r.left + r.width * (0.5 + 0.18 * Math.sin(k * Math.PI * 2))); if (k < 1) requestAnimationFrame(run); else { lastX = null; setAngle(14); } };
+        move(r.left + r.width * (0.5 + 0.18 * Math.sin(k * Math.PI * 2))); if (k < 1) requestAnimationFrame(run); else { lastX = null; setOpen(1); } };
       requestAnimationFrame(run);
     }, { threshold: .6 }).observe(ba);
   }
