@@ -4,35 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#0b0d10">
-<title>Detailing · Concept</title>
-<meta name="description" content="Concept site for an Augusta car-detailing business, prepared by tyycc.">
+<meta name="theme-color" content="#070907">
+<title>Precision Outdoors &amp; Detail · Concept</title>
+<meta name="description" content="Concept site for an Augusta lawn-care and car-detailing business, prepared by tyycc.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="media/hero.jpg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600;700&display=swap">
 <script>
   // ── Swap these from the business card. Everything on the page reads from here. ──
   window.BIZ = {
-    name: "Tom's Detailing",          // TBD from card
-    short: "TD",                      // monogram in the nav
+    name: "Precision Outdoors & Detail",
+    short: "P",
     city: "Augusta, GA",
-    phone: "+17062940258",            // Tom's number (text line)
+    phone: "+17062940258",            // call or text (from his card)
     phoneShown: "(706) 294-0258",
-    mobile: true,                     // TBD: does he come to you?
-    hours: "By appointment · 7 days",
-    packages: [
-      { name: "Interior Reset", from: 89,  time: "~2 hrs", items: ["Vacuum + shampoo seats & mats", "Steam vents, cupholders, console", "Glass in and out", "Leather / plastics conditioned"] },
-      { name: "Exterior Gloss", from: 79,  time: "~1.5 hrs", items: ["Foam pre-wash + hand wash", "Wheels, tires, wells degreased", "Clay bar decontamination", "6-month sealant"] },
-      { name: "Full Detail",    from: 159, time: "~3.5 hrs", items: ["Everything in Interior + Exterior", "Engine bay wipe-down", "Tire dressing + trim restore", "Before / after photos"], best: true },
-      { name: "Ceramic Add-On", from: 249, time: "+ 1 day", items: ["Paint correction prep", "2-yr ceramic coating", "Hydrophobic glass", "Maintenance plan"] }
+    facebook: "@Tom Ford",
+    mobile: false,                    // TBD: ask if he comes to you for details
+    hours: "Saturday & Sunday appointments",
+    // Services are straight off his card; prices are SAMPLE until he gives his menu.
+    groups: [
+      { title: "Car Detail", icon: "🚗", packages: [
+        { name: "Exterior Wash",     from: 40,  time: "~1 hr",   items: ["Foam pre-wash + hand wash", "Bug + tar removal", "Hand dry, streak-free glass", "Tire shine"] },
+        { name: "Interior Cleaning", from: 60,  time: "~1.5 hrs", items: ["Vacuum seats, carpets, mats", "Wipe-down dash, doors, console", "Cupholders + vents detailed", "Interior glass"] },
+        { name: "Full Detail",       from: 110, time: "~3 hrs",  items: ["Exterior wash + interior cleaning", "Wheel & tire cleaning", "Wheel wells degreased", "Before / after photos"], best: true }
+      ]},
+      { title: "Landscaping", icon: "🌿", packages: [
+        { name: "Lawn Mowing",        from: 35, time: "per visit", items: ["Clean, striped cut", "Clippings handled", "Front + back yard", "Weekly or bi-weekly"] },
+        { name: "Edging & Trimming",  from: 20, time: "add-on",    items: ["Sharp edges on walks + drive", "Trim around beds + fences", "String-trim the hard spots"] },
+        { name: "Blowing & Leaf Cleanup", from: 50, time: "seasonal", items: ["Drive, walks, patio blown clean", "Leaves cleared from beds + lawn", "Bagged or mulched"] , best: true }
+      ]}
     ]
   };
 </script>
 <style>
 :root{
-  --bg:#0b0d10; --bg2:#12151a; --card:#161a20; --line:#242a33;
+  --bg:#070907; --bg2:#0d110d; --card:#121712; --line:#223022;
   --ink:#eef2f6; --mute:#9aa4b2; --dim:#6b7584;
-  --accent:#4fd1ff; --accent2:#7cf5d2; --warn:#ffcf5a;
+  --accent:#8ad63f; --accent2:#3fdc7c; --warn:#ffcf5a;
   --r:18px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -41,24 +50,31 @@ body{background:var(--bg);color:var(--ink);font:400 16px/1.55 Inter,system-ui,sa
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 h1,h2,h3{font-family:Archivo,sans-serif;font-variation-settings:"wdth" 118;letter-spacing:-.02em;line-height:1.02}
-.eyebrow{font:600 12px/1 Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.eyebrow{font:600 12px/1.5 Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
 
 /* nav */
-.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(#0b0d10e6,#0b0d1000);backdrop-filter:blur(6px)}
-.mono{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font:800 15px Archivo;font-variation-settings:"wdth" 125;background:linear-gradient(135deg,#1d2530,#0e1217);border:1px solid var(--line);color:var(--accent)}
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(#070907e6,#07090700);backdrop-filter:blur(6px)}
+.mono{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font:800 15px Archivo;font-variation-settings:"wdth" 125;background:linear-gradient(135deg,#1a2618,#0b100b);border:1px solid var(--line);color:var(--accent)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;font:600 15px Inter;border:1px solid var(--line);background:var(--card);transition:transform .15s,background .15s}
 .btn:active{transform:scale(.97)}
-.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#041016;border:0}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061006;border:0}
 .btn.sm{padding:9px 14px;font-size:14px}
 
 /* hero */
-.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;padding:120px 0 56px;overflow:hidden}
+.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;padding:110px 0 56px;overflow:hidden;background:#070907 url(media/hero.jpg) center 65%/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#070907f0 0%,#07090788 24%,#07090766 40%,#070907d9 58%,#070907f2 76%,#070907 100%);pointer-events:none}
+.hero .wrap{z-index:2}
+.badge-wrap{position:relative;width:min(52vw,230px);aspect-ratio:1;margin:0 0 6px -4px}
+#p3d{position:absolute;left:-25%;top:-25%;width:150%;height:150%;opacity:0;transition:opacity .6s}
+#p3d.ready{opacity:1}
+#p-poster{position:absolute;inset:10%;width:80%;height:80%;transition:opacity .4s}
+#p-poster.gone{opacity:0}
 .hero::before{content:"";position:absolute;inset:-20% -30% auto;height:120%;background:
-  radial-gradient(60% 50% at 70% 30%,#4fd1ff33,transparent 70%),
-  radial-gradient(40% 40% at 20% 60%,#7cf5d222,transparent 70%);filter:blur(10px)}
-.beads{position:absolute;inset:0;pointer-events:none;opacity:.55}
-.beads i{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffcc 0 8%,#bfeaff55 20%,#4fd1ff10 60%,transparent 70%);box-shadow:inset -2px -3px 6px #00000055}
-.hero h1{font-size:clamp(46px,11vw,112px);font-weight:900}
+  radial-gradient(60% 50% at 70% 30%,#8ad63f30,transparent 70%),
+  radial-gradient(40% 40% at 20% 60%,#3fdc7c1c,transparent 70%);filter:blur(10px)}
+.beads{display:none}
+.beads i{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffcc 0 8%,#d8ffbf55 20%,#8ad63f10 60%,transparent 70%);box-shadow:inset -2px -3px 6px #00000055}
+.hero h1{font-size:clamp(40px,10vw,104px);font-weight:900}
 .hero h1 .shine{background:linear-gradient(100deg,#fff 20%,var(--accent) 45%,#fff 60%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 5s ease-in-out infinite}
 @keyframes sh{0%,100%{background-position:100% 0}50%{background-position:0 0}}
 .hero p.lede{max-width:520px;color:var(--mute);font-size:18px;margin:18px 0 28px}
@@ -87,9 +103,10 @@ section{padding:88px 0}
 
 /* packages */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.grp{font-size:24px;font-weight:850;margin:34px 0 16px}.grp:first-child{margin-top:0}
 .pkg{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;position:relative;display:flex;flex-direction:column}
-.pkg.best{border-color:#4fd1ff88;background:linear-gradient(180deg,#4fd1ff12,var(--card) 40%)}
-.pkg .badge{position:absolute;top:-11px;right:16px;background:var(--accent);color:#041016;font:700 11px Inter;letter-spacing:.08em;padding:5px 9px;border-radius:999px;text-transform:uppercase}
+.pkg.best{border-color:#8ad63f88;background:linear-gradient(180deg,#8ad63f12,var(--card) 40%)}
+.pkg .badge{position:absolute;top:-11px;right:16px;background:var(--accent);color:#061006;font:700 11px Inter;letter-spacing:.08em;padding:5px 9px;border-radius:999px;text-transform:uppercase}
 .pkg h3{font-size:22px;font-weight:800}
 .pkg .price{font:800 34px Archivo;margin:10px 0 2px}
 .pkg .price small{font:500 13px Inter;color:var(--mute);margin-right:4px}
@@ -103,7 +120,7 @@ section{padding:88px 0}
 @media (max-width:820px){.est{grid-template-columns:1fr}}
 .steps{display:grid;gap:14px;margin-top:22px}
 .step{display:flex;gap:14px;align-items:flex-start}
-.step b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#4fd1ff1a;color:var(--accent);font:700 14px Inter}
+.step b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#8ad63f1a;color:var(--accent);font:700 14px Inter}
 .step span{color:var(--mute)}
 .phone{width:100%;max-width:380px;margin:0 auto;background:#000;border-radius:42px;padding:12px;border:1px solid #2a2f36;box-shadow:0 30px 80px #0009}
 .screen{background:#0f1115;border-radius:32px;overflow:hidden;height:560px;display:flex;flex-direction:column}
@@ -121,7 +138,7 @@ section{padding:88px 0}
 .compose{padding:10px;border-top:1px solid #1f242b;display:flex;flex-wrap:wrap;gap:8px}
 .compose button{flex:1 1 45%;padding:10px 8px;border-radius:14px;border:1px solid #2a2f36;background:#181b20;color:var(--ink);font:600 13px Inter;cursor:pointer}
 .compose button:active{transform:scale(.97)}
-.compose label{flex:1 1 100%;text-align:center;padding:11px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#041016;font:700 14px Inter;cursor:pointer}
+.compose label{flex:1 1 100%;text-align:center;padding:11px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061006;font:700 14px Inter;cursor:pointer}
 .compose input{display:none}
 .demo-tag{display:inline-block;margin-top:14px;font:600 12px Inter;color:var(--warn);border:1px dashed #ffcf5a66;padding:6px 10px;border-radius:8px}
 
@@ -132,7 +149,7 @@ section{padding:88px 0}
 .why p{color:var(--mute);font-size:14.5px}
 
 /* final cta */
-.final{text-align:center;padding:96px 0 120px;background:radial-gradient(60% 60% at 50% 0,#4fd1ff1c,transparent 70%)}
+.final{text-align:center;padding:96px 0 120px;background:radial-gradient(60% 60% at 50% 0,#8ad63f1c,transparent 70%)}
 .final h2{font-size:clamp(36px,8vw,72px);font-weight:900}
 .final p{color:var(--mute);margin:14px auto 28px;max-width:440px}
 footer{border-top:1px solid var(--line);padding:26px 0;color:var(--dim);font-size:13px}
@@ -144,23 +161,24 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <body>
 
 <nav class="nav">
-  <a href="#top" class="mono" data-biz="short">TD</a>
+  <a href="#top" class="mono" data-biz="short">P</a>
   <a href="#estimate" class="btn sm primary">Photo estimate</a>
 </nav>
 
 <header class="hero" id="top">
   <div class="beads" id="beads" aria-hidden="true"></div>
   <div class="wrap" style="position:relative">
-    <div class="eyebrow" data-biz-city>Augusta, GA · Car detailing</div>
-    <h1 style="margin-top:14px">Showroom clean.<br><span class="shine">Every time.</span></h1>
-    <p class="lede"><span data-biz="name">Tom's Detailing</span> brings your car back to new, inside and out. Text a photo and get your estimate in minutes, with no back-and-forth.</p>
+    <div class="badge-wrap"><img id="p-poster" src="media/poster.png" alt="Precision Outdoors &amp; Detail logo"><canvas id="p3d" aria-hidden="true"></canvas></div>
+    <div class="eyebrow" data-biz-city>Augusta, GA · Lawn care + car detailing</div>
+    <h1 style="margin-top:14px">From your lawn<br><span class="shine">to your ride.</span></h1>
+    <p class="lede">We take pride in every detail. <span data-biz="name">Precision Outdoors &amp; Detail</span> keeps your yard sharp and your car spotless. Text a photo of either and get your estimate in minutes.</p>
     <div class="cta-row">
       <a href="#estimate" class="btn primary">📸 Get a photo estimate</a>
       <a class="btn" data-sms>💬 Text us</a>
     </div>
     <div class="chips">
       <span class="chip" data-mobile>🚐 We come to you</span>
-      <span class="chip">⭐ Before/after on every job</span>
+      <span class="chip">🌿 Lawn care</span><span class="chip">🚗 Car detail</span>
       <span class="chip" data-biz="hours">By appointment · 7 days</span>
     </div>
   </div>
@@ -187,10 +205,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Packages</div>
-      <h2>Pick your level of clean.</h2>
+      <h2>Yard or car, we've got it.</h2>
       <p>Final price depends on size and condition. Send a photo and you'll get an exact number.</p>
     </div>
-    <div class="grid" id="pkgs"></div>
+    <div id="pkgs"></div>
     <p class="note">Sample pricing for the concept. The real menu comes from you.</p>
   </div>
 </section>
@@ -200,22 +218,23 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div>
       <div class="eyebrow">Photo estimate</div>
       <h2 style="font-size:clamp(32px,6vw,54px);font-weight:850;margin-top:10px">Snap it. Send it.<br>Get a price.</h2>
-      <p style="color:var(--mute);margin-top:14px;max-width:460px">Customers text a picture of their car. The assistant reads the size and condition, quotes a range from <em>your</em> menu, and books the slot. You only step in to do the job.</p>
+      <p style="color:var(--mute);margin-top:14px;max-width:460px">Customers text a picture of their car or their yard. The assistant reads the size and condition, quotes a range from <em>your</em> menu, and books the slot. You only step in to do the job.</p>
       <div class="steps">
         <div class="step"><b>1</b><span>Customer texts a photo, from the site or straight from Instagram.</span></div>
         <div class="step"><b>2</b><span>They get an estimate from your prices in under a minute, any hour.</span></div>
-        <div class="step"><b>3</b><span>The booking lands in your texts. You confirm and show up.</span></div>
+        <div class="step"><b>3</b><span>The booking lands in your texts. You confirm and show up, even while you're at your weekday job.</span></div>
       </div>
       <span class="demo-tag">▶ Live demo: try it on the phone</span>
     </div>
     <div class="phone">
       <div class="screen">
-        <div class="thead"><strong data-biz="name">Tom's Detailing</strong>Text message</div>
+        <div class="thead"><strong data-biz="name">Precision Outdoors &amp; Detail</strong>Text message</div>
         <div class="thread" id="thread"></div>
         <div class="compose" id="compose">
-          <label>📷 Send a photo of your car<input type="file" accept="image/*" id="file"></label>
+          <label>📷 Send a photo of your car or yard<input type="file" accept="image/*" id="file"></label>
           <button data-sample="sedan">Use sample: sedan</button>
           <button data-sample="truck">Use sample: truck</button>
+          <button data-sample="lawn" style="flex-basis:100%">Use sample: front yard</button>
         </div>
       </div>
     </div>
@@ -229,18 +248,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <h2>Detailing without the hassle.</h2>
     </div>
     <div class="why">
-      <div><h3>Quotes in minutes</h3><p>No waiting on a callback. Send a photo and know the price before you book.</p></div>
+      <div><h3>Quotes in minutes</h3><p>No waiting on a callback. Send a photo of the car or the yard and know the price before you book.</p></div>
       <div><h3 data-mobile-h>We come to you</h3><p>Driveway, office, apartment lot. You keep your day and we bring the shine.</p></div>
-      <div><h3>Proof on every job</h3><p>Before/after photos sent to you when we finish, so you see exactly what you paid for.</p></div>
-      <div><h3>Local to Augusta</h3><p>One detailer who answers his own phone, not a chain.</p></div>
+      <div><h3>One call, two jobs</h3><p>Lawn on Saturday, car on Sunday. One guy you trust for both.</p></div>
+      <div><h3>Pride in every detail</h3><p>Local to Augusta. One owner who answers his own phone, not a chain.</p></div>
     </div>
   </div>
 </section>
 
 <section class="final">
   <div class="wrap">
-    <h2>Ready when<br>your car is.</h2>
-    <p>Text a photo now and get your estimate before you finish your coffee.</p>
+    <h2>Cleaner car.<br>Better look.</h2>
+    <p>More confidence. Text a photo now and get your estimate before you finish your coffee.</p>
     <div class="cta-row" style="justify-content:center">
       <a href="#estimate" class="btn primary">📸 Photo estimate</a>
       <a class="btn" data-sms><span data-biz="phoneShown">(706) 294-0258</span></a>
@@ -250,7 +269,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 <span data-biz="name">Tom's Detailing</span> · <span data-biz="city">Augusta, GA</span></span>
+    <span>© 2026 <span data-biz="name">Precision Outdoors &amp; Detail</span> · <span data-biz="city">Augusta, GA</span> · Facebook <span data-biz="facebook">@Tom Ford</span></span>
     <span>Concept by <a href="https://tyycc.com" style="color:var(--accent)">tyycc</a></span>
   </div>
 </footer>
@@ -262,12 +281,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   const B = window.BIZ;
   document.title = B.name + " · Concept";
   document.querySelectorAll("[data-biz]").forEach(el => { const v = B[el.dataset.biz]; if (v) el.textContent = v; });
-  document.querySelectorAll("[data-biz-city]").forEach(el => el.textContent = B.city + " · Car detailing");
+  document.querySelectorAll("[data-biz-city]").forEach(el => el.textContent = B.city + " · Lawn care + car detailing");
   document.querySelectorAll("[data-sms]").forEach(el => el.href = "sms:" + B.phone);
   if (!B.mobile) document.querySelectorAll("[data-mobile]").forEach(el => el.remove());
+  if (!B.mobile) document.querySelectorAll("[data-mobile-h]").forEach(el => el.parentElement.remove());
 
   // packages
-  document.getElementById("pkgs").innerHTML = B.packages.map(p => `
+  const card = p => `
     <div class="pkg${p.best ? " best" : ""}">
       ${p.best ? '<span class="badge">Most booked</span>' : ""}
       <h3>${p.name}</h3>
@@ -275,7 +295,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <div class="time">${p.time}</div>
       <ul>${p.items.map(i => `<li>${i}</li>`).join("")}</ul>
       <a href="#estimate" class="btn">Get exact price</a>
-    </div>`).join("");
+    </div>`;
+  document.getElementById("pkgs").innerHTML = B.groups.map(g => `
+    <h3 class="grp">${g.icon} ${g.title}</h3>
+    <div class="grid">${g.packages.map(card).join("")}</div>`).join("");
 
   // water beads in the hero
   const bd = document.getElementById("beads");
@@ -299,32 +322,37 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   const add = (cls, html) => { const d = document.createElement("div"); d.className = "b " + cls; d.innerHTML = html; thread.appendChild(d); thread.scrollTop = thread.scrollHeight; return d; };
   const wait = ms => new Promise(r => setTimeout(r, ms));
   const say = async (txt, ms = 900) => { const t = add("them typing", "<i></i><i></i><i></i>"); await wait(ms); t.remove(); add("them", txt); };
-  const full = B.packages.find(p => p.best) || B.packages[0];
+  const car = B.groups[0].packages, lawn = B.groups[1].packages;
+  const full = car.find(p => p.best) || car[0];
   const quotes = {
     sedan: { what: "a mid-size sedan", lo: full.from, hi: full.from + 30, note: "Light interior wear and some road film on the paint. No heavy staining that I can see." },
     truck: { what: "a full-size truck", lo: full.from + 40, hi: full.from + 80, note: "Bigger cab plus the bed, and the wheels look like they need a degrease." },
-    yours: { what: "your vehicle", lo: full.from, hi: full.from + 60, note: "Thanks for the photo! The range depends on size and how much interior work it needs." }
+    yours: { what: "your vehicle", lo: full.from, hi: full.from + 60, note: "Thanks for the photo! The range depends on size and how much interior work it needs." },
+    lawn:  { what: "a front yard, roughly a quarter acre", lo: lawn[0].from + lawn[1].from, hi: lawn[0].from + lawn[1].from + 20, note: "Grass is about a week past due and the edges along the drive are creeping.", pkg: "Mow + edge & trim", time: "~45 min" }
   };
   const GREET = "Hey! 👋 Send a photo of your car and I'll get you a detailing estimate in under a minute.";
   let busy = false;
   async function run(kind, imgSrc) {
     if (busy) return; busy = true; thread.innerHTML = ""; add("them", GREET);
     add("me img", `<img src="${imgSrc}" alt="car photo">`);
-    add("me", "how much for a full detail?");
+    add("me", kind === "lawn" ? "how much to cut and edge this?" : "how much for a full detail?");
     const q = quotes[kind];
     await say(`Got it! Looks like ${q.what}. ${q.note}`, 1300);
-    await say(`A <b>${full.name}</b> on that would run about <b>$${q.lo}–$${q.hi}</b>, around ${full.time.replace("~", "")}.`, 1100);
-    await say(`I have openings tomorrow at 10am or 2pm. Want me to hold one?`, 900);
-    await wait(700); add("me", "2pm works");
-    await say(`Done ✅ You're booked for tomorrow at 2pm. ${B.name.split(" ")[0].replace("'s", "")} will text when he's on the way.`, 1000);
+    await say(`A <b>${q.pkg || full.name}</b> on that would run about <b>$${q.lo}–$${q.hi}</b>, around ${(q.time || full.time).replace("~", "")}.`, 1100);
+    await say(`I have Saturday at 10am or Sunday at 2pm open. Want me to hold one?`, 900);
+    await wait(700); add("me", "sunday 2pm works");
+    await say(`Done ✅ You're booked for Sunday at 2pm. Tom will text when he's on the way.`, 1000);
     busy = false;
   }
   const svgCar = (c1, c2, truck) => "data:image/svg+xml;utf8," + encodeURIComponent(
     `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 240'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='${c1}'/><stop offset='1' stop-color='${c2}'/></linearGradient></defs><rect width='360' height='240' fill='#8a8f96'/><rect y='170' width='360' height='70' fill='#55595f'/>` +
     (truck ? `<path d='M40 165 L40 120 L150 120 L175 85 L250 85 L265 120 L325 120 L325 165Z' fill='url(#g)'/>` : `<path d='M35 165 Q40 125 90 120 L130 88 Q180 70 240 88 L280 118 Q325 124 328 165Z' fill='url(#g)'/>`) +
     `<circle cx='95' cy='168' r='24' fill='#111'/><circle cx='270' cy='168' r='24' fill='#111'/><circle cx='95' cy='168' r='10' fill='#999'/><circle cx='270' cy='168' r='10' fill='#999'/></svg>`);
+  const svgLawn = () => "data:image/svg+xml;utf8," + encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 240'><rect width='360' height='240' fill='#9cc3e6'/><rect x='150' y='40' width='170' height='90' fill='#d9d2c3'/><path d='M140 45 L235 0 L330 45Z' fill='#5b4a3f'/><rect y='120' width='360' height='120' fill='#5f8f33'/>` +
+    [0,1,2,3,4,5].map(i => `<rect x='${i*60}' y='120' width='30' height='120' fill='#6e9f3c' opacity='.7'/>`).join('') + `<rect x='250' y='120' width='40' height='120' fill='#bdb6a8'/></svg>`);
   document.querySelectorAll("[data-sample]").forEach(b => b.onclick = () =>
-    run(b.dataset.sample, b.dataset.sample === "truck" ? svgCar("#3d4a5c", "#1c2430", true) : svgCar("#9a2a2a", "#4a1010", false)));
+    run(b.dataset.sample, b.dataset.sample === "truck" ? svgCar("#3d4a5c", "#1c2430", true) : b.dataset.sample === "lawn" ? svgLawn() : svgCar("#9a2a2a", "#4a1010", false)));
   document.getElementById("file").onchange = e => { const f = e.target.files[0]; if (f) run("yours", URL.createObjectURL(f)); };
   add("them", GREET);
 
@@ -334,5 +362,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     .observe(document.getElementById("estimate"));
 })();
 </script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
