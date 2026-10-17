@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#0b0d10">
+<title>Detailing · Concept</title>
+<meta name="description" content="Concept site for an Augusta car-detailing business, prepared by tyycc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600;700&display=swap">
+<script>
+  // ── Swap these from the business card. Everything on the page reads from here. ──
+  window.BIZ = {
+    name: "Tom's Detailing",          // TBD from card
+    short: "TD",                      // monogram in the nav
+    city: "Augusta, GA",
+    phone: "+17062940258",            // Tom's number (text line)
+    phoneShown: "(706) 294-0258",
+    mobile: true,                     // TBD: does he come to you?
+    hours: "By appointment · 7 days",
+    packages: [
+      { name: "Interior Reset", from: 89,  time: "~2 hrs", items: ["Vacuum + shampoo seats & mats", "Steam vents, cupholders, console", "Glass in and out", "Leather / plastics conditioned"] },
+      { name: "Exterior Gloss", from: 79,  time: "~1.5 hrs", items: ["Foam pre-wash + hand wash", "Wheels, tires, wells degreased", "Clay bar decontamination", "6-month sealant"] },
+      { name: "Full Detail",    from: 159, time: "~3.5 hrs", items: ["Everything in Interior + Exterior", "Engine bay wipe-down", "Tire dressing + trim restore", "Before / after photos"], best: true },
+      { name: "Ceramic Add-On", from: 249, time: "+ 1 day", items: ["Paint correction prep", "2-yr ceramic coating", "Hydrophobic glass", "Maintenance plan"] }
+    ]
+  };
+</script>
+<style>
+:root{
+  --bg:#0b0d10; --bg2:#12151a; --card:#161a20; --line:#242a33;
+  --ink:#eef2f6; --mute:#9aa4b2; --dim:#6b7584;
+  --accent:#4fd1ff; --accent2:#7cf5d2; --warn:#ffcf5a;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Archivo,sans-serif;font-variation-settings:"wdth" 118;letter-spacing:-.02em;line-height:1.02}
+.eyebrow{font:600 12px/1 Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(#0b0d10e6,#0b0d1000);backdrop-filter:blur(6px)}
+.mono{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font:800 15px Archivo;font-variation-settings:"wdth" 125;background:linear-gradient(135deg,#1d2530,#0e1217);border:1px solid var(--line);color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;font:600 15px Inter;border:1px solid var(--line);background:var(--card);transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#041016;border:0}
+.btn.sm{padding:9px 14px;font-size:14px}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;padding:120px 0 56px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -30% auto;height:120%;background:
+  radial-gradient(60% 50% at 70% 30%,#4fd1ff33,transparent 70%),
+  radial-gradient(40% 40% at 20% 60%,#7cf5d222,transparent 70%);filter:blur(10px)}
+.beads{position:absolute;inset:0;pointer-events:none;opacity:.55}
+.beads i{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffcc 0 8%,#bfeaff55 20%,#4fd1ff10 60%,transparent 70%);box-shadow:inset -2px -3px 6px #00000055}
+.hero h1{font-size:clamp(46px,11vw,112px);font-weight:900}
+.hero h1 .shine{background:linear-gradient(100deg,#fff 20%,var(--accent) 45%,#fff 60%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 5s ease-in-out infinite}
+@keyframes sh{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.hero p.lede{max-width:520px;color:var(--mute);font-size:18px;margin:18px 0 28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chip{font:500 13px Inter;color:var(--mute);padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:#ffffff05}
+
+section{padding:88px 0}
+.sec-head{margin-bottom:36px}
+.sec-head h2{font-size:clamp(32px,6vw,54px);font-weight:850;margin-top:10px}
+.sec-head p{color:var(--mute);max-width:560px;margin-top:12px}
+
+/* before / after */
+.ba{position:relative;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);user-select:none;touch-action:pan-y}
+.ba .pane{position:absolute;inset:0;display:grid;place-items:center;font:700 14px Inter;letter-spacing:.14em;text-transform:uppercase}
+.ba .before{background:
+  radial-gradient(circle at 30% 40%,#5a4a3a66 0 6%,transparent 7%),radial-gradient(circle at 62% 58%,#5a4a3a55 0 4%,transparent 5%),
+  radial-gradient(circle at 78% 30%,#5a4a3a44 0 5%,transparent 6%),linear-gradient(160deg,#3a3f46,#22262c);color:#ffffff66}
+.ba .after{background:linear-gradient(160deg,#1a3a52,#0d1d2a 55%,#071018),radial-gradient(70% 40% at 60% 20%,#ffffff22,transparent);color:#ffffffaa;clip-path:inset(0 0 0 50%)}
+.ba .after::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#ffffff1f 45%,transparent 55%)}
+.ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px)}
+.ba .handle::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:#0b0d10;display:grid;place-items:center;font-size:18px;box-shadow:0 6px 20px #0008}
+.ba .tag{position:absolute;bottom:12px;padding:5px 10px;border-radius:8px;background:#000a;font:600 12px Inter}
+.ba .tag.l{left:12px}.ba .tag.r{right:12px}
+.note{font-size:13px;color:var(--dim);margin-top:10px}
+
+/* packages */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.pkg{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;position:relative;display:flex;flex-direction:column}
+.pkg.best{border-color:#4fd1ff88;background:linear-gradient(180deg,#4fd1ff12,var(--card) 40%)}
+.pkg .badge{position:absolute;top:-11px;right:16px;background:var(--accent);color:#041016;font:700 11px Inter;letter-spacing:.08em;padding:5px 9px;border-radius:999px;text-transform:uppercase}
+.pkg h3{font-size:22px;font-weight:800}
+.pkg .price{font:800 34px Archivo;margin:10px 0 2px}
+.pkg .price small{font:500 13px Inter;color:var(--mute);margin-right:4px}
+.pkg .time{font-size:13px;color:var(--dim);margin-bottom:14px}
+.pkg ul{list-style:none;display:grid;gap:8px;font-size:14px;color:#cfd6df;margin-bottom:18px}
+.pkg li::before{content:"✓";color:var(--accent2);margin-right:8px;font-weight:700}
+.pkg .btn{margin-top:auto;justify-content:center}
+
+/* estimate demo */
+.est{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+@media (max-width:820px){.est{grid-template-columns:1fr}}
+.steps{display:grid;gap:14px;margin-top:22px}
+.step{display:flex;gap:14px;align-items:flex-start}
+.step b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#4fd1ff1a;color:var(--accent);font:700 14px Inter}
+.step span{color:var(--mute)}
+.phone{width:100%;max-width:380px;margin:0 auto;background:#000;border-radius:42px;padding:12px;border:1px solid #2a2f36;box-shadow:0 30px 80px #0009}
+.screen{background:#0f1115;border-radius:32px;overflow:hidden;height:560px;display:flex;flex-direction:column}
+.thead{padding:16px;text-align:center;border-bottom:1px solid #1f242b;font-size:13px;color:var(--mute)}
+.thead strong{display:block;color:var(--ink);font-size:15px}
+.thread{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
+.b{max-width:78%;padding:9px 13px;border-radius:18px;font-size:14.5px;line-height:1.4;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.b.me{align-self:flex-end;background:#0a84ff;color:#fff;border-bottom-right-radius:6px}
+.b.them{align-self:flex-start;background:#26292f;border-bottom-left-radius:6px}
+.b.img{padding:4px;background:#0a84ff}
+.b.img img{display:block;width:180px;height:120px;object-fit:cover;border-radius:14px}
+.b.typing{display:flex;gap:4px}.b.typing i{width:7px;height:7px;border-radius:50%;background:#888;animation:bl 1s infinite}.b.typing i:nth-child(2){animation-delay:.15s}.b.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.25}}
+.compose{padding:10px;border-top:1px solid #1f242b;display:flex;flex-wrap:wrap;gap:8px}
+.compose button{flex:1 1 45%;padding:10px 8px;border-radius:14px;border:1px solid #2a2f36;background:#181b20;color:var(--ink);font:600 13px Inter;cursor:pointer}
+.compose button:active{transform:scale(.97)}
+.compose label{flex:1 1 100%;text-align:center;padding:11px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#041016;font:700 14px Inter;cursor:pointer}
+.compose input{display:none}
+.demo-tag{display:inline-block;margin-top:14px;font:600 12px Inter;color:var(--warn);border:1px dashed #ffcf5a66;padding:6px 10px;border-radius:8px}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.why div{padding:22px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--line)}
+.why h3{font-size:19px;margin-bottom:8px}
+.why p{color:var(--mute);font-size:14.5px}
+
+/* final cta */
+.final{text-align:center;padding:96px 0 120px;background:radial-gradient(60% 60% at 50% 0,#4fd1ff1c,transparent 70%)}
+.final h2{font-size:clamp(36px,8vw,72px);font-weight:900}
+.final p{color:var(--mute);margin:14px auto 28px;max-width:440px}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.sticky{position:fixed;left:16px;right:16px;bottom:16px;z-index:30;display:none}
+@media (max-width:640px){.sticky{display:flex}.sticky .btn{flex:1;justify-content:center;box-shadow:0 10px 30px #000a}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#top" class="mono" data-biz="short">TD</a>
+  <a href="#estimate" class="btn sm primary">Photo estimate</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="beads" id="beads" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <div class="eyebrow" data-biz-city>Augusta, GA · Car detailing</div>
+    <h1 style="margin-top:14px">Showroom clean.<br><span class="shine">Every time.</span></h1>
+    <p class="lede"><span data-biz="name">Tom's Detailing</span> brings your car back to new, inside and out. Text a photo and get your estimate in minutes, with no back-and-forth.</p>
+    <div class="cta-row">
+      <a href="#estimate" class="btn primary">📸 Get a photo estimate</a>
+      <a class="btn" data-sms>💬 Text us</a>
+    </div>
+    <div class="chips">
+      <span class="chip" data-mobile>🚐 We come to you</span>
+      <span class="chip">⭐ Before/after on every job</span>
+      <span class="chip" data-biz="hours">By appointment · 7 days</span>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">The work</div>
+      <h2>Drag to see the difference.</h2>
+      <p>Real before/after shots go here. They sell better than any paragraph.</p>
+    </div>
+    <div class="ba" id="ba">
+      <div class="pane before"></div>
+      <div class="pane after" id="baAfter"></div>
+      <div class="handle" id="baHandle"></div>
+      <span class="tag l">Before</span><span class="tag r">After</span>
+    </div>
+    <p class="note">Placeholder. These get swapped for photos from the Instagram.</p>
+  </div>
+</section>
+
+<section id="packages" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Packages</div>
+      <h2>Pick your level of clean.</h2>
+      <p>Final price depends on size and condition. Send a photo and you'll get an exact number.</p>
+    </div>
+    <div class="grid" id="pkgs"></div>
+    <p class="note">Sample pricing for the concept. The real menu comes from you.</p>
+  </div>
+</section>
+
+<section id="estimate">
+  <div class="wrap est">
+    <div>
+      <div class="eyebrow">Photo estimate</div>
+      <h2 style="font-size:clamp(32px,6vw,54px);font-weight:850;margin-top:10px">Snap it. Send it.<br>Get a price.</h2>
+      <p style="color:var(--mute);margin-top:14px;max-width:460px">Customers text a picture of their car. The assistant reads the size and condition, quotes a range from <em>your</em> menu, and books the slot. You only step in to do the job.</p>
+      <div class="steps">
+        <div class="step"><b>1</b><span>Customer texts a photo, from the site or straight from Instagram.</span></div>
+        <div class="step"><b>2</b><span>They get an estimate from your prices in under a minute, any hour.</span></div>
+        <div class="step"><b>3</b><span>The booking lands in your texts. You confirm and show up.</span></div>
+      </div>
+      <span class="demo-tag">▶ Live demo: try it on the phone</span>
+    </div>
+    <div class="phone">
+      <div class="screen">
+        <div class="thead"><strong data-biz="name">Tom's Detailing</strong>Text message</div>
+        <div class="thread" id="thread"></div>
+        <div class="compose" id="compose">
+          <label>📷 Send a photo of your car<input type="file" accept="image/*" id="file"></label>
+          <button data-sample="sedan">Use sample: sedan</button>
+          <button data-sample="truck">Use sample: truck</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Why us</div>
+      <h2>Detailing without the hassle.</h2>
+    </div>
+    <div class="why">
+      <div><h3>Quotes in minutes</h3><p>No waiting on a callback. Send a photo and know the price before you book.</p></div>
+      <div><h3 data-mobile-h>We come to you</h3><p>Driveway, office, apartment lot. You keep your day and we bring the shine.</p></div>
+      <div><h3>Proof on every job</h3><p>Before/after photos sent to you when we finish, so you see exactly what you paid for.</p></div>
+      <div><h3>Local to Augusta</h3><p>One detailer who answers his own phone, not a chain.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Ready when<br>your car is.</h2>
+    <p>Text a photo now and get your estimate before you finish your coffee.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a href="#estimate" class="btn primary">📸 Photo estimate</a>
+      <a class="btn" data-sms><span data-biz="phoneShown">(706) 294-0258</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <span data-biz="name">Tom's Detailing</span> · <span data-biz="city">Augusta, GA</span></span>
+    <span>Concept by <a href="https://tyycc.com" style="color:var(--accent)">tyycc</a></span>
+  </div>
+</footer>
+
+<div class="sticky"><a href="#estimate" class="btn primary">📸 Get my estimate</a></div>
+
+<script>
+(() => {
+  const B = window.BIZ;
+  document.title = B.name + " · Concept";
+  document.querySelectorAll("[data-biz]").forEach(el => { const v = B[el.dataset.biz]; if (v) el.textContent = v; });
+  document.querySelectorAll("[data-biz-city]").forEach(el => el.textContent = B.city + " · Car detailing");
+  document.querySelectorAll("[data-sms]").forEach(el => el.href = "sms:" + B.phone);
+  if (!B.mobile) document.querySelectorAll("[data-mobile]").forEach(el => el.remove());
+
+  // packages
+  document.getElementById("pkgs").innerHTML = B.packages.map(p => `
+    <div class="pkg${p.best ? " best" : ""}">
+      ${p.best ? '<span class="badge">Most booked</span>' : ""}
+      <h3>${p.name}</h3>
+      <div class="price"><small>from</small>$${p.from}</div>
+      <div class="time">${p.time}</div>
+      <ul>${p.items.map(i => `<li>${i}</li>`).join("")}</ul>
+      <a href="#estimate" class="btn">Get exact price</a>
+    </div>`).join("");
+
+  // water beads in the hero
+  const bd = document.getElementById("beads");
+  for (let i = 0; i < 26; i++) {
+    const s = 6 + Math.random() * 26, el = document.createElement("i");
+    el.style.cssText = `width:${s}px;height:${s * (0.85 + Math.random() * .3)}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%`;
+    bd.appendChild(el);
+  }
+
+  // before/after slider
+  const ba = document.getElementById("ba"), after = document.getElementById("baAfter"), h = document.getElementById("baHandle");
+  const setBA = x => { const r = ba.getBoundingClientRect(), p = Math.max(0, Math.min(100, (x - r.left) / r.width * 100));
+    after.style.clipPath = `inset(0 0 0 ${p}%)`; h.style.left = p + "%"; };
+  let drag = false;
+  ba.addEventListener("pointerdown", e => { drag = true; ba.setPointerCapture(e.pointerId); setBA(e.clientX); });
+  ba.addEventListener("pointermove", e => drag && setBA(e.clientX));
+  ba.addEventListener("pointerup", () => drag = false);
+
+  // photo-estimate demo (scripted; the real one reads the photo)
+  const thread = document.getElementById("thread");
+  const add = (cls, html) => { const d = document.createElement("div"); d.className = "b " + cls; d.innerHTML = html; thread.appendChild(d); thread.scrollTop = thread.scrollHeight; return d; };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const say = async (txt, ms = 900) => { const t = add("them typing", "<i></i><i></i><i></i>"); await wait(ms); t.remove(); add("them", txt); };
+  const full = B.packages.find(p => p.best) || B.packages[0];
+  const quotes = {
+    sedan: { what: "a mid-size sedan", lo: full.from, hi: full.from + 30, note: "Light interior wear and some road film on the paint. No heavy staining that I can see." },
+    truck: { what: "a full-size truck", lo: full.from + 40, hi: full.from + 80, note: "Bigger cab plus the bed, and the wheels look like they need a degrease." },
+    yours: { what: "your vehicle", lo: full.from, hi: full.from + 60, note: "Thanks for the photo! The range depends on size and how much interior work it needs." }
+  };
+  const GREET = "Hey! 👋 Send a photo of your car and I'll get you a detailing estimate in under a minute.";
+  let busy = false;
+  async function run(kind, imgSrc) {
+    if (busy) return; busy = true; thread.innerHTML = ""; add("them", GREET);
+    add("me img", `<img src="${imgSrc}" alt="car photo">`);
+    add("me", "how much for a full detail?");
+    const q = quotes[kind];
+    await say(`Got it! Looks like ${q.what}. ${q.note}`, 1300);
+    await say(`A <b>${full.name}</b> on that would run about <b>$${q.lo}–$${q.hi}</b>, around ${full.time.replace("~", "")}.`, 1100);
+    await say(`I have openings tomorrow at 10am or 2pm. Want me to hold one?`, 900);
+    await wait(700); add("me", "2pm works");
+    await say(`Done ✅ You're booked for tomorrow at 2pm. ${B.name.split(" ")[0].replace("'s", "")} will text when he's on the way.`, 1000);
+    busy = false;
+  }
+  const svgCar = (c1, c2, truck) => "data:image/svg+xml;utf8," + encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 240'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='${c1}'/><stop offset='1' stop-color='${c2}'/></linearGradient></defs><rect width='360' height='240' fill='#8a8f96'/><rect y='170' width='360' height='70' fill='#55595f'/>` +
+    (truck ? `<path d='M40 165 L40 120 L150 120 L175 85 L250 85 L265 120 L325 120 L325 165Z' fill='url(#g)'/>` : `<path d='M35 165 Q40 125 90 120 L130 88 Q180 70 240 88 L280 118 Q325 124 328 165Z' fill='url(#g)'/>`) +
+    `<circle cx='95' cy='168' r='24' fill='#111'/><circle cx='270' cy='168' r='24' fill='#111'/><circle cx='95' cy='168' r='10' fill='#999'/><circle cx='270' cy='168' r='10' fill='#999'/></svg>`);
+  document.querySelectorAll("[data-sample]").forEach(b => b.onclick = () =>
+    run(b.dataset.sample, b.dataset.sample === "truck" ? svgCar("#3d4a5c", "#1c2430", true) : svgCar("#9a2a2a", "#4a1010", false)));
+  document.getElementById("file").onchange = e => { const f = e.target.files[0]; if (f) run("yours", URL.createObjectURL(f)); };
+  add("them", GREET);
+
+  // hide the sticky CTA while the demo phone is on screen
+  const sticky = document.querySelector(".sticky");
+  new IntersectionObserver(([e]) => sticky.style.visibility = e.isIntersecting ? "hidden" : "visible", { threshold: .15 })
+    .observe(document.getElementById("estimate"));
+})();
+</script>
+</body>
+</html>
