@@ -33,17 +33,16 @@ h1,h2,h3,.disp{font-weight:800 !important;text-transform:uppercase;letter-spacin
 .stage>.pin{position:sticky;top:0;height:100svh;overflow:hidden}
 
 /* home hero */
-.hero{height:240svh;background:#242424}
+.hero{height:190svh;background:#242424}
 .hero .pin{display:grid;place-items:center;background:radial-gradient(70% 55% at 50% 45%,rgb(58 39 50 / calc(1 - var(--p))) 0%,#242424 72%)}
-.badge{position:relative;width:min(92vw,560px);aspect-ratio:1;display:grid;place-items:center;transform:translateY(-3svh)}
-.badge .disc{position:absolute;inset:6%;border-radius:50%;background:#1a1818;box-shadow:inset 0 0 0 7px var(--gold),0 20px 60px #0008;transform:scale(calc(.15 + min(1, var(--p) * 1.6) * .85));opacity:min(1, calc(var(--p) * 2.2))}
-.badge .arcs{position:absolute;inset:0;width:100%;height:100%;opacity:clamp(0, calc(var(--p) * 3 - 1.1), 1);transform:rotate(calc((1 - min(1, var(--p) * 1.4)) * -14deg))}
-.badge .arcs text{font:800 46px 'Big Shoulders Display',sans-serif;fill:var(--bone);letter-spacing:4px}
-.badge .arcs text.sm{fill:var(--gold)}
-.badge .arcs tspan.pk{fill:var(--pink)}
-.badge .arcs text.sm{font-size:30px;letter-spacing:5px}
-.badge .duo{position:relative;width:calc(100% - var(--p) * 38%);transform:translateY(calc(var(--p) * 2%))}
-.hero .title{position:absolute;left:0;right:0;bottom:7svh;text-align:center;color:#d8ccc4;padding:0 20px;font:700 15px 'Big Shoulders Display',sans-serif;letter-spacing:.32em;text-transform:uppercase;opacity:clamp(0, calc(var(--p) * 3 - 1.8), 1)}
+.logos{width:min(86vw,540px);aspect-ratio:1;animation:zoomIn 1.2s cubic-bezier(.16,.84,.24,1) both}
+@keyframes zoomIn{from{transform:scale(.5);opacity:0;filter:blur(8px)}to{transform:none;opacity:1;filter:none}}
+.logos .lw{position:relative;width:100%;height:100%;transform:scale(calc(1 + var(--p) * .08)) rotate(calc(var(--p) * -4deg))}
+.logos img{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 24px 50px #000a)}
+.logos{--k:clamp(0, calc((var(--p) - .32) * 8), 1)}   /* 0→1 over scroll .32–.445: the swap beat */
+.logos .la{opacity:calc(1 - var(--k));transform:scale(calc(1 + var(--k) * .35))}
+.logos .lb{opacity:var(--k);transform:scale(calc(.82 + var(--k) * .18))}
+.hero .title{position:absolute;left:0;right:0;bottom:7svh;text-align:center;color:#d8ccc4;padding:0 20px;font:700 15px 'Big Shoulders Display',sans-serif;letter-spacing:.32em;text-transform:uppercase;opacity:clamp(0, calc(var(--p) * 3 - 1.2), 1)}
 .hero .hint{position:absolute;bottom:4svh;left:50%;transform:translateX(-50%);color:#ffffff80;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:calc(1 - var(--p) * 6)}
 .hero .hint::after{content:"";display:block;width:1px;height:28px;background:#ffffff60;margin:8px auto 0;animation:drip 1.8s ease-in-out infinite}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -176,6 +175,7 @@ form.cf{display:grid;gap:14px;max-width:560px}
 .rv.in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
+  .logos{animation:none}
   [data-scene]{--p:1 !important}
   .float{display:none}
   .rv,.list li{opacity:1;transform:none;transition:none}
