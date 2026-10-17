@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="media/hero.jpg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600;700&display=swap">
 <script>
-  // ── Swap these from the business card. Everything on the page reads from here. ──
+  // ── Business details from his card. Everything on the page reads from here. ──
   window.BIZ = {
     name: "Precision Outdoors & Detail",
     short: "P",
@@ -22,17 +22,17 @@
     facebook: "@Tom Ford",
     mobile: false,                    // TBD: ask if he comes to you for details
     hours: "Saturday & Sunday appointments",
-    // Services are straight off his card; prices are SAMPLE until he gives his menu.
+    // Services straight off his card. No prices: every job is quoted by Tom.
     groups: [
-      { title: "Car Detail", icon: "🚗", packages: [
-        { name: "Exterior Wash",     from: 40,  time: "~1 hr",   items: ["Foam pre-wash + hand wash", "Bug + tar removal", "Hand dry, streak-free glass", "Tire shine"] },
-        { name: "Interior Cleaning", from: 60,  time: "~1.5 hrs", items: ["Vacuum seats, carpets, mats", "Wipe-down dash, doors, console", "Cupholders + vents detailed", "Interior glass"] },
-        { name: "Full Detail",       from: 110, time: "~3 hrs",  items: ["Exterior wash + interior cleaning", "Wheel & tire cleaning", "Wheel wells degreased", "Before / after photos"], best: true }
+      { title: "Car Detail", icon: "🚗", key: "car", packages: [
+        { name: "Exterior Wash",     time: "~1 hr",    items: ["Foam pre-wash + hand wash", "Bug + tar removal", "Hand dry, streak-free glass", "Tire shine"] },
+        { name: "Interior Cleaning", time: "~1.5 hrs", items: ["Vacuum seats, carpets, mats", "Wipe-down dash, doors, console", "Cupholders + vents detailed", "Interior glass"] },
+        { name: "Full Detail",       time: "~3 hrs",   items: ["Exterior wash + interior cleaning", "Wheel & tire cleaning", "Wheel wells degreased", "Before / after photos"], best: true }
       ]},
-      { title: "Landscaping", icon: "🌿", packages: [
-        { name: "Lawn Mowing",        from: 35, time: "per visit", items: ["Clean, striped cut", "Clippings handled", "Front + back yard", "Weekly or bi-weekly"] },
-        { name: "Edging & Trimming",  from: 20, time: "add-on",    items: ["Sharp edges on walks + drive", "Trim around beds + fences", "String-trim the hard spots"] },
-        { name: "Blowing & Leaf Cleanup", from: 50, time: "seasonal", items: ["Drive, walks, patio blown clean", "Leaves cleared from beds + lawn", "Bagged or mulched"] , best: true }
+      { title: "Landscaping", icon: "🌿", key: "lawn", packages: [
+        { name: "Lawn Mowing",            time: "per visit", items: ["Clean, striped cut", "Clippings handled", "Front + back yard", "Weekly or bi-weekly"] },
+        { name: "Edging & Trimming",      time: "add-on",    items: ["Sharp edges on walks + drive", "Trim around beds + fences", "String-trim the hard spots"] },
+        { name: "Blowing & Leaf Cleanup", time: "seasonal",  items: ["Drive, walks, patio blown clean", "Leaves cleared from beds + lawn", "Bagged or mulched"], best: true }
       ]}
     ]
   };
@@ -41,13 +41,14 @@
 :root{
   --bg:#070907; --bg2:#0d110d; --card:#121712; --line:#223022;
   --ink:#eef2f6; --mute:#9aa4b2; --dim:#6b7584;
-  --accent:#8ad63f; --accent2:#3fdc7c; --warn:#ffcf5a;
+  --accent:#8ad63f; --accent2:#3fdc7c;
   --r:18px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font:400 16px/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 h1,h2,h3{font-family:Archivo,sans-serif;font-variation-settings:"wdth" 118;letter-spacing:-.02em;line-height:1.02}
 .eyebrow{font:600 12px/1.5 Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
@@ -69,11 +70,6 @@ h1,h2,h3{font-family:Archivo,sans-serif;font-variation-settings:"wdth" 118;lette
 #p3d.ready{opacity:1}
 #p-poster{position:absolute;inset:10%;width:80%;height:80%;transition:opacity .4s}
 #p-poster.gone{opacity:0}
-.hero::before{content:"";position:absolute;inset:-20% -30% auto;height:120%;background:
-  radial-gradient(60% 50% at 70% 30%,#8ad63f30,transparent 70%),
-  radial-gradient(40% 40% at 20% 60%,#3fdc7c1c,transparent 70%);filter:blur(10px)}
-.beads{display:none}
-.beads i{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffffcc 0 8%,#d8ffbf55 20%,#8ad63f10 60%,transparent 70%);box-shadow:inset -2px -3px 6px #00000055}
 .hero h1{font-size:clamp(40px,10vw,104px);font-weight:900}
 .hero h1 .shine{background:linear-gradient(100deg,#fff 20%,var(--accent) 45%,#fff 60%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 5s ease-in-out infinite}
 @keyframes sh{0%,100%{background-position:100% 0}50%{background-position:0 0}}
@@ -89,11 +85,11 @@ section{padding:88px 0}
 
 /* before / after */
 .ba{position:relative;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);user-select:none;touch-action:pan-y}
-.ba .pane{position:absolute;inset:0;display:grid;place-items:center;font:700 14px Inter;letter-spacing:.14em;text-transform:uppercase}
+.ba .pane{position:absolute;inset:0}
 .ba .before{background:
   radial-gradient(circle at 30% 40%,#5a4a3a66 0 6%,transparent 7%),radial-gradient(circle at 62% 58%,#5a4a3a55 0 4%,transparent 5%),
-  radial-gradient(circle at 78% 30%,#5a4a3a44 0 5%,transparent 6%),linear-gradient(160deg,#3a3f46,#22262c);color:#ffffff66}
-.ba .after{background:linear-gradient(160deg,#1a3a52,#0d1d2a 55%,#071018),radial-gradient(70% 40% at 60% 20%,#ffffff22,transparent);color:#ffffffaa;clip-path:inset(0 0 0 50%)}
+  radial-gradient(circle at 78% 30%,#5a4a3a44 0 5%,transparent 6%),linear-gradient(160deg,#3a3f46,#22262c)}
+.ba .after{background:linear-gradient(160deg,#173a1c,#0c1d0f 55%,#071009),radial-gradient(70% 40% at 60% 20%,#ffffff22,transparent);clip-path:inset(0 0 0 50%)}
 .ba .after::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#ffffff1f 45%,transparent 55%)}
 .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px)}
 .ba .handle::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:#0b0d10;display:grid;place-items:center;font-size:18px;box-shadow:0 6px 20px #0008}
@@ -101,46 +97,80 @@ section{padding:88px 0}
 .ba .tag.l{left:12px}.ba .tag.r{right:12px}
 .note{font-size:13px;color:var(--dim);margin-top:10px}
 
-/* packages */
+/* services */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
 .grp{font-size:24px;font-weight:850;margin:34px 0 16px}.grp:first-child{margin-top:0}
 .pkg{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;position:relative;display:flex;flex-direction:column}
 .pkg.best{border-color:#8ad63f88;background:linear-gradient(180deg,#8ad63f12,var(--card) 40%)}
 .pkg .badge{position:absolute;top:-11px;right:16px;background:var(--accent);color:#061006;font:700 11px Inter;letter-spacing:.08em;padding:5px 9px;border-radius:999px;text-transform:uppercase}
 .pkg h3{font-size:22px;font-weight:800}
-.pkg .price{font:800 34px Archivo;margin:10px 0 2px}
-.pkg .price small{font:500 13px Inter;color:var(--mute);margin-right:4px}
-.pkg .time{font-size:13px;color:var(--dim);margin-bottom:14px}
+.pkg .time{font-size:13px;color:var(--dim);margin:6px 0 14px}
 .pkg ul{list-style:none;display:grid;gap:8px;font-size:14px;color:#cfd6df;margin-bottom:18px}
 .pkg li::before{content:"✓";color:var(--accent2);margin-right:8px;font-weight:700}
 .pkg .btn{margin-top:auto;justify-content:center}
 
-/* estimate demo */
-.est{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+/* assistant section */
+.est{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center}
 @media (max-width:820px){.est{grid-template-columns:1fr}}
 .steps{display:grid;gap:14px;margin-top:22px}
 .step{display:flex;gap:14px;align-items:flex-start}
 .step b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#8ad63f1a;color:var(--accent);font:700 14px Inter}
 .step span{color:var(--mute)}
-.phone{width:100%;max-width:380px;margin:0 auto;background:#000;border-radius:42px;padding:12px;border:1px solid #2a2f36;box-shadow:0 30px 80px #0009}
-.screen{background:#0f1115;border-radius:32px;overflow:hidden;height:560px;display:flex;flex-direction:column}
-.thead{padding:16px;text-align:center;border-bottom:1px solid #1f242b;font-size:13px;color:var(--mute)}
-.thead strong{display:block;color:var(--ink);font-size:15px}
-.thread{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
-.b{max-width:78%;padding:9px 13px;border-radius:18px;font-size:14.5px;line-height:1.4;animation:pop .25s ease}
-@keyframes pop{from{transform:scale(.9);opacity:0}}
-.b.me{align-self:flex-end;background:#0a84ff;color:#fff;border-bottom-right-radius:6px}
-.b.them{align-self:flex-start;background:#26292f;border-bottom-left-radius:6px}
-.b.img{padding:4px;background:#0a84ff}
-.b.img img{display:block;width:180px;height:120px;object-fit:cover;border-radius:14px}
-.b.typing{display:flex;gap:4px}.b.typing i{width:7px;height:7px;border-radius:50%;background:#888;animation:bl 1s infinite}.b.typing i:nth-child(2){animation-delay:.15s}.b.typing i:nth-child(3){animation-delay:.3s}
+.browser{border-radius:16px;border:1px solid var(--line);background:var(--bg2);overflow:hidden;box-shadow:0 30px 80px #0009}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line);background:#0a0e0a}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#2a352a}
+.browser .bar span{margin-left:10px;flex:1;font:500 12px Inter;color:var(--dim);background:#121712;border-radius:8px;padding:5px 10px}
+.browser .view{position:relative;height:300px;background:linear-gradient(#070907cc,#070907ee),url(media/hero.jpg) center 70%/cover}
+.browser .view .fake{position:absolute;left:18px;top:22px;right:120px}
+.browser .view .fake b{display:block;height:14px;border-radius:7px;background:#ffffff1a;margin-bottom:10px}
+.browser .view .pop{position:absolute;right:16px;bottom:78px;max-width:210px;background:#fff;color:#0b0f0b;border-radius:16px 16px 4px 16px;padding:10px 12px;font:500 13px/1.4 Inter;box-shadow:0 10px 30px #0008}
+.browser .view .fab{position:absolute;right:16px;bottom:16px}
+
+/* chat widget */
+.fab{width:58px;height:58px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 30px #0009,0 0 0 4px #8ad63f22;display:grid;place-items:center;padding:0}
+.fab img{width:50px;height:50px;border-radius:50%}
+.launcher{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:10px}
+.launcher .tease{background:#fff;color:#0b0f0b;font:600 13.5px Inter;padding:10px 14px;border-radius:16px 16px 4px 16px;box-shadow:0 10px 30px #0008;opacity:0;transform:translateY(6px);transition:.35s;pointer-events:none;max-width:200px}
+.launcher .tease.on{opacity:1;transform:none;pointer-events:auto}
+.launcher.hide{display:none}
+.panel{position:fixed;right:18px;bottom:18px;z-index:50;width:380px;height:min(640px,calc(100svh - 36px));background:#0c100c;border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 90px #000c;display:flex;flex-direction:column;overflow:hidden;transform:translateY(16px) scale(.98);opacity:0;pointer-events:none;transition:.25s}
+.panel.open{transform:none;opacity:1;pointer-events:auto}
+@media (max-width:640px){.panel{right:0;left:0;bottom:0;width:auto;height:92svh;border-radius:22px 22px 0 0}}
+.ph{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#121a12,#0c100c)}
+.ph img{width:40px;height:40px;border-radius:50%}
+.ph div{flex:1;line-height:1.25}
+.ph strong{font:700 15px Inter}
+.ph small{display:flex;align-items:center;gap:6px;color:var(--mute);font-size:12.5px}
+.ph small::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent2)}
+.ph .x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#141a14;font-size:16px}
+.msgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
+.m{max-width:82%;padding:9px 13px;border-radius:18px;font-size:14.5px;line-height:1.42;animation:pop .22s ease}
+@keyframes pop{from{transform:translateY(4px);opacity:0}}
+.m.bot{align-self:flex-start;background:#1a211a;border-bottom-left-radius:6px}
+.m.me{align-self:flex-end;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061006;font-weight:500;border-bottom-right-radius:6px}
+.m.pic{padding:4px}.m.pic img{display:block;width:190px;height:126px;object-fit:cover;border-radius:14px}
+.m.typing{display:flex;gap:4px;padding:12px 14px}.m.typing i{width:7px;height:7px;border-radius:50%;background:#7c867c;animation:bl 1s infinite}.m.typing i:nth-child(2){animation-delay:.15s}.m.typing i:nth-child(3){animation-delay:.3s}
 @keyframes bl{50%{opacity:.25}}
-.compose{padding:10px;border-top:1px solid #1f242b;display:flex;flex-wrap:wrap;gap:8px}
-.compose button{flex:1 1 45%;padding:10px 8px;border-radius:14px;border:1px solid #2a2f36;background:#181b20;color:var(--ink);font:600 13px Inter;cursor:pointer}
-.compose button:active{transform:scale(.97)}
-.compose label{flex:1 1 100%;text-align:center;padding:11px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061006;font:700 14px Inter;cursor:pointer}
-.compose input{display:none}
-.demo-tag{display:inline-block;margin-top:14px;font:600 12px Inter;color:var(--warn);border:1px dashed #ffcf5a66;padding:6px 10px;border-radius:8px}
+.m.card{background:#101610;border:1px solid #8ad63f55;max-width:90%}
+.m.card h4{font:700 12px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.m.card div{display:flex;justify-content:space-between;gap:16px;font-size:14px;padding:3px 0;border-bottom:1px dashed #223022}
+.m.card div:last-of-type{border:0}
+.m.card div span:first-child{color:var(--mute)}
+.m.card p{font-size:13px;color:var(--mute);margin-top:8px}
+.quick{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 12px}
+.quick button{padding:8px 13px;border-radius:999px;border:1px solid #8ad63f66;background:#8ad63f12;color:#dff5cc;font:600 13.5px Inter}
+.quick button:active{transform:scale(.97)}
+.inp{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line);align-items:center}
+.inp label{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;background:#141a14;border:1px solid var(--line);cursor:pointer;font-size:18px}
+.inp input[type=file]{display:none}
+.inp input[type=text]{flex:1;min-width:0;height:40px;border-radius:999px;border:1px solid var(--line);background:#101510;color:var(--ink);padding:0 14px;font:400 15px Inter;outline:none}
+.inp input[type=text]:focus{border-color:#8ad63f88}
+.inp .send{width:40px;height:40px;flex:none;border-radius:50%;border:0;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061006;font-size:17px;font-weight:800}
+.pf{text-align:center;font-size:11px;color:var(--dim);padding:0 0 10px}
+.ping{position:fixed;left:50%;top:14px;z-index:60;transform:translate(-50%,-140%);width:min(360px,calc(100vw - 24px));background:#f4f6f4ee;color:#0b0f0b;backdrop-filter:blur(10px);border-radius:18px;padding:12px 14px;box-shadow:0 16px 40px #0009;transition:transform .45s cubic-bezier(.2,.9,.3,1.2);font:500 13.5px/1.35 Inter}
+.ping.on{transform:translate(-50%,0)}
+.ping b{display:block;font:700 13px Inter;margin-bottom:2px}
+.ping small{color:#556;font-size:11.5px}
 
 /* why */
 .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
@@ -149,37 +179,34 @@ section{padding:88px 0}
 .why p{color:var(--mute);font-size:14.5px}
 
 /* final cta */
-.final{text-align:center;padding:96px 0 120px;background:radial-gradient(60% 60% at 50% 0,#8ad63f1c,transparent 70%)}
+.final{text-align:center;padding:96px 0 130px;background:radial-gradient(60% 60% at 50% 0,#8ad63f1c,transparent 70%)}
 .final h2{font-size:clamp(36px,8vw,72px);font-weight:900}
 .final p{color:var(--mute);margin:14px auto 28px;max-width:440px}
-footer{border-top:1px solid var(--line);padding:26px 0;color:var(--dim);font-size:13px}
+footer{border-top:1px solid var(--line);padding:26px 0 96px;color:var(--dim);font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.sticky{position:fixed;left:16px;right:16px;bottom:16px;z-index:30;display:none}
-@media (max-width:640px){.sticky{display:flex}.sticky .btn{flex:1;justify-content:center;box-shadow:0 10px 30px #000a}}
 </style>
 </head>
 <body>
 
 <nav class="nav">
   <a href="#top" class="mono" data-biz="short">P</a>
-  <a href="#estimate" class="btn sm primary">Photo estimate</a>
+  <button class="btn sm primary" data-open>Get a quote</button>
 </nav>
 
 <header class="hero" id="top">
-  <div class="beads" id="beads" aria-hidden="true"></div>
   <div class="wrap" style="position:relative">
     <div class="badge-wrap"><img id="p-poster" src="media/poster.png" alt="Precision Outdoors &amp; Detail logo"><canvas id="p3d" aria-hidden="true"></canvas></div>
     <div class="eyebrow" data-biz-city>Augusta, GA · Lawn care + car detailing</div>
     <h1 style="margin-top:14px">From your lawn<br><span class="shine">to your ride.</span></h1>
-    <p class="lede">We take pride in every detail. <span data-biz="name">Precision Outdoors &amp; Detail</span> keeps your yard sharp and your car spotless. Text a photo of either and get your estimate in minutes.</p>
+    <p class="lede">We take pride in every detail. <span data-biz="name">Precision Outdoors &amp; Detail</span> keeps your yard sharp and your car spotless. Send a photo to our assistant and get on the books in under a minute.</p>
     <div class="cta-row">
-      <a href="#estimate" class="btn primary">📸 Get a photo estimate</a>
+      <button class="btn primary" data-open>📸 Get a quote</button>
       <a class="btn" data-sms>💬 Text us</a>
     </div>
     <div class="chips">
       <span class="chip" data-mobile>🚐 We come to you</span>
       <span class="chip">🌿 Lawn care</span><span class="chip">🚗 Car detail</span>
-      <span class="chip" data-biz="hours">By appointment · 7 days</span>
+      <span class="chip" data-biz="hours">Saturday &amp; Sunday appointments</span>
     </div>
   </div>
 </header>
@@ -201,41 +228,36 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </section>
 
-<section id="packages" style="background:var(--bg2)">
+<section id="services" style="background:var(--bg2)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Packages</div>
+      <div class="eyebrow">Services</div>
       <h2>Yard or car, we've got it.</h2>
-      <p>Final price depends on size and condition. Send a photo and you'll get an exact number.</p>
+      <p>Every job is quoted to your car or your yard. Send a photo and get a quote from Tom himself.</p>
     </div>
     <div id="pkgs"></div>
-    <p class="note">Sample pricing for the concept. The real menu comes from you.</p>
   </div>
 </section>
 
-<section id="estimate">
+<section id="assistant">
   <div class="wrap est">
     <div>
-      <div class="eyebrow">Photo estimate</div>
-      <h2 style="font-size:clamp(32px,6vw,54px);font-weight:850;margin-top:10px">Snap it. Send it.<br>Get a price.</h2>
-      <p style="color:var(--mute);margin-top:14px;max-width:460px">Customers text a picture of their car or their yard. The assistant reads the size and condition, quotes a range from <em>your</em> menu, and books the slot. You only step in to do the job.</p>
+      <div class="eyebrow">Site assistant</div>
+      <h2 style="font-size:clamp(32px,6vw,54px);font-weight:850;margin-top:10px">Snap it. Send it.<br>Get booked.</h2>
+      <p style="color:var(--mute);margin-top:14px;max-width:460px">A chat assistant lives on the site. Visitors from Instagram and Facebook tap it, send a photo of their car or yard, pick a weekend slot, and the job lands on your phone. Nobody waits on a DM while you're at work.</p>
       <div class="steps">
-        <div class="step"><b>1</b><span>Customer texts a photo, from the site or straight from Instagram.</span></div>
-        <div class="step"><b>2</b><span>They get an estimate from your prices in under a minute, any hour.</span></div>
-        <div class="step"><b>3</b><span>The booking lands in your texts. You confirm and show up, even while you're at your weekday job.</span></div>
+        <div class="step"><b>1</b><span>The customer opens the chat and picks car or yard. Any hour, any day.</span></div>
+        <div class="step"><b>2</b><span>They send a photo, so you see the condition before you quote.</span></div>
+        <div class="step"><b>3</b><span>They pick Saturday or Sunday, and the request hits your phone with the photo attached.</span></div>
       </div>
-      <span class="demo-tag">▶ Live demo: try it on the phone</span>
+      <div class="cta-row" style="margin-top:26px"><button class="btn primary" data-open>Try the assistant →</button></div>
     </div>
-    <div class="phone">
-      <div class="screen">
-        <div class="thead"><strong data-biz="name">Precision Outdoors &amp; Detail</strong>Text message</div>
-        <div class="thread" id="thread"></div>
-        <div class="compose" id="compose">
-          <label>📷 Send a photo of your car or yard<input type="file" accept="image/*" id="file"></label>
-          <button data-sample="sedan">Use sample: sedan</button>
-          <button data-sample="truck">Use sample: truck</button>
-          <button data-sample="lawn" style="flex-basis:100%">Use sample: front yard</button>
-        </div>
+    <div class="browser" aria-hidden="true">
+      <div class="bar"><i></i><i></i><i></i><span>precisionoutdoorsdetail.com</span></div>
+      <div class="view">
+        <div class="fake"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b></div>
+        <div class="pop">👋 Need a quote? Send a photo of your car or yard.</div>
+        <div class="fab"><img src="media/face.jpg" alt=""></div>
       </div>
     </div>
   </div>
@@ -245,10 +267,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Why us</div>
-      <h2>Detailing without the hassle.</h2>
+      <h2>Done right, without the hassle.</h2>
     </div>
     <div class="why">
-      <div><h3>Quotes in minutes</h3><p>No waiting on a callback. Send a photo of the car or the yard and know the price before you book.</p></div>
+      <div><h3>Book in a minute</h3><p>No waiting on a callback. Send a photo of the car or the yard and lock in your weekend slot.</p></div>
       <div><h3 data-mobile-h>We come to you</h3><p>Driveway, office, apartment lot. You keep your day and we bring the shine.</p></div>
       <div><h3>One call, two jobs</h3><p>Lawn on Saturday, car on Sunday. One guy you trust for both.</p></div>
       <div><h3>Pride in every detail</h3><p>Local to Augusta. One owner who answers his own phone, not a chain.</p></div>
@@ -259,9 +281,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <section class="final">
   <div class="wrap">
     <h2>Cleaner car.<br>Better look.</h2>
-    <p>More confidence. Text a photo now and get your estimate before you finish your coffee.</p>
+    <p>More confidence. Send a photo now and get on the books before you finish your coffee.</p>
     <div class="cta-row" style="justify-content:center">
-      <a href="#estimate" class="btn primary">📸 Photo estimate</a>
+      <button class="btn primary" data-open>📸 Get a quote</button>
       <a class="btn" data-sms><span data-biz="phoneShown">(706) 294-0258</span></a>
     </div>
   </div>
@@ -274,11 +296,32 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </footer>
 
-<div class="sticky"><a href="#estimate" class="btn primary">📸 Get my estimate</a></div>
+<!-- chat widget -->
+<div class="launcher" id="launcher">
+  <div class="tease" id="tease">👋 Need a quote? Send a photo.</div>
+  <button class="fab" data-open aria-label="Open chat"><img src="media/face.jpg" alt=""></button>
+</div>
+<div class="panel" id="panel" role="dialog" aria-label="Chat with Precision Outdoors & Detail">
+  <div class="ph">
+    <img src="media/face.jpg" alt="">
+    <div><strong data-biz="name">Precision Outdoors &amp; Detail</strong><small>Assistant · replies instantly</small></div>
+    <button class="x" id="close" aria-label="Close chat">✕</button>
+  </div>
+  <div class="msgs" id="msgs"></div>
+  <div class="quick" id="quick"></div>
+  <form class="inp" id="form">
+    <label title="Send a photo">📷<input type="file" accept="image/*" id="file"></label>
+    <input type="text" id="text" placeholder="Type a message…" autocomplete="off">
+    <button class="send" aria-label="Send">↑</button>
+  </form>
+  <div class="pf">Concept demo · built by tyycc</div>
+</div>
+<div class="ping" id="ping"><b>📲 New booking · Precision</b><span id="pingTxt"></span><br><small>Just now · sent to Tom's phone</small></div>
 
 <script>
 (() => {
   const B = window.BIZ;
+  const $ = s => document.querySelector(s);
   document.title = B.name + " · Concept";
   document.querySelectorAll("[data-biz]").forEach(el => { const v = B[el.dataset.biz]; if (v) el.textContent = v; });
   document.querySelectorAll("[data-biz-city]").forEach(el => el.textContent = B.city + " · Lawn care + car detailing");
@@ -286,30 +329,21 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   if (!B.mobile) document.querySelectorAll("[data-mobile]").forEach(el => el.remove());
   if (!B.mobile) document.querySelectorAll("[data-mobile-h]").forEach(el => el.parentElement.remove());
 
-  // packages
-  const card = p => `
+  // services
+  const card = (p, g) => `
     <div class="pkg${p.best ? " best" : ""}">
       ${p.best ? '<span class="badge">Most booked</span>' : ""}
       <h3>${p.name}</h3>
-      <div class="price"><small>from</small>$${p.from}</div>
       <div class="time">${p.time}</div>
       <ul>${p.items.map(i => `<li>${i}</li>`).join("")}</ul>
-      <a href="#estimate" class="btn">Get exact price</a>
+      <button class="btn" data-open data-kind="${g.key}" data-svc="${p.name}">Get a quote</button>
     </div>`;
-  document.getElementById("pkgs").innerHTML = B.groups.map(g => `
+  $("#pkgs").innerHTML = B.groups.map(g => `
     <h3 class="grp">${g.icon} ${g.title}</h3>
-    <div class="grid">${g.packages.map(card).join("")}</div>`).join("");
-
-  // water beads in the hero
-  const bd = document.getElementById("beads");
-  for (let i = 0; i < 26; i++) {
-    const s = 6 + Math.random() * 26, el = document.createElement("i");
-    el.style.cssText = `width:${s}px;height:${s * (0.85 + Math.random() * .3)}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%`;
-    bd.appendChild(el);
-  }
+    <div class="grid">${g.packages.map(p => card(p, g)).join("")}</div>`).join("");
 
   // before/after slider
-  const ba = document.getElementById("ba"), after = document.getElementById("baAfter"), h = document.getElementById("baHandle");
+  const ba = $("#ba"), after = $("#baAfter"), h = $("#baHandle");
   const setBA = x => { const r = ba.getBoundingClientRect(), p = Math.max(0, Math.min(100, (x - r.left) / r.width * 100));
     after.style.clipPath = `inset(0 0 0 ${p}%)`; h.style.left = p + "%"; };
   let drag = false;
@@ -317,49 +351,100 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   ba.addEventListener("pointermove", e => drag && setBA(e.clientX));
   ba.addEventListener("pointerup", () => drag = false);
 
-  // photo-estimate demo (scripted; the real one reads the photo)
-  const thread = document.getElementById("thread");
-  const add = (cls, html) => { const d = document.createElement("div"); d.className = "b " + cls; d.innerHTML = html; thread.appendChild(d); thread.scrollTop = thread.scrollHeight; return d; };
+  // ── chat assistant (scripted for the concept; the live one runs on his services, hours and area) ──
+  const panel = $("#panel"), msgs = $("#msgs"), quick = $("#quick"), launcher = $("#launcher");
   const wait = ms => new Promise(r => setTimeout(r, ms));
-  const say = async (txt, ms = 900) => { const t = add("them typing", "<i></i><i></i><i></i>"); await wait(ms); t.remove(); add("them", txt); };
-  const car = B.groups[0].packages, lawn = B.groups[1].packages;
-  const full = car.find(p => p.best) || car[0];
-  const quotes = {
-    sedan: { what: "a mid-size sedan", lo: full.from, hi: full.from + 30, note: "Light interior wear and some road film on the paint. No heavy staining that I can see." },
-    truck: { what: "a full-size truck", lo: full.from + 40, hi: full.from + 80, note: "Bigger cab plus the bed, and the wheels look like they need a degrease." },
-    yours: { what: "your vehicle", lo: full.from, hi: full.from + 60, note: "Thanks for the photo! The range depends on size and how much interior work it needs." },
-    lawn:  { what: "a front yard, roughly a quarter acre", lo: lawn[0].from + lawn[1].from, hi: lawn[0].from + lawn[1].from + 20, note: "Grass is about a week past due and the edges along the drive are creeping.", pkg: "Mow + edge & trim", time: "~45 min" }
-  };
-  const GREET = "Hey! 👋 Send a photo of your car and I'll get you a detailing estimate in under a minute.";
-  let busy = false;
-  async function run(kind, imgSrc) {
-    if (busy) return; busy = true; thread.innerHTML = ""; add("them", GREET);
-    add("me img", `<img src="${imgSrc}" alt="car photo">`);
-    add("me", kind === "lawn" ? "how much to cut and edge this?" : "how much for a full detail?");
-    const q = quotes[kind];
-    await say(`Got it! Looks like ${q.what}. ${q.note}`, 1300);
-    await say(`A <b>${q.pkg || full.name}</b> on that would run about <b>$${q.lo}–$${q.hi}</b>, around ${(q.time || full.time).replace("~", "")}.`, 1100);
-    await say(`I have Saturday at 10am or Sunday at 2pm open. Want me to hold one?`, 900);
-    await wait(700); add("me", "sunday 2pm works");
-    await say(`Done ✅ You're booked for Sunday at 2pm. Tom will text when he's on the way.`, 1000);
-    busy = false;
-  }
-  const svgCar = (c1, c2, truck) => "data:image/svg+xml;utf8," + encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 240'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='${c1}'/><stop offset='1' stop-color='${c2}'/></linearGradient></defs><rect width='360' height='240' fill='#8a8f96'/><rect y='170' width='360' height='70' fill='#55595f'/>` +
-    (truck ? `<path d='M40 165 L40 120 L150 120 L175 85 L250 85 L265 120 L325 120 L325 165Z' fill='url(#g)'/>` : `<path d='M35 165 Q40 125 90 120 L130 88 Q180 70 240 88 L280 118 Q325 124 328 165Z' fill='url(#g)'/>`) +
-    `<circle cx='95' cy='168' r='24' fill='#111'/><circle cx='270' cy='168' r='24' fill='#111'/><circle cx='95' cy='168' r='10' fill='#999'/><circle cx='270' cy='168' r='10' fill='#999'/></svg>`);
-  const svgLawn = () => "data:image/svg+xml;utf8," + encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 240'><rect width='360' height='240' fill='#9cc3e6'/><rect x='150' y='40' width='170' height='90' fill='#d9d2c3'/><path d='M140 45 L235 0 L330 45Z' fill='#5b4a3f'/><rect y='120' width='360' height='120' fill='#5f8f33'/>` +
-    [0,1,2,3,4,5].map(i => `<rect x='${i*60}' y='120' width='30' height='120' fill='#6e9f3c' opacity='.7'/>`).join('') + `<rect x='250' y='120' width='40' height='120' fill='#bdb6a8'/></svg>`);
-  document.querySelectorAll("[data-sample]").forEach(b => b.onclick = () =>
-    run(b.dataset.sample, b.dataset.sample === "truck" ? svgCar("#3d4a5c", "#1c2430", true) : b.dataset.sample === "lawn" ? svgLawn() : svgCar("#9a2a2a", "#4a1010", false)));
-  document.getElementById("file").onchange = e => { const f = e.target.files[0]; if (f) run("yours", URL.createObjectURL(f)); };
-  add("them", GREET);
+  const add = (cls, html) => { const d = document.createElement("div"); d.className = "m " + cls; d.innerHTML = html; msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; return d; };
+  const say = async (html, ms = 650) => { const t = add("bot typing", "<i></i><i></i><i></i>"); await wait(ms); t.remove(); return add("bot", html); };
+  let chips = [], step = "start", req = {}, token = 0;
+  const offer = list => { chips = list; quick.innerHTML = list.map((c, i) => `<button data-i="${i}">${c[0]}</button>`).join(""); msgs.scrollTop = msgs.scrollHeight; };
+  quick.onclick = e => { const b = e.target.closest("button"); if (!b) return; const c = chips[+b.dataset.i]; offer([]); add("me", c[0]); c[1](); };
 
-  // hide the sticky CTA while the demo phone is on screen
-  const sticky = document.querySelector(".sticky");
-  new IntersectionObserver(([e]) => sticky.style.visibility = e.isIntersecting ? "hidden" : "visible", { threshold: .15 })
-    .observe(document.getElementById("estimate"));
+  const CAR = B.groups[0].packages.map(p => p.name), LAWN = B.groups[1].packages.map(p => p.name);
+  const mainMenu = () => offer([["🚗 Car detail", () => car()], ["🌿 Lawn care", () => lawn()], ["📷 Send a photo", () => $("#file").click()]]);
+
+  async function start(kind, svc) {
+    const my = ++token; msgs.innerHTML = ""; offer([]); req = {}; step = "start";
+    await say(`Hi! 👋 I'm the ${B.name.split(" ")[0]} assistant. I can get you a quote and book a weekend slot in about a minute.`, 400);
+    if (my !== token) return;
+    if (kind) { req.svc = svc; return kind === "car" ? car(true) : lawn(true); }
+    await say("What can we help with?", 400); mainMenu();
+  }
+  async function car(pre) {
+    req.kind = "car"; step = "vehicle";
+    await say(pre ? `${req.svc}, good pick. What are you driving? Pick one or type the make and model.` : "Nice. What are you driving? Pick one or type the make and model.");
+    offer(["Sedan", "SUV", "Truck", "Van"].map(v => [v, () => vehicle(v)]));
+  }
+  async function vehicle(v) {
+    req.what = v; step = "";
+    if (req.svc) return photo();
+    await say("What do you need done?");
+    offer(CAR.map(s => [s, () => { req.svc = s; photo(); }]));
+  }
+  async function lawn(pre) {
+    req.kind = "lawn"; step = "";
+    await say(pre ? `${req.svc}, got it. How big is the yard?` : "Let's get your yard sharp. How big is it?");
+    offer(["Small (townhome)", "Medium", "Large (½ acre +)"].map(v => [v, async () => {
+      req.what = v.replace(/ \(.*/, "") + " yard";
+      if (req.svc) return photo();
+      await say("Which services?");
+      offer(LAWN.map(s => [s, () => { req.svc = s; photo(); }]));
+    }]));
+  }
+  async function photo() {
+    if (req.pic) return summary();
+    step = "photo";
+    await say(`Snap a quick photo of the ${req.kind === "lawn" ? "yard" : "vehicle"} so Tom can see the condition. It helps him quote it right.`);
+    offer([["📷 Add a photo", () => $("#file").click()], ["Skip for now", () => summary()]]);
+  }
+  async function gotPhoto(src) {
+    offer([]); add("me pic", `<img src="${src}" alt="your photo">`); req.pic = true;
+    if (!req.kind) {
+      await say("Got the photo 📸 Is this your car or your yard?");
+      return offer([["🚗 My car", () => car()], ["🌿 My yard", () => lawn()]]);
+    }
+    await say(req.kind === "lawn" ? "Got it 📸 Looks like it's due for a cut, and I can see the edges along the drive. Attached to your request." : "Got it 📸 I can see some road film and the wheels could use a clean. Attached to your request.", 1100);
+    summary();
+  }
+  async function summary() {
+    step = "";
+    add("bot card", `<h4>Your request</h4>
+      <div><span>Service</span><span>${req.svc}</span></div>
+      <div><span>${req.kind === "lawn" ? "Yard" : "Vehicle"}</span><span>${req.what}</span></div>
+      <div><span>Photo</span><span>${req.pic ? "Attached ✓" : "None"}</span></div>
+      <p>Tom quotes every job personally and texts you the exact price before he shows up.</p>`);
+    await say("Which slot works? We book Saturdays and Sundays.", 700);
+    offer(["Sat 10 AM", "Sat 2 PM", "Sun 10 AM", "Sun 2 PM"].map(t => [t, () => slot(t)]));
+  }
+  async function slot(t) {
+    req.slot = t; step = "phone";
+    await say("Perfect. What's the best number for Tom to text your quote to?");
+    offer([["Use demo number", () => phone("(706) 555-0142")]]);
+  }
+  async function phone(n) {
+    step = ""; req.phone = n;
+    const day = req.slot.startsWith("Sat") ? "Saturday" : "Sunday";
+    await say(`✅ You're on the books for <b>${day} at ${req.slot.split(" ").slice(1).join(" ")}</b>. Tom will text your quote to ${n} shortly.`, 800);
+    $("#pingTxt").textContent = `${req.svc} · ${req.what} · ${req.slot}${req.pic ? " · photo attached" : ""}`;
+    await wait(500); $("#ping").classList.add("on"); setTimeout(() => $("#ping").classList.remove("on"), 4200);
+    offer([["Start over", () => start()]]);
+  }
+
+  $("#form").onsubmit = async e => {
+    e.preventDefault(); const t = $("#text").value.trim(); if (!t) return; $("#text").value = ""; offer([]); add("me", t.replace(/</g, "&lt;"));
+    if (step === "vehicle") return vehicle(t);
+    if (step === "phone") return phone(t);
+    if (/car|truck|suv|detail|wash|interior/i.test(t) && !req.kind) return car();
+    if (/lawn|yard|grass|mow|leaf|leaves|edge|trim/i.test(t) && !req.kind) return lawn();
+    await say(`Good question. I've passed that to Tom and he'll text you back. Want a quote in the meantime?`);
+    mainMenu();
+  };
+  $("#file").onchange = e => { const f = e.target.files[0]; if (f) gotPhoto(URL.createObjectURL(f)); e.target.value = ""; };
+
+  const open = (kind, svc) => { panel.classList.add("open"); launcher.classList.add("hide"); if (kind || !msgs.children.length) start(kind, svc); };
+  document.addEventListener("click", e => { const b = e.target.closest("[data-open]"); if (b) { e.preventDefault(); open(b.dataset.kind, b.dataset.svc); } });
+  $("#close").onclick = () => { panel.classList.remove("open"); launcher.classList.remove("hide"); };
+  setTimeout(() => { if (!panel.classList.contains("open")) { $("#tease").classList.add("on"); setTimeout(() => $("#tease").classList.remove("on"), 6000); } }, 3500);
 })();
 </script>
 <script type="importmap">
