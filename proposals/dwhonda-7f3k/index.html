@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#0a0b0d">
+<title>Darrell Waltrip Honda · Concept</title>
+<meta name="description" content="Concept redesign and AI text line demo for Darrell Waltrip Honda, prepared by tyycc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+</head>
+<body>
+
+<p class="concept-strip">Concept by <b>tyycc</b> · not the official Darrell Waltrip Honda site</p>
+
+<!-- intro: start lights, then the car in the dark (rendered in Remotion) -->
+<div class="intro" id="intro">
+  <video id="intro-video" muted playsinline preload="auto"></video>
+  <button class="skip" id="skip" type="button">Skip</button>
+</div>
+
+<header class="hero" id="top">
+  <video class="hero-video" src="media/hero.mp4" poster="media/hero-poster.jpg" autoplay muted loop playsinline></video>
+  <div class="hero-shade"></div>
+  <nav class="topbar">
+    <a class="wordmark" href="#top"><span>Darrell Waltrip</span> Honda</a>
+    <a class="pill" href="#text">Text us</a>
+  </nav>
+  <div class="hero-main">
+    <p class="eyebrow"><span class="dot" id="open-dot"></span><span id="open-label">Franklin, TN</span></p>
+    <h1>Every answer,<br><em>one text away.</em></h1>
+    <p class="lede">Shop, book service and check your payment without waiting on hold. Text us like you'd text a friend, any time of day.</p>
+    <div class="cta-row">
+      <a class="btn" href="#text">Try the text line</a>
+      <a class="btn ghost" href="#service">Book service</a>
+    </div>
+  </div>
+  <div class="checker" aria-hidden="true"></div>
+</header>
+
+<main>
+
+  <!-- 3D -->
+  <section class="garage" id="garage">
+    <div class="sec-head reveal">
+      <p class="kicker">Walkaround</p>
+      <h2>Spin it. Then ask about it.</h2>
+      <p>Drag to look around. Every vehicle page gets a "text us about this one" button that sends the exact car to our team.</p>
+    </div>
+    <div class="stage reveal">
+      <model-viewer id="car" src="media/car.glb" alt="A red compact SUV, 3D model" camera-controls disable-zoom disable-pan touch-action="pan-y" interaction-prompt="none" auto-rotate auto-rotate-delay="1200" rotation-per-second="14deg" camera-orbit="35deg 78deg auto" shadow-intensity="1.2" shadow-softness="0.8" exposure="1.05" environment-image="neutral" loading="lazy">
+        <button class="hotspot" slot="hotspot-a" data-position="0.55 0.34 0.25" data-normal="0 1 0" data-ask="Is this one in stock, and what's the out-the-door price?">Is it in stock?</button>
+        <button class="hotspot" slot="hotspot-b" data-position="-0.6 0.3 -0.25" data-normal="0 1 0" data-goto="#payment">What's my payment?</button>
+        <div class="stage-floor" slot="poster"></div>
+      </model-viewer>
+      <p class="stage-note">Demo vehicle. Generic model, not a Honda listing.</p>
+    </div>
+  </section>
+
+  <!-- AI text line -->
+  <section class="textline" id="text">
+    <div class="sec-head reveal">
+      <p class="kicker">The text line</p>
+      <h2>Ask anything. Get a real answer in seconds.</h2>
+      <p>Routine questions get answered right away. Anything that needs a person, like a price, a trade or a credit question, goes straight to the right department with the whole conversation attached.</p>
+    </div>
+    <div class="phone-wrap reveal">
+      <div class="phone">
+        <div class="phone-top"><span class="avatar">DW</span><div><b>Darrell Waltrip Honda</b><small>Text line · usually replies instantly</small></div></div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+        <div class="chips" id="chips"></div>
+      </div>
+      <ul class="routing">
+        <li><b>Answered on the spot</b><span>Hours, directions, recall line, what to bring for financing, booking a service slot.</span></li>
+        <li><b>Handed to a person</b><span>Exact pricing, trade values and credit. Sales, service or finance gets the text with full context.</span></li>
+        <li><b>Your number</b><span>Customers text the dealership's own number. No app to download.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- service booking -->
+  <section class="service" id="service">
+    <img class="service-bg" src="media/service-bay.jpg" alt="" loading="lazy">
+    <div class="service-card reveal">
+      <p class="kicker">Service</p>
+      <h2>Book service in three taps.</h2>
+      <p class="muted">Today service is booked by phone only. This is what booking from your phone could look like.</p>
+      <form class="book" id="book" novalidate>
+        <div class="step" data-step="1">
+          <label>What's it for?</label>
+          <div class="opts" data-name="job">
+            <button type="button">Oil change</button><button type="button">Tires</button><button type="button">Brakes</button><button type="button">Recall</button><button type="button">Something's wrong</button>
+          </div>
+        </div>
+        <div class="step" data-step="2" hidden>
+          <label>Pick a day</label>
+          <div class="opts" data-name="day" id="days"></div>
+        </div>
+        <div class="step" data-step="3" hidden>
+          <label>Pick a time</label>
+          <div class="opts" data-name="time" id="times"></div>
+        </div>
+        <div class="done" hidden>
+          <p class="done-big">You're booked.</p>
+          <p id="done-text"></p>
+          <p class="muted small">Demo only. Nothing was sent or scheduled.</p>
+          <button type="button" class="btn ghost small" id="book-again">Start over</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- payment -->
+  <section class="payment" id="payment">
+    <div class="sec-head reveal">
+      <p class="kicker">Payment</p>
+      <h2>Know your number before you visit.</h2>
+      <p>Terms from 48 to 72 months. Taxes, registration and fees can be rolled in, and most approvals need no money down.</p>
+    </div>
+    <div class="calc reveal">
+      <div class="calc-inputs">
+        <label>Vehicle price <output id="o-price"></output><input id="price" type="range" min="15000" max="60000" step="500" value="32000"></label>
+        <label>Down payment <output id="o-down"></output><input id="down" type="range" min="0" max="15000" step="250" value="2000"></label>
+        <label>APR <output id="o-apr"></output><input id="apr" type="range" min="0" max="12" step="0.25" value="5.9"></label>
+        <div class="term" role="radiogroup" aria-label="Term">
+          <button type="button" data-term="48">48 mo</button><button type="button" data-term="60" class="on">60 mo</button><button type="button" data-term="72">72 mo</button>
+        </div>
+      </div>
+      <div class="calc-out">
+        <p class="muted small">Estimated monthly</p>
+        <p class="big-num" id="monthly">$0</p>
+        <p class="muted small" id="calc-detail"></p>
+        <a class="btn" href="#text" data-ask="Can I get pre-approved, and what should I bring?">Get pre-approved by text</a>
+        <p class="fine">Estimate only, before tax and fees. 0% APR is available on select new models; ask which.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- visit -->
+  <section class="visit" id="visit">
+    <img src="media/showroom.jpg" alt="" loading="lazy" class="visit-img reveal">
+    <div class="visit-info reveal">
+      <p class="kicker">Visit</p>
+      <h2>1430 Murfreesboro Road</h2>
+      <p class="muted">Franklin, TN 37067</p>
+      <table class="hours" id="hours"></table>
+      <p class="muted small">Sales hours. Sundays are closed except the last two Sundays of the month, 12 to 6 PM.</p>
+      <div class="cta-row">
+        <a class="btn" href="tel:+18559966920">Call 855-996-6920</a>
+        <a class="btn ghost" href="https://maps.apple.com/?q=1430+Murfreesboro+Rd,+Franklin,+TN+37067">Directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="checker small" aria-hidden="true"></div>
+  <p>Concept redesign and text line demo prepared by <b>tyycc</b>. Not the official Darrell Waltrip Honda site. Hours, address, phone and offers are taken from the dealership's public site on Oct 20, 2026. Vehicle imagery is generic and illustrative.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
