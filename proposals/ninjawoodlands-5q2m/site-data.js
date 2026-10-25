@@ -8,7 +8,7 @@ window.NW = {
   location: "The Woodlands",
   tagline: "Building confidence, one obstacle at a time.",
   mission: "Our mission is to help every child feel *capable* and *empowered* in the gym and in life.",
-  textLine: "+1 (000) 000-0000",          // the line's number goes here at go-live
+  textLine: "+1 (931) 561-2520",          // his number (10/25): texts land on his phone, the line answers form numbers
   phone: "(281) 882-3222",
   email: "woodlands@usaninjachallenge.com",
   address: "21227 Blair Rd, Conroe, Texas 77385",
