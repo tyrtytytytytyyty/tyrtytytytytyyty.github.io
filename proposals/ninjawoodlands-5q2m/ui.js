@@ -22,7 +22,8 @@
   $$("[data-link]").forEach((el) => { el.href = D.links[el.dataset.link]; });
 
   const digits = D.textLine.replace(/\D/g, "");
-  const smsHref = (body) => "sms:+" + (digits.length === 10 ? "1" + digits : digits) + (body ? "&body=" + encodeURIComponent(body) : "");
+  const smsHref = (body) => "sms:+" + (digits.length === 10 ? "1" + digits : digits) +
+    "&body=" + encodeURIComponent(`${D.textKey} ${body || "I have a question:"}`);
 
   const fill = (sel, html) => { const el = $(sel); if (el) el.innerHTML = html; };
   fill("#mission", esc(D.mission).replace(/\*(.+?)\*/g, "<em>$1</em>"));

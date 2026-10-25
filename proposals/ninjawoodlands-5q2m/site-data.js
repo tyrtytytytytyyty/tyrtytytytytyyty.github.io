@@ -8,6 +8,10 @@ window.NW = {
   location: "The Woodlands",
   tagline: "Building confidence, one obstacle at a time.",
   mission: "Our mission is to help every child feel *capable* and *empowered* in the gym and in life.",
+  // Every "Text us" link pre-fills a message starting with textKey; the line answers texts that
+  // start with it (the opt-in for the text path, same job as the trial form). Keep in sync with
+  // support-line/ninja/settings.py TEXT_KEY.
+  textKey: "Hi USA Ninja Challenge!",
   textLine: "+1 (931) 561-2520",          // his number (10/25): texts land on his phone, the line answers form numbers
   phone: "(281) 882-3222",
   email: "woodlands@usaninjachallenge.com",
