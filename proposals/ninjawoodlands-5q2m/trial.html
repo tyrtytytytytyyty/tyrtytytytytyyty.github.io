@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#08080b">
+<title>Trial Class · USA Ninja Challenge The Woodlands · Concept</title>
+<meta name="description" content="Concept trial-class page for USA Ninja Challenge The Woodlands, prepared by tyycc.">
+<link rel="icon" href="media/orig/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800;900&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="trial.css?v=4">
+<script src="site-data.js?v=4"></script>
+</head>
+<body class="trial-page">
+
+<nav class="topbar solid">
+  <a class="mark" href="./" aria-label="USA Ninja Challenge The Woodlands home"><img src="media/orig/logo.png" alt="" height="40"></a>
+  <a class="su-back" href="./">Back</a>
+</nav>
+
+<div class="su">
+  <div id="step-form">
+    <header class="su-head">
+      <img class="su-ico" src="media/orig/logo.png" alt="" width="120" height="120">
+      <p class="eyebrow">Trial Class</p>
+      <h1>Try a class first.</h1>
+      <p>Just your number. We'll text you right away to find the right class for their age and pick a time. No pressure, no obligation.</p>
+    </header>
+
+    <form class="form" id="trial-form" novalidate>
+      <div class="field">
+        <label for="f-phone">Your mobile number</label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(281) 555-0123" required>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" id="f-consent" required><p>Text me about my trial class. Reply STOP to opt out. Message and data rates may apply.</p></label>
+      <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label for="f-website">Leave this empty</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" value=""></div>
+      <p class="form-err" id="form-err" role="alert"></p>
+      <button class="btn block" type="submit">Text Me</button>
+    </form>
+    <p class="fine center">Concept demo by tyycc.</p>
+  </div>
+
+  <!-- after submit: the conversation the parent gets, playing by itself -->
+  <div id="step-done" hidden>
+    <p class="eyebrow center">Check your phone</p>
+    <h1 class="done-h center" tabindex="-1" id="done-title">We just texted you.</h1>
+    <div class="phone" aria-label="Text message conversation">
+      <div class="phone-top"><span class="ph-av"><img src="media/orig/logo.png" alt=""></span><b>USA Ninja Woodlands</b><small id="ph-num">Text Message</small></div>
+      <div class="thread" id="thread" aria-live="polite"></div>
+    </div>
+    <p class="fine center" id="demo-note">Concept demo. Times shown come from the gym's live iClassPro schedule.</p>
+  </div>
+
+  <p class="fine center" style="margin-top:40px">Concept redesign prepared by <b>tyycc</b>. Not the official USA Ninja Challenge site.</p>
+</div>
+
+<script src="trial.js?v=4"></script>
+</body>
+</html>

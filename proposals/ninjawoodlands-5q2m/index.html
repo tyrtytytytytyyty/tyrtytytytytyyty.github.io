@@ -1,170 +1,183 @@
 <!DOCTYPE html>
-<html lang="en"><script>document.documentElement.classList.add("js")</script>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#070707">
-<title>Ninja Woodlands · Concept</title>
-<meta name="description" content="Concept redesign and AI text line demo for USA Ninja Challenge, The Woodlands, prepared by tyycc.">
+<meta name="theme-color" content="#08080b">
+<title>USA Ninja Challenge · The Woodlands · Concept</title>
+<meta name="description" content="Concept redesign of the USA Ninja Challenge The Woodlands page, prepared by tyycc.">
+<link rel="icon" href="media/orig/logo.png" type="image/png">
+<link rel="apple-touch-icon" href="media/orig/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css">
-<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800;900&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css?v=4">
+<script>document.documentElement.classList.add("js");</script>
+<script src="site-data.js?v=4"></script>
 </head>
 <body>
 
-<p class="concept-strip">Concept by <b>tyycc</b> · not the official USA Ninja Challenge site</p>
+<!-- opening cut: a shuriken slices the black screen open (slice.js), once per visit -->
+<div class="cut-intro" id="cut-intro" aria-hidden="true"><i class="ci-t"></i><i class="ci-b"></i><b class="ci-line"></b></div>
+<canvas class="stars" id="stars" aria-hidden="true"></canvas>
 
-<!-- intro: the shuriken cut (rendered in Remotion) -->
-<div class="intro" id="intro">
-  <video id="intro-video" muted playsinline preload="auto"></video>
-  <button class="skip" id="skip" type="button">Skip</button>
-</div>
+<nav class="topbar" id="topbar">
+  <a class="mark" href="#top" aria-label="USA Ninja Challenge The Woodlands, back to top"><img data-img="logo" alt="" height="40"></a>
+  <a class="top-cta" href="trial.html">Trial Class</a>
+</nav>
 
-<!-- live 3D shuriken layer -->
-<canvas id="stars" aria-hidden="true"></canvas>
-
-<header class="hero" id="top">
-  <video class="hero-video" src="media/hero.mp4" poster="media/hero-poster.jpg" autoplay muted loop playsinline></video>
-  <div class="hero-shade"></div>
-  <nav class="topbar">
-    <a class="wordmark" href="#top">USA Ninja Challenge <span>The Woodlands</span></a>
-    <a class="pill" href="#text">Text us</a>
-  </nav>
+<header class="hero" id="top" data-scene>
+  <div class="hero-photo"><img data-img="hero" alt="Kids on the obstacle course at USA Ninja Challenge The Woodlands"></div>
   <div class="hero-main">
-    <p class="eyebrow"><span class="dot" id="open-dot"></span><span id="open-label">Ages 2.5 to 17</span></p>
-    <h1><span>Building</span><span class="red">Confidence</span></h1>
-    <p class="lede">One obstacle at a time. Obstacle training that helps every kid feel capable and empowered, in the gym and in life.</p>
-    <div class="cta-row">
-      <a class="btn" href="#programs">Find their class</a>
-      <a class="btn ghost" href="#party">Plan a party</a>
-    </div>
+    <h1 class="slash" data-text="Building Confidence">Building Confidence</h1>
+    <p class="hero-lede">One obstacle at a time. Ninja training for every age in <span data-f="location"></span>.</p>
+    <a class="btn" href="trial.html">Book a Trial Class</a>
   </div>
-  <div class="scroll-cue" aria-hidden="true"><i></i></div>
 </header>
 
 <main>
+  <section class="why">
+    <p class="eyebrow reveal">Why parents choose us</p>
+    <h2 class="slash" data-text="More than a workout.">More than a workout.</h2>
+    <ul class="why-grid" id="why-grid"></ul>
+  </section>
 
-  <!-- program finder -->
-  <section class="programs" id="programs">
-    <div class="sec-head">
-      <p class="kicker">Programs</p>
-      <h2 class="slash" data-text="Find their level.">Find their level.</h2>
-      <p>Slide to your ninja's age. Every monthly plan includes four classes a month, and sometimes a fifth.</p>
-    </div>
-    <div class="finder reveal">
-      <div class="finder-left">
-        <div class="age-read"><span id="age-num">7</span><small>years old</small></div>
-        <input type="range" id="age" min="2" max="17" step="1" value="7" aria-label="Child's age">
-        <div class="age-scale"><span>2</span><span>5</span><span>9</span><span>13</span><span>17</span></div>
-      </div>
-      <div class="finder-card" id="finder-card">
-        <p class="card-kicker" id="p-ages"></p>
-        <h3 id="p-name"></h3>
-        <p id="p-desc"></p>
-        <div class="price-row"><span class="price" id="p-price"></span><span class="per">/ month</span></div>
-        <p class="muted small" id="p-len"></p>
-        <a class="btn" href="#text" data-ask="Is there a trial class?">Ask about a trial class</a>
-      </div>
-    </div>
-    <div class="extras reveal">
-      <div><b>Homeschool Ninjas</b><span>Ages 5 to 17 · $95/mo · one 1-hour class a week</span></div>
-      <div><b>Competition Team</b><span>Invite only · $125/mo · one 90-min class a week</span></div>
-      <div><b>Family membership</b><span>$50/year · unlimited ninjas per family</span></div>
+  <section class="classes" id="classes">
+    <p class="eyebrow reveal">Classes</p>
+    <h2 class="slash" data-text="A class for every age.">A class for every age.</h2>
+    <ol class="programs" id="programs"></ol>
+    <p class="reveal center"><a class="text-link" data-link="schedule">View all classes &amp; schedule</a></p>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <p class="eyebrow reveal">Pricing</p>
+    <h2 class="slash" data-text="Simple monthly plans.">Simple monthly plans.</h2>
+    <ul class="price-list" id="price-list"></ul>
+    <p class="fine reveal" data-f="pricingNote"></p>
+  </section>
+
+  <section class="pass">
+    <div class="pass-card reveal">
+      <img class="pass-ico" data-img="logo" alt="" width="110" height="110">
+      <p class="eyebrow">New to the gym?</p>
+      <h2>Try a class first.</h2>
+      <p class="pass-sub">No pressure, no obligation. Put in your number and we'll text you the right class and times.</p>
+      <a class="btn light" href="trial.html">Book a Trial Class</a>
     </div>
   </section>
 
-  <!-- levels band with the flip -->
-  <section class="band">
-    <video src="media/flip.mp4" poster="media/flip-poster.jpg" autoplay muted loop playsinline></video>
-    <div class="band-shade"></div>
-    <div class="band-copy">
-      <p class="kicker">The 6-level system</p>
-      <h2 class="slash" data-text="Every flip starts as a first try.">Every flip starts as a first try.</h2>
-      <p>Kids move up through six levels, so they can see their progress and parents can too.</p>
+  <section class="feature" id="parties">
+    <figure class="shot reveal"><img data-img="parties" alt="A birthday party group at USA Ninja Challenge The Woodlands" loading="lazy"></figure>
+    <div>
+      <p class="eyebrow reveal">Birthday Parties</p>
+      <h2 class="slash" data-text="Epic ninja parties.">Epic ninja parties.</h2>
+      <p class="big-num reveal"><span class="count" id="party-price">$350</span><small id="party-sub"></small></p>
+      <ul class="ticks" id="party-points"></ul>
+      <p class="fine reveal" id="party-fine"></p>
+      <a class="text-link reveal" data-text-line data-body="Hi! I'd like to book a birthday party. What weekends are open?">Text us a date to check →</a>
     </div>
   </section>
 
-  <!-- party builder -->
-  <section class="party" id="party">
-    <div class="party-grid">
-      <div class="party-media reveal">
-        <img src="media/party.jpg" alt="Party room next to the obstacle course" loading="lazy">
-        <model-viewer class="nunchaku" src="media/nunchaku.glb" alt="Spinning nunchaku, 3D" auto-rotate rotation-per-second="40deg" camera-orbit="0deg 65deg auto" disable-zoom disable-pan interaction-prompt="none" shadow-intensity="1" exposure="1.1" environment-image="neutral" loading="lazy"></model-viewer>
+  <section class="feature flip" id="camps">
+    <figure class="shot reveal"><img data-img="camps" alt="Kids and a coach at a USA Ninja Challenge camp" loading="lazy"></figure>
+    <div>
+      <p class="eyebrow reveal">Camps &amp; Clinics</p>
+      <h2 class="slash" data-text="Summer &amp; holiday camps.">Summer &amp; holiday camps.</h2>
+      <dl class="figures reveal" id="camp-figs"></dl>
+      <p class="body reveal" id="camp-text"></p>
+      <a class="text-link reveal" data-link="camps">Register for camp →</a>
+    </div>
+  </section>
+
+  <section class="values">
+    <ul class="value-row" id="values"></ul>
+    <p class="body reveal center" data-f="brandLine"></p>
+  </section>
+
+  <section class="faq" id="faq">
+    <p class="eyebrow reveal">FAQ</p>
+    <h2 class="slash" data-text="Questions parents ask.">Questions parents ask.</h2>
+    <dl class="faq-list" id="faq-list"></dl>
+  </section>
+
+  <section class="visit-wrap" id="visit">
+    <p class="eyebrow reveal">Hours of Operation</p>
+    <h2 class="slash" data-text="Plan your visit.">Plan your visit.</h2>
+    <div class="visit">
+      <div class="reveal">
+        <p class="addr" data-f="address"></p>
+        <ul class="contact-list" id="contact-list"></ul>
       </div>
-      <div class="party-card reveal">
-        <p class="kicker">Birthday parties</p>
-        <h2 class="slash" data-text="Build the party.">Build the party.</h2>
-        <label class="guests">How many ninjas? <output id="g-out">15</output>
-          <input type="range" id="guests" min="5" max="25" value="15">
-        </label>
-        <div class="party-total"><span id="party-price">$350</span><small id="party-break">15 guests included</small></div>
-        <ul class="ticks">
-          <li>90 minutes: 60 in the gym, 30 in the party room</li>
-          <li>Two party coaches and the whole gym to yourselves</li>
-          <li>Saturdays and Sundays · birthday ninja 5+, guests 4+</li>
-          <li>Bring your own cake, food and decor (no piñatas)</li>
-        </ul>
-        <label class="date">Pick a weekend date
-          <input type="date" id="party-date">
-        </label>
-        <p class="date-msg" id="date-msg">Book at least two weeks ahead. A $100 non-refundable deposit holds the date.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- camps -->
-  <section class="camps">
-    <div class="sec-head">
-      <p class="kicker">Camps</p>
-      <h2 class="slash" data-text="School's out. Ninja's in.">School's out. Ninja's in.</h2>
-    </div>
-    <div class="camp-cards reveal">
-      <div><b>$45</b><span>per half day</span></div>
-      <div><b>8:30–12</b><span>weekly sessions, June to August</span></div>
-      <div><b>Breaks</b><span>winter, spring and teacher workdays</span></div>
-    </div>
-  </section>
-
-  <!-- text line -->
-  <section class="textline" id="text">
-    <div class="sec-head">
-      <p class="kicker">The text line</p>
-      <h2 class="slash" data-text="Parents text. We answer.">Parents text. We answer.</h2>
-      <p>Prices, schedules, parties and camps get answered instantly, any time. Anything a coach should answer goes straight to the front desk with the whole conversation.</p>
-    </div>
-    <div class="phone-wrap reveal">
-      <div class="phone">
-        <div class="phone-top"><span class="avatar">★</span><div><b>Ninja Woodlands</b><small>Text line · usually replies instantly</small></div></div>
-        <div class="thread" id="thread" aria-live="polite"></div>
-        <div class="chips" id="chips"></div>
+      <div class="reveal">
+        <ol class="week" id="week" aria-label="Hours by day"></ol>
+        <p class="fine">Closed on holidays.</p>
       </div>
     </div>
   </section>
 
-  <!-- visit -->
-  <section class="visit">
-    <div class="visit-card reveal">
-      <p class="kicker">Visit</p>
-      <h2>21227 Blair Rd</h2>
-      <p class="muted">Conroe, TX 77385</p>
-      <table class="hours" id="hours"></table>
-      <div class="cta-row">
-        <a class="btn" href="tel:+12818823222">Call (281) 882-3222</a>
-        <a class="btn ghost" href="mailto:woodlands@usaninjachallenge.com">Email us</a>
-      </div>
+  <section class="ask" id="ask">
+    <div class="ask-card reveal">
+      <p class="eyebrow">Skip the forms</p>
+      <h2>Just text us.<span class="after">Even after we close.</span></h2>
+      <p class="ask-sub">Classes, trials, parties, camps. You get an answer in seconds, day or night, so you never have to wait for us to open.</p>
+      <a class="ask-number" data-text-line><span data-f="textLine"></span></a>
     </div>
   </section>
 
+  <section class="social" id="social">
+    <p class="eyebrow reveal center">Follow along</p>
+    <h2 class="slash center" data-text="See what's happening.">See what's happening.</h2>
+    <ul class="socials" id="socials"></ul>
+  </section>
 </main>
 
 <footer>
-  <p>Concept redesign and text line demo prepared by <b>tyycc</b>. Not the official USA Ninja Challenge site. Prices, hours and programs are taken from the location's public pages on Oct 20, 2026. Photos and video are illustrative.</p>
+  <img class="foot-mark" data-img="logo" alt="" height="44" loading="lazy">
+  <p><b><span data-f="name"></span> · <span data-f="location"></span></b></p>
+  <p data-f="address"></p>
+  <p class="motto" data-f="tagline"></p>
+  <p class="disclaimer">Concept redesign prepared by <b>tyycc</b>. Not the official USA Ninja Challenge site.</p>
 </footer>
 
-<script type="module" src="app.js"></script>
+<nav class="dock" aria-label="Quick actions">
+  <a href="trial.html">Trial Class</a>
+  <a data-text-line>Text us</a>
+</nav>
+
+<!-- free trial sheet: once per visit, after the visitor has scrolled a while (ui.js) -->
+<div class="sheet" id="trial-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+  <div class="sheet-scrim" data-sheet-close></div>
+  <div class="sheet-panel">
+    <span class="sheet-grip" aria-hidden="true"></span>
+    <button class="sheet-x" type="button" data-sheet-close aria-label="Close">&times;</button>
+    <img class="sheet-mark" data-img="logo" alt="" width="92" height="92">
+    <p class="eyebrow">New here?</p>
+    <h2 id="sheet-title">Book a trial class.</h2>
+    <p class="sheet-sub">Just your number. We'll text you the right class and real times for their age.</p>
+    <a class="btn block" href="trial.html">Book My Trial Class</a>
+    <button class="sheet-no" type="button" data-sheet-close>No Thanks</button>
+  </div>
+</div>
+
+<!-- text-us consent: shown before Messages opens (ui.js) -->
+<div class="sheet" id="text-sheet" role="dialog" aria-modal="true" aria-labelledby="text-title" hidden>
+  <div class="sheet-scrim" data-sheet-close></div>
+  <div class="sheet-panel">
+    <span class="sheet-grip" aria-hidden="true"></span>
+    <button class="sheet-x" type="button" data-sheet-close aria-label="Close">&times;</button>
+    <img class="sheet-mark" data-img="logo" alt="" width="72" height="72">
+    <h2 id="text-title">Text us anytime.</h2>
+    <p class="sheet-sub">By texting us, you agree to receive text replies from <span data-f="name"></span> <span data-f="location"></span> about your question. Reply STOP to opt out. Message and data rates may apply.</p>
+    <a class="btn block" id="text-go">Open Messages</a>
+    <button class="sheet-no" type="button" data-sheet-close>Cancel</button>
+  </div>
+</div>
+
+<script src="ui.js?v=4"></script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module" src="slice.js?v=4"></script>
 </body>
 </html>
