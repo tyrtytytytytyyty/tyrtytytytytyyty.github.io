@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 </head>
 <body>
@@ -28,12 +28,12 @@
   <div class="hero-shade"></div>
   <nav class="topbar">
     <a class="wordmark" href="#top"><span>Darrell Waltrip</span> Honda</a>
-    <a class="pill" href="#text">Text us</a>
+    <a class="pill" href="sms:+19315612520&body=Hi%20Darrell%20Waltrip%20Honda!">Text us</a>
   </nav>
   <div class="hero-main">
     <p class="eyebrow"><span class="dot" id="open-dot"></span><span id="open-label">Franklin, TN</span></p>
     <h1>Every answer,<br><em>one text away.</em></h1>
-    <p class="lede">Shop, book service and check your payment without waiting on hold. Text us like you'd text a friend, any time of day.</p>
+    <p class="lede">Shop, book service, check on your car and see your payment without waiting on hold. Text us like you'd text a friend, any time of day.</p>
     <div class="cta-row">
       <a class="btn" href="#text">Try the text line</a>
       <a class="btn ghost" href="#service">Book service</a>
@@ -49,15 +49,27 @@
     <div class="sec-head reveal">
       <p class="kicker">Walkaround</p>
       <h2>Spin it. Then ask about it.</h2>
-      <p>Drag to look around. Every vehicle page gets a "text us about this one" button that sends the exact car to our team.</p>
+      <p>Drag to look around, then tap a dot. Shoppers can ask about this one. People who already own a car can ask about theirs.</p>
     </div>
     <div class="stage reveal">
-      <model-viewer id="car" src="media/car.glb" alt="A red compact SUV, 3D model" camera-controls disable-zoom disable-pan touch-action="pan-y" interaction-prompt="none" auto-rotate auto-rotate-delay="1200" rotation-per-second="14deg" camera-orbit="35deg 78deg auto" shadow-intensity="1.2" shadow-softness="0.8" exposure="1.05" environment-image="neutral" loading="lazy">
+      <model-viewer id="car" src="media/car.glb" alt="A red compact SUV, 3D model" camera-controls disable-zoom disable-pan touch-action="pan-y" interaction-prompt="none" auto-rotate auto-rotate-delay="1200" rotation-per-second="14deg" camera-orbit="35deg 78deg auto" min-field-of-view="20deg" field-of-view="26deg" shadow-intensity="1.2" shadow-softness="0.8" exposure="1.05" environment-image="neutral" loading="lazy">
         <button class="hotspot" slot="hotspot-a" data-position="0.55 0.34 0.25" data-normal="0 1 0" data-ask="Is this one in stock, and what's the out-the-door price?">Is it in stock?</button>
         <button class="hotspot" slot="hotspot-b" data-position="-0.6 0.3 -0.25" data-normal="0 1 0" data-goto="#payment">What's my payment?</button>
+        <button class="hotspot cur" slot="hotspot-c" data-position="0.0 0.36 -0.05" data-normal="0 1 0" data-ask="Is my car ready?">Is my car ready?</button>
+        <button class="hotspot cur" slot="hotspot-d" data-position="-0.92 0.02 0.0" data-normal="-1 0 0" data-ask="Any recalls on mine?">Any recalls on mine?</button>
+        <button class="hotspot cur" slot="hotspot-e" data-position="0.92 -0.02 0.0" data-normal="1 0 0" data-goto="#service">Book service</button>
+        <button class="hotspot" slot="hotspot-f" data-position="0.1 0.1 0.44" data-normal="0 0 1" data-ask="What's my trade worth?">What's my trade worth?</button>
         <div class="stage-floor" slot="poster"></div>
       </model-viewer>
-      <p class="stage-note">Demo vehicle. Generic model, not a Honda listing.</p>
+      <div class="stage-chips" aria-label="Questions you can ask about this car">
+        <button type="button" data-ask="Is this one in stock, and what's the out-the-door price?">Is it in stock?</button>
+        <button type="button" data-goto="#payment">What's my payment?</button>
+        <button type="button" class="cur" data-ask="Is my car ready?">Is my car ready?</button>
+        <button type="button" class="cur" data-ask="Any recalls on mine?">Any recalls on mine?</button>
+        <button type="button" class="cur" data-goto="#service">Book service</button>
+        <button type="button" data-ask="What's my trade worth?">What's my trade worth?</button>
+      </div>
+      <p class="stage-note">Demo vehicle. Generic model, not a Honda listing. Red dots are for shoppers, white dots are for people who already own a car.</p>
     </div>
   </section>
 
@@ -78,8 +90,26 @@
         <li><b>Answered on the spot</b><span>Hours, directions, recall line, what to bring for financing, booking a service slot.</span></li>
         <li><b>Handed to a person</b><span>Exact pricing, trade values and credit. Sales, service or finance gets the text with full context.</span></li>
         <li><b>Your number</b><span>Customers text the dealership's own number. No app to download.</span></li>
+        <li class="routing-cta"><a class="btn" href="sms:+19315612520&body=Hi%20Darrell%20Waltrip%20Honda!">Text us</a><span class="fine">Opens your messages with a hello already typed. Demo line, run by tyycc.</span></li>
       </ul>
     </div>
+  </section>
+
+
+  <!-- current customers -->
+  <section class="customers" id="customers">
+    <div class="sec-head reveal">
+      <p class="kicker">Current customers</p>
+      <h2>Already own one? Your car texts you first.</h2>
+      <p>The line knows who is texting from their number, and only ever shows them their own car and their own repair. Tap a card to watch it happen. Every name and vehicle here is made-up demo data.</p>
+    </div>
+    <ul class="cust-grid reveal">
+      <li><span class="cust-ico" aria-hidden="true">01</span><b>Where's my car?</b><span>"Is my car ready?" gets the real stage: checked in, in the bay, waiting on parts, washing, ready. No hold music.</span><button type="button" class="btn ghost small" data-ask="Is my car ready?">See it in the thread</button></li>
+      <li><span class="cust-ico" aria-hidden="true">02</span><b>Approve a repair by text</b><span>The tech finds something. You get the price and a plain-English reason, and reply YES or NO. The advisor sees your answer instantly.</span><button type="button" class="btn ghost small" data-ask="Approve a repair">See it in the thread</button></li>
+      <li><span class="cust-ico" aria-hidden="true">03</span><b>Recalls on your VIN</b><span>Ask about recalls on your car and get a straight answer for your vehicle, then a time to fix it.</span><button type="button" class="btn ghost small" data-ask="Any recalls on mine?">See it in the thread</button></li>
+      <li><span class="cust-ico" aria-hidden="true">04</span><b>Maintenance reminders</b><span>"When's my next service?" comes from your mileage and last visit. The line also nudges you before it is due.</span><button type="button" class="btn ghost small" data-ask="When's my next service?">See it in the thread</button></li>
+    </ul>
+    <p class="cust-cta reveal"><a class="btn" href="sms:+19315612520&body=Hi%20Darrell%20Waltrip%20Honda!">Text us</a> <span class="fine">A person always steps in for money disputes, complaints and anything safety-related.</span></p>
   </section>
 
   <!-- service booking -->
@@ -87,28 +117,24 @@
     <img class="service-bg" src="media/service-bay.jpg" alt="" loading="lazy">
     <div class="service-card reveal">
       <p class="kicker">Service</p>
-      <h2>Book service in three taps.</h2>
-      <p class="muted">Today service is booked by phone only. This is what booking from your phone could look like.</p>
+      <h2>Book service: just your number.</h2>
+      <p class="muted">Today service is booked by phone only. Enter your number and we'll text you open times. Reply with the one you want.</p>
       <form class="book" id="book" novalidate>
-        <div class="step" data-step="1">
-          <label>What's it for?</label>
-          <div class="opts" data-name="job">
-            <button type="button">Oil change</button><button type="button">Tires</button><button type="button">Brakes</button><button type="button">Recall</button><button type="button">Something's wrong</button>
+        <div class="step" id="book-step">
+          <div class="field">
+            <label for="b-phone">Your mobile number</label>
+            <input id="b-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(615) 555-0123" required>
           </div>
+          <label class="consent"><input type="checkbox" name="consent" id="b-consent" required><span>Text me open service times. Reply STOP to opt out. Message and data rates may apply.</span></label>
+          <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label for="b-website">Leave this empty</label><input id="b-website" name="website" type="text" tabindex="-1" autocomplete="off" value=""></div>
+          <p class="form-err" id="book-err" role="alert"></p>
+          <button class="btn block" type="submit" id="book-btn">Text me open times</button>
         </div>
-        <div class="step" data-step="2" hidden>
-          <label>Pick a day</label>
-          <div class="opts" data-name="day" id="days"></div>
-        </div>
-        <div class="step" data-step="3" hidden>
-          <label>Pick a time</label>
-          <div class="opts" data-name="time" id="times"></div>
-        </div>
-        <div class="done" hidden>
-          <p class="done-big">You're booked.</p>
+        <div class="done" id="book-done" hidden>
+          <p class="done-big" id="done-big">Check your phone.</p>
           <p id="done-text"></p>
-          <p class="muted small">Demo only. Nothing was sent or scheduled.</p>
-          <button type="button" class="btn ghost small" id="book-again">Start over</button>
+          <p class="muted small">Demo only. Concept by tyycc, not an official Darrell Waltrip Honda service line.</p>
+          <button type="button" class="btn ghost small" id="book-again">Use another number</button>
         </div>
       </form>
     </div>
@@ -163,6 +189,6 @@
   <p>Concept redesign and text line demo prepared by <b>tyycc</b>. Not the official Darrell Waltrip Honda site. Hours, address, phone and offers are taken from the dealership's public site on Oct 20, 2026. Vehicle imagery is generic and illustrative.</p>
 </footer>
 
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>

@@ -155,3 +155,39 @@ footer p { max-width: 720px; margin: 22px auto 0; text-align: center; }
   .stage::after, .dot.open { animation: none; }
   .intro { display: none; }
 }
+
+/* v2 (2026-10-30): current-customer hotspots + cards, phone-number service form */
+.hotspot.cur { border-color: rgba(255,255,255,.7); }
+.hotspot.cur::before { background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,.3); }
+.routing-cta { display: grid; gap: 10px; justify-items: start; background: none !important; border: 0 !important; padding: 0 !important; }
+.customers { padding: clamp(56px, 9vw, 110px) clamp(16px, 4vw, 44px); }
+.cust-grid { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; }
+.cust-grid li { display: flex; flex-direction: column; gap: 10px; padding: 22px 20px; border-radius: 20px; background: var(--panel); border: 1px solid var(--line); }
+.cust-grid b { font: 700 18px/1.2 var(--wide); }
+.cust-grid li > span:not(.cust-ico) { color: var(--body); font-size: 14.5px; flex: 1; }
+.cust-ico { font: 800 12px/1 var(--wide); letter-spacing: .2em; color: var(--red-2); }
+.cust-cta { max-width: 1100px; margin: 26px auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.cust-cta .fine { flex: 1 1 240px; }
+.field { display: grid; gap: 8px; }
+.field label { font-size: 14px; font-weight: 600; }
+.field input { font: 600 20px Inter, system-ui, sans-serif; padding: 16px; border: 2px solid #30333a; border-radius: 14px; background: var(--bg); width: 100%; color: var(--text); letter-spacing: .02em; }
+.field input:focus { outline: none; border-color: var(--red-2); }
+.field.bad input { border-color: var(--red-2); }
+.consent { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--muted); align-items: start; }
+.consent input { width: 20px; height: 20px; accent-color: var(--red); margin-top: 1px; }
+.form-err { margin: 12px 0 0; color: var(--red-2); font-weight: 600; font-size: 14px; }
+.form-err:empty { display: none; }
+.btn.block { width: 100%; margin-top: 14px; }
+.btn:disabled { opacity: .6; cursor: wait; }
+/* phones: the pills become tap dots (6 labels pile up on a 390px car); the same questions sit as chips under the stage */
+.stage-chips { display: none; }
+@media (max-width: 640px) {
+  model-viewer { height: 420px; }
+  .hotspot { width: 26px; height: 26px; padding: 0; font-size: 0; border-radius: 50%; }
+  .hotspot::before { margin: 0; width: 10px; height: 10px; position: absolute; inset: 0; margin: auto; }
+  .stage-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 16px 6px; }
+  .stage-chips button { padding: 9px 13px; border-radius: 99px; border: 1px solid #34373d; background: #16181b; color: #e9eaec; font-size: 13px; cursor: pointer; }
+  .stage-chips button.cur { border-color: rgba(255,255,255,.6); }
+  .stage-note { position: static; padding: 4px 16px 14px; }
+}
+.step label.consent { display: grid; margin: 14px 0 0; font-weight: 400; }

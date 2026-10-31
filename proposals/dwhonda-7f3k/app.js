@@ -1,4 +1,4 @@
-// Darrell Waltrip Honda concept: intro lights, live hours, text-line demo, service booking, payment calculator.
+// Darrell Waltrip Honda concept: intro lights, live hours, text-line demo, service-by-phone-number form, payment calculator.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -81,6 +81,29 @@
   const shortDate = (d) => d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
 
   const SCRIPTS = {
+    "Is my car ready?": async () => {
+      await say("Hi Alex! Looking up your <b>2021 CR-V</b> from your number.", 700);
+      await say("It's in the final wash and quality check. Ready around <b>3:30 PM</b> today. I'll text you the moment it's done.");
+      add("sys", "Looked up by phone number · demo data, made-up customer");
+    },
+    "Any recalls on mine?": async () => {
+      await say("Checking your <b>2019 Civic</b>... One open recall on it. It's a demo example, not a real notice. It's free to fix and takes about an hour.", 1100);
+      add("sys", "Matched to the VIN on file · only this customer's car");
+      offer(nextSlots(3), async (c) => { await say(`Booked for <b>${c}</b>. I'll text you the day before. 👍`); });
+    },
+    "Approve a repair": async () => {
+      await say("Update on your CR-V: your tech measured the front brake pads at 3 mm, which is low.");
+      await say("Recommended: front pads and rotors, <b>$412.50</b>, done by 4 PM today. Reply YES to approve or NO to skip.", 900);
+      offer(["YES, approve", "NO, skip it"], async (c) => {
+        if (c.startsWith("YES")) { add("sys", "Approval recorded · your service advisor notified"); await say("Approved. We'll text you when it's ready. 🔧"); }
+        else { add("sys", "Declined, noted on the repair order"); await say("No problem. We've noted it and left it off. We'll flag it again at your next visit."); }
+      });
+    },
+    "When's my next service?": async () => {
+      await say("Your CR-V is at 28,400 miles. Your next service is the <b>30,000-mile</b> visit, due in about 2 months.");
+      await say("I'll text you a reminder a couple of weeks before. Want a time now?", 700);
+      offer(nextSlots(2), async (c) => { await say(`Booked for <b>${c}</b>. 👍`); });
+    },
     "Is 0% APR on a CR-V?": async () => {
       await say("Right now we have 0% APR on select new models. Which ones qualify changes month to month.");
       await say("Want me to have a sales advisor text you the exact CR-V terms today?", 700);
@@ -181,45 +204,45 @@
   }));
   $$("[data-goto]").forEach((el) => el.addEventListener("click", () => $(el.dataset.goto).scrollIntoView({ behavior: "smooth" })));
 
-  /* ---------- service booking ---------- */
+  /* ---------- service: phone number only -> Worker /dw/service ---------- */
+  const SERVICE_ENDPOINT = "https://maxfit-signup.thecoolwolfguy09.workers.dev/dw/service";
   const book = $("#book");
-  const state = {};
-  const steps = $$(".step", book);
-  const pick = (wrap, cb) => wrap.addEventListener("click", (e) => {
-    const b = e.target.closest("button"); if (!b) return;
-    $$("button", wrap).forEach((x) => x.classList.toggle("on", x === b));
-    cb(b.textContent);
-  });
-  const days = $("#days");
-  const buildDays = () => {
-    days.innerHTML = "";
-    const d = nowCT();
-    for (let i = 1, n = 0; n < 5; i++) {
-      const day = new Date(d); day.setDate(d.getDate() + i);
-      if (day.getDay() === 0) continue;
-      const b = document.createElement("button"); b.type = "button"; b.textContent = shortDate(day); b.dataset.dow = day.getDay();
-      days.appendChild(b); n++;
-    }
-  };
-  buildDays();
-  pick($('[data-name="job"]', book), (v) => { state.job = v; steps[1].hidden = false; });
-  pick(days, (v) => {
-    state.day = v;
-    const sat = $$("button", days).find((b) => b.textContent === v).dataset.dow === "6";
-    const t = sat ? ["8:00 AM", "9:30 AM", "11:00 AM", "1:30 PM"] : ["7:00 AM", "8:30 AM", "10:00 AM", "1:00 PM", "3:30 PM"];
-    $("#times").innerHTML = t.map((x) => `<button type="button">${x}</button>`).join("");
-    steps[2].hidden = false;
-  });
-  pick($("#times"), (v) => {
-    state.time = v;
-    steps.forEach((s) => (s.hidden = true));
-    $(".done", book).hidden = false;
-    $("#done-text").textContent = `${state.job} on ${state.day} at ${state.time}. We'll text you a reminder the day before, and a heads-up when your car's ready.`;
+  const bErr = $("#book-err");
+  const digitsOf = (s) => { const d = String(s || "").replace(/\D/g, ""); return d.length === 11 && d[0] === "1" ? d.slice(1) : d; };
+  const pretty = (d) => `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+  book.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const d = digitsOf($("#b-phone").value);
+    bErr.textContent = "";
+    $(".field", book).classList.remove("bad");
+    if (d.length !== 10) { bErr.textContent = "Enter a 10-digit mobile number."; $(".field", book).classList.add("bad"); $("#b-phone").focus(); return; }
+    if (!$("#b-consent").checked) { bErr.textContent = "Check the box so we can text you."; return; }
+    const btn = $("#book-btn");
+    btn.disabled = true; btn.textContent = "Sending...";
+    let res = null, status = 0;
+    try {
+      const ctl = new AbortController();
+      setTimeout(() => ctl.abort(), 15000);
+      const r = await fetch(SERVICE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: d, consent: true, website: $("#b-website").value }), signal: ctl.signal });
+      status = r.status;
+      res = await r.json().catch(() => null);
+    } catch (err) { res = null; }
+    btn.disabled = false; btn.textContent = "Text me open times";
+    if (status === 400 && res && res.errors) { bErr.textContent = Object.values(res.errors)[0]; return; }
+    if (status === 429) { bErr.textContent = "Too many tries from this connection. Please wait a bit and try again."; return; }
+    if (!res || !res.ok) { bErr.textContent = "We couldn't reach the text line just now. Try again in a minute, or call 855-996-6920."; return; }
+    $("#book-step").hidden = true;
+    $("#book-done").hidden = false;
+    $("#done-big").textContent = res.texted ? "Check your phone." : "Got it.";
+    $("#done-text").textContent = res.texted
+      ? `We just texted ${pretty(d)} from Darrell Waltrip Honda service. Reply with your vehicle and what it needs, and we'll get you a time.`
+      : `We saved ${pretty(d)}. This demo line is not live right now, so no text went out.`;
+    $("#done-big").scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
   });
   $("#book-again").onclick = () => {
-    $$(".opts button", book).forEach((b) => b.classList.remove("on"));
-    steps.forEach((s, i) => (s.hidden = i > 0));
-    $(".done", book).hidden = true;
+    $("#book-done").hidden = true; $("#book-step").hidden = false;
+    $("#b-phone").value = ""; $("#b-consent").checked = false; bErr.textContent = "";
   };
 
   /* ---------- payment ---------- */
