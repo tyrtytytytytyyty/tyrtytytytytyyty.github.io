@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>tyy — Conglomerate Collective</title>
-<meta name="description" content="I make tools I use, games I want to play, and things I want to understand. Explore e, a free offline AI on a USB drive, GymBuddy, my Second Brain, and Sandy, a robot arm built from salvaged parts.">
+<meta name="description" content="I make tools I use, games I want to play, and things I want to understand. Explore e, a free offline AI on a USB drive, GymBuddy, and my Second Brain.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home-cards.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
-#featured-work .featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.e-symbol i{font:italic 400 96px/1 "Instrument Serif",Georgia,serif;background:linear-gradient(45deg,#FF4D00,#FF8A00 35%,#FFC400 70%,#FFE45C);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.1em}
-.e-symbol{color:#FFC400}.e-symbol span{font-size:12px}
+#featured-work .featured-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1020px){#featured-work .featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){#featured-work .featured-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -68,41 +68,33 @@
   <div class="featured-grid">
     <article class="feature-card feature-e">
       <span class="feature-kind">01 / Newest · free</span>
-      <div class="feature-symbol e-symbol" aria-hidden="true"><i>e</i><span>offline</span></div>
+      <div class="hc-visual hc-e" aria-hidden="true"><pre id="hc-e-pre">e</pre></div>
       <h3>e</h3>
       <p>turn any usb drive into an offline ai. free. download once, then no internet needed.</p>
       <span class="feature-status">Windows · Mac · Linux</span>
-      <a class="feature-link" href="/e/?utm_source=homepage&utm_medium=portfolio&utm_campaign=e" data-track="e_landing_click">Get e <span aria-hidden="true">↗</span></a>
+      <a class="feature-link" href="/e/?utm_source=homepage&utm_medium=portfolio&utm_campaign=e" data-track="e_landing_click">Get e <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </article>
     <article class="feature-card feature-gym">
       <span class="feature-kind">02 / Fitness companion</span>
-      <div class="feature-symbol" aria-hidden="true">GB<span>↗</span></div>
+      <div class="hc-visual hc-gym" role="img" aria-label="Phone showing a text conversation where a member logs a bench set and the GymBuddy coach replies"><div class="hc-phone" id="hc-phone" aria-hidden="true"><div class="hc-head"><span class="hc-av">GB</span><span class="hc-nm">Gymbuddy AI</span></div><div class="hc-thread" id="hc-thread"></div></div></div>
       <h3>GymBuddy</h3>
       <p>I wanted something I could text between sets. Now other people use it to log their lifts, track food, and get help with the next set.</p>
       <span class="feature-status">Used by paying members</span>
-      <a class="feature-link" href="gymbuddy-info.html?utm_source=homepage&utm_medium=portfolio&utm_campaign=gymbuddy" data-track="gymbuddy_landing_click">Meet GymBuddy <span aria-hidden="true">↗</span></a>
+      <a class="feature-link" href="gymbuddy-info.html?utm_source=homepage&utm_medium=portfolio&utm_campaign=gymbuddy" data-track="gymbuddy_landing_click">Meet GymBuddy <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </article>
     <article class="feature-card feature-brain">
       <span class="feature-kind">03 / Personal memory</span>
-      <img class="feature-image" src="vault1.jpg" alt="An overview of my Second Brain knowledge graph" loading="lazy" width="640" height="360">
+      <div class="hc-visual hc-graph" id="hc-graph"><img src="vault1.jpg" alt="An overview of my Second Brain knowledge graph" loading="lazy" width="640" height="360"></div>
       <h3>Second Brain</h3>
       <p>A place for my projects, ideas, and the decisions behind them. My agents use it to pick up the thread instead of starting over.</p>
       <span class="feature-status">Part of my everyday workflow</span>
-      <a class="feature-link" href="vault.html">Inside the system <span aria-hidden="true">↗</span></a>
-    </article>
-    <article class="feature-card feature-sandy">
-      <span class="feature-kind">04 / Work in progress</span>
-      <div class="feature-symbol sandy-symbol" aria-hidden="true">↳<span>01 / 04</span></div>
-      <h3>Sandy</h3>
-      <p>A desktop robot arm from a salvaged Ender 3. Motors, printed parts, belt reductions, and a lot of figuring things out on the bench.</p>
-      <span class="feature-status">First joint prototyped · arm in progress</span>
-      <a class="feature-link" href="sandy.html">Follow the build <span aria-hidden="true">↗</span></a>
+      <a class="feature-link" href="vault.html">Inside the system <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </article>
   </div>
   <div class="explore-more" aria-label="More work">
     <span>Keep exploring</span>
-    <a href="programming.html">Apps &amp; systems ↗</a><a href="scripting.html">Games ↗</a>
-    <a href="ui.html">UI design ↗</a><a href="clothing.html">Clothing ↗</a><a href="editing.html">Editing ↗</a>
+    <a href="programming.html">Apps &amp; systems <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="scripting.html">Games <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="ui.html">UI design <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="clothing.html">Clothing <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="editing.html">Editing <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
 </section>
 
@@ -146,12 +138,14 @@
     <button type="submit" class="submit-btn" id="submit-testimonial">Submit</button>
     <div class="pending-msg" id="pending-msg" role="status" aria-live="polite"></div>
   </form>
-  <p class="review-contact">Prefer a message? <a href="https://www.instagram.com/tyresesig" target="_blank" rel="noopener">Find me on Instagram ↗</a></p>
+  <p class="review-contact">Prefer a message? <a href="https://www.instagram.com/tyresesig" target="_blank" rel="noopener">Find me on Instagram <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
 </div>
 
 <footer class="footer">&copy; 2026 Conglomerate Collective — All rights reserved.</footer>
 
 <script src="shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="home-cards.js"></script>
 <script src="testimonials.js"></script>
 </body>
 </html>
