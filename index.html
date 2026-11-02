@@ -4,11 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>tyy — Conglomerate Collective</title>
-<meta name="description" content="I make tools I use, games I want to play, and things I want to understand. Explore GymBuddy, my Second Brain, and Sandy, a robot arm built from salvaged parts.">
+<meta name="description" content="I make tools I use, games I want to play, and things I want to understand. Explore e, a free offline AI on a USB drive, GymBuddy, my Second Brain, and Sandy, a robot arm built from salvaged parts.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+#featured-work .featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.e-symbol i{font:italic 400 96px/1 "Instrument Serif",Georgia,serif;background:linear-gradient(45deg,#FF4D00,#FF8A00 35%,#FFC400 70%,#FFE45C);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.1em}
+.e-symbol{color:#FFC400}.e-symbol span{font-size:12px}
+@media(max-width:760px){#featured-work .featured-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body class="portfolio-home">
 <canvas id="star-canvas" aria-hidden="true"></canvas>
@@ -59,8 +66,16 @@
   <p class="section-label">A few things I've been building</p>
   <h2 class="featured-title" id="featured-title">From a text to a turning motor.</h2>
   <div class="featured-grid">
+    <article class="feature-card feature-e">
+      <span class="feature-kind">01 / Newest · free</span>
+      <div class="feature-symbol e-symbol" aria-hidden="true"><i>e</i><span>offline</span></div>
+      <h3>e</h3>
+      <p>turn any usb drive into an offline ai. free. download once, then no internet needed.</p>
+      <span class="feature-status">Windows · Mac · Linux</span>
+      <a class="feature-link" href="/e/?utm_source=homepage&utm_medium=portfolio&utm_campaign=e" data-track="e_landing_click">Get e <span aria-hidden="true">↗</span></a>
+    </article>
     <article class="feature-card feature-gym">
-      <span class="feature-kind">01 / Fitness companion</span>
+      <span class="feature-kind">02 / Fitness companion</span>
       <div class="feature-symbol" aria-hidden="true">GB<span>↗</span></div>
       <h3>GymBuddy</h3>
       <p>I wanted something I could text between sets. Now other people use it to log their lifts, track food, and get help with the next set.</p>
@@ -68,7 +83,7 @@
       <a class="feature-link" href="gymbuddy-info.html?utm_source=homepage&utm_medium=portfolio&utm_campaign=gymbuddy" data-track="gymbuddy_landing_click">Meet GymBuddy <span aria-hidden="true">↗</span></a>
     </article>
     <article class="feature-card feature-brain">
-      <span class="feature-kind">02 / Personal memory</span>
+      <span class="feature-kind">03 / Personal memory</span>
       <img class="feature-image" src="vault1.jpg" alt="An overview of my Second Brain knowledge graph" loading="lazy" width="640" height="360">
       <h3>Second Brain</h3>
       <p>A place for my projects, ideas, and the decisions behind them. My agents use it to pick up the thread instead of starting over.</p>
@@ -76,7 +91,7 @@
       <a class="feature-link" href="vault.html">Inside the system <span aria-hidden="true">↗</span></a>
     </article>
     <article class="feature-card feature-sandy">
-      <span class="feature-kind">03 / Work in progress</span>
+      <span class="feature-kind">04 / Work in progress</span>
       <div class="feature-symbol sandy-symbol" aria-hidden="true">↳<span>01 / 04</span></div>
       <h3>Sandy</h3>
       <p>A desktop robot arm from a salvaged Ender 3. Motors, printed parts, belt reductions, and a lot of figuring things out on the bench.</p>
