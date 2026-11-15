@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#ff6a00">
-<title>CareBuddy · Concept draft</title>
+<title>Concept draft · Senior living preferences</title>
 <meta name="description" content="A concept draft: families text the little things, caregivers see them before they walk in the room.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,51 +71,77 @@ section{padding:64px 0}
 .chip{display:inline-block;background:var(--orange-soft);border:1px solid var(--orange-line);color:#7a3200;border-radius:99px;padding:3px 10px;font-size:.84rem;font-weight:600;margin:2px 4px 2px 0}
 .note{font-size:.85rem;color:var(--muted);margin-top:12px}
 
-/* explainer */
-.stage{display:grid;gap:22px;margin-top:32px;align-items:start}
-.phone{width:100%;max-width:330px;margin:0 auto;background:#15171c;border-radius:42px;padding:10px;box-shadow:0 24px 50px rgba(31,36,48,.22)}
-.screen{background:#fff;border-radius:33px;overflow:hidden;height:500px;display:flex;flex-direction:column}
-.ph-top{padding:14px 12px 10px;text-align:center;border-bottom:1px solid #eee;background:#f8f8f9}
-.ph-av{width:38px;height:38px;border-radius:50%;margin:0 auto 4px;background:linear-gradient(145deg,#ff9a4d,#ff6a00);display:grid;place-items:center}
-.ph-top b{display:block;font-size:.8rem}
-.ph-top span{font-size:.68rem;color:var(--muted)}
-.thread{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:7px;padding:12px 10px;overflow:hidden}
-.b{max-width:82%;padding:9px 13px;border-radius:19px;font-size:.88rem;line-height:1.38;opacity:0;transform:translateY(10px) scale(.96);transition:opacity .35s ease,transform .35s ease}
-.b.on{opacity:1;transform:none}
+/* scroll-driven explainer */
+#see{padding-bottom:0}
+.scroller{position:relative;height:420vh;height:420svh;margin-top:6px}
+.pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;padding:10px 0 6px;overflow:hidden}
+.pin>.wrap{flex:1;min-height:0;display:flex;flex-direction:column}
+.cap{display:flex;align-items:center;gap:10px;min-height:26px;font-size:.82rem;font-weight:700}
+.dots{display:flex;gap:4px;flex:none}
+.dots i{width:16px;height:4px;border-radius:3px;background:var(--orange-line);transition:background .3s}
+.dots i.on{background:var(--orange)}
+.cap-t{color:var(--ink);line-height:1.25}
+.slides{position:relative;flex:1;min-height:0;margin-top:8px}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:10px;transition:opacity .4s ease,transform .4s ease}
+.slideB{opacity:0;transform:translateY(14px);pointer-events:none}
+.pin.showB .slideA{opacity:0;transform:translateY(-14px);pointer-events:none}
+.pin.showB .slideB{opacity:1;transform:none;pointer-events:auto}
+.hint{flex:none;height:24px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--orange-deep);transition:opacity .4s ease}
+.hint svg{animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+.pin.started .hint{opacity:0}
+
+.chat{flex:1;min-height:0;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.ph-top{flex:none;display:flex;align-items:center;gap:9px;padding:7px 12px;border-bottom:1px solid #eee;background:#f8f8f9}
+.ph-av{width:26px;height:26px;border-radius:50%;background:linear-gradient(145deg,#ff9a4d,#ff6a00);display:grid;place-items:center;flex:none}
+.ph-top b{font-size:.8rem;line-height:1.2}
+.ph-top span{font-size:.75rem;color:var(--muted);margin-left:auto}
+.thread{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:10px;overflow:hidden}
+.b{display:none;max-width:88%;padding:8px 12px;border-radius:18px;font-size:.83rem;line-height:1.35}
+.b.on{display:block;animation:pop .38s cubic-bezier(.2,.8,.2,1.15) both}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:none}}
 .b.me{align-self:flex-end;background:linear-gradient(180deg,#ff8124,#ff6a00);color:#fff;border-bottom-right-radius:6px}
 .b.bot{align-self:flex-start;background:var(--gray-bubble);color:var(--ink);border-bottom-left-radius:6px}
-.typing{align-self:flex-start;background:var(--gray-bubble);border-radius:19px;padding:11px 14px;display:none;gap:4px}
-.typing.on{display:inline-flex}
-.typing i{width:7px;height:7px;border-radius:50%;background:#9a9aa3;animation:blink 1s infinite}
-.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
-.ph-bar{margin:0 10px 12px;border:1px solid #e2e2e6;border-radius:99px;padding:8px 14px;font-size:.78rem;color:#a3a3ab}
 
-.app{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;width:100%;max-width:440px;margin:0 auto}
-.app-top{background:linear-gradient(180deg,#ff8124,#ff6a00);color:#fff;padding:16px 18px}
-.app-top small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
-.app-top b{font-size:1.1rem}
-.app-body{padding:16px;min-height:372px}
-.res{border:1px solid var(--line);border-radius:18px;padding:14px;transition:border-color .4s,box-shadow .4s}
-.res.pulse{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,106,0,.14)}
-.res-h{display:flex;align-items:center;gap:12px}
-.av{width:44px;height:44px;border-radius:50%;background:var(--orange-soft);color:var(--orange-deep);font-weight:800;display:grid;place-items:center;flex:none}
-.res-h b{display:block;line-height:1.2}
-.res-h span{font-size:.82rem;color:var(--muted)}
-.match{display:flex;gap:8px;align-items:flex-start;margin-top:12px;background:#f1faf3;border:1px solid #cfe9d5;color:#1d5c2e;border-radius:12px;padding:9px 11px;font-size:.8rem;font-weight:600;line-height:1.35}
-.match svg{flex:none;margin-top:1px}
-.lbl{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
-.prefs{display:grid;gap:7px}
-.pref{display:flex;gap:10px;align-items:flex-start;background:var(--orange-soft);border:1px solid var(--orange-line);border-radius:12px;padding:9px 11px;font-size:.9rem;font-weight:600;color:#6b2b00;line-height:1.35}
-.pref small{display:block;font-weight:500;color:#9a5a2c;font-size:.74rem}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--orange);margin-top:7px;flex:none}
-.fade{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease;display:none}
-.fade.show{display:flex}
-.fade.on{opacity:1;transform:none}
-.empty{font-size:.86rem;color:#a0a4ad;padding:6px 2px}
-.other{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px dashed var(--line);border-radius:18px;margin-top:10px;color:var(--muted);font-size:.86rem}
-.other .av{width:34px;height:34px;font-size:.8rem;background:#f3f1ee;color:#8b8f99}
-.replay{display:block;margin:18px auto 0;background:#fff;border:1px solid var(--orange-line);color:var(--orange-deep);font:inherit;font-weight:700;font-size:.9rem;padding:9px 18px;border-radius:99px;cursor:pointer}
+.prof{flex:none;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px 12px;box-shadow:var(--shadow);transition:border-color .4s,box-shadow .4s}
+.prof.pulse{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,106,0,.14)}
+.prof-h{display:flex;align-items:center;gap:10px}
+.prof-h .av{width:34px;height:34px;font-size:.8rem}
+.prof-h b{display:block;line-height:1.2;font-size:.9rem}
+.prof-h span{font-size:.75rem;color:var(--muted)}
+.av{border-radius:50%;background:var(--orange-soft);color:var(--orange-deep);font-weight:800;display:grid;place-items:center;flex:none}
+.match{display:none;gap:7px;align-items:center;margin-top:8px;background:#f1faf3;border:1px solid #cfe9d5;color:#1d5c2e;border-radius:10px;padding:5px 9px;font-size:.75rem;font-weight:600;line-height:1.3}
+.match.on{display:flex;animation:pop .38s ease both}
+.match svg{flex:none}
+.prefs{display:grid;gap:5px;margin-top:8px}
+.empty{font-size:.78rem;color:#8d919b;padding:2px 2px}
+.pref{display:flex;gap:9px;align-items:flex-start;background:var(--orange-soft);border:1px solid var(--orange-line);border-radius:11px;padding:6px 10px;font-size:.8rem;font-weight:600;color:#6b2b00;line-height:1.3}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--orange);margin-top:6px;flex:none}
+.prefs .pref{display:none}
+.prefs .pref.on{display:flex;animation:pop .38s ease both}
+
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.cardx{min-width:0;display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow)}
+.cardx.after{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,106,0,.12)}
+.tag{align-self:flex-start;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:2px 9px;background:#eceaf0;color:var(--muted)}
+.after .tag{background:var(--orange);color:#fff}
+.cx-h{font-weight:800;font-size:.9rem;line-height:1.2}
+.cx-h span{display:block;font-weight:500;font-size:.75rem;color:var(--muted)}
+.fact{font-size:.78rem;line-height:1.3;font-weight:600}
+.fact b{font-weight:600;color:var(--muted)}
+.cx-l{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.cardx .pref{font-size:.78rem;padding:5px 8px;gap:7px}
+.newrow{opacity:0;transform:translateY(8px) scale(.97);transition:opacity .4s ease,transform .4s ease}
+.pin.all .newrow{opacity:1;transform:none;animation:flash 1.3s ease both}
+.pin.all .newrow:nth-of-type(2){transition-delay:.15s;animation-delay:.15s}
+.pin.all .newrow:nth-of-type(3){transition-delay:.3s;animation-delay:.3s}
+@keyframes flash{0%{background:var(--orange);color:#fff;border-color:var(--orange)}60%{background:var(--orange);color:#fff}100%{background:var(--orange-soft);color:#6b2b00}}
+@media (max-height:680px){
+  .pin{padding-top:6px}
+  .b{font-size:.8rem;padding:6px 10px}
+  .thread{padding:8px;gap:5px}
+  .slide{gap:8px}
+}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -141,20 +167,43 @@ footer b{color:var(--ink)}
   .shift td:last-child{padding-top:8px}
   .shift td:last-child::before{display:block;content:"Things to know";margin-bottom:2px}
 }
-@media (min-width:760px){
+@media (min-width:900px){
   section{padding:92px 0}
+  #see{padding-bottom:0}
   .hero{padding:60px 0 90px}
   .grid.c3{grid-template-columns:repeat(3,1fr)}
   .grid.c2{grid-template-columns:repeat(2,1fr)}
-  .stage{grid-template-columns:330px 1fr;gap:48px;align-items:center}
-  .phone,.app{margin:0}
-  .app{justify-self:start}
   .ask{padding:46px}
+  .slides{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:center}
+  .slide{position:static}
+  .slideA{height:min(580px,100%)}
+  .pin.showB .slideA{opacity:1;transform:none;pointer-events:auto}
+  .ba{gap:16px}
+  .cardx{padding:16px;gap:8px}
+  .fact{font-size:.9rem}.cx-h{font-size:1.05rem}.cardx .pref{font-size:.9rem}
+}
+@media (min-width:760px) and (max-width:899px){
+  section{padding:92px 0}
+  #see{padding-bottom:0}
+  .hero{padding:60px 0 90px}
+  .grid.c3{grid-template-columns:repeat(3,1fr)}
+  .grid.c2{grid-template-columns:repeat(2,1fr)}
+  .ask{padding:46px}
+  .slides{max-width:560px;width:100%;margin-left:auto;margin-right:auto}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .orb,.typing i{animation:none}
-  .reveal,.b,.fade{transition:none;opacity:1;transform:none}
+  .orb,.hint svg{animation:none}
+  .reveal{transition:none;opacity:1;transform:none}
+  .b.on,.match.on,.prefs .pref.on,.pin.all .newrow{animation:none}
+  .scroller{height:auto}
+  .pin{position:static;height:auto;overflow:visible;padding:0}
+  .pin>.wrap{display:block}
+  .slides{display:block;margin-top:8px}
+  .slide,.slideA,.slideB{position:static;height:auto;opacity:1!important;transform:none!important;pointer-events:auto!important;transition:none;margin-bottom:22px}
+  .thread{justify-content:flex-start}
+  .newrow{transition:none}
+  .hint,.cap{display:none}
 }
 </style>
 </head>
@@ -165,10 +214,7 @@ footer b{color:var(--ink)}
 <header class="hero">
   <span class="orb a"></span><span class="orb b"></span><span class="orb c"></span>
   <div class="wrap">
-    <div class="brand">
-      <span class="mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9.6A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7 2.4C19 15.6 12 20 12 20z" fill="#fff"/></svg></span>
-      CareBuddy <small>working name</small>
-    </div>
+    <div class="brand"><span class="mark" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 4.5h14a2 2 0 0 1 2 2v8.5a2 2 0 0 1-2 2h-6.5L8 20.5V17H5a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z" stroke="#fff" stroke-width="1.9" stroke-linejoin="round"/><path d="M12 14.2s-3.3-1.9-3.3-4.2a1.75 1.75 0 0 1 3.3-.85 1.75 1.75 0 0 1 3.3.85c0 2.3-3.3 4.2-3.3 4.2z" fill="#fff"/></svg></span></div>
     <p class="eyebrow">An idea for senior living</p>
     <h1>Know the <em>little things</em> before you walk in the room.</h1>
     <p class="lede">Your system already holds the medical side. This is for the personal side: she just had her hair done, he likes his coffee first, she loves her nails painted. Families text it in. Caregivers see it at the start of their shift.</p>
@@ -191,7 +237,7 @@ footer b{color:var(--ink)}
     <h2 class="reveal">The chart knows her medications. It doesn't know her.</h2>
     <p class="lede reveal" style="margin-top:14px">The things that make a good day usually live in one caregiver's head, or in a family member's. This would give them a place to live.</p>
     <table class="tbl two reveal">
-      <thead><tr><th>What your system already knows</th><th class="hl">What CareBuddy would add</th></tr></thead>
+      <thead><tr><th>What your system already knows</th><th class="hl">What this would add</th></tr></thead>
       <tbody>
         <tr><td>Medications and times</td><td class="hl">Sweet tea, with lemon</td></tr>
         <tr><td>Diagnoses and care needs</td><td class="hl">Keep her hair dry after salon day</td></tr>
@@ -200,7 +246,7 @@ footer b{color:var(--ink)}
         <tr><td>Emergency contacts</td><td class="hl">Which family member told us, and when</td></tr>
       </tbody>
     </table>
-    <p class="note reveal">CareBuddy would sit next to your system. It would not replace it, and it would not hold anything medical.</p>
+    <p class="note reveal">This would sit next to your system. It would not replace it, and it would not hold anything medical.</p>
   </div>
 </section>
 
@@ -208,49 +254,66 @@ footer b{color:var(--ink)}
   <div class="wrap">
     <p class="eyebrow reveal">Watch it happen</p>
     <h2 class="reveal">One text from family. One card for the caregiver.</h2>
-    <p class="lede reveal" style="margin-top:14px">A granddaughter texts from her own phone. She never says her grandma's name. The card on the caregiver's screen fills in as she types.</p>
+    <p class="lede reveal" style="margin-top:14px">A granddaughter texts from her own phone. She never says her grandma's name. Scroll to watch the caregiver's card change.</p>
+  </div>
 
-    <div class="stage reveal" id="stage">
-      <div class="phone" aria-label="Sample text conversation between a family member and CareBuddy">
-        <div class="screen">
-          <div class="ph-top">
-            <div class="ph-av" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9.6A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7 2.4C19 15.6 12 20 12 20z" fill="#fff"/></svg></div>
-            <b>CareBuddy</b><span>Your community's family line</span>
-          </div>
-          <div class="thread" id="thread">
-            <div class="b me" data-m="1">Hi! Grandma got her hair done at the salon today. Please don't let it get wet.</div>
-            <div class="b bot" data-m="2">Got it. I'll note "keep hair dry after the salon" for Rose. Does she go on a regular day?</div>
-            <div class="b me" data-m="3">Every Thursday. She also loves sweet tea with lemon, and getting her nails done.</div>
-            <div class="b bot" data-m="4">Added all three. Her caregivers will see them before they walk in. Thank you for telling us.</div>
-            <div class="typing" id="typing" aria-hidden="true"><i></i><i></i><i></i></div>
-          </div>
-          <div class="ph-bar" aria-hidden="true">Text Message</div>
-        </div>
-      </div>
+  <div class="scroller" id="scroller">
+    <div class="pin" id="pin" data-step="0">
+      <div class="wrap">
+        <div class="cap" aria-live="polite"><span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="cap-t" id="capt">A family member picks up her phone</span></div>
 
-      <div>
-        <div class="app" aria-label="Sample caregiver view">
-          <div class="app-top"><small>Caregiver view · sample</small><b>Your shift: 7:00 am to 3:00 pm</b></div>
-          <div class="app-body">
-            <div class="res" id="res">
-              <div class="res-h"><span class="av">RS</span><div><b>Rose Sample</b><span>Room 12 · morning care 7:30</span></div></div>
-              <div class="match fade" id="match">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="#1d5c2e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>This number is listed as an emergency contact for Rose Sample (granddaughter).</span>
-              </div>
-              <div class="lbl">Things to know</div>
-              <div class="prefs">
-                <div class="empty" id="empty">Nothing from family yet.</div>
-                <div class="pref fade" id="p1"><span class="dot"></span><span><span id="p1t">Keep hair dry after the salon</span><small>From her granddaughter · today</small></span></div>
-                <div class="pref fade" id="p2"><span class="dot"></span><span>Sweet tea with lemon<small>From her granddaughter · today</small></span></div>
-                <div class="pref fade" id="p3"><span class="dot"></span><span>Loves having her nails done<small>From her granddaughter · today</small></span></div>
+        <div class="slides">
+          <div class="slide slideA">
+            <div class="chat" aria-label="Sample text conversation between a family member and the text line">
+              <div class="ph-top"><span class="ph-av" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9.6A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7 2.4C19 15.6 12 20 12 20z" fill="#fff"/></svg></span><b>Family line</b><span>Text message</span></div>
+              <div class="thread" id="thread">
+                <div class="b me" data-need="1">Hi! Grandma got her hair done at the salon today. Please don't let it get wet.</div>
+                <div class="b bot" data-need="2">Got it. I'll note "keep hair dry after the salon" for Rose. Does she go on a regular day?</div>
+                <div class="b me" data-need="3">Every Thursday. She also loves sweet tea with lemon, and getting her nails done.</div>
+                <div class="b bot" data-need="4">Added all three. Her caregivers will see them before they walk in. Thank you for telling us.</div>
               </div>
             </div>
-            <div class="other"><span class="av">WE</span>Walt Example · Room 14</div>
-            <div class="other"><span class="av">PD</span>Pearl Demo · Room 9</div>
+            <div class="prof" id="prof" aria-label="Sample resident profile">
+              <div class="prof-h"><span class="av">RS</span><div><b>Rose Sample</b><span>Room 12 · profile, filling in from the texts</span></div></div>
+              <div class="match" id="match"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" stroke="#1d5c2e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Number on file: granddaughter of Rose Sample</span></div>
+              <div class="prefs">
+                <div class="empty" id="empty">Nothing from family yet.</div>
+                <div class="pref" id="p1"><span class="dot"></span><span id="p1t">Keep hair dry after the salon</span></div>
+                <div class="pref" id="p2"><span class="dot"></span><span>Sweet tea with lemon</span></div>
+                <div class="pref" id="p3"><span class="dot"></span><span>Loves having her nails done</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide slideB">
+            <div class="ba">
+              <div class="cardx before" aria-label="Before: caregiver card today (sample)">
+                <span class="tag">Before</span>
+                <div class="cx-h">Rose Sample<span>What the card shows today</span></div>
+                <div class="fact"><b>Room</b> 12</div>
+                <div class="fact"><b>Meds</b> 8 am and 8 pm</div>
+                <div class="fact"><b>Diet</b> Low salt</div>
+                <div class="fact"><b>Mobility</b> Walker, 1 assist</div>
+                <div class="cx-l">Things to know</div>
+                <div class="empty">Nothing personal on file.</div>
+              </div>
+              <div class="cardx after" aria-label="After: the same card with what family texted (sample)">
+                <span class="tag">After</span>
+                <div class="cx-h">Rose Sample<span>Same card, plus family's texts</span></div>
+                <div class="fact"><b>Room</b> 12</div>
+                <div class="fact"><b>Meds</b> 8 am and 8 pm</div>
+                <div class="fact"><b>Diet</b> Low salt</div>
+                <div class="fact"><b>Mobility</b> Walker, 1 assist</div>
+                <div class="cx-l">Things to know</div>
+                <div class="pref newrow"><span class="dot"></span><span>Keep hair dry on Thursdays (salon day)</span></div>
+                <div class="pref newrow"><span class="dot"></span><span>Sweet tea with lemon</span></div>
+                <div class="pref newrow"><span class="dot"></span><span>Loves having her nails done</span></div>
+              </div>
+            </div>
           </div>
         </div>
-        <button class="replay" id="replay" type="button">Play it again</button>
+
+        <div class="hint" id="hint" aria-hidden="true">Keep scrolling <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="#e85500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
   </div>
@@ -329,7 +392,7 @@ footer b{color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    <p><b>CareBuddy</b> is a working name. Concept draft, November 2026. Built on TextBuddy by tyycc.</p>
+    <p>Concept draft, November 2026. Built on TextBuddy by tyycc.</p>
     <p style="margin-top:6px">Nothing here is a finished product. Every resident, family member and facility shown is fictional.</p>
   </div>
 </footer>
@@ -350,64 +413,64 @@ footer b{color:var(--ink)}
     items.forEach(function(el){ io.observe(el); });
   }
 
-  /* explainer */
-  var msgs = {}; document.querySelectorAll("#thread .b").forEach(function(b){ msgs[b.dataset.m] = b; });
-  var typing = $("typing"), res = $("res"), empty = $("empty"), p1t = $("p1t");
-  var fades = ["match","p1","p2","p3"].map($);
-  var run = 0, visible = false;
+  /* scroll-driven explainer: native scroll only, progress -> discrete steps (0..6) */
+  var scroller = $("scroller"), pin = $("pin"), prof = $("prof");
+  var bubbles = [].slice.call(document.querySelectorAll("#thread .b"));
+  var dots = [].slice.call(document.querySelectorAll(".dots i"));
+  var empty = $("empty"), match = $("match"), p1 = $("p1"), p2 = $("p2"), p3 = $("p3"), p1t = $("p1t"), capt = $("capt");
+  var caps = [
+    "A family member picks up her phone",
+    "1. Family texts, in her own words",
+    "2. It writes back and saves the note",
+    "3. She adds more",
+    "4. The profile fills in",
+    "5. The caregiver's card today (Before)",
+    "6. The same card, with what family told us (After)"
+  ];
+  var applied = -1, pulseT = 0;
 
-  function showFade(el){ el.classList.add("show"); void el.offsetWidth; el.classList.add("on"); }
-  function finalState(){
-    Object.keys(msgs).forEach(function(k){ msgs[k].style.display = ""; msgs[k].classList.add("on"); });
-    typing.classList.remove("on"); empty.style.display = "none";
-    p1t.textContent = "Keep hair dry on Thursdays (salon day)";
-    fades.forEach(function(el){ el.classList.add("show","on"); });
+  function pulse(){
+    prof.classList.add("pulse"); clearTimeout(pulseT);
+    pulseT = setTimeout(function(){ prof.classList.remove("pulse"); }, 900);
   }
-  function reset(){
-    Object.keys(msgs).forEach(function(k){ msgs[k].classList.remove("on"); msgs[k].style.display = "none"; });
-    typing.classList.remove("on"); empty.style.display = "";
-    p1t.textContent = "Keep hair dry after the salon";
-    fades.forEach(function(el){ el.classList.remove("show","on"); });
-    res.classList.remove("pulse");
+  function apply(s){
+    if (s === applied) return;
+    var fwd = s > applied; applied = s;
+    pin.setAttribute("data-step", s);
+    bubbles.forEach(function(b){ b.classList.toggle("on", s >= +b.getAttribute("data-need")); });
+    match.classList.toggle("on", s >= 1);
+    empty.style.display = s >= 2 ? "none" : "";
+    p1.classList.toggle("on", s >= 2);
+    p2.classList.toggle("on", s >= 4);
+    p3.classList.toggle("on", s >= 4);
+    p1t.textContent = s >= 4 ? "Keep hair dry on Thursdays (salon day)" : "Keep hair dry after the salon";
+    pin.classList.toggle("started", s >= 1);
+    pin.classList.toggle("showB", s >= 5);
+    pin.classList.toggle("all", s >= 6);
+    dots.forEach(function(d, i){ d.classList.toggle("on", i < s); });
+    capt.textContent = caps[s];
+    if (fwd && (s === 1 || s === 2 || s === 4)) pulse();
   }
-  function say(k){ var b = msgs[k]; b.style.display = ""; void b.offsetWidth; b.classList.add("on"); }
-  function pulse(){ res.classList.add("pulse"); setTimeout(function(){ res.classList.remove("pulse"); }, 900); }
-
-  function play(){
-    var me = ++run;
-    var wait = function(ms){ return new Promise(function(ok){ setTimeout(ok, ms); }); };
-    var live = function(){ return me === run; };
-    (async function(){
-      while (live()) {
-        reset();
-        await wait(700);  if(!live()) return; say("1");
-        await wait(1000); if(!live()) return; pulse(); showFade(fades[0]);
-        await wait(700);  if(!live()) return; typing.classList.add("on");
-        await wait(1500); if(!live()) return; typing.classList.remove("on"); say("2");
-        await wait(500);  if(!live()) return; empty.style.display = "none"; pulse(); showFade(fades[1]);
-        await wait(2000); if(!live()) return; say("3");
-        await wait(800);  if(!live()) return; typing.classList.add("on");
-        await wait(1500); if(!live()) return; typing.classList.remove("on"); say("4");
-        await wait(400);  if(!live()) return; pulse(); p1t.textContent = "Keep hair dry on Thursdays (salon day)";
-        await wait(450);  if(!live()) return; showFade(fades[2]);
-        await wait(450);  if(!live()) return; showFade(fades[3]);
-        await wait(6500);
-        if (!visible) { return; }
-      }
-    })();
+  function compute(){
+    var r = scroller.getBoundingClientRect();
+    var range = scroller.offsetHeight - pin.offsetHeight;
+    var p = range > 0 ? Math.min(1, Math.max(0, -r.top / range)) : 0;
+    apply(p < 0.03 ? 0 : Math.min(6, 1 + Math.floor((p - 0.03) / 0.97 * 6)));
   }
 
-  if (reduce || !("IntersectionObserver" in window)) {
-    finalState();
-    $("replay").style.display = "none";
+  if (reduce) {
+    apply(6);
+    prof.classList.remove("pulse");
   } else {
-    reset();
-    new IntersectionObserver(function(es){
-      var was = visible; visible = es[0].isIntersecting;
-      if (visible && !was) play();
-      if (!visible && was) { run++; }
-    }, { threshold: 0.25 }).observe($("stage"));
-    $("replay").addEventListener("click", play);
+    var ticking = false;
+    var onScroll = function(){
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function(){ ticking = false; compute(); });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    window.addEventListener("pageshow", onScroll);
+    compute();
   }
 })();
 </script>
