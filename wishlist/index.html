@@ -61,6 +61,9 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
 .buy{display:flex;align-items:center;justify-content:center;min-height:56px;margin-top:16px;border-radius:14px;background:var(--accent);color:var(--accent-text);font-size:18px;font-weight:700;text-decoration:none}
 .buy:active{opacity:.85}
 .small{color:var(--muted);font-size:13px;margin-top:10px;text-align:center}
+.noimg{color:var(--muted);font-size:14px;padding:12px;text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:14px}
 .note{color:var(--muted);font-size:14px;margin-top:12px}
 </style>
 </head>
@@ -80,6 +83,7 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
   function priceText(it){return it.price==null?'Check price':usd(it.price)}
   function itemsIn(c){return data.items.filter(function(i){return i.category===c})}
   function img(it,n){return 'img/'+it.images[n||0]}
+  function thumb(it){return (it.images&&it.images.length)?'<img src="'+img(it)+'" alt="" loading="lazy">':'<span class="noimg">Photo coming soon</span>'}
 
   function home(){
     document.title='Christmas Wishlist';
@@ -89,7 +93,7 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
       if(!its.length){
         h+='<a class="card cat soon" href="#/c/'+c.id+'"><div class="ph">Coming soon</div><div class="meta"><div class="nm">'+esc(c.name)+'</div></div></a>';
       }else{
-        h+='<a class="card cat" href="#/c/'+c.id+'"><div class="ph"><img src="'+img(its[0])+'" alt="" loading="lazy"></div><div class="meta"><div class="nm">'+esc(c.name)+'</div><div class="pr">'+its.length+(its.length===1?' item':' items')+'</div></div></a>';
+        h+='<a class="card cat" href="#/c/'+c.id+'"><div class="ph">'+thumb(its[0])+'</div><div class="meta"><div class="nm">'+esc(c.name)+'</div><div class="pr">'+its.length+(its.length===1?' item':' items')+'</div></div></a>';
       }
     });
     app.innerHTML=h+'</div>';
@@ -100,12 +104,12 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
     if(!c) return home();
     document.title=c.name+' | Christmas Wishlist';
     var its=itemsIn(id);
-    var h='<a class="crumb" href="#/">&#8592; All categories</a><h2>'+esc(c.name)+'</h2>';
+    var h='<a class="crumb" href="#/">&#8592; All categories</a><h2>'+esc(c.name)+'</h2>'+(c.blurb?'<p class="sub" style="margin:-8px 0 14px">'+esc(c.blurb)+'</p>':'');
     if(!its.length){ h+='<p class="empty">Coming soon.</p>'; }
     else{
       h+='<div class="grid">';
       its.forEach(function(it){
-        h+='<a class="card" href="#/i/'+it.id+'"><div class="ph"><img src="'+img(it)+'" alt="" loading="lazy"></div><div class="meta"><div class="nm">'+esc(it.name)+'</div><div class="pr">'+priceText(it)+'</div></div></a>';
+        h+='<a class="card" href="#/i/'+it.id+'"><div class="ph">'+thumb(it)+'</div><div class="meta"><div class="nm">'+esc(it.name)+'</div><div class="pr">'+priceText(it)+'</div></div></a>';
       });
       h+='</div>';
     }
@@ -117,19 +121,21 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
     if(!it) return home();
     var c=data.categories.filter(function(x){return x.id===it.category})[0];
     document.title=it.name+' | Christmas Wishlist';
-    var multi=it.images.length>1;
+    var imgs=it.images||[];var multi=imgs.length>1;
     var h='<a class="crumb" href="#/c/'+it.category+'">&#8592; '+esc(c?c.name:'Back')+'</a>';
-    h+='<div class="gallery"><div class="track" id="track">';
-    it.images.forEach(function(f,i){h+='<div class="slide"><img src="img/'+f+'" alt="'+esc(it.name)+' photo '+(i+1)+'"'+(i?' loading="lazy"':'')+'></div>'});
+    if(!imgs.length){h+='<div class="gallery"><div class="slide"><span class="noimg">Photo coming soon</span></div></div>';}
+    else{h+='<div class="gallery"><div class="track" id="track">';
+    imgs.forEach(function(f,i){h+='<div class="slide"><img src="img/'+f+'" alt="'+esc(it.name)+' photo '+(i+1)+'"'+(i?' loading="lazy"':'')+'></div>'});
     h+='</div>';
     if(multi) h+='<button class="arrow l" id="pv" aria-label="Previous image" hidden>&#8249;</button><button class="arrow r" id="nx" aria-label="Next image">&#8250;</button>';
-    h+='</div>';
+    h+='</div>';}
     if(multi){
       h+='<div class="thumbs" id="thumbs">';
-      it.images.forEach(function(f,i){h+='<button type="button" aria-label="Show image '+(i+1)+'" data-i="'+i+'"'+(i===0?' class="on"':'')+'><img src="img/'+f+'" alt=""></button>'});
+      imgs.forEach(function(f,i){h+='<button type="button" aria-label="Show image '+(i+1)+'" data-i="'+i+'"'+(i===0?' class="on"':'')+'><img src="img/'+f+'" alt=""></button>'});
       h+='</div>';
     }
     h+='<div class="info"><h2>'+esc(it.name)+'</h2><p class="desc">'+esc(it.desc)+'</p>';
+    if(it.colors&&it.colors.length){h+='<div class="chips" aria-label="Colors">';it.colors.forEach(function(c){h+='<span class="chip">'+esc(c)+'</span>'});h+='</div>';}
     h+='<p class="price">'+priceText(it)+'</p>';
     if(it.note) h+='<p class="note">'+esc(it.note)+'</p>';
     h+='<a class="buy" href="'+esc(it.url)+'" target="_blank" rel="noopener noreferrer">Buy at '+esc(it.store)+'</a>';
@@ -137,7 +143,7 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
     if(it.alt) h+='<p class="small"><a href="'+esc(it.alt.url)+'" target="_blank" rel="noopener noreferrer">Also at '+esc(it.alt.store)+'</a></p>';
     h+='</div>';
     app.innerHTML=h;
-    if(multi) wire(it.images.length);
+    if(multi) wire(imgs.length);
   }
 
   function wire(n){
