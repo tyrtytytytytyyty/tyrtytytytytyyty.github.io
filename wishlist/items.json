@@ -12,6 +12,11 @@
    "blurb": "Sensing and moving things"
   },
   {
+   "id": "screens",
+   "name": "Screens & Buttons",
+   "blurb": "Displays and controls"
+  },
+  {
    "id": "record",
    "name": "Record Setup",
    "blurb": "Turntable, amp and a speaker kit to build"
@@ -405,6 +410,318 @@
     "niksa-compression-3pack-black-s-2.jpg",
     "niksa-compression-3pack-black-s-3.jpg",
     "niksa-compression-3pack-black-s-4.jpg"
+   ]
+  },
+  {
+   "id": "servo-mg90d",
+   "category": "sensors",
+   "name": "Micro Servo, metal gear ×4",
+   "price": 39.8,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/1143",
+   "desc": "Small motors that turn to a precise angle, with metal gears for strength. Four of them run from his servo driver board to move robot joints.",
+   "images": [
+    "servo-mg90d-1.jpg",
+    "servo-mg90d-2.jpg",
+    "servo-mg90d-3.jpg",
+    "servo-mg90d-4.jpg"
+   ],
+   "note": "$9.95 each, four wanted. Adafruit's cheaper plastic-gear servo was sold out."
+  },
+  {
+   "id": "pulse-ox-max30101",
+   "category": "sensors",
+   "name": "Heart-Rate & Pulse Oximeter Sensor",
+   "price": 48.95,
+   "store": "SparkFun",
+   "url": "https://www.sparkfun.com/sparkfun-pulse-oximeter-and-heart-rate-sensor-max30101-max32664-qwiic.html",
+   "desc": "A plug-in sensor that shines light through a fingertip to measure heart rate and blood oxygen. It does the math on the board and connects with one cable, no soldering.",
+   "images": [
+    "pulse-ox-max30101-1.jpg",
+    "pulse-ox-max30101-2.jpg",
+    "pulse-ox-max30101-3.jpg",
+    "pulse-ox-max30101-4.jpg"
+   ]
+  },
+  {
+   "id": "apds9960",
+   "category": "sensors",
+   "name": "APDS9960 Gesture & Color Sensor",
+   "price": 7.5,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/3595",
+   "desc": "Detects hand swipes in the air, how close something is, and the color and brightness of light. Plugs in with one cable, no soldering.",
+   "images": [
+    "apds9960-1.jpg",
+    "apds9960-2.jpg",
+    "apds9960-3.jpg",
+    "apds9960-4.jpg"
+   ]
+  },
+  {
+   "id": "bme688",
+   "category": "sensors",
+   "name": "BME688 Environment Sensor",
+   "price": 19.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/5046",
+   "desc": "Measures temperature, humidity, air pressure and air quality (gases) in one tiny board. Plugs in with one cable, no soldering.",
+   "images": [
+    "bme688-1.jpg",
+    "bme688-2.jpg",
+    "bme688-3.jpg",
+    "bme688-4.jpg"
+   ]
+  },
+  {
+   "id": "gps-pa1010d",
+   "category": "sensors",
+   "name": "Mini GPS Module (PA1010D)",
+   "price": 29.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/4415",
+   "desc": "A small GPS receiver that reports where it is, how fast it's moving and the time. Plugs in with one cable, no soldering.",
+   "images": [
+    "gps-pa1010d-1.jpg",
+    "gps-pa1010d-2.jpg",
+    "gps-pa1010d-3.jpg",
+    "gps-pa1010d-4.jpg"
+   ]
+  },
+  {
+   "id": "rotary-encoder",
+   "category": "sensors",
+   "name": "Rotary Encoder with Lights",
+   "price": 5.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/4991",
+   "desc": "A click-and-turn knob with a colored light inside, useful as a dial or menu control. Plugs in with one cable, no soldering.",
+   "images": [
+    "rotary-encoder-1.jpg",
+    "rotary-encoder-2.jpg",
+    "rotary-encoder-3.jpg",
+    "rotary-encoder-4.jpg"
+   ]
+  },
+  {
+   "id": "pi-touch-display-10",
+   "category": "screens",
+   "name": "Raspberry Pi Touch Display 2, 10.1 inch",
+   "price": 99.0,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/6514",
+   "desc": "The official 10.1-inch touchscreen for a Raspberry Pi, for a desk or wall dashboard. It's 9.8 by 6.5 inches, a little narrower than an iPad.",
+   "images": [
+    "pi-touch-display-10-1.jpg",
+    "pi-touch-display-10-2.jpg",
+    "pi-touch-display-10-3.jpg",
+    "pi-touch-display-10-4.jpg"
+   ]
+  },
+  {
+   "id": "eink-featherwing",
+   "category": "screens",
+   "name": "2.13\" E-Ink Display (tri-color)",
+   "price": 24.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/4814",
+   "desc": "A paper-like black, white and red screen that keeps its image with no power, and plugs onto his Feather board. Good for a small always-on display.",
+   "images": [
+    "eink-featherwing-1.jpg",
+    "eink-featherwing-2.jpg",
+    "eink-featherwing-3.jpg",
+    "eink-featherwing-4.jpg"
+   ],
+   "note": "The all-in-one Adafruit MagTag e-ink display was sold out at Adafruit and Amazon on Nov 26."
+  },
+  {
+   "id": "oled-112",
+   "category": "screens",
+   "name": "1.12\" OLED Display",
+   "price": 17.5,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/5297",
+   "desc": "A small, sharp black-and-white screen that connects with one cable, no soldering. For showing readings and menus.",
+   "images": [
+    "oled-112-1.jpg",
+    "oled-112-2.jpg",
+    "oled-112-3.jpg",
+    "oled-112-4.jpg"
+   ]
+  },
+  {
+   "id": "esp32s3-tft-feather",
+   "category": "screens",
+   "name": "ESP32-S3 TFT Feather (color screen)",
+   "price": 24.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/5483",
+   "desc": "A programmable board with a small color screen already built in, plus Wi-Fi and Bluetooth. Plugs into his other sensors with one cable.",
+   "images": [
+    "esp32s3-tft-feather-1.jpg",
+    "esp32s3-tft-feather-2.jpg",
+    "esp32s3-tft-feather-3.jpg",
+    "esp32s3-tft-feather-4.jpg"
+   ],
+   "note": "Adafruit has no color screen that plugs in over a single cable, so this board with the screen built in is the closest match."
+  },
+  {
+   "id": "mini-gamepad",
+   "category": "screens",
+   "name": "Mini Gamepad (plug-in)",
+   "price": 7.5,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/5743",
+   "desc": "A tiny controller with a direction pad and buttons that connects with one cable, no soldering. For games and menus on his projects.",
+   "images": [
+    "mini-gamepad-1.jpg",
+    "mini-gamepad-2.jpg",
+    "mini-gamepad-3.jpg",
+    "mini-gamepad-4.jpg"
+   ]
+  },
+  {
+   "id": "arcade-button-led",
+   "category": "screens",
+   "name": "Arcade Button with LED ×4",
+   "price": 10.0,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/3491",
+   "desc": "Big, clicky arcade-style buttons with a light inside, for control panels and game builds.",
+   "images": [
+    "arcade-button-led-1.jpg",
+    "arcade-button-led-2.jpg",
+    "arcade-button-led-3.jpg"
+   ],
+   "note": "$2.50 each, four wanted."
+  },
+  {
+   "id": "pinecil-v2",
+   "category": "bench",
+   "name": "Pinecil V2 Soldering Iron",
+   "price": 25.99,
+   "store": "Pine64",
+   "url": "https://pine64.com/product/pinecil-smart-mini-portable-soldering-iron/",
+   "desc": "A small, fast-heating soldering iron with a digital display, powered from a USB-C charger. For joining wires and parts onto circuit boards.",
+   "images": [
+    "pinecil-v2-1.jpg",
+    "pinecil-v2-2.jpg",
+    "pinecil-v2-3.jpg"
+   ]
+  },
+  {
+   "id": "solder-sac305",
+   "category": "bench",
+   "name": "Lead-Free Solder Wire, thin (50 g)",
+   "price": 27.5,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/1930",
+   "desc": "A spool of thin lead-free solder, the metal that melts to join parts. Fine enough for small circuit boards.",
+   "images": [
+    "solder-sac305-1.jpg",
+    "solder-sac305-2.jpg",
+    "solder-sac305-3.jpg"
+   ]
+  },
+  {
+   "id": "flux-pen",
+   "category": "bench",
+   "name": "No-Clean Flux Pen",
+   "price": 7.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/3468",
+   "desc": "A pen that paints on flux, which helps solder flow so joints come out clean and shiny.",
+   "images": [
+    "flux-pen-1.jpg",
+    "flux-pen-2.jpg",
+    "flux-pen-3.jpg",
+    "flux-pen-4.jpg"
+   ]
+  },
+  {
+   "id": "brass-tip-cleaner",
+   "category": "bench",
+   "name": "Brass Soldering Tip Cleaner",
+   "price": 10.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/1172",
+   "desc": "A holder of brass shavings for wiping the soldering iron tip clean without cooling it.",
+   "images": [
+    "brass-tip-cleaner-1.jpg",
+    "brass-tip-cleaner-2.jpg",
+    "brass-tip-cleaner-3.jpg"
+   ]
+  },
+  {
+   "id": "third-hand",
+   "category": "bench",
+   "name": "Helping Hands with Magnifier",
+   "price": 6.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/291",
+   "desc": "Adjustable clips and a magnifying glass that hold a circuit board steady while he solders.",
+   "images": [
+    "third-hand-1.jpg",
+    "third-hand-2.jpg"
+   ]
+  },
+  {
+   "id": "silicone-mat",
+   "category": "bench",
+   "name": "Heat-Proof Silicone Work Mat",
+   "price": 9.95,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/3536",
+   "desc": "A heat-resistant mat that protects the desk and keeps small parts from rolling away while soldering.",
+   "images": [
+    "silicone-mat-1.jpg",
+    "silicone-mat-2.jpg",
+    "silicone-mat-3.jpg"
+   ]
+  },
+  {
+   "id": "myoware-link-shield",
+   "category": "wearbuddy",
+   "name": "MyoWare 2.0 Link Shield",
+   "price": 13.5,
+   "store": "SparkFun",
+   "url": "https://www.sparkfun.com/myoware-2-0-link-shield.html",
+   "desc": "A small board that snaps onto the muscle sensor and brings its signal out through a standard headphone-style jack.",
+   "images": [
+    "myoware-link-shield-1.jpg",
+    "myoware-link-shield-2.jpg",
+    "myoware-link-shield-3.jpg",
+    "myoware-link-shield-4.jpg"
+   ],
+   "note": "Needs the cable and breakout below to reach his board."
+  },
+  {
+   "id": "trs-cable-1m",
+   "category": "wearbuddy",
+   "name": "3.5 mm Audio Cable, 1 m",
+   "price": 2.75,
+   "store": "SparkFun",
+   "url": "https://www.sparkfun.com/audio-cable-trs-1m.html",
+   "desc": "A plain headphone-style cable that carries the muscle sensor's signal from the Link Shield to the breakout board.",
+   "images": [
+    "trs-cable-1m-1.jpg",
+    "trs-cable-1m-2.jpg",
+    "trs-cable-1m-3.jpg"
+   ]
+  },
+  {
+   "id": "trrs-breakout",
+   "category": "wearbuddy",
+   "name": "Headphone Jack Breakout Board",
+   "price": 1.75,
+   "store": "Adafruit",
+   "url": "https://www.adafruit.com/product/5764",
+   "desc": "A small board that turns the headphone jack into pins his board can connect to, so the cable can plug in. Needs a few header pins soldered on.",
+   "images": [
+    "trrs-breakout-1.jpg",
+    "trrs-breakout-2.jpg",
+    "trrs-breakout-3.jpg",
+    "trrs-breakout-4.jpg"
    ]
   }
  ]
