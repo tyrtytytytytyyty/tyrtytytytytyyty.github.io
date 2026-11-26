@@ -76,8 +76,8 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
 (function(){
   var app=document.getElementById('app'), data=null;
   function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function money(n){return '$'+Number(n).toFixed(2)}
-  function priceText(it){return it.price==null?'Check price':money(it.price)}
+  function usd(n){return '$'+Number(n).toFixed(2)}
+  function priceText(it){return it.price==null?'Check price':usd(it.price)}
   function itemsIn(c){return data.items.filter(function(i){return i.category===c})}
   function img(it,n){return 'img/'+it.images[n||0]}
 
@@ -142,8 +142,8 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
 
   function wire(n){
     var tr=document.getElementById('track'), pv=document.getElementById('pv'), nx=document.getElementById('nx'), th=document.getElementById('thumbs');
-    function cur(){return Math.round(tr.scrollLeft/tr.clientWidth)}
-    function go(i){i=Math.max(0,Math.min(n-1,i));tr.scrollTo({left:i*tr.clientWidth,behavior:'smooth'})}
+    function cur(){return Math.round(tr.scrollLeft/tr.offsetWidth)}
+    function go(i){i=Math.max(0,Math.min(n-1,i));tr.scrollTo({left:i*tr.offsetWidth,behavior:'smooth'})}
     function sync(){var i=cur();pv.hidden=i<=0;nx.hidden=i>=n-1;
       [].forEach.call(th.children,function(b,k){b.classList.toggle('on',k===i)});}
     tr.addEventListener('scroll',function(){window.requestAnimationFrame(sync)});
