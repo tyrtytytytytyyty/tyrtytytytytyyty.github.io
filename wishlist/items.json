@@ -198,7 +198,7 @@
    "price": 99.98,
    "store": "Parts Express",
    "url": "https://www.parts-express.com/MK-KIT-Bookshelf-Speaker-Kit-Pair-with-Knock-Down-Wooden-Cabinet-300-7149",
-   "note": "Backordered at Parts Express on Nov 26; it ships when restocked.",
+   "note": "Backordered at Parts Express on Nov 26, the only seller found; it ships when restocked.",
    "desc": "A pair of speakers he builds himself from matched drivers, crossovers and flat-pack wooden cabinets. A build project that ends in real speakers.",
    "images": [
     "mk-kit-1.jpg",
@@ -299,12 +299,12 @@
   {
    "id": "dji-mic-receiver",
    "category": "content",
-   "name": "DJI Mic Mobile Receiver (USB-C)",
+   "name": "DJI Mic Mobile Receiver (USB-C), works with Mic 2",
    "price": 15.0,
-   "store": "DJI Store",
-   "url": "https://us.store.dji.com/products/dji-mic-series-mobile-receiver",
-   "note": "Sold out at the DJI Store on Nov 26.",
-   "desc": "A small USB-C receiver that plugs into a phone and picks up DJI's wireless microphones, so he can record clear audio for videos.",
+   "store": "Amazon",
+   "url": "https://www.amazon.com/dp/B0FQJKRR6H",
+   "note": "DJI's page lists it as compatible with DJI Mic 2 transmitters. In stock at Amazon on Nov 26 (sold by a third-party seller); sold out at the DJI Store.",
+   "desc": "A small USB-C receiver that plugs into his iPhone and picks up his DJI Mic 2 wireless microphone, so he can record clear audio for videos.",
    "images": [
     "dji-mic-receiver-1.jpg",
     "dji-mic-receiver-2.jpg",
@@ -314,7 +314,7 @@
   {
    "id": "pi-camera-module-3",
    "category": "cameras",
-   "name": "Raspberry Pi Camera Module 3 \u00d72",
+   "name": "Raspberry Pi Camera Module 3 ×2",
    "price": 58.5,
    "store": "Adafruit",
    "url": "https://www.adafruit.com/product/5657",
@@ -328,25 +328,9 @@
    ]
   },
   {
-   "id": "pi-zero-2-w",
-   "category": "cameras",
-   "name": "Raspberry Pi Zero 2 W",
-   "price": 19.05,
-   "store": "Adafruit",
-   "url": "https://www.adafruit.com/product/5291",
-   "note": "Sold out at Adafruit and PiShop on Nov 26.",
-   "desc": "A tiny, low-power computer with Wi-Fi that will run the 3D printer timelapse camera.",
-   "images": [
-    "pi-zero-2-w-1.jpg",
-    "pi-zero-2-w-2.jpg",
-    "pi-zero-2-w-3.jpg",
-    "pi-zero-2-w-4.jpg"
-   ]
-  },
-  {
    "id": "camera-cable-22-15",
    "category": "cameras",
-   "name": "Camera Cable, 22-pin to 15-pin \u00d72",
+   "name": "Camera Cable, 22-pin to 15-pin ×2",
    "price": 5.4,
    "store": "Adafruit",
    "url": "https://www.adafruit.com/product/5818",
@@ -357,6 +341,22 @@
     "camera-cable-22-15-2.jpg",
     "camera-cable-22-15-3.jpg",
     "camera-cable-22-15-4.jpg"
+   ]
+  },
+  {
+   "id": "pi-zero-2-w-kit",
+   "category": "cameras",
+   "name": "Raspberry Pi Zero 2 W Starter Kit",
+   "price": 38.99,
+   "store": "Vilros",
+   "url": "https://vilros.com/products/vilros-raspberry-pi-zero-2-w-basic-starter-kit?variant=39984855580766",
+   "note": "Kit with a case; the bare board is sold out at Adafruit, PiShop and Vilros.",
+   "desc": "A tiny, low-power computer with Wi-Fi, bundled with a case, that will run the 3D printer timelapse camera.",
+   "images": [
+    "pi-zero-2-w-kit-1.jpg",
+    "pi-zero-2-w-kit-2.jpg",
+    "pi-zero-2-w-kit-3.jpg",
+    "pi-zero-2-w-kit-4.jpg"
    ]
   }
  ]
