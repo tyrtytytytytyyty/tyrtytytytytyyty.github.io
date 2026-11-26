@@ -66,11 +66,11 @@
     {
       "id": "myoware-electrodes",
       "category": "wearbuddy",
-      "name": "MyoWare Electrodes (pack of 6)",
-      "price": 5.95,
+      "name": "MyoWare Electrodes (pack of 6) ×3",
+      "price": 17.85,
       "store": "Adafruit",
       "url": "https://www.adafruit.com/product/2773",
-      "desc": "Sticky skin pads that let the muscle sensor read the signal. They're single-use, so a pack of six covers a round of testing.",
+      "desc": "Sticky skin pads that let the muscle sensor read the signal. Each test uses three and they're single-use, so three packs cover about six sessions.",
       "images": [
         "myoware-electrodes-1.jpg",
         "myoware-electrodes-2.jpg",
