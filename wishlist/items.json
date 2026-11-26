@@ -358,6 +358,54 @@
     "pi-zero-2-w-kit-3.jpg",
     "pi-zero-2-w-kit-4.jpg"
    ]
+  },
+  {
+   "id": "gildan-hoodie-black-m",
+   "category": "clothes",
+   "name": "Black Pullover Hoodie, no logo — size M",
+   "price": 18.49,
+   "store": "Amazon",
+   "url": "https://www.amazon.com/dp/B00SV7568U",
+   "note": "Gildan Heavy Blend, black, size M. Price is per hoodie.",
+   "desc": "A plain black pullover hoodie with no logo and a relaxed, roomy fit. He'd love about 7 so he can wear one every day.",
+   "images": [
+    "gildan-hoodie-black-m-1.jpg",
+    "gildan-hoodie-black-m-2.jpg",
+    "gildan-hoodie-black-m-3.jpg",
+    "gildan-hoodie-black-m-4.jpg"
+   ]
+  },
+  {
+   "id": "gildan-sweatpants-black-m",
+   "category": "clothes",
+   "name": "Black Open-Bottom Sweatpants, no logo — size M",
+   "price": 17.49,
+   "store": "Amazon",
+   "url": "https://www.amazon.com/dp/B01M1CWZ8P",
+   "note": "Gildan Heavy Blend open-bottom, black, size M. Price is per pair.",
+   "desc": "Plain black fleece sweatpants with straight open bottoms and no logo. He'd love about 7 pairs so he can wear one every day.",
+   "images": [
+    "gildan-sweatpants-black-m-1.jpg",
+    "gildan-sweatpants-black-m-2.jpg",
+    "gildan-sweatpants-black-m-3.jpg",
+    "gildan-sweatpants-black-m-4.jpg"
+   ]
+  },
+  {
+   "id": "niksa-compression-3pack-black-s",
+   "category": "clothes",
+   "name": "Black Compression Shirts, short sleeve, 3-pack — size S",
+   "price": 22.94,
+   "store": "Amazon",
+   "url": "https://www.amazon.com/dp/B0965D81YV",
+   "note": "About $7.65 per shirt. Sold as a 3-pack.",
+   "desc": "Three black short-sleeve compression shirts for workouts. He'd love about 7 in all, so two 3-packs plus one more.",
+   "images": [
+    "niksa-compression-3pack-black-s-1.jpg",
+    "niksa-compression-3pack-black-s-2.jpg",
+    "niksa-compression-3pack-black-s-3.jpg",
+    "niksa-compression-3pack-black-s-4.jpg"
+   ]
   }
  ]
 }
