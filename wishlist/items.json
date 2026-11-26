@@ -677,23 +677,114 @@
    ]
   },
   {
-   "id": "hollister-thermal-crew",
+   "id": "hollister-crew-gray",
    "category": "clothes",
-   "name": "Relaxed Washed Long-Sleeve Thermal Crew T-Shirt — size S",
-   "price": null,
+   "name": "Thermal Crew — Heather Gray (S)",
+   "price": 24.47,
    "store": "Hollister",
    "url": "https://www.hollisterco.com/shop/us/p/relaxed-washed-long-sleeve-thermal-crew-t-shirt-63915840",
-   "desc": "Relaxed thermal long-sleeve crew — size S. He'd love these colors: gray, oatmeal, red, dark brown, navy, cream, charcoal.",
-   "colors": [
-    "Gray",
-    "Oatmeal",
-    "Red",
-    "Dark brown",
-    "Navy",
-    "Cream",
-    "Charcoal"
-   ],
-   "images": []
+   "note": "Black Friday price, regular $34.95.",
+   "desc": "Relaxed thermal long-sleeve — size S. Pick Heather Gray on the page.",
+   "images": [
+    "hollister-crew-gray-1.jpg",
+    "hollister-crew-gray-2.jpg",
+    "hollister-crew-gray-3.jpg",
+    "hollister-crew-gray-4.jpg"
+   ]
+  },
+  {
+   "id": "hollister-crew-oatmeal",
+   "category": "clothes",
+   "name": "Thermal Crew — Oatmeal (S)",
+   "price": 24.47,
+   "store": "Hollister",
+   "url": "https://www.hollisterco.com/shop/us/p/relaxed-washed-long-sleeve-thermal-crew-t-shirt-63915840",
+   "note": "Black Friday price, regular $34.95.",
+   "desc": "Relaxed thermal long-sleeve — size S. Pick Oatmeal on the page.",
+   "images": [
+    "hollister-crew-oatmeal-1.jpg",
+    "hollister-crew-oatmeal-2.jpg",
+    "hollister-crew-oatmeal-3.jpg",
+    "hollister-crew-oatmeal-4.jpg"
+   ]
+  },
+  {
+   "id": "hollister-crew-red",
+   "category": "clothes",
+   "name": "Thermal Crew — Deep Red (S)",
+   "price": 24.47,
+   "store": "Hollister",
+   "url": "https://www.hollisterco.com/shop/us/p/relaxed-washed-long-sleeve-thermal-crew-t-shirt-63915840",
+   "note": "Black Friday price, regular $34.95.",
+   "desc": "Relaxed thermal long-sleeve — size S. Pick Deep Red on the page.",
+   "images": [
+    "hollister-crew-red-1.jpg",
+    "hollister-crew-red-2.jpg",
+    "hollister-crew-red-3.jpg"
+   ]
+  },
+  {
+   "id": "hollister-crew-dark-brown",
+   "category": "clothes",
+   "name": "Thermal Crew — Dark Brown (S)",
+   "price": 24.47,
+   "store": "Hollister",
+   "url": "https://www.hollisterco.com/shop/us/p/relaxed-washed-long-sleeve-thermal-crew-t-shirt-63915840",
+   "note": "Black Friday price, regular $34.95.",
+   "desc": "Relaxed thermal long-sleeve — size S. Pick Dark Brown on the page.",
+   "images": [
+    "hollister-crew-dark-brown-1.jpg",
+    "hollister-crew-dark-brown-2.jpg",
+    "hollister-crew-dark-brown-3.jpg",
+    "hollister-crew-dark-brown-4.jpg"
+   ]
+  },
+  {
+   "id": "hollister-crew-navy",
+   "category": "clothes",
+   "name": "Thermal Crew — Navy (S)",
+   "price": 24.47,
+   "store": "Hollister",
+   "url": "https://www.hollisterco.com/shop/us/p/relaxed-washed-long-sleeve-thermal-crew-t-shirt-63915840",
+   "note": "Black Friday price, regular $34.95.",
+   "desc": "Relaxed thermal long-sleeve — size S. Pick Navy on the page.",
+   "images": [
+    "hollister-crew-navy-1.jpg",
+    "hollister-crew-navy-2.jpg",
+    "hollister-crew-navy-3.jpg"
+   ]
+  },
+  {
+   "id": "hollister-crew-cream",
+   "category": "clothes",
+   "name": "Thermal Crew — Cream (S)",
+   "price": 20.97,
+   "store": "Hollister",
+   "url": "https://www.hollisterco.com/shop/us/p/relaxed-washed-long-sleeve-thermal-crew-t-shirt-63915840",
+   "note": "Black Friday price, regular $29.95.",
+   "desc": "Relaxed thermal long-sleeve — size S. Pick Cream on the page.",
+   "images": [
+    "hollister-crew-cream-1.jpg",
+    "hollister-crew-cream-2.jpg",
+    "hollister-crew-cream-3.jpg",
+    "hollister-crew-cream-4.jpg"
+   ]
+  },
+  {
+   "id": "hollister-crew-charcoal",
+   "category": "clothes",
+   "name": "Thermal Crew — Charcoal (S)",
+   "price": 24.47,
+   "store": "Hollister",
+   "url": "https://www.hollisterco.com/shop/us/p/relaxed-washed-long-sleeve-thermal-crew-t-shirt-63915840",
+   "note": "Black Friday price, regular $34.95.",
+   "desc": "Relaxed thermal long-sleeve — size S. Pick Charcoal on the page.",
+   "images": [
+    "hollister-crew-charcoal-1.jpg",
+    "hollister-crew-charcoal-2.jpg",
+    "hollister-crew-charcoal-3.jpg",
+    "hollister-crew-charcoal-4.jpg"
+   ]
   }
  ]
 }
