@@ -29,7 +29,7 @@
   {
    "id": "computer",
    "name": "Computer",
-   "blurb": "Desktop and a small Linux computer"
+   "blurb": "Desktop, a small Linux computer and storage"
   },
   {
    "id": "content",
@@ -61,7 +61,11 @@
     "myoware-sensor-2.jpg",
     "myoware-sensor-3.jpg",
     "myoware-sensor-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B0FXQPVDRG"
+   }
   },
   {
    "id": "myoware-electrodes",
@@ -91,7 +95,11 @@
     "lipo-500mah-2.jpg",
     "lipo-500mah-3.jpg",
     "lipo-500mah-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B00L0W61VO"
+   }
   },
   {
    "id": "feather-esp32s3",
@@ -106,7 +114,11 @@
     "feather-esp32s3-2.jpg",
     "feather-esp32s3-3.jpg",
     "feather-esp32s3-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B0DXTZHCJJ"
+   }
   },
   {
    "id": "stemma-qt-pack",
@@ -121,7 +133,11 @@
     "stemma-qt-pack-2.jpg",
     "stemma-qt-pack-3.jpg",
     "stemma-qt-pack-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B07RB2LRH5"
+   }
   },
   {
    "id": "vl53l1x",
@@ -136,7 +152,11 @@
     "vl53l1x-2.jpg",
     "vl53l1x-3.jpg",
     "vl53l1x-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B09K4V92H1"
+   }
   },
   {
    "id": "amg8833",
@@ -151,7 +171,11 @@
     "amg8833-2.jpg",
     "amg8833-3.jpg",
     "amg8833-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B07D7LXXWR"
+   }
   },
   {
    "id": "pan-tilt",
@@ -179,7 +203,11 @@
     "pca9685-2.jpg",
     "pca9685-3.jpg",
     "pca9685-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B01G61MZF4"
+   }
   },
   {
    "id": "at-lp120xusb",
@@ -194,7 +222,11 @@
     "at-lp120xusb-2.jpg",
     "at-lp120xusb-3.jpg",
     "at-lp120xusb-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B07N3S4X3P"
+   }
   },
   {
    "id": "mk-kit",
@@ -225,7 +257,11 @@
     "fosi-bt20a-pro-2.jpg",
     "fosi-bt20a-pro-3.jpg",
     "fosi-bt20a-pro-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B07JVFY27T"
+   }
   },
   {
    "id": "speaker-wire-50ft",
@@ -284,7 +320,11 @@
     "mac-mini-2.jpg",
     "mac-mini-3.jpg",
     "mac-mini-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Best Buy",
+    "url": "https://www.bestbuy.com/product/apple-mac-mini-desktop-m6-chip-16gb-memory-256gb-ssd-silver/JJGCQYQLWR"
+   }
   },
   {
    "id": "pi5-kit",
@@ -300,6 +340,24 @@
     "pi5-kit-3.jpg",
     "pi5-kit-4.jpg"
    ]
+  },
+  {
+   "id": "sandisk-ultra-dual-luxe-1tb",
+   "category": "computer",
+   "name": "SanDisk 1TB Ultra Dual Drive Luxe (USB-C + USB-A)",
+   "price": 169.99,
+   "store": "Best Buy",
+   "url": "https://www.bestbuy.com/product/sandisk-ultra-dual-drive-luxe-1tb-usb-3-1-usb-type-c-flash-drive-silver/JXJ62C9S6Q",
+   "note": "Black Friday price at Best Buy, checked Nov 27.",
+   "checked": "Nov 27",
+   "desc": "A 1TB metal flash drive with both a USB-C and a USB-A plug, so it works with a Mac, a Mac mini and older ports. Reads up to 400 MB/s, fast enough for moving 4K video files between computers.",
+   "images": [
+    "sandisk-ultra-dual-luxe-1tb-1.jpg"
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B0842P5GG5"
+   }
   },
   {
    "id": "dji-mic-receiver",
@@ -362,7 +420,11 @@
     "pi-zero-2-w-kit-2.jpg",
     "pi-zero-2-w-kit-3.jpg",
     "pi-zero-2-w-kit-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B09M1PS35R"
+   }
   },
   {
    "id": "servo-mg90d",
@@ -408,7 +470,11 @@
     "apds9960-2.jpg",
     "apds9960-3.jpg",
     "apds9960-4.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B076PVHFBW"
+   }
   },
   {
    "id": "bme688",
@@ -515,7 +581,11 @@
     "esp32s3-tft-feather-3.jpg",
     "esp32s3-tft-feather-4.jpg"
    ],
-   "note": "Adafruit has no color screen that plugs in over a single cable, so this board with the screen built in is the closest match."
+   "note": "Adafruit has no color screen that plugs in over a single cable, so this board with the screen built in is the closest match.",
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B0CHT4R3WX"
+   }
   },
   {
    "id": "mini-gamepad",
@@ -559,7 +629,11 @@
     "pinecil-v2-1.jpg",
     "pinecil-v2-2.jpg",
     "pinecil-v2-3.jpg"
-   ]
+   ],
+   "alt": {
+    "store": "Amazon",
+    "url": "https://www.amazon.com/dp/B0HN3SVX5C"
+   }
   },
   {
    "id": "solder-sac305",

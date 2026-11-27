@@ -60,6 +60,7 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
 .desc{color:var(--text);font-size:17px;line-height:1.55}
 .buy{display:flex;align-items:center;justify-content:center;min-height:56px;margin-top:16px;border-radius:14px;background:var(--accent);color:var(--accent-text);font-size:18px;font-weight:700;text-decoration:none}
 .buy:active{opacity:.85}
+.buy.alt{margin-top:10px;background:transparent;color:var(--accent);border:2px solid var(--accent);min-height:52px;font-size:17px}
 .small{color:var(--muted);font-size:13px;margin-top:10px;text-align:center}
 .noimg{color:var(--muted);font-size:14px;padding:12px;text-align:center}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
@@ -139,8 +140,8 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.01em;margin:2px 0 14px}
     h+='<p class="price">'+priceText(it)+'</p>';
     if(it.note) h+='<p class="note">'+esc(it.note)+'</p>';
     h+='<a class="buy" href="'+esc(it.url)+'" target="_blank" rel="noopener noreferrer">Buy at '+esc(it.store)+'</a>';
-    h+='<p class="small">Price checked '+esc(data.checked)+'</p>';
-    if(it.alt) h+='<p class="small"><a href="'+esc(it.alt.url)+'" target="_blank" rel="noopener noreferrer">Also at '+esc(it.alt.store)+'</a></p>';
+    if(it.alt&&it.alt.url) h+='<a class="buy alt" href="'+esc(it.alt.url)+'" target="_blank" rel="noopener noreferrer">Also at '+esc(it.alt.store)+'</a>';
+    h+='<p class="small">Price checked '+esc(it.checked||data.checked)+'</p>';
     h+='</div>';
     app.innerHTML=h;
     if(multi) wire(imgs.length);
