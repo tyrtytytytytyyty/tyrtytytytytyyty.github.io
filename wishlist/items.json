@@ -62,10 +62,7 @@
     "myoware-sensor-3.jpg",
     "myoware-sensor-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B0FXQPVDRG"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "myoware-electrodes",
@@ -80,7 +77,8 @@
     "myoware-electrodes-2.jpg",
     "myoware-electrodes-3.jpg",
     "myoware-electrodes-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "lipo-500mah",
@@ -96,10 +94,7 @@
     "lipo-500mah-3.jpg",
     "lipo-500mah-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B00L0W61VO"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "feather-esp32s3",
@@ -115,10 +110,7 @@
     "feather-esp32s3-3.jpg",
     "feather-esp32s3-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B0DXTZHCJJ"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "stemma-qt-pack",
@@ -134,10 +126,7 @@
     "stemma-qt-pack-3.jpg",
     "stemma-qt-pack-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B07RB2LRH5"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "vl53l1x",
@@ -153,10 +142,7 @@
     "vl53l1x-3.jpg",
     "vl53l1x-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B09K4V92H1"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "amg8833",
@@ -172,10 +158,7 @@
     "amg8833-3.jpg",
     "amg8833-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B07D7LXXWR"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "pan-tilt",
@@ -188,7 +171,8 @@
    "images": [
     "pan-tilt-1.jpg",
     "pan-tilt-2.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "pca9685",
@@ -204,10 +188,7 @@
     "pca9685-3.jpg",
     "pca9685-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B01G61MZF4"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "at-lp120xusb",
@@ -226,7 +207,8 @@
    "alt": {
     "store": "Amazon",
     "url": "https://www.amazon.com/dp/B07N3S4X3P"
-   }
+   },
+   "checked": "Nov 27"
   },
   {
    "id": "mk-kit",
@@ -235,22 +217,23 @@
    "price": 99.98,
    "store": "Parts Express",
    "url": "https://www.parts-express.com/MK-KIT-Bookshelf-Speaker-Kit-Pair-with-Knock-Down-Wooden-Cabinet-300-7149",
-   "note": "Backordered at Parts Express on Nov 26, the only seller found; it ships when restocked.",
+   "note": "Out of stock at Parts Express on Nov 27, expected back Jan 22, 2027; the only seller found.",
    "desc": "A pair of speakers he builds himself from matched drivers, crossovers and flat-pack wooden cabinets. A build project that ends in real speakers.",
    "images": [
     "mk-kit-1.jpg",
     "mk-kit-2.jpg",
     "mk-kit-3.jpg",
     "mk-kit-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "fosi-bt20a-pro",
    "category": "record",
    "name": "Fosi Audio BT20A Pro Amplifier",
-   "price": 99.99,
-   "store": "Fosi Audio",
-   "url": "https://fosiaudio.com/products/bt20a-pro-2-channel-bluetooth-power-amplifier",
+   "price": 84.99,
+   "store": "Amazon",
+   "url": "https://www.amazon.com/dp/B07JVFY27T",
    "desc": "A compact stereo amplifier with Bluetooth that powers the speakers and takes wired and wireless inputs.",
    "images": [
     "fosi-bt20a-pro-1.jpg",
@@ -259,9 +242,11 @@
     "fosi-bt20a-pro-4.jpg"
    ],
    "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B07JVFY27T"
-   }
+    "store": "Fosi Audio",
+    "url": "https://fosiaudio.com/products/bt20a-pro-2-channel-bluetooth-power-amplifier"
+   },
+   "checked": "Nov 27",
+   "note": "Sold by Fosi Audio and shipped by Amazon. Fosi's own store lists it at $99.99."
   },
   {
    "id": "speaker-wire-50ft",
@@ -274,7 +259,8 @@
    "images": [
     "speaker-wire-50ft-1.jpg",
     "speaker-wire-50ft-2.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "logic-analyzer",
@@ -289,7 +275,9 @@
     "logic-analyzer-2.jpg",
     "logic-analyzer-3.jpg",
     "logic-analyzer-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27",
+   "note": "Backordered at SparkFun on Nov 27; it ships when restocked."
   },
   {
    "id": "multimeter",
@@ -304,7 +292,9 @@
     "multimeter-2.jpg",
     "multimeter-3.jpg",
     "multimeter-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27",
+   "note": "Out of stock at Adafruit on Nov 27."
   },
   {
    "id": "mac-mini",
@@ -324,7 +314,8 @@
    "alt": {
     "store": "Best Buy",
     "url": "https://www.bestbuy.com/product/apple-mac-mini-desktop-m6-chip-16gb-memory-256gb-ssd-silver/JJGCQYQLWR"
-   }
+   },
+   "checked": "Nov 27"
   },
   {
    "id": "pi5-kit",
@@ -339,7 +330,8 @@
     "pi5-kit-2.jpg",
     "pi5-kit-3.jpg",
     "pi5-kit-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "sandisk-ultra-dual-luxe-1tb",
@@ -348,16 +340,12 @@
    "price": 169.99,
    "store": "Best Buy",
    "url": "https://www.bestbuy.com/product/sandisk-ultra-dual-drive-luxe-1tb-usb-3-1-usb-type-c-flash-drive-silver/JXJ62C9S6Q",
-   "note": "Black Friday price at Best Buy, checked Nov 27.",
+   "note": "Best Buy price, checked Nov 27.",
    "checked": "Nov 27",
    "desc": "A 1TB metal flash drive with both a USB-C and a USB-A plug, so it works with a Mac, a Mac mini and older ports. Reads up to 400 MB/s, fast enough for moving 4K video files between computers.",
    "images": [
     "sandisk-ultra-dual-luxe-1tb-1.jpg"
-   ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B0842P5GG5"
-   }
+   ]
   },
   {
    "id": "dji-mic-receiver",
@@ -366,13 +354,14 @@
    "price": 15.0,
    "store": "Amazon",
    "url": "https://www.amazon.com/dp/B0FQJKRR6H",
-   "note": "DJI's page lists it as compatible with DJI Mic 2 transmitters. In stock at Amazon on Nov 26 (sold by a third-party seller); sold out at the DJI Store.",
+   "note": "DJI's page lists it as compatible with DJI Mic 2 transmitters. In stock at Amazon on Nov 27 (sold by a third-party seller); sold out at the DJI Store.",
    "desc": "A small USB-C receiver that plugs into his iPhone and picks up his DJI Mic 2 wireless microphone, so he can record clear audio for videos.",
    "images": [
     "dji-mic-receiver-1.jpg",
     "dji-mic-receiver-2.jpg",
     "dji-mic-receiver-3.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "pi-camera-module-3",
@@ -388,7 +377,8 @@
     "pi-camera-module-3-2.jpg",
     "pi-camera-module-3-3.jpg",
     "pi-camera-module-3-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "camera-cable-22-15",
@@ -404,7 +394,8 @@
     "camera-cable-22-15-2.jpg",
     "camera-cable-22-15-3.jpg",
     "camera-cable-22-15-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "pi-zero-2-w-kit",
@@ -421,10 +412,7 @@
     "pi-zero-2-w-kit-3.jpg",
     "pi-zero-2-w-kit-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B09M1PS35R"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "servo-mg90d",
@@ -440,7 +428,8 @@
     "servo-mg90d-3.jpg",
     "servo-mg90d-4.jpg"
    ],
-   "note": "$9.95 each, four wanted. Adafruit's cheaper plastic-gear servo was sold out."
+   "note": "$9.95 each, four wanted. Adafruit's cheaper plastic-gear servo was sold out.",
+   "checked": "Nov 27"
   },
   {
    "id": "pulse-ox-max30101",
@@ -455,7 +444,8 @@
     "pulse-ox-max30101-2.jpg",
     "pulse-ox-max30101-3.jpg",
     "pulse-ox-max30101-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "apds9960",
@@ -471,10 +461,7 @@
     "apds9960-3.jpg",
     "apds9960-4.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B076PVHFBW"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "bme688",
@@ -489,7 +476,8 @@
     "bme688-2.jpg",
     "bme688-3.jpg",
     "bme688-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "gps-pa1010d",
@@ -504,22 +492,25 @@
     "gps-pa1010d-2.jpg",
     "gps-pa1010d-3.jpg",
     "gps-pa1010d-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "rotary-encoder",
    "category": "sensors",
    "name": "Rotary Encoder with Lights",
-   "price": 5.95,
+   "price": 7.95,
    "store": "Adafruit",
-   "url": "https://www.adafruit.com/product/4991",
+   "url": "https://www.adafruit.com/product/5880",
    "desc": "A click-and-turn knob with a colored light inside, useful as a dial or menu control. Plugs in with one cable, no soldering.",
    "images": [
     "rotary-encoder-1.jpg",
     "rotary-encoder-2.jpg",
     "rotary-encoder-3.jpg",
     "rotary-encoder-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27",
+   "note": "The version with the knob already soldered on."
   },
   {
    "id": "pi-touch-display-10",
@@ -534,7 +525,8 @@
     "pi-touch-display-10-2.jpg",
     "pi-touch-display-10-3.jpg",
     "pi-touch-display-10-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "eink-featherwing",
@@ -550,7 +542,8 @@
     "eink-featherwing-3.jpg",
     "eink-featherwing-4.jpg"
    ],
-   "note": "The all-in-one Adafruit MagTag e-ink display was sold out at Adafruit and Amazon on Nov 26."
+   "note": "The all-in-one Adafruit MagTag e-ink display was sold out at Adafruit and Amazon on Nov 26.",
+   "checked": "Nov 27"
   },
   {
    "id": "oled-112",
@@ -565,7 +558,8 @@
     "oled-112-2.jpg",
     "oled-112-3.jpg",
     "oled-112-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "esp32s3-tft-feather",
@@ -582,10 +576,7 @@
     "esp32s3-tft-feather-4.jpg"
    ],
    "note": "Adafruit has no color screen that plugs in over a single cable, so this board with the screen built in is the closest match.",
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B0CHT4R3WX"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "mini-gamepad",
@@ -600,7 +591,8 @@
     "mini-gamepad-2.jpg",
     "mini-gamepad-3.jpg",
     "mini-gamepad-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "arcade-button-led",
@@ -615,7 +607,8 @@
     "arcade-button-led-2.jpg",
     "arcade-button-led-3.jpg"
    ],
-   "note": "$2.50 each, four wanted."
+   "note": "$2.50 each, four wanted.",
+   "checked": "Nov 27"
   },
   {
    "id": "pinecil-v2",
@@ -630,10 +623,7 @@
     "pinecil-v2-2.jpg",
     "pinecil-v2-3.jpg"
    ],
-   "alt": {
-    "store": "Amazon",
-    "url": "https://www.amazon.com/dp/B0HN3SVX5C"
-   }
+   "checked": "Nov 27"
   },
   {
    "id": "solder-sac305",
@@ -647,7 +637,9 @@
     "solder-sac305-1.jpg",
     "solder-sac305-2.jpg",
     "solder-sac305-3.jpg"
-   ]
+   ],
+   "checked": "Nov 27",
+   "note": "Out of stock at Adafruit on Nov 27."
   },
   {
    "id": "flux-pen",
@@ -662,7 +654,8 @@
     "flux-pen-2.jpg",
     "flux-pen-3.jpg",
     "flux-pen-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "brass-tip-cleaner",
@@ -676,7 +669,8 @@
     "brass-tip-cleaner-1.jpg",
     "brass-tip-cleaner-2.jpg",
     "brass-tip-cleaner-3.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "third-hand",
@@ -689,7 +683,8 @@
    "images": [
     "third-hand-1.jpg",
     "third-hand-2.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "silicone-mat",
@@ -703,7 +698,8 @@
     "silicone-mat-1.jpg",
     "silicone-mat-2.jpg",
     "silicone-mat-3.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "myoware-link-shield",
@@ -719,7 +715,8 @@
     "myoware-link-shield-3.jpg",
     "myoware-link-shield-4.jpg"
    ],
-   "note": "Needs the cable and breakout below to reach his board."
+   "note": "Backordered at SparkFun on Nov 27; it ships when restocked. Needs the cable and breakout below to reach his board.",
+   "checked": "Nov 27"
   },
   {
    "id": "trs-cable-1m",
@@ -733,7 +730,8 @@
     "trs-cable-1m-1.jpg",
     "trs-cable-1m-2.jpg",
     "trs-cable-1m-3.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "trrs-breakout",
@@ -748,7 +746,8 @@
     "trrs-breakout-2.jpg",
     "trrs-breakout-3.jpg",
     "trrs-breakout-4.jpg"
-   ]
+   ],
+   "checked": "Nov 27"
   },
   {
    "id": "hollister-crew-gray",
